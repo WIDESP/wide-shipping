@@ -17,7 +17,7 @@
   
   <link rel="stylesheet" href="styles.css">
 
-  <!-- 이미지에 부드러운 움직임(플로팅 애니메이션)을 주기 위한 인라인 스타일 -->
+  <!-- 이미지에 부드러운 움직임(플로팅 애니메이션) 및 지도 영역 스타일 -->
   <style>
     @keyframes floatAnimation {
       0% { transform: translateY(0px); }
@@ -26,6 +26,51 @@
     }
     .floating-art {
       animation: floatAnimation 4s ease-in-out infinite;
+    }
+    
+    /* 오시는 길 지도 섹션 스타일 */
+    .map-section {
+      margin-top: 40px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .map-box {
+      width: 100%;
+      height: 400px;
+      background-color: #f1f3f5;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e9ecef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #495057;
+      font-size: 15px;
+      text-align: center;
+      padding: 20px;
+    }
+    .map-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #03c75a;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .map-btn:hover {
+      background-color: #02b350;
+    }
+    .map-info-text {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -49,7 +94,7 @@
       <a href="#services">서비스</a>
       <a href="#strengths">강점</a>
       <a href="#process">물류 프로세스</a>
-      <a href="#contact">문의</a>
+      <a href="#contact">문의/오시는길</a>
 
       <!-- 온라인 견적문의 -->
       <a
@@ -555,7 +600,7 @@
 
 
 <!-- =========================
-    CONTACT
+    CONTACT & LOCATION
 ========================= -->
 
 <section class="section contact" id="contact">
@@ -565,7 +610,7 @@
     <div class="section-head reveal">
 
       <p class="eyebrow">
-        CONTACT
+        CONTACT & LOCATION
       </p>
 
       <h2>
@@ -575,7 +620,7 @@
 
       <p>
         운송에 관한 궁금한 점이나 견적 문의가 있으시면
-        편하게 연락 주세요.
+        편하게 연락 주세요. 아래 버튼을 통해 네이버 지도에서 위치를 바로 확인하실 수 있습니다.
       </p>
 
     </div>
@@ -614,6 +659,20 @@
 
     </div>
 
+  </div>
+
+  <!-- 오시는 길 지도 연동 영역 -->
+  <div class="map-section reveal">
+    <div class="map-box">
+      <p style="margin-bottom: 6px; font-weight: bold; font-size: 16px; color: #333;">📍 주식회사 와이드해운 오시는 길</p>
+      <p style="font-size: 14px; color: #666; margin-bottom: 12px;">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</p>
+      <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-btn">
+        네이버 지도에서 위치 보기 ↗
+      </a>
+    </div>
+    <p class="map-info-text">
+      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 방문 전 문의해 주시면 친절히 안내해 드리겠습니다.
+    </p>
   </div>
 
 </section>
