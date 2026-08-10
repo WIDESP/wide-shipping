@@ -44,38 +44,13 @@
       overflow: hidden;
       border: 1px solid #e9ecef;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background-color: #f1f3f5;
     }
-    /* 네이버 지도 iframe 스타일 */
+    /* 실제 네이버 지도 iframe */
     .map-container iframe {
       width: 100%;
       height: 100%;
       border: 0;
-    }
-    /* 지도가 로딩되기 전 대체 텍스트 상자 스타일 */
-    .map-fallback {
-      width: 100%;
-      height: 100%;
-      background-color: #f8f9fa;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
-    .map-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #03c75a;
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
-    .map-btn:hover {
-      background-color: #02b350;
     }
     .map-info-text {
       margin-top: 15px;
@@ -672,19 +647,13 @@
 
   </div>
 
-  <!-- 오시는 길 지도 영역 (네이버 지도 바로가기 버튼 포함) -->
+  <!-- 오시는 길 네이버 지도 영역 (실제 지도 모양 출력) -->
   <div class="map-section reveal">
     <div class="map-container">
-      <div class="map-fallback">
-        <p style="font-weight: bold; font-size: 16px; color: #333; margin-bottom: 6px;">📍 주식회사 와이드해운 오시는 길</p>
-        <p style="font-size: 14px; color: #666; margin-bottom: 4px;">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</p>
-        <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-btn">
-          네이버 지도에서 위치 및 길찾기 보기 ↗
-        </a>
-      </div>
+      <iframe src="https://map.naver.com/p/search/%EB%부산광역시%20부산진구%20서면문화로%206-1/address/14330663.63,4687595.63,%EB%부산광역시%20부산진구%20서면문화로%206-1,new?c=19.00,0,0,0,dh" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <p class="map-info-text">
-      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 버튼을 누르시면 네이버 지도로 연결됩니다.
+      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 지도를 직접 마우스로 조작하거나 클릭하여 크게 보실 수 있습니다.
     </p>
   </div>
 
