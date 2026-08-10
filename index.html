@@ -28,7 +28,7 @@
       animation: floatAnimation 4s ease-in-out infinite;
     }
     
-    /* 오시는 길 지도 섹션 스타일 */
+    /* 오시는 길 지도 배너 스타일 */
     .map-section {
       margin-top: 40px;
       padding: 0 20px;
@@ -36,21 +36,58 @@
       margin-left: auto;
       margin-right: auto;
     }
-    .map-container {
+    .map-banner {
       position: relative;
       width: 100%;
-      height: 450px;
-      border-radius: 12px;
+      height: 380px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 16px;
       overflow: hidden;
-      border: 1px solid #e9ecef;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      background-color: #f1f3f5;
+      border: 1px solid #dee2e6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    /* 실제 네이버 지도 iframe */
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
+    .map-banner:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .map-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+    .map-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #212529;
+      margin-bottom: 8px;
+    }
+    .map-address {
+      font-size: 15px;
+      color: #495057;
+      margin-bottom: 20px;
+    }
+    .map-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background-color: #03c75a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(3, 199, 90, 0.3);
+      transition: background-color 0.2s;
+    }
+    .map-banner:hover .map-action-btn {
+      background-color: #02b350;
     }
     .map-info-text {
       margin-top: 15px;
@@ -606,7 +643,7 @@
 
       <p>
         운송에 관한 궁금한 점이나 견적 문의가 있으시면
-        편하게 연락 주세요. 아래 지도에서 위치를 확인하실 수 있습니다.
+        편하게 연락 주세요. 아래 배너를 클릭하시면 네이버 지도에서 위치를 확인하실 수 있습니다.
       </p>
 
     </div>
@@ -647,13 +684,18 @@
 
   </div>
 
-  <!-- 오시는 길 네이버 지도 영역 (실제 지도 모양 출력) -->
+  <!-- 오시는 길 네이버 지도 링크 배너 영역 -->
   <div class="map-section reveal">
-    <div class="map-container">
-      <iframe src="https://map.naver.com/p/search/%EB%부산광역시%20부산진구%20서면문화로%206-1/address/14330663.63,4687595.63,%EB%부산광역시%20부산진구%20서면문화로%206-1,new?c=19.00,0,0,0,dh" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-banner">
+      <div class="map-icon">📍</div>
+      <div class="map-title">주식회사 와이드해운 오시는 길</div>
+      <div class="map-address">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</div>
+      <span class="map-action-btn">
+        네이버 지도에서 위치 및 길찾기 보기 ↗
+      </span>
+    </a>
     <p class="map-info-text">
-      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 지도를 직접 마우스로 조작하거나 클릭하여 크게 보실 수 있습니다.
+      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 배너를 클릭하시면 네이버 지도가 새 창으로 안전하게 열립니다.
     </p>
   </div>
 
