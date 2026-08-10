@@ -16,6 +16,18 @@
   <link rel="icon" href="assets/wide-shipping-logo.svg">
   
   <link rel="stylesheet" href="styles.css">
+
+  <!-- 이미지에 부드러운 움직임(플로팅 애니메이션)을 주기 위한 인라인 스타일 -->
+  <style>
+    @keyframes floatAnimation {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .floating-art {
+      animation: floatAnimation 4s ease-in-out infinite;
+    }
+  </style>
 </head>
 
 <body>
@@ -125,9 +137,9 @@
 
     </div>
 
-    <!-- 수정된 히어로 일러스트 영역 (세로 크기 확대) -->
-    <div class="hero-art" style="background: none !important; box-shadow: none !important; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-      <img src="assets/hero-illustration.png" alt="물류 일러스트" style="width: 100%; height: 120%; max-height: 120vh; object-fit: contain; display: block; background: transparent;">
+    <!-- 수정된 히어로 일러스트 영역 (세로 크기 확대 + 부드러운 움직임 효과 적용) -->
+    <div class="hero-art reveal delay-1" style="background: none !important; box-shadow: none !important; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+      <img src="assets/hero-illustration.png" alt="물류 일러스트" class="floating-art" style="width: 100%; height: 120%; max-height: 120vh; object-fit: contain; display: block; background: transparent;">
     </div>
 
   </div>
