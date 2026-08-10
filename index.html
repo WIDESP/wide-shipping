@@ -36,35 +36,43 @@
       margin-left: auto;
       margin-right: auto;
     }
-    .map-box {
+    .map-card {
+      position: relative;
       width: 100%;
-      height: 400px;
-      background-color: #f1f3f5;
+      height: 420px;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid #e9ecef;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #495057;
-      font-size: 15px;
-      text-align: center;
-      padding: 20px;
+      display: block;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .map-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
+    .map-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .map-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* 지도 위에 마우스가 올라갔을 때 보이는 안내 배지 */
+    .map-overlay-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
       background-color: #03c75a;
       color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-weight: bold;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
-    .map-btn:hover {
-      background-color: #02b350;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .map-info-text {
       margin-top: 15px;
@@ -500,7 +508,7 @@
         <span>04</span>
 
         <div>
-          <h3>해상 · 항공 전문</h3>
+          ### 해상 · 항공 전문
           <p>
             해상과 항공 실무 경험을 바탕으로
             적합한 운송 방향을 제안합니다.
@@ -620,7 +628,7 @@
 
       <p>
         운송에 관한 궁금한 점이나 견적 문의가 있으시면
-        편하게 연락 주세요. 아래 버튼을 통해 네이버 지도에서 위치를 바로 확인하실 수 있습니다.
+        편하게 연락 주세요. 아래 지도 이미지를 누르면 네이버 지도에서 위치를 확인하실 수 있습니다.
       </p>
 
     </div>
@@ -661,17 +669,21 @@
 
   </div>
 
-  <!-- 오시는 길 지도 연동 영역 -->
+  <!-- 오시는 길 지도 이미지 연동 영역 -->
   <div class="map-section reveal">
-    <div class="map-box">
-      <p style="margin-bottom: 6px; font-weight: bold; font-size: 16px; color: #333;">📍 주식회사 와이드해운 오시는 길</p>
-      <p style="font-size: 14px; color: #666; margin-bottom: 12px;">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</p>
-      <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-btn">
-        네이버 지도에서 위치 보기 ↗
-      </a>
-    </div>
+    <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-card" aria-label="네이버 지도에서 와이드해운 위치 보기">
+      <!-- 
+        [안내] 
+        assets 폴더 안에 지도 영역을 캡처한 이미지(예: map-image.png)를 넣어두시고 
+        아래 src 속성 경로를 일치시켜 주시면 실제 지도 그림이 웹사이트에 나타납니다.
+      -->
+      <img src="assets/map-image.png" alt="와이드해운 오시는 길 지도">
+      <div class="map-overlay-badge">
+        📍 네이버 지도에서 길찾기 ↗
+      </div>
+    </a>
     <p class="map-info-text">
-      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 방문 전 문의해 주시면 친절히 안내해 드리겠습니다.
+      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 지도 이미지를 클릭하시면 네이버 지도가 새 창으로 열립니다.
     </p>
   </div>
 
