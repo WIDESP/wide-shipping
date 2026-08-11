@@ -16,31 +16,105 @@
 
   <style>
     /* ==========================================
-       Hero 자연스러운 배경 통합 모션 (박스 제거)
+       Hero 전체 배경 일러스트 스타일 (Full Background)
        ========================================== */
-    .hero-art-wrapper {
+    .hero {
       position: relative;
       width: 100%;
-      max-width: 600px;
+      min-height: 580px;
+      padding: 100px 20px 80px;
+      /* 어두운 배경색과 함께 일러스트를 전체 배경으로 지정 */
+      background: linear-gradient(rgba(6, 24, 56, 0.82), rgba(6, 24, 56, 0.88)), 
+                  url('assets/hero-illustration.png') no-repeat center center / cover;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #ffffff;
+      overflow: hidden;
     }
 
-    /* 둥둥 뜨는 자연스러운 일러스트 모션 */
-    @keyframes floatArt {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(0.5deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
+    /* 배경 이미지에 부드러운 float 모션 부여 */
+    @keyframes bgMove {
+      0% { background-position: center 50%; }
+      50% { background-position: center 48%; }
+      100% { background-position: center 50%; }
+    }
+    .hero {
+      animation: bgMove 8s ease-in-out infinite;
     }
 
-    .hero-art-img {
+    .hero-container {
+      max-width: 1200px;
       width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: transparent;
-      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.08));
-      animation: floatArt 4.5s ease-in-out infinite;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+    }
+
+    .hero-copy .eyebrow {
+      color: #38bdf8;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .hero-copy h1 {
+      color: #ffffff;
+      font-size: 48px;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .hero-copy h1 strong {
+      color: #38bdf8;
+    }
+
+    .hero-desc {
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions .btn.primary {
+      background-color: #38bdf8;
+      color: #0f172a;
+      font-weight: 700;
+      border: none;
+    }
+
+    .hero-actions .btn.ghost {
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-points {
+      display: flex;
+      gap: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 24px;
+    }
+
+    .hero-points strong {
+      display: block;
+      color: #ffffff;
+      font-size: 20px;
+    }
+
+    .hero-points span {
+      color: #94a3b8;
+      font-size: 13px;
     }
 
     /* 오시는 길 지도 배너 스타일 */
@@ -145,9 +219,9 @@
 
 <main>
 
-<!-- HERO -->
+<!-- HERO (배경 전체 일러스트 적용) -->
 <section class="hero">
-  <div class="hero-grid">
+  <div class="hero-container">
 
     <div class="hero-copy reveal">
       <p class="eyebrow">
@@ -189,13 +263,6 @@
           <strong>AIR</strong>
           <span>Air Freight</span>
         </div>
-      </div>
-    </div>
-
-    <!-- 네모 박스를 없애고 배경에 자연스럽게 녹아들도록 설정한 영역 -->
-    <div class="hero-art reveal delay-1" style="background: none; box-shadow: none; border: none; padding: 0;">
-      <div class="hero-art-wrapper">
-        <img src="assets/hero-illustration.png" alt="국제물류 스케줄 및 운송 일러스트" class="hero-art-img">
       </div>
     </div>
 
