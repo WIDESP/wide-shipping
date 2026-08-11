@@ -264,6 +264,27 @@
       color: #555;
       line-height: 1.6;
     }
+
+    /* 모바일 반응형 처리 */
+    @media (max-width: 768px) {
+      .hero-copy h1 {
+        font-size: 32px;
+      }
+      .motion-boat-group {
+        width: 280px;
+        opacity: 0.5;
+      }
+      .motion-plane-group {
+        width: 180px;
+      }
+      .motion-truck-group {
+        width: 180px;
+      }
+      .hero-points {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
   </style>
 </head>
 
@@ -718,6 +739,10 @@
   </div>
 </footer>
 
+<script>
+  // 푸터 연도 자동 설정
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 <script src="script.js"></script>
 </body>
 </html>
