@@ -21,7 +21,7 @@
     .hero {
       position: relative;
       width: 100%;
-      min-height: 650px;
+      min-height: 680px;
       background: #061838;
       overflow: hidden;
       display: flex;
@@ -41,48 +41,61 @@
       pointer-events: none;
     }
 
-    /* 1. 좌측 아래 바다 위 둥둥 떠다니는 배 */
+    /* 실물 PNG 이미지 공통 스타일 및 그림자 */
+    .motion-hero-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
+    }
+
+    /* 1. 좌측 하단 대형 컨테이너선 (바다 위 둥둥 효과) */
     @keyframes boatFloat {
       0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(1.5deg); }
+      50% { transform: translateY(-10px) rotate(0.8deg); }
       100% { transform: translateY(0px) rotate(0deg); }
     }
     .motion-boat-group {
       position: absolute;
-      left: 5%;
-      bottom: 8%;
-      width: 320px;
+      left: -2%;
+      bottom: -2%;
+      width: 480px;
+      z-index: 2;
       animation: boatFloat 4s ease-in-out infinite;
     }
 
-    /* 2. 우측 아래에서 좌측 위로 지속적으로 날아가는 비행기 */
+    /* 2. 우측 아래에서 좌측 위로 날아가는 비행기 */
     @keyframes planeFlyUpLeft {
-      0% { transform: translate(100vw, 40vh) scale(0.6); opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { transform: translate(-20vw, -30vh) scale(1); opacity: 0; }
+      0% { 
+        transform: translate(85vw, 65vh) rotate(-22deg) scale(0.6); 
+        opacity: 0; 
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { 
+        transform: translate(-25vw, -35vh) rotate(-22deg) scale(1.1); 
+        opacity: 0; 
+      }
     }
     .motion-plane-group {
       position: absolute;
       top: 0;
       left: 0;
+      width: 260px;
+      z-index: 3;
       animation: planeFlyUpLeft 9s linear infinite;
     }
 
-    /* 3. 우측 위에서 우측 아래로 계속 내려오는 추레라 트럭 (수정 완료) */
-    @keyframes truckDriveDownRightSide {
+    /* 3. 우측 위에서 우측 아래 사선으로 내려오는 트럭 (정면 강조) */
+    @keyframes truckDriveDownRight {
       0% {
-        transform: translate(75vw, -30vh) scale(0.7);
+        transform: translate(65vw, -25vh) scale(0.7);
         opacity: 0;
       }
-      10% {
-        opacity: 0.9;
-      }
-      90% {
-        opacity: 0.9;
-      }
+      10% { opacity: 0.95; }
+      90% { opacity: 0.95; }
       100% {
-        transform: translate(75vw, 110vh) scale(1);
+        transform: translate(80vw, 85vh) scale(1.05);
         opacity: 0;
       }
     }
@@ -90,23 +103,29 @@
       position: absolute;
       top: 0;
       left: 0;
-      animation: truckDriveDownRightSide 9s linear infinite;
+      width: 280px;
+      z-index: 1;
+      animation: truckDriveDownRight 9s linear infinite;
+    }
+    /* 트럭 전면부 각도 정면화 CSS 3D 적용 */
+    .motion-truck-group img {
+      transform: perspective(700px) rotateY(-18deg) rotate(8deg);
     }
 
     /* 수면 라인 (배 하단) */
     .sea-line-bg {
       position: absolute;
-      bottom: 8%;
+      bottom: 5%;
       left: 0;
       width: 100%;
       height: 2px;
-      background: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.25);
     }
 
-    /* Hero 본문 텍스트 레이어 (배경 위에 위치) */
+    /* Hero 본문 텍스트 레이어 */
     .hero-content-container {
       position: relative;
-      z-index: 2;
+      z-index: 4;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
@@ -280,42 +299,25 @@
 
 <main>
 
-<!-- HERO (배경에서 각자 따로 움직이는 배, 비행기, 추레라) -->
+<!-- HERO (실물 이미지가 적용된 모션 파트) -->
 <section class="hero">
   
-  <!-- 배경 모션 요소를 담은 레이어 -->
   <div class="hero-motion-bg">
     <div class="sea-line-bg"></div>
 
-    <!-- 1. 좌측 아래: 바다 위 둥둥 떠다니는 배 -->
+    <!-- 1. 좌측 하단: 대형 컨테이너선 -->
     <div class="motion-boat-group">
-      <svg viewBox="0 0 300 120" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 20 90 L 50 110 L 250 110 L 280 80 L 20 90 Z" fill="#0b224d" stroke="#38bdf8" stroke-width="1.5" />
-        <rect x="50" y="65" width="40" height="25" fill="#0284c7" stroke="#38bdf8" />
-        <rect x="95" y="65" width="40" height="25" fill="#38bdf8" stroke="#0284c7" />
-        <rect x="140" y="65" width="40" height="25" fill="#0284c7" stroke="#38bdf8" />
-        <rect x="70" y="40" width="40" height="25" fill="#38bdf8" stroke="#0284c7" />
-        <rect x="115" y="40" width="40" height="25" fill="#0284c7" stroke="#38bdf8" />
-      </svg>
+      <img src="assets/cargo ship png_2.jpg" alt="해상 운송 선박" class="motion-hero-img">
     </div>
 
-    <!-- 2. 우측 아래 -> 좌측 위: 비행기 날아가기 -->
+    <!-- 2. 우측 하단 -> 좌측 상단: 대각선으로 날아가는 비행기 -->
     <div class="motion-plane-group">
-      <svg viewBox="0 0 120 60" width="120" height="60" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 40 L 40 30 L 30 15 L 40 15 L 60 28 L 80 25 L 70 0 L 82 0 L 100 22 L 112 20 C 118 20 122 24 118 28 C 114 32 108 32 100 32 L 0 40 Z" fill="#38bdf8" />
-      </svg>
+      <img src="assets/airplane isolated.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
 
-    <!-- 3. 우측 위 -> 우측 아래: 추레라 트럭 지나가기 (수정 완료) -->
+    <!-- 3. 우측 상단 -> 우측 하단: 사선으로 내려오는 트럭 -->
     <div class="motion-truck-group">
-      <svg viewBox="0 0 180 60" width="180" height="60" xmlns="http://www.w3.org/2000/svg">
-        <rect x="10" y="10" width="110" height="35" rx="3" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
-        <path d="M 122 22 L 145 22 L 155 35 L 155 45 L 122 45 Z" fill="#f8fafc" />
-        <circle cx="30" cy="48" r="7" fill="#64748b" />
-        <circle cx="50" cy="48" r="7" fill="#64748b" />
-        <circle cx="95" cy="48" r="7" fill="#64748b" />
-        <circle cx="140" cy="48" r="7" fill="#64748b" />
-      </svg>
+      <img src="assets/container truck png_2.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
 
   </div>
