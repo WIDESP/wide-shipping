@@ -16,48 +16,31 @@
 
   <style>
     /* ==========================================
-       Hero 개별 모션 애니메이션 (배, 비행기, 트럭)
+       Hero 자연스러운 배경 통합 모션 (박스 제거)
        ========================================== */
-    .hero-art-container {
+    .hero-art-wrapper {
       position: relative;
       width: 100%;
-      max-width: 550px;
-      height: 320px;
-      background: #061838;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* 1. 바다 위 둥둥 떠다니는 배 (위아래 + 미세한 회전) */
-    @keyframes boatFloat {
+    /* 둥둥 뜨는 자연스러운 일러스트 모션 */
+    @keyframes floatArt {
       0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(1.5deg); }
+      50% { transform: translateY(-12px) rotate(0.5deg); }
       100% { transform: translateY(0px) rotate(0deg); }
     }
-    .motion-boat {
-      animation: boatFloat 3.5s ease-in-out infinite;
-      transform-origin: bottom center;
-    }
 
-    /* 2. 사선으로 무한 날아가는 비행기 */
-    @keyframes planeFly {
-      0% { transform: translate(-40px, 20px); opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { transform: translate(320px, -120px); opacity: 0; }
-    }
-    .motion-plane {
-      animation: planeFly 5s linear infinite;
-    }
-
-    /* 3. 도로 위를 계속 달리는 추레라/트럭 */
-    @keyframes truckDrive {
-      0% { transform: translateX(350px); }
-      100% { transform: translateX(-200px); }
-    }
-    .motion-truck {
-      animation: truckDrive 6s linear infinite;
+    .hero-art-img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: transparent;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.08));
+      animation: floatArt 4.5s ease-in-out infinite;
     }
 
     /* 오시는 길 지도 배너 스타일 */
@@ -209,47 +192,10 @@
       </div>
     </div>
 
-    <!-- 개별 애니메이션이 적용된 HERO 일러스트 (통이미지 대체) -->
-    <div class="hero-art reveal delay-1" style="background:none; box-shadow:none; padding:0;">
-      <div class="hero-art-container">
-        <svg viewBox="0 0 500 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <!-- 배경 및 지구본 라인 -->
-          <circle cx="250" cy="150" r="120" fill="none" stroke="#1d3557" stroke-width="1.5" stroke-dasharray="4 4" />
-          <ellipse cx="250" cy="150" rx="120" ry="40" fill="none" stroke="#1d3557" stroke-width="1.5" stroke-dasharray="4 4" />
-
-          <!-- 1. 사선으로 날아가는 비행기 (개별 애니메이션) -->
-          <g class="motion-plane">
-            <path d="M 0 180 L 35 170 L 25 160 L 30 160 L 45 168 L 60 165 L 50 150 L 58 150 L 72 163 L 80 162 C 85 162 90 165 88 168 C 86 171 80 172 75 172 L 0 180 Z" fill="#38bdf8" />
-          </g>
-
-          <!-- 2. 바다 위 둥둥 떠다니는 컨테이너선 (개별 애니메이션) -->
-          <g class="motion-boat">
-            <!-- 수면 라인 -->
-            <path d="M 20 230 Q 125 225 250 230 T 480 230" fill="none" stroke="#0284c7" stroke-width="2" />
-            <!-- 선박 본체 -->
-            <path d="M 40 210 L 70 230 L 210 230 L 230 200 L 40 210 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
-            <!-- 컨테이너 박스들 -->
-            <rect x="60" y="190" width="30" height="20" fill="#0284c7" stroke="#38bdf8" />
-            <rect x="93" y="190" width="30" height="20" fill="#38bdf8" stroke="#0284c7" />
-            <rect x="126" y="190" width="30" height="20" fill="#0284c7" stroke="#38bdf8" />
-            <rect x="75" y="170" width="30" height="20" fill="#38bdf8" stroke="#0284c7" />
-            <rect x="108" y="170" width="30" height="20" fill="#0284c7" stroke="#38bdf8" />
-          </g>
-
-          <!-- 3. 도로 위를 달리는 추레라 트럭 (개별 애니메이션) -->
-          <g class="motion-truck">
-            <!-- 도로 라인 -->
-            <line x1="0" y1="275" x2="500" y2="275" stroke="#334155" stroke-width="2" stroke-dasharray="8 6" />
-            <!-- 트럭 컨테이너 및 헤드 -->
-            <rect x="50" y="245" width="80" height="25" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1" />
-            <path d="M 132 253 L 145 253 L 150 262 L 150 270 L 132 270 Z" fill="#f8fafc" />
-            <!-- 바퀴 -->
-            <circle cx="65" cy="272" r="5" fill="#94a3b8" />
-            <circle cx="80" cy="272" r="5" fill="#94a3b8" />
-            <circle cx="115" cy="272" r="5" fill="#94a3b8" />
-            <circle cx="142" cy="272" r="5" fill="#94a3b8" />
-          </g>
-        </svg>
+    <!-- 네모 박스를 없애고 배경에 자연스럽게 녹아들도록 설정한 영역 -->
+    <div class="hero-art reveal delay-1" style="background: none; box-shadow: none; border: none; padding: 0;">
+      <div class="hero-art-wrapper">
+        <img src="assets/hero-illustration.png" alt="국제물류 스케줄 및 운송 일러스트" class="hero-art-img">
       </div>
     </div>
 
@@ -342,7 +288,6 @@
   </div>
 
   <div class="service-grid">
-    <!-- 해상운송 -->
     <article class="service-card ocean reveal">
       <span class="service-no">01</span>
       <div class="service-icon" aria-hidden="true">⚓</div>
@@ -360,7 +305,6 @@
       </a>
     </article>
 
-    <!-- 항공운송 -->
     <article class="service-card air reveal delay-1">
       <span class="service-no">02</span>
       <div class="service-icon" aria-hidden="true">✈</div>
@@ -377,7 +321,6 @@
       </a>
     </article>
 
-    <!-- 기타 물류서비스 -->
     <article class="service-card other reveal delay-2">
       <span class="service-no">03</span>
       <div class="service-icon" aria-hidden="true">＋</div>
@@ -572,7 +515,6 @@
     </div>
   </div>
 
-  <!-- 지도 배너 -->
   <div class="map-section reveal">
     <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-banner">
       <div class="map-icon" aria-hidden="true">📍</div>
@@ -590,7 +532,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <img src="assets/wide-shipping-logo.svg" alt="와이드해운">
