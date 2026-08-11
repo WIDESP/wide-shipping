@@ -6,28 +6,60 @@
   <title>와이드해운 | 국제물류 전문기업</title>
   <meta name="description" content="와이드해운 - 해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험을 제공하는 국제물류 전문기업입니다.">
   
-  <!-- 오픈 그래프 (소셜 미디어 공유 최적화) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="와이드해운 | 국제물류 전문기업">
   <meta property="og:description" content="해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험 등 최적의 물류 솔루션을 제공합니다.">
   <meta property="og:image" content="assets/wide-shipping-logo.svg">
   
-  <!-- 파비콘 설정 -->
   <link rel="icon" type="image/svg+xml" href="assets/wide-shipping-logo.svg">
-  
   <link rel="stylesheet" href="styles.css">
 
-  <!-- 애니메이션 및 오시는 길 스타일 -->
   <style>
-    @keyframes floatAnimation {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
+    /* ==========================================
+       Hero 개별 모션 애니메이션 (배, 비행기, 트럭)
+       ========================================== */
+    .hero-art-container {
+      position: relative;
+      width: 100%;
+      max-width: 550px;
+      height: 320px;
+      background: #061838;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
-    .floating-art {
-      animation: floatAnimation 4s ease-in-out infinite;
+
+    /* 1. 바다 위 둥둥 떠다니는 배 (위아래 + 미세한 회전) */
+    @keyframes boatFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1.5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
     }
-    
+    .motion-boat {
+      animation: boatFloat 3.5s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    /* 2. 사선으로 무한 날아가는 비행기 */
+    @keyframes planeFly {
+      0% { transform: translate(-40px, 20px); opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translate(320px, -120px); opacity: 0; }
+    }
+    .motion-plane {
+      animation: planeFly 5s linear infinite;
+    }
+
+    /* 3. 도로 위를 계속 달리는 추레라/트럭 */
+    @keyframes truckDrive {
+      0% { transform: translateX(350px); }
+      100% { transform: translateX(-200px); }
+    }
+    .motion-truck {
+      animation: truckDrive 6s linear infinite;
+    }
+
     /* 오시는 길 지도 배너 스타일 */
     .map-section {
       margin-top: 40px;
@@ -104,12 +136,7 @@
   <div class="nav-wrap">
 
     <a class="brand" href="#top" aria-label="와이드해운 홈">
-      <img 
-        src="assets/wide-shipping-logo.svg" 
-        alt="(주)와이드해운" 
-        class="site-logo"
-        width="220"
-      >
+      <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo" width="220">
     </a>
 
     <nav class="main-nav" aria-label="주요 메뉴">
@@ -119,20 +146,12 @@
       <a href="#process">물류 프로세스</a>
       <a href="#contact">문의/오시는길</a>
 
-      <a
-        href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
         온라인 견적문의
       </a>
     </nav>
 
-    <button
-      class="menu-btn"
-      aria-label="메뉴 열기"
-      aria-expanded="false"
-    >
+    <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -163,12 +182,7 @@
       </p>
 
       <div class="hero-actions">
-        <a
-          class="btn primary"
-          href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="btn primary" href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
           온라인 견적 문의 <span>→</span>
         </a>
 
@@ -195,8 +209,48 @@
       </div>
     </div>
 
-    <div class="hero-art reveal delay-1" style="background: none; box-shadow: none; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-      <img src="assets/hero-illustration.png" alt="국제물류 스케줄 및 운송 일러스트" class="floating-art" style="width: 100%; height: 120%; max-height: 120vh; object-fit: contain; display: block; background: transparent;">
+    <!-- 개별 애니메이션이 적용된 HERO 일러스트 (통이미지 대체) -->
+    <div class="hero-art reveal delay-1" style="background:none; box-shadow:none; padding:0;">
+      <div class="hero-art-container">
+        <svg viewBox="0 0 500 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <!-- 배경 및 지구본 라인 -->
+          <circle cx="250" cy="150" r="120" fill="none" stroke="#1d3557" stroke-width="1.5" stroke-dasharray="4 4" />
+          <ellipse cx="250" cy="150" rx="120" ry="40" fill="none" stroke="#1d3557" stroke-width="1.5" stroke-dasharray="4 4" />
+
+          <!-- 1. 사선으로 날아가는 비행기 (개별 애니메이션) -->
+          <g class="motion-plane">
+            <path d="M 0 180 L 35 170 L 25 160 L 30 160 L 45 168 L 60 165 L 50 150 L 58 150 L 72 163 L 80 162 C 85 162 90 165 88 168 C 86 171 80 172 75 172 L 0 180 Z" fill="#38bdf8" />
+          </g>
+
+          <!-- 2. 바다 위 둥둥 떠다니는 컨테이너선 (개별 애니메이션) -->
+          <g class="motion-boat">
+            <!-- 수면 라인 -->
+            <path d="M 20 230 Q 125 225 250 230 T 480 230" fill="none" stroke="#0284c7" stroke-width="2" />
+            <!-- 선박 본체 -->
+            <path d="M 40 210 L 70 230 L 210 230 L 230 200 L 40 210 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+            <!-- 컨테이너 박스들 -->
+            <rect x="60" y="190" width="30" height="20" fill="#0284c7" stroke="#38bdf8" />
+            <rect x="93" y="190" width="30" height="20" fill="#38bdf8" stroke="#0284c7" />
+            <rect x="126" y="190" width="30" height="20" fill="#0284c7" stroke="#38bdf8" />
+            <rect x="75" y="170" width="30" height="20" fill="#38bdf8" stroke="#0284c7" />
+            <rect x="108" y="170" width="30" height="20" fill="#0284c7" stroke="#38bdf8" />
+          </g>
+
+          <!-- 3. 도로 위를 달리는 추레라 트럭 (개별 애니메이션) -->
+          <g class="motion-truck">
+            <!-- 도로 라인 -->
+            <line x1="0" y1="275" x2="500" y2="275" stroke="#334155" stroke-width="2" stroke-dasharray="8 6" />
+            <!-- 트럭 컨테이너 및 헤드 -->
+            <rect x="50" y="245" width="80" height="25" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1" />
+            <path d="M 132 253 L 145 253 L 150 262 L 150 270 L 132 270 Z" fill="#f8fafc" />
+            <!-- 바퀴 -->
+            <circle cx="65" cy="272" r="5" fill="#94a3b8" />
+            <circle cx="80" cy="272" r="5" fill="#94a3b8" />
+            <circle cx="115" cy="272" r="5" fill="#94a3b8" />
+            <circle cx="142" cy="272" r="5" fill="#94a3b8" />
+          </g>
+        </svg>
+      </div>
     </div>
 
   </div>
@@ -301,11 +355,7 @@
         <li>FCL</li>
         <li>LCL</li>
       </ul>
-      <a
-        href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
         견적 문의 →
       </a>
     </article>
@@ -322,11 +372,7 @@
       <ul>
         <li>항공화물</li>
       </ul>
-      <a
-        href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
         견적 문의 →
       </a>
     </article>
@@ -345,11 +391,7 @@
         <li>내륙운송</li>
         <li>적하보험</li>
       </ul>
-      <a
-        href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
         상담 문의 →
       </a>
     </article>
@@ -476,12 +518,7 @@
     </h2>
   </div>
 
-  <a
-    class="btn white"
-    href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <a class="btn white" href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
     온라인 견적 문의 바로가기 <span>→</span>
   </a>
 </section>
