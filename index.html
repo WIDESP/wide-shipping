@@ -6,148 +6,114 @@
   <title>와이드해운 | 국제물류 전문기업</title>
   <meta name="description" content="와이드해운 - 해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험을 제공하는 국제물류 전문기업입니다.">
   
-  <!-- 오픈 그래프 (소셜 미디어 공유 최적화) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="와이드해운 | 국제물류 전문기업">
   <meta property="og:description" content="해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험 등 최적의 물류 솔루션을 제공합니다.">
   <meta property="og:image" content="assets/wide-shipping-logo.svg">
   
-  <!-- 파비콘 설정 -->
-  <link rel="icon" href="assets/wide-shipping-logo.svg">
-  
-  <!-- [주의] script.js, styles.css는 해당 파일이 없으므로 코드 실행을 위해 내부 스타일과 스크립트로 대체합니다. -->
+  <link rel="icon" type="image/svg+xml" href="assets/wide-shipping-logo.svg">
+  <link rel="stylesheet" href="styles.css">
 
-  <!-- 애니메이션 및 오시는 길 스타일 -->
   <style>
-    /* ============================================================
-       [CSS] 배경 움직임 및 레이아웃 관련 스타일
-       ============================================================ */
-
-    /* 폰트 및 기본 세팅 */
-    body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #333; overflow-x: hidden; }
-    h1, h2, h3, h4, p, span { margin: 0; }
-    a { text-decoration: none; color: inherit; transition: 0.2s; }
-    strong { font-weight: 700; color: #0284c7; }
-
-    /* 헤더 스타일 */
-    .site-header { width: 100%; padding: 15px 0; background: #fff; border-bottom: 1px solid #eee; position: fixed; top: 0; left: 0; z-index: 1000; }
-    .nav-wrap { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-    .main-nav { display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: bold; }
-    .site-logo { background-color: #9cd4e6; display: flex; align-items: center; justify-content: center; font-weight: bold; } /* 로고 대체용 */
-
-    /* [HERO] 움직이는 배경이 있는 전체 넓이 섹션 */
+    /* ==========================================
+       Hero 전체 배경 모션 애니메이션 (배, 비행기, 트럭)
+       ========================================== */
     .hero {
       position: relative;
       width: 100%;
-      height: 100vh; /* 화면 꽉 차게 */
-      background: linear-gradient(135deg, #0f172a 0%, #032a54 100%); /* 어두운 다크블루 */
-      color: #ffffff;
-      overflow: hidden; /* 움직이는 요소들 화면 밖으로 */
+      min-height: 650px;
+      background: #061838;
+      overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 0 20px;
+      padding: 100px 20px 80px;
+      color: #ffffff;
     }
 
-    /* 배경 모션 요소 레이어 (z-index 조절로 글자 밑으로) */
-    .hero-motion-container {
+    /* 배경 모션 요소를 감싸는 레이어 */
+    .hero-motion-bg {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 1;
-      pointer-events: none; /* 상호작용 방지 */
+      pointer-events: none;
     }
 
-    /* === [CSS ANIMATION KEYFRAMES] === */
+    /* 1. 좌측 아래 바다 위 둥둥 떠다니는 배 */
+    @keyframes boatFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    .motion-boat-group {
+      position: absolute;
+      left: 5%;
+      bottom: 8%;
+      width: 320px;
+      animation: boatFloat 4s ease-in-out infinite;
+    }
 
-    /* 1. 배 둥둥 모션 (자연스러운 위아래 흔들림) */
-    @keyframes floatAnimation {
-      0% { transform: translateY(0px) rotate(0.5deg); }
-      50% { transform: translateY(-12px) rotate(2.5deg); }
-      100% { transform: translateY(0px) rotate(0.5deg); }
-    }
-    /* 2. 비행기 사선 날아가기 모션 (무한 루프) */
-    @keyframes flyDiagonal {
-      0% { transform: translate(-20vw, 30vh) scale(0.6); opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { transform: translate(100vw, -40vh) scale(1); opacity: 0; }
-    }
-    /* 3. 추레라 위에서 아래로 지나가기 (무한 루프) */
-    @keyframes driveTrailer {
-      0% { transform: translate(60vw, -150px) scale(0.6); opacity: 0; }
+    /* 2. 우측 아래에서 좌측 위로 지속적으로 날아가는 비행기 */
+    @keyframes planeFlyUpLeft {
+      0% { transform: translate(100vw, 40vh) scale(0.7); opacity: 0; }
       10% { opacity: 1; }
       90% { opacity: 1; }
-      100% { transform: translate(-40vw, 100vh) scale(1); opacity: 0; }
+      100% { transform: translate(-20vw, -30vh) scale(1); opacity: 0; }
     }
-
-    /* === [개별 요소 스타일 및 애니메이션 적용] === */
-
-    /* 좌측 아래 배 */
-    .boat-art {
+    .motion-plane-group {
       position: absolute;
-      left: 10%;
-      bottom: 12%;
-      width: 320px;
-      height: auto;
-      filter: drop-shadow(0 15px 25px rgba(255,255,255,0.05));
-      animation: floatAnimation 3.5s ease-in-out infinite;
+      animation: planeFlyUpLeft 9s linear infinite;
     }
 
-    /* 우측 아래 -> 좌측 위 화물 수송기 */
-    .plane-art {
+    /* 3. 좌측 위에서 우측 아래로 계속 내려오는 추레라 트럭 */
+    @keyframes truckDriveDownRight {
+      0% { transform: translate(-20vw, -20vh) scale(0.7); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translate(100vw, 70vh) scale(1); opacity: 0; }
+    }
+    .motion-truck-group {
       position: absolute;
-      right: 15%;
-      bottom: 20%;
-      width: 350px;
-      height: auto;
-      filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
-      animation: flyDiagonal 8s linear infinite;
+      animation: truckDriveDownRight 11s linear infinite;
     }
 
-    /* 우측 위 -> 아래 추레라 */
-    .trailer-art {
+    /* 수면 라인 (배 하단) */
+    .sea-line-bg {
       position: absolute;
-      right: 10%;
-      top: 50px;
-      width: 420px;
-      height: auto;
-      filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
-      animation: driveTrailer 10s linear infinite;
+      bottom: 8%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(56, 189, 248, 0.3);
     }
 
-    /* 수면 라인 대체 */
-    .sea-line { position: absolute; bottom: 8%; left: 0; width: 100%; height: 4px; background-color: #0284c7; opacity: 0.3; }
-
-    /* 레이아웃: 텍스트는 그림 위 z-index */
-    .hero-container {
+    /* Hero 본문 텍스트 레이어 (배경 위에 위치) */
+    .hero-content-container {
       position: relative;
+      z-index: 2;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      z-index: 10; /* 글자가 위로 */
-      padding-top: 100px; /* 헤더 여백 */
     }
 
     .hero-copy {
-      max-width: 600px;
+      max-width: 650px;
     }
 
     .hero-copy .eyebrow {
       color: #38bdf8;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 15px;
-      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
     }
 
     .hero-copy h1 {
       color: #ffffff;
-      font-size: 52px;
+      font-size: 48px;
       line-height: 1.25;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .hero-copy h1 strong {
@@ -158,49 +124,39 @@
       color: #cbd5e1;
       font-size: 18px;
       line-height: 1.6;
-      margin-bottom: 35px;
+      margin-bottom: 32px;
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
 
-    /* 버튼 스타일 조정 */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 28px;
-      font-weight: 700;
-      border-radius: 8px;
-      font-size: 15px;
-    }
-
-    .btn.primary {
+    .hero-actions .btn.primary {
       background-color: #38bdf8;
       color: #0f172a;
+      font-weight: 700;
       border: none;
     }
 
-    .btn.ghost {
-      border: 1px solid rgba(255, 255, 255, 0.3);
+    .hero-actions .btn.ghost {
+      border: 1px solid rgba(255, 255, 255, 0.4);
       color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .hero-points {
       display: flex;
-      gap: 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 30px;
+      gap: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 24px;
     }
 
     .hero-points strong {
       display: block;
       color: #ffffff;
       font-size: 20px;
-      margin-bottom: 5px;
     }
 
     .hero-points span {
@@ -208,17 +164,73 @@
       font-size: 13px;
     }
 
-    /* QUICK STRIP 대체 스타일 */
-    .quick-strip { width: 100%; padding: 40px 0; background-color: #f8fafc; border-top: 1px solid #eee; }
-    .quick-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 0 20px; text-align: center; }
-    .q-num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #0284c7; color: #fff; border-radius: 50%; font-weight: 700; margin-bottom: 10px; }
-
-    /* FOOTER 대체 스타일 */
-    .footer { width: 100%; padding: 40px 0; background-color: #f1f5f9; color: #555; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; }
-
-    /*reveal 라이브러리 없으므로 reveal class 일단 기본 설정 */
-    .reveal { opacity: 1; transform: none; }
+    /* 오시는 길 지도 배너 스타일 */
+    .map-section {
+      margin-top: 40px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .map-banner {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #dee2e6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .map-banner:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .map-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+    .map-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #212529;
+      margin-bottom: 8px;
+    }
+    .map-address {
+      font-size: 15px;
+      color: #495057;
+      margin-bottom: 20px;
+    }
+    .map-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background-color: #03c75a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(3, 199, 90, 0.3);
+      transition: background-color 0.2s;
+    }
+    .map-banner:hover .map-action-btn {
+      background-color: #02b350;
+    }
+    .map-info-text {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
   </style>
 </head>
 
@@ -228,8 +240,7 @@
   <div class="nav-wrap">
 
     <a class="brand" href="#top" aria-label="와이드해운 홈">
-      <!-- [주의] 로고 이미지가 없으므로 텍스트로 대체합니다. 이미지로 교체하세요. -->
-      <div class="site-logo" width="220">와이드해운 로고</div>
+      <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo" width="220">
     </a>
 
     <nav class="main-nav" aria-label="주요 메뉴">
@@ -239,45 +250,64 @@
       <a href="#process">물류 프로세스</a>
       <a href="#contact">문의/오시는길</a>
 
-      <a
-        href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
         온라인 견적문의
       </a>
     </nav>
 
-    <!-- 모바일 메뉴 버튼 대체 -->
-    <button class="menu-btn" aria-label="메뉴 열기">메뉴</button>
+    <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
   </div>
 </header>
 
 <main>
 
-<!-- HERO (움직이는 배경 적용된 전체 넓이 섹션) -->
+<!-- HERO (배경에서 각자 따로 움직이는 배, 비행기, 추레라) -->
 <section class="hero">
   
-  <!-- === [배경 움직임 그래픽 레이어] === -->
-  <div class="hero-motion-container">
-    <div class="sea-line"></div> <!-- 수면 라인 -->
+  <!-- 배경 모션 요소를 담은 레이어 -->
+  <div class="hero-motion-bg">
+    <div class="sea-line-bg"></div>
 
-    <!-- 1. 좌측 아래 둥둥 떠다니는 배 -->
-    <!-- [무료 상업 이미지 대체] Maersk 컨테이너선 (unsplash) -->
-    <img src="https://images.unsplash.com/photo-1617424915648-5c1a79883584?q=80&w=600&auto=format&fit=crop" alt="컨테이너 화물선" class="boat-art">
-    
-    <!-- 2. 우측 아래 -> 좌측 위 무한 날아가는 수송기 -->
-    <!-- [무료 상업 이미지 대체] 대형 화물 수송기 (unsplash) -->
-    <img src="https://images.unsplash.com/photo-1547849184-e918b958c2a9?q=80&w=600&auto=format&fit=crop" alt="화물 수송기" class="plane-art">
-    
-    <!-- 3. 우측 위 -> 아래 지나가는 추레라 -->
-    <!-- [무료 상업 이미지 대체] 40ft 컨테이너 트레일러 트럭 (unsplash) -->
-    <img src="https://images.unsplash.com/photo-1594917124119-948f2f451f2f?q=80&w=600&auto=format&fit=crop" alt="컨테이너 트럭" class="trailer-art">
+    <!-- 1. 좌측 아래: 바다 위 둥둥 떠다니는 배 -->
+    <div class="motion-boat-group">
+      <svg viewBox="0 0 300 120" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 20 90 L 50 110 L 250 110 L 280 80 L 20 90 Z" fill="#0b224d" stroke="#38bdf8" stroke-width="1.5" />
+        <rect x="50" y="65" width="40" height="25" fill="#0284c7" stroke="#38bdf8" />
+        <rect x="95" y="65" width="40" height="25" fill="#38bdf8" stroke="#0284c7" />
+        <rect x="140" y="65" width="40" height="25" fill="#0284c7" stroke="#38bdf8" />
+        <rect x="70" y="40" width="40" height="25" fill="#38bdf8" stroke="#0284c7" />
+        <rect x="115" y="40" width="40" height="25" fill="#0284c7" stroke="#38bdf8" />
+      </svg>
+    </div>
+
+    <!-- 2. 우측 아래 -> 좌측 위: 비행기 날아가기 -->
+    <div class="motion-plane-group">
+      <svg viewBox="0 0 120 60" width="120" height="60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0 40 L 40 30 L 30 15 L 40 15 L 60 28 L 80 25 L 70 0 L 82 0 L 100 22 L 112 20 C 118 20 122 24 118 28 C 114 32 108 32 100 32 L 0 40 Z" fill="#38bdf8" />
+      </svg>
+    </div>
+
+    <!-- 3. 좌측 위 -> 우측 아래: 추레라 트럭 지나가기 -->
+    <div class="motion-truck-group">
+      <svg viewBox="0 0 180 60" width="180" height="60" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="110" height="35" rx="3" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
+        <path d="M 122 22 L 145 22 L 155 35 L 155 45 L 122 45 Z" fill="#f8fafc" />
+        <circle cx="30" cy="48" r="7" fill="#64748b" />
+        <circle cx="50" cy="48" r="7" fill="#64748b" />
+        <circle cx="95" cy="48" r="7" fill="#64748b" />
+        <circle cx="140" cy="48" r="7" fill="#64748b" />
+      </svg>
+    </div>
+
   </div>
 
-  <!-- === [글자 레이어] === -->
-  <div class="hero-container">
+  <!-- Hero 본문 텍스트 -->
+  <div class="hero-content-container">
     <div class="hero-copy reveal">
       <p class="eyebrow">
         WIDE SHIPPING · GLOBAL LOGISTICS
@@ -294,12 +324,7 @@
       </p>
 
       <div class="hero-actions">
-        <a
-          class="btn primary"
-          href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="btn primary" href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
           온라인 견적 문의 <span>→</span>
         </a>
 
@@ -326,9 +351,10 @@
       </div>
     </div>
   </div>
+
 </section>
 
-<!-- QUICK STRIP (화면 하단 영역 대체) -->
+<!-- QUICK STRIP -->
 <section class="quick-strip">
   <div class="quick-inner">
     <div>
@@ -351,27 +377,331 @@
   </div>
 </section>
 
+<!-- COMPANY -->
+<section class="section company" id="company">
+  <div class="section-head reveal">
+    <p class="eyebrow">
+      ABOUT WIDE SHIPPING
+    </p>
+
+    <h2>
+      물류의 기본은<br>
+      <strong>신뢰와 실행력</strong>입니다.
+    </h2>
+  </div>
+
+  <div class="company-grid">
+    <div class="company-copy reveal">
+      <p>
+        10년 이상의 경력과 경험을 가진 실무진으로 구성된
+        주식회사 와이드해운은 2023년 설립되었습니다.
+      </p>
+
+      <p>
+        전국 주요 항만 및 물류 거점에 경쟁력 있는 물류 네트워크를
+        구축하여 귀사에 최상의 종합 물류 서비스를 제공하겠습니다.
+      </p>
+
+      <p>
+        효율적인 운영과 물류 지식을 바탕으로 신속하고 경쟁력 있는
+        서비스를 제공하며, 고객과 함께 성장하는 물류 파트너가 되겠습니다.
+      </p>
+    </div>
+
+    <div class="company-card reveal delay-1">
+      <div class="big-word">
+        WIDE
+      </div>
+
+      <p>
+        Wide network.<br>
+        Fast response.<br>
+        Reliable service.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="section-head center reveal">
+    <p class="eyebrow">
+      OUR SERVICES
+    </p>
+
+    <h2>
+      필요한 운송을<br>
+      <strong>한 곳에서</strong>
+    </h2>
+
+    <p>
+      해상과 항공을 중심으로 수출입 전 과정에 필요한 서비스를 연결합니다.
+    </p>
+  </div>
+
+  <div class="service-grid">
+    <article class="service-card ocean reveal">
+      <span class="service-no">01</span>
+      <div class="service-icon" aria-hidden="true">⚓</div>
+      <h3>해상운송</h3>
+      <p>
+        국제 해상운송의 핵심인 FCL과 LCL을
+        화물 조건에 맞춰 제안합니다.
+      </p>
+      <ul>
+        <li>FCL</li>
+        <li>LCL</li>
+      </ul>
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
+        견적 문의 →
+      </a>
+    </article>
+
+    <article class="service-card air reveal delay-1">
+      <span class="service-no">02</span>
+      <div class="service-icon" aria-hidden="true">✈</div>
+      <h3>항공운송</h3>
+      <p>
+        시간과 일정이 중요한 화물에 신속하고
+        안정적인 항공 운송을 제공합니다.
+      </p>
+      <ul>
+        <li>항공화물</li>
+      </ul>
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
+        견적 문의 →
+      </a>
+    </article>
+
+    <article class="service-card other reveal delay-2">
+      <span class="service-no">03</span>
+      <div class="service-icon" aria-hidden="true">＋</div>
+      <h3>기타 물류서비스</h3>
+      <p>
+        운송과 함께 필요한 부가 업무까지
+        한 번에 연결합니다.
+      </p>
+      <ul>
+        <li>수출입 통관</li>
+        <li>내륙운송</li>
+        <li>적하보험</li>
+      </ul>
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
+        상담 문의 →
+      </a>
+    </article>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section class="section strengths" id="strengths">
+  <div class="strength-layout">
+    <div class="section-head reveal">
+      <p class="eyebrow">
+        WHY WIDE SHIPPING
+      </p>
+
+      <h2>
+        빠르게 판단하고<br>
+        <strong>끝까지 대응합니다.</strong>
+      </h2>
+
+      <p>
+        운송 과정에서 발생하는 변수까지 생각하는
+        실무형 물류 서비스를 지향합니다.
+      </p>
+    </div>
+
+    <div class="strength-list">
+      <div class="strength reveal">
+        <span>01</span>
+        <div>
+          <h3>빠른 견적</h3>
+          <p>
+            문의 내용을 신속하게 확인하고
+            필요한 운임 정보를 빠르게 안내합니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="strength reveal">
+        <span>02</span>
+        <div>
+          <h3>합리적인 운임</h3>
+          <p>
+            화물과 운송 조건을 고려해
+            비용과 일정의 균형을 맞춥니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="strength reveal">
+        <span>03</span>
+        <div>
+          <h3>고객 중심 서비스</h3>
+          <p>
+            고객의 일정과 상황을 우선으로 생각하며
+            유연하게 대응합니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="strength reveal">
+        <span>04</span>
+        <div>
+          <h3>해상 · 항공 전문</h3>
+          <p>
+            해상과 항공 실무 경험을 바탕으로
+            적합한 운송 방향을 제안합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process" id="process">
+  <div class="section-head center reveal">
+    <p class="eyebrow">
+      LOGISTICS PROCESS
+    </p>
+
+    <h2>
+      문의부터 운송까지<br>
+      <strong>간결하게</strong>
+    </h2>
+  </div>
+
+  <div class="process-line">
+    <div class="process-step reveal">
+      <b>01</b>
+      <h3>문의 접수</h3>
+      <p>화물 및 운송 정보를 전달해주세요.</p>
+    </div>
+
+    <div class="process-step reveal delay-1">
+      <b>02</b>
+      <h3>조건 확인</h3>
+      <p>운송 구간과 화물 조건을 검토합니다.</p>
+    </div>
+
+    <div class="process-step reveal delay-2">
+      <b>03</b>
+      <h3>견적 안내</h3>
+      <p>경쟁력 있는 운임과 조건을 안내합니다.</p>
+    </div>
+
+    <div class="process-step reveal delay-3">
+      <b>04</b>
+      <h3>운송 진행</h3>
+      <p>일정에 맞춰 운송을 진행하고 대응합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BANNER -->
+<section class="quote-banner">
+  <div>
+    <p class="eyebrow">
+      ONLINE QUOTATION
+    </p>
+
+    <h2>
+      운송 조건을 알려주시면<br>
+      <strong>빠르게 견적을 안내해 드립니다.</strong>
+    </h2>
+  </div>
+
+  <a class="btn white" href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
+    온라인 견적 문의 바로가기 <span>→</span>
+  </a>
+</section>
+
+<!-- CONTACT & LOCATION -->
+<section class="section contact" id="contact">
+  <div class="contact-grid">
+    <div class="section-head reveal">
+      <p class="eyebrow">
+        CONTACT & LOCATION
+      </p>
+
+      <h2>
+        와이드해운과<br>
+        <strong>상담해 보세요.</strong>
+      </h2>
+
+      <p>
+        운송에 관한 궁금한 점이나 견적 문의가 있으시면
+        편하게 연락 주세요. 아래 배너를 클릭하시면 네이버 지도에서 위치를 확인하실 수 있습니다.
+      </p>
+    </div>
+
+    <div class="contact-info reveal delay-1">
+      <div>
+        <span>PHONE</span>
+        <strong>
+          <a href="tel:+82518162003" style="color: inherit; text-decoration: none;">+82-51-816-2003</a>
+        </strong>
+      </div>
+
+      <div>
+        <span>EMAIL</span>
+        <strong>
+          <a href="mailto:wide@widesp.com" style="color: inherit; text-decoration: none;">wide@widesp.com</a>
+        </strong>
+      </div>
+
+      <div>
+        <span>FAX</span>
+        <strong>+82-51-816-2005</strong>
+      </div>
+
+      <div>
+        <span>ADDRESS</span>
+        <strong>
+          부산광역시 부산진구 서면문화로 6-1<br>
+          (하성빌딩 6층 601호)
+        </strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- 지도 배너 -->
+  <div class="map-section reveal">
+    <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-banner">
+      <div class="map-icon" aria-hidden="true">📍</div>
+      <div class="map-title">주식회사 와이드해운 오시는 길</div>
+      <div class="map-address">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</div>
+      <span class="map-action-btn">
+        네이버 지도에서 위치 및 길찾기 보기 ↗
+      </span>
+    </a>
+    <p class="map-info-text">
+      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 배너를 클릭하시면 네이버 지도가 새 창으로 안전하게 열립니다.
+    </p>
+  </div>
+</section>
+
 </main>
 
-<!-- FOOTER (하단 영역 대체) -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div>
-      <div class="footer-logo">와이드해운 로고</div>
-      <p style="margin-top:10px;">국제물류 전 과정에 필요한 서비스를 한 곳에서</p>
-    </div>
+    <img src="assets/wide-shipping-logo.svg" alt="와이드해운">
 
     <div class="footer-company">
       <strong>주식회사 와이드해운</strong>
+      <span>대표자 정태영</span>
       <span>사업자등록번호 261-81-28960</span>
-      <span>부산광역시 부산진구</span>
     </div>
 
     <div class="footer-copy">
-      © <span id="year">2023</span> WIDE SHIPPING.<br>All rights reserved.
+      © <span id="year"></span> WIDE SHIPPING. All rights reserved.
     </div>
   </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
