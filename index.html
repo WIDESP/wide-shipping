@@ -44,7 +44,7 @@
     /* 1. 좌측 아래 바다 위 둥둥 떠다니는 배 */
     @keyframes boatFloat {
       0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1.5deg); }
+      50% { transform: translateY(-12px) rotate(1.5deg); }
       100% { transform: translateY(0px) rotate(0deg); }
     }
     .motion-boat-group {
@@ -57,45 +57,42 @@
 
     /* 2. 우측 아래에서 좌측 위로 지속적으로 날아가는 비행기 */
     @keyframes planeFlyUpLeft {
-      0% { transform: translate(100vw, 40vh) scale(0.7); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
+      0% { transform: translate(100vw, 40vh) scale(0.6); opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
       100% { transform: translate(-20vw, -30vh) scale(1); opacity: 0; }
     }
     .motion-plane-group {
       position: absolute;
+      top: 0;
+      left: 0;
       animation: planeFlyUpLeft 9s linear infinite;
     }
 
-   /* 3. 좌측 위에서 우측 아래로 계속 내려오는 추레라 트럭 */
-@keyframes truckDriveDownRight {
-  0% {
-    /* 좌측 위 화면 밖 시작 */
-    transform: translate(-25vw, -30vh) scale(0.6) rotate(15deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.9;
-  }
-  90% {
-    opacity: 0.9;
-  }
-  100% {
-    /* 우측 아래 화면 밖 도착 */
-    transform: translate(110vw, 80vh) scale(1.1) rotate(15deg);
-    opacity: 0;
-  }
-}
+    /* 3. 우측 위에서 우측 아래로 계속 내려오는 추레라 트럭 (수정 완료) */
+    @keyframes truckDriveDownRightSide {
+      0% {
+        transform: translate(75vw, -30vh) scale(0.7);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      90% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate(75vw, 110vh) scale(1);
+        opacity: 0;
+      }
+    }
+    .motion-truck-group {
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: truckDriveDownRightSide 9s linear infinite;
+    }
 
-.motion-truck-group {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
-  /* 10초마다 무한 반복하여 내려옴 */
-  animation: truckDriveDownRight 10s linear infinite;
-}
     /* 수면 라인 (배 하단) */
     .sea-line-bg {
       position: absolute;
@@ -309,7 +306,7 @@
       </svg>
     </div>
 
-    <!-- 3. 좌측 위 -> 우측 아래: 추레라 트럭 지나가기 -->
+    <!-- 3. 우측 위 -> 우측 아래: 추레라 트럭 지나가기 (수정 완료) -->
     <div class="motion-truck-group">
       <svg viewBox="0 0 180 60" width="180" height="60" xmlns="http://www.w3.org/2000/svg">
         <rect x="10" y="10" width="110" height="35" rx="3" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
