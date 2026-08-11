@@ -41,20 +41,20 @@
       pointer-events: none;
     }
 
-    /* 흰색/밝은 회색 배경을 완전히 제거하는 이미지 필터 및 혼합 모드 */
+    /* 흰색 및 회색 외곽선 완전 제거 필터 */
     .motion-hero-img {
       display: block;
       width: 100%;
       height: auto;
       mix-blend-mode: multiply;
-      filter: contrast(115%) brightness(105%); /* 경계선의 흰색 배경 제거 강화 */
+      filter: contrast(160%) brightness(110%); /* 회색 잔여 배경 완전 제거 */
     }
 
     /* 1. 좌측 하단 대형 컨테이너선 (바다 위 둥둥 효과) */
     @keyframes boatFloat {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(0.5deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
     }
     .motion-boat-group {
       position: absolute;
@@ -65,16 +65,16 @@
       animation: boatFloat 4s ease-in-out infinite;
     }
 
-    /* 2. 우측 하단에서 좌측 상단으로 부드럽게 대각선 비행 */
+    /* 2. 우측 하단에서 좌측 상단으로 무한 비행하는 비행기 */
     @keyframes planeFlyUpLeft {
       0% { 
-        transform: translate(80vw, 55vh) rotate(-15deg) scale(0.7); 
+        transform: translate(100vw, 50vh) rotate(-12deg) scale(0.7); 
         opacity: 0; 
       }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
       100% { 
-        transform: translate(-20vw, -25vh) rotate(-15deg) scale(1.0); 
+        transform: translate(-30vw, -30vh) rotate(-12deg) scale(1.0); 
         opacity: 0; 
       }
     }
@@ -87,33 +87,33 @@
       animation: planeFlyUpLeft 10s linear infinite;
     }
 
-    /* 3. 트럭: 우측 하단 도로를 따라 자연스럽게 진입 및 지나가는 연출 */
-    @keyframes truckDriveNatural {
+    /* 3. 트럭 무한 이동 애니메이션 (우측 진입 -> 좌측 이동 -> 반복) */
+    @keyframes truckDriveLoop {
       0% {
         transform: translateX(100vw);
         opacity: 0;
       }
-      15% {
-        opacity: 0.95;
+      10% {
+        opacity: 1;
       }
-      85% {
-        opacity: 0.95;
+      90% {
+        opacity: 1;
       }
       100% {
-        transform: translateX(35vw);
+        transform: translateX(-40vw);
         opacity: 0;
       }
     }
     .motion-truck-group {
       position: absolute;
       right: 0;
-      bottom: 4%;
+      bottom: 3%;
       width: 320px;
       z-index: 1;
-      animation: truckDriveNatural 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+      animation: truckDriveLoop 12s linear infinite;
     }
 
-    /* 수면/도로 라인 (배 및 트럭 하단) */
+    /* 수면/도로 라인 */
     .sea-line-bg {
       position: absolute;
       bottom: 5%;
@@ -337,7 +337,7 @@
       <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
 
-    <!-- 3. 우측 하단 도로 주행 트럭 -->
+    <!-- 3. 우측 -> 좌측 무한 주행 트럭 -->
     <div class="motion-truck-group">
       <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
