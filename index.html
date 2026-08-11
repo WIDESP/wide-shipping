@@ -41,19 +41,19 @@
       pointer-events: none;
     }
 
-    /* 이미지 흰색 배경 투명화 핵심 속성 (mix-blend-mode: multiply) */
+    /* 흰색/밝은 회색 배경을 완전히 제거하는 이미지 필터 및 혼합 모드 */
     .motion-hero-img {
       display: block;
       width: 100%;
       height: auto;
-      mix-blend-mode: multiply; /* 흰색 배경 제거 및 하단 배경과 합성 */
-      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
+      mix-blend-mode: multiply;
+      filter: contrast(115%) brightness(105%); /* 경계선의 흰색 배경 제거 강화 */
     }
 
     /* 1. 좌측 하단 대형 컨테이너선 (바다 위 둥둥 효과) */
     @keyframes boatFloat {
       0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(0.8deg); }
+      50% { transform: translateY(-8px) rotate(0.5deg); }
       100% { transform: translateY(0px) rotate(0deg); }
     }
     .motion-boat-group {
@@ -65,16 +65,16 @@
       animation: boatFloat 4s ease-in-out infinite;
     }
 
-    /* 2. 우측 아래에서 좌측 위로 날아가는 비행기 */
+    /* 2. 우측 하단에서 좌측 상단으로 부드럽게 대각선 비행 */
     @keyframes planeFlyUpLeft {
       0% { 
-        transform: translate(85vw, 65vh) rotate(-22deg) scale(0.6); 
+        transform: translate(80vw, 55vh) rotate(-15deg) scale(0.7); 
         opacity: 0; 
       }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
       100% { 
-        transform: translate(-25vw, -35vh) rotate(-22deg) scale(1.1); 
+        transform: translate(-20vw, -25vh) rotate(-15deg) scale(1.0); 
         opacity: 0; 
       }
     }
@@ -82,45 +82,45 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 260px;
+      width: 240px;
       z-index: 3;
-      animation: planeFlyUpLeft 9s linear infinite;
+      animation: planeFlyUpLeft 10s linear infinite;
     }
 
-    /* 3. 우측 위에서 우측 아래 사선으로 내려오는 트럭 (정면 강조) */
-    @keyframes truckDriveDownRight {
+    /* 3. 트럭: 우측 하단 도로를 따라 자연스럽게 진입 및 지나가는 연출 */
+    @keyframes truckDriveNatural {
       0% {
-        transform: translate(65vw, -25vh) scale(0.7);
+        transform: translateX(100vw);
         opacity: 0;
       }
-      10% { opacity: 0.95; }
-      90% { opacity: 0.95; }
+      15% {
+        opacity: 0.95;
+      }
+      85% {
+        opacity: 0.95;
+      }
       100% {
-        transform: translate(80vw, 85vh) scale(1.05);
+        transform: translateX(35vw);
         opacity: 0;
       }
     }
     .motion-truck-group {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 280px;
+      right: 0;
+      bottom: 4%;
+      width: 320px;
       z-index: 1;
-      animation: truckDriveDownRight 9s linear infinite;
-    }
-    /* 트럭 전면부 각도 정면화 CSS 3D 적용 */
-    .motion-truck-group img {
-      transform: perspective(700px) rotateY(-18deg) rotate(8deg);
+      animation: truckDriveNatural 12s cubic-bezier(0.25, 1, 0.5, 1) infinite;
     }
 
-    /* 수면 라인 (배 하단) */
+    /* 수면/도로 라인 (배 및 트럭 하단) */
     .sea-line-bg {
       position: absolute;
       bottom: 5%;
       left: 0;
       width: 100%;
       height: 2px;
-      background: rgba(56, 189, 248, 0.25);
+      background: rgba(56, 189, 248, 0.2);
     }
 
     /* Hero 본문 텍스트 레이어 */
@@ -279,7 +279,7 @@
         width: 180px;
       }
       .motion-truck-group {
-        width: 180px;
+        width: 200px;
       }
       .hero-points {
         flex-wrap: wrap;
@@ -337,7 +337,7 @@
       <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
 
-    <!-- 3. 우측 상단 -> 우측 하단: 사선으로 내려오는 트럭 -->
+    <!-- 3. 우측 하단 도로 주행 트럭 -->
     <div class="motion-truck-group">
       <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
