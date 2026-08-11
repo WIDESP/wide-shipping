@@ -67,18 +67,35 @@
       animation: planeFlyUpLeft 9s linear infinite;
     }
 
-    /* 3. 좌측 위에서 우측 아래로 계속 내려오는 추레라 트럭 */
-    @keyframes truckDriveDownRight {
-      0% { transform: translate(-20vw, -20vh) scale(0.7); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translate(100vw, 70vh) scale(1); opacity: 0; }
-    }
-    .motion-truck-group {
-      position: absolute;
-      animation: truckDriveDownRight 11s linear infinite;
-    }
+   /* 3. 좌측 위에서 우측 아래로 계속 내려오는 추레라 트럭 */
+@keyframes truckDriveDownRight {
+  0% {
+    /* 좌측 위 화면 밖 시작 */
+    transform: translate(-25vw, -30vh) scale(0.6) rotate(15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    /* 우측 아래 화면 밖 도착 */
+    transform: translate(110vw, 80vh) scale(1.1) rotate(15deg);
+    opacity: 0;
+  }
+}
 
+.motion-truck-group {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+  /* 10초마다 무한 반복하여 내려옴 */
+  animation: truckDriveDownRight 10s linear infinite;
+}
     /* 수면 라인 (배 하단) */
     .sea-line-bg {
       position: absolute;
