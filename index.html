@@ -134,8 +134,8 @@
       background: #061838;
       overflow: hidden;
       display: flex;
-      align-items: flex-start; /* 상단 정렬로 변경 */
-      padding: 65px 20px 90px; /* 상단 여백 축소 */
+      align-items: flex-start;
+      padding: 85px 20px 90px; /* 상단 패딩 조절 */
       color: #ffffff;
     }
 
@@ -306,14 +306,14 @@
       animation: truckDriveLoop 4s linear infinite;
     }
 
-    /* 문구 컨테이너 위치 상향 조절 */
+    /* 문구 위치 살짝 내림 조정 */
     .hero-content-container {
       position: relative;
       z-index: 4;
       max-width: 1100px;
       width: 100%;
       margin: 0 auto;
-      transform: translateY(-25px); /* 문구 전체 위치 상향 */
+      transform: translateY(-10px);
     }
 
     .hero-copy {
@@ -528,11 +528,11 @@
       }
 
       .hero {
-        padding-top: 40px;
+        padding-top: 50px;
       }
 
       .hero-content-container {
-        transform: translateY(-10px);
+        transform: translateY(0px);
       }
 
       .hero-copy h1 {
