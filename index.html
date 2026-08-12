@@ -134,8 +134,8 @@
       background: #061838;
       overflow: hidden;
       display: flex;
-      align-items: center;
-      padding: 110px 20px 90px;
+      align-items: flex-start; /* 상단 정렬로 변경 */
+      padding: 65px 20px 90px; /* 상단 여백 축소 */
       color: #ffffff;
     }
 
@@ -306,12 +306,14 @@
       animation: truckDriveLoop 4s linear infinite;
     }
 
+    /* 문구 컨테이너 위치 상향 조절 */
     .hero-content-container {
       position: relative;
       z-index: 4;
       max-width: 1100px;
       width: 100%;
       margin: 0 auto;
+      transform: translateY(-25px); /* 문구 전체 위치 상향 */
     }
 
     .hero-copy {
@@ -324,7 +326,7 @@
       color: #38bdf8;
       font-weight: 700;
       letter-spacing: 1.5px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       font-size: 19px;
     }
 
@@ -333,7 +335,7 @@
       font-size: 56px;
       font-weight: 900;
       line-height: 1.2;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       white-space: nowrap;
       letter-spacing: -2.5px;
       word-spacing: -2px;
@@ -348,14 +350,14 @@
       color: #cbd5e1;
       font-size: 20px;
       line-height: 1.6;
-      margin-bottom: 36px;
+      margin-bottom: 30px;
     }
 
     .hero-actions {
       display: flex;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
     .hero-actions .btn.primary {
@@ -376,7 +378,7 @@
       justify-content: center;
       gap: 48px;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
-      padding-top: 24px;
+      padding-top: 20px;
       max-width: 600px;
       margin: 0 auto;
       text-align: center;
@@ -461,7 +463,7 @@
     }
 
     /* ==========================================
-       📱 모바일 반응형 처리 (메뉴 짤림 완벽 해결)
+       📱 모바일 반응형 처리
        ========================================== */
     @media (max-width: 1200px) {
       .hero-copy h1 {
@@ -476,7 +478,6 @@
       }
     }
 
-    /* 📱 태블릿 & 모바일 (992px 이하부터 모바일 드롭다운 메뉴로 전환) */
     @media (max-width: 992px) {
       body {
         padding-top: 64px;
@@ -488,14 +489,12 @@
         height: 36px;
       }
 
-      /* 햄버거 버튼 노출 */
       .menu-btn {
         display: flex;
       }
 
-      /* 모바일 네비게이션 드롭다운 메뉴 설정 */
       .main-nav {
-        display: none; /* 기본 숨김 */
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
@@ -509,7 +508,6 @@
         border-top: 1px solid #f1f5f9;
       }
 
-      /* 자바스크립트에 의해 active 클래스 붙으면 펼쳐짐 */
       .main-nav.active {
         display: flex;
       }
@@ -527,6 +525,14 @@
         width: calc(100% - 48px);
         text-align: center;
         border-radius: 8px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-content-container {
+        transform: translateY(-10px);
       }
 
       .hero-copy h1 {
@@ -578,7 +584,6 @@
       <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
-    <!-- 모바일용 햄버거 토글 버튼 -->
     <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
       <span></span>
       <span></span>
@@ -1036,7 +1041,6 @@
       mainNav.classList.toggle('active');
     });
 
-    // 메뉴 항목 클릭 시 모바일 메뉴 자동으로 닫기
     mainNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         menuToggle.classList.remove('active');
