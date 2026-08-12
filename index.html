@@ -888,7 +888,20 @@
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // 1. 브라우저의 자동 스크롤 위치 복원 기능 비활성화
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // 2. 페이지 진입, 새로고침, 이탈 시 항상 최상단(0,0)으로 스크롤 이동
+  window.addEventListener('beforeunload', function() {
+    window.scrollTo(0, 0);
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+    document.getElementById('year').textContent = new Date().getFullYear();
+  });
 </script>
 <script src="script.js"></script>
 </body>
