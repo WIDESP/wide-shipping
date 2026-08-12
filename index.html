@@ -50,7 +50,20 @@
       filter: contrast(160%) brightness(110%);
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 (크기 추가 확대: 680px -> 850px) */
+    /* 🌊 1. 배 밑 바다 수면 그래픽 영역 */
+    .sea-bg-area {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 55%;
+      height: 70px;
+      background: linear-gradient(to top, rgba(14, 165, 233, 0.35) 0%, rgba(6, 182, 212, 0.15) 60%, transparent 100%);
+      border-top: 2px solid rgba(56, 189, 248, 0.4);
+      z-index: 1;
+      border-radius: 0 40px 0 0;
+    }
+
+    /* 1. 좌측 하단 대형 컨테이너선 */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
@@ -59,8 +72,8 @@
     .motion-boat-group {
       position: absolute;
       left: -5%;
-      bottom: -6%;
-      width: 850px; /* 배 크기 추가 확대 */
+      bottom: -4%;
+      width: 850px;
       z-index: 2;
       animation: boatFloat 4s ease-in-out infinite;
     }
@@ -87,6 +100,29 @@
       animation: planeFlyUpLeft 10s linear infinite;
     }
 
+    /* 🛣️ 3. 트럭 지나가는 도로 그래픽 영역 */
+    .road-bg-area {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 36px;
+      background: #1e293b;
+      border-top: 3px solid #64748b;
+      z-index: 1;
+    }
+    /* 도로 점선 */
+    .road-line-dashed {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+      background: repeating-linear-gradient(90deg, #f1f5f9, #f1f5f9 20px, transparent 20px, transparent 40px);
+      opacity: 0.6;
+    }
+
     /* 3. 트럭 이동 애니메이션 */
     @keyframes truckDriveLoop {
       0% {
@@ -107,20 +143,10 @@
     .motion-truck-group {
       position: absolute;
       right: 0;
-      bottom: 2%;
+      bottom: 8px; /* 도로 위에 위치하게 위치 조정 */
       width: 380px;
-      z-index: 1;
+      z-index: 2;
       animation: truckDriveLoop 18s linear infinite;
-    }
-
-    /* 수면/도로 라인 */
-    .sea-line-bg {
-      position: absolute;
-      bottom: 5%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: rgba(56, 189, 248, 0.2);
     }
 
     /* Hero 본문 텍스트 레이어 */
@@ -272,7 +298,7 @@
         font-size: 32px;
       }
       .motion-boat-group {
-        width: 460px; /* 모바일 대응 확대 */
+        width: 460px;
         opacity: 0.35;
       }
       .motion-plane-group {
@@ -280,6 +306,9 @@
       }
       .motion-truck-group {
         width: 240px;
+      }
+      .sea-bg-area {
+        width: 80%;
       }
       .hero-points {
         flex-wrap: wrap;
@@ -325,7 +354,14 @@
 <section class="hero">
   
   <div class="hero-motion-bg">
-    <div class="sea-line-bg"></div>
+
+    <!-- 🌊 배 밑 바다 수면 그래픽 Layer -->
+    <div class="sea-bg-area"></div>
+
+    <!-- 🛣️ 트럭 지나가는 도로 Layer -->
+    <div class="road-bg-area">
+      <div class="road-line-dashed"></div>
+    </div>
 
     <!-- 1. 좌측 하단: 대형 컨테이너선 -->
     <div class="motion-boat-group">
