@@ -100,17 +100,20 @@
       animation: planeFlyUpLeft 10s linear infinite;
     }
 
-    /* 🛣️ 3. 트럭 지나가는 도로 그래픽 영역 */
+    /* 🛣️ 3. 트럭 바퀴 위치에 맞춰 끌어올린 도로 그래픽 영역 */
     .road-bg-area {
       position: absolute;
       right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 36px;
-      background: #1e293b;
-      border-top: 3px solid #64748b;
+      bottom: 55px; /* 바퀴 위치로 상승 */
+      width: 70%;   /* 우측에서 좌측 트럭 도착 지점 근처까지만 적용 */
+      height: 12px;
+      background: rgba(30, 41, 59, 0.85);
+      border-top: 2px solid #64748b;
       z-index: 1;
+      mask-image: linear-gradient(to right, transparent 0%, black 25%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
     }
+
     /* 도로 점선 */
     .road-line-dashed {
       position: absolute;
@@ -119,8 +122,8 @@
       width: 100%;
       height: 2px;
       transform: translateY(-50%);
-      background: repeating-linear-gradient(90deg, #f1f5f9, #f1f5f9 20px, transparent 20px, transparent 40px);
-      opacity: 0.6;
+      background: repeating-linear-gradient(90deg, #f1f5f9, #f1f5f9 15px, transparent 15px, transparent 30px);
+      opacity: 0.5;
     }
 
     /* 3. 트럭 이동 애니메이션 */
@@ -143,7 +146,7 @@
     .motion-truck-group {
       position: absolute;
       right: 0;
-      bottom: 8px; /* 도로 위에 위치하게 위치 조정 */
+      bottom: 2%;
       width: 380px;
       z-index: 2;
       animation: truckDriveLoop 18s linear infinite;
@@ -309,6 +312,10 @@
       }
       .sea-bg-area {
         width: 80%;
+      }
+      .road-bg-area {
+        bottom: 35px;
+        width: 85%;
       }
       .hero-points {
         flex-wrap: wrap;
