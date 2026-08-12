@@ -57,7 +57,7 @@
       bottom: 0;
       width: 60%;
       height: 120px;
-      z-index: 3;
+      z-index: 2; /* 파도가 배의 살짝 뒤/아래에 깔리도록 레이어 조정 */
       overflow: hidden;
       pointer-events: none;
       mask-image: linear-gradient(to right, black 60%, transparent 100%);
@@ -111,7 +111,7 @@
     /* 배 밑 거품 효과 */
     .sea-foam {
       position: absolute;
-      bottom: 40px;
+      bottom: 15px;
       left: 5%;
       width: 80%;
       height: 18px;
@@ -120,18 +120,18 @@
       z-index: 2;
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 */
+    /* 1. 좌측 하단 대형 컨테이너선 (수면 위로 둥둥 뜨도록 위치 위로 조정) */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-5px); }
+      50% { transform: translateY(-8px); }
       100% { transform: translateY(0px); }
     }
     .motion-boat-group {
       position: absolute;
       left: -8%;
-      bottom: -35px;
+      bottom: 10px; /* 기존 -35px에서 10px로 끌어올려 배를 수면 위로 배치 */
       width: 920px;
-      z-index: 2;
+      z-index: 3;    /* 파도보다 위에 보이도록 z-index 변경 */
       animation: boatFloat 4s ease-in-out infinite;
     }
 
@@ -213,7 +213,7 @@
     .hero-content-container {
       position: relative;
       z-index: 4;
-      max-width: 1100px; /* 1줄 문구가 여유 있게 들어오는 최적 폭 */
+      max-width: 1100px;
       width: 100%;
       margin: 0 auto;
     }
@@ -232,20 +232,21 @@
       font-size: 18px;
     }
 
-    /* 1줄 문구 전용 스타일 (폰트 크기를 적절히 맞추고 1줄 유지) */
+    /* 1줄 문구 전용 스타일 */
     .hero-copy h1 {
       color: #ffffff;
-      font-size: 46px; /* 1줄로 들어갔을 때 과하게 크지 않은 황금 비율 */
-      font-weight: 800;
-      line-height: 1.25;
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.2;
       margin-bottom: 24px;
-      white-space: nowrap; /* 1줄 강제 유지 */
-      letter-spacing: -0.5px;
+      white-space: nowrap;
+      letter-spacing: -2.5px;
+      word-spacing: -2px;
     }
 
     .hero-copy h1 strong {
       color: #38bdf8;
-      margin-left: 10px;
+      margin-left: 8px;
     }
 
     .hero-desc {
@@ -369,23 +370,26 @@
     /* 모바일 반응형 처리 */
     @media (max-width: 1200px) {
       .hero-copy h1 {
-        font-size: 38px;
+        font-size: 42px;
+        letter-spacing: -2px;
       }
     }
     @media (max-width: 900px) {
       .hero-copy h1 {
-        font-size: 32px;
+        font-size: 34px;
+        letter-spacing: -1.5px;
       }
     }
     @media (max-width: 768px) {
       .hero-copy h1 {
         font-size: 26px;
-        white-space: normal; /* 모바일에서는 자동 줄바꿈 처리 */
+        white-space: normal;
+        letter-spacing: -1px;
       }
       .motion-boat-group {
         width: 500px;
         left: -15%;
-        bottom: -20px;
+        bottom: 5px; /* 모바일에서도 적절히 뜨도록 조정 */
         opacity: 0.35;
       }
       .motion-plane-group {
