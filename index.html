@@ -306,29 +306,6 @@
       animation: truckDriveLoop 4s linear infinite;
     }
 
-    /* 트럭 텍스트 인쇄 스타일 (확대 수정) */
-    .truck-wrapper {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-
-    .truck-logo-text {
-      position: absolute;
-      top: 36%;
-      left: 60%;
-      transform: translate(-50%, -50%);
-      font-family: 'Arial Black', 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 28px; /* 글자 크기 키움 */
-      color: #0b2545;
-      letter-spacing: 2px;
-      opacity: 0.88;
-      mix-blend-mode: multiply;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
     /* 문구 위치 살짝 내림 조정 */
     .hero-content-container {
       position: relative;
@@ -581,11 +558,6 @@
         z-index: 3;
       }
 
-      .truck-logo-text {
-        font-size: 13px; /* 모바일 반응형 폰트도 확대 */
-        letter-spacing: 1px;
-      }
-
       .sea-bg-area {
         width: 60%;
         height: 90px;
@@ -660,10 +632,7 @@
     </div>
 
     <div class="motion-truck-group">
-      <div class="truck-wrapper">
-        <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
-        <span class="truck-logo-text">WIDE SHIPPING</span>
-      </div>
+      <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
 
   </div>
