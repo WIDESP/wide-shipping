@@ -47,10 +47,10 @@
       width: 100%;
       height: auto;
       mix-blend-mode: multiply;
-      filter: contrast(160%) brightness(110%); /* 회색 잔여 배경 완전 제거 */
+      filter: contrast(160%) brightness(110%);
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 (바다 위 둥둥 효과) */
+    /* 1. 좌측 하단 대형 컨테이너선 (크기 확대: 480px -> 680px) */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
@@ -58,14 +58,14 @@
     }
     .motion-boat-group {
       position: absolute;
-      left: -2%;
-      bottom: -2%;
-      width: 480px;
+      left: -3%;
+      bottom: -4%;
+      width: 680px; /* 기존 480px에서 확대 */
       z-index: 2;
       animation: boatFloat 4s ease-in-out infinite;
     }
 
-    /* 2. 우측 하단에서 좌측 상단으로 무한 비행하는 비행기 */
+    /* 2. 우측 하단에서 좌측 상단으로 무한 비행하는 비행기 (크기 확대: 240px -> 400px) */
     @keyframes planeFlyUpLeft {
       0% { 
         transform: translate(100vw, 50vh) rotate(-12deg) scale(0.7); 
@@ -82,7 +82,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 240px;
+      width: 400px; /* 기존 240px에서 확대 */
       z-index: 3;
       animation: planeFlyUpLeft 10s linear infinite;
     }
@@ -272,11 +272,11 @@
         font-size: 32px;
       }
       .motion-boat-group {
-        width: 280px;
-        opacity: 0.5;
+        width: 380px; /* 모바일 확대 */
+        opacity: 0.4;
       }
       .motion-plane-group {
-        width: 180px;
+        width: 260px; /* 모바일 확대 */
       }
       .motion-truck-group {
         width: 200px;
