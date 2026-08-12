@@ -21,7 +21,7 @@
     .hero {
       position: relative;
       width: 100%;
-      min-height: 720px; /* 배율 확대 느낌을 살리기 위해 영역 높이 살짝 확대 */
+      min-height: 720px;
       background: #061838;
       overflow: hidden;
       display: flex;
@@ -120,7 +120,7 @@
       z-index: 2;
     }
 
-    /* 🚢 1. 좌측 하단 대형 컨테이너선 (130% 확대 스케일 반영) */
+    /* 🚢 1. 좌측 하단 대형 컨테이너선 */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-7px); }
@@ -129,13 +129,13 @@
     .motion-boat-group {
       position: absolute;
       left: -6%;
-      bottom: -10px; /* 확대 시 배가 하단에 묵직하게 깔리는 수치 */
-      width: 1100px; /* 기존 920px -> 1100px로 확대 */
+      bottom: -10px;
+      width: 1100px;
       z-index: 2;
       animation: boatFloat 4.5s ease-in-out infinite;
     }
 
-    /* ✈️ 2. 비행기 (스케일 및 배치 조정) */
+    /* ✈️ 2. 비행기 */
     @keyframes planeFlyUpLeft {
       0% { 
         transform: translate(100vw, 45vh) rotate(-12deg) scale(0.85); 
@@ -152,7 +152,7 @@
       position: absolute;
       top: -10px;
       left: 0;
-      width: 480px; /* 기존 400px -> 480px로 확대 */
+      width: 480px;
       z-index: 3;
       animation: planeFlyUpLeft 10s linear infinite;
     }
@@ -162,7 +162,7 @@
       position: absolute;
       right: 0;
       bottom: 35px;
-      width: 50%; /* 도로 구간 축소 */
+      width: 50%;
       height: 14px;
       background: rgba(30, 41, 59, 0.85);
       border-top: 2px solid #64748b;
@@ -182,10 +182,10 @@
       opacity: 0.5;
     }
 
-    /* 🚚 3. 트럭 이동 애니메이션 (동선 대폭 감소) */
+    /* 🚚 3. 트럭 이동 애니메이션 (짧은 동선 + 4초 속도) */
     @keyframes truckDriveLoop {
       0% {
-        transform: translateX(35vw); /* 시작 위치 단축 */
+        transform: translateX(35vw);
         opacity: 0;
       }
       10% {
@@ -195,7 +195,7 @@
         opacity: 1;
       }
       100% {
-        transform: translateX(-15vw); /* 끝나는 위치 단축 */
+        transform: translateX(-15vw);
         opacity: 0;
       }
     }
@@ -203,9 +203,9 @@
       position: absolute;
       right: -2%;
       bottom: 30px;
-      width: 550px; /* 기존 450px -> 550px로 확대하여 사진처럼 시원한 크기 연출 */
+      width: 550px;
       z-index: 2;
-      animation: truckDriveLoop 7s linear infinite;
+      animation: truckDriveLoop 4s linear infinite; /* 4초 설정 */
     }
 
     /* Hero 본문 텍스트 레이어 */
@@ -233,7 +233,7 @@
 
     .hero-copy h1 {
       color: #ffffff;
-      font-size: 56px; /* 텍스트도 살짝 확대 */
+      font-size: 56px;
       font-weight: 900;
       line-height: 1.2;
       margin-bottom: 24px;
@@ -462,7 +462,7 @@
       <div class="road-line-dashed"></div>
     </div>
 
-    <!-- 1. 좌측 하단: 대형 컨테이너선 (확대 스케일) -->
+    <!-- 1. 좌측 하단: 대형 컨테이너선 -->
     <div class="motion-boat-group">
       <img src="assets/cargo ship png_2.jpg.jpg" alt="해상 운송 선박" class="motion-hero-img">
     </div>
@@ -472,7 +472,7 @@
       <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
 
-    <!-- 3. 우측 하단: 트럭 (동선 단축 및 사이즈 확대) -->
+    <!-- 3. 우측 하단: 트럭 (동선 단축 + 4초 속도) -->
     <div class="motion-truck-group">
       <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
@@ -762,7 +762,6 @@
       <b>03</b>
       <h3>견적 안내</h3>
       <p>경쟁력 있는 운임과 조건을 안내합니다.</p>
-
     </div>
 
     <div class="process-step reveal delay-3">
