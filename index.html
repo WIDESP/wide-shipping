@@ -213,13 +213,13 @@
     .hero-content-container {
       position: relative;
       z-index: 4;
-      max-width: 1200px;
+      max-width: 1300px;
       width: 100%;
       margin: 0 auto;
     }
 
     .hero-copy {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
       text-align: center;
     }
@@ -229,27 +229,27 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       margin-bottom: 16px;
-      font-size: 18px; /* 소제목 크기 조정 */
+      font-size: 18px;
     }
 
-    /* 💡 메인 문구 글자 크기 확대 (44px -> 56px) */
+    /* 💡 메인 문구 글자 크기 한 단계 더 확대 (56px -> 64px) */
     .hero-copy h1 {
       color: #ffffff;
-      font-size: 56px;
+      font-size: 64px;
       font-weight: 800;
-      line-height: 1.25;
+      line-height: 1.2;
       margin-bottom: 24px;
       white-space: nowrap;
     }
 
     .hero-copy h1 strong {
       color: #38bdf8;
-      margin-left: 10px;
+      margin-left: 12px;
     }
 
     .hero-desc {
       color: #cbd5e1;
-      font-size: 18px;
+      font-size: 19px;
       line-height: 1.6;
       margin-bottom: 32px;
     }
@@ -366,6 +366,11 @@
     }
 
     /* 모바일 반응형 처리 */
+    @media (max-width: 1024px) {
+      .hero-copy h1 {
+        font-size: 44px;
+      }
+    }
     @media (max-width: 768px) {
       .hero-copy h1 {
         font-size: 28px;
