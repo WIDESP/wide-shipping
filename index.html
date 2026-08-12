@@ -24,12 +24,11 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
     }
 
     .nav-wrap {
@@ -39,6 +38,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
 
     .brand {
@@ -53,6 +53,7 @@
       display: block;
     }
 
+    /* PC 메뉴 스타일 */
     .main-nav {
       display: flex;
       align-items: center;
@@ -87,7 +88,38 @@
       transform: translateY(-1px);
     }
 
-    /* 헤더 고정으로 인한 본문 영역 상단 가림 방지 */
+    /* 햄버거 토글 버튼 (PC 기본 숨김) */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      z-index: 1001;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #0f172a;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* 햄버거 버튼 활성화 애니메이션 (X자) */
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
     body {
       padding-top: 72px;
     }
@@ -107,7 +139,6 @@
       color: #ffffff;
     }
 
-    /* 배경 모션 요소를 감싸는 레이어 */
     .hero-motion-bg {
       position: absolute;
       top: 0;
@@ -118,7 +149,6 @@
       pointer-events: none;
     }
 
-    /* 흰색 및 회색 외곽선 완전 제거 필터 */
     .motion-hero-img {
       display: block;
       width: 100%;
@@ -127,7 +157,6 @@
       filter: contrast(160%) brightness(110%);
     }
 
-    /* 🌊 1. 실감나는 바다 파도 애니메이션 영역 */
     .sea-bg-area {
       position: absolute;
       left: 0;
@@ -141,7 +170,6 @@
       -webkit-mask-image: linear-gradient(to right, black 65%, transparent 100%);
     }
 
-    /* 수면 딥블루-에메랄드 베이스 */
     .sea-water-base {
       position: absolute;
       bottom: 0;
@@ -151,7 +179,6 @@
       background: linear-gradient(180deg, rgba(14, 116, 144, 0.75) 0%, rgba(3, 105, 161, 0.95) 100%);
     }
 
-    /* 🌊 파도 애니메이션 1 */
     @keyframes waveMove1 {
       0% { transform: translateX(0); }
       50% { transform: translateX(-30px); }
@@ -168,7 +195,6 @@
       animation: waveMove1 6s ease-in-out infinite;
     }
 
-    /* 🌊 파도 애니메이션 2 */
     @keyframes waveMove2 {
       0% { transform: translateX(0); }
       50% { transform: translateX(40px); }
@@ -185,7 +211,6 @@
       animation: waveMove2 4s ease-in-out infinite;
     }
 
-    /* 배 밑 거품 효과 */
     .sea-foam {
       position: absolute;
       bottom: 25px;
@@ -197,7 +222,6 @@
       z-index: 2;
     }
 
-    /* 🚢 1. 좌측 하단 대형 컨테이너선 */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-7px); }
@@ -212,7 +236,6 @@
       animation: boatFloat 4.5s ease-in-out infinite;
     }
 
-    /* ✈️ 2. 비행기 */
     @keyframes planeFlyUpLeft {
       0% { 
         transform: translate(100vw, 45vh) rotate(-12deg) scale(0.85); 
@@ -234,7 +257,6 @@
       animation: planeFlyUpLeft 10s linear infinite;
     }
 
-    /* 🛣️ 3. 도로 그래픽 영역 */
     .road-bg-area {
       position: absolute;
       right: 0;
@@ -259,7 +281,6 @@
       opacity: 0.5;
     }
 
-    /* 🚚 3. 트럭 이동 애니메이션 (짧은 동선 + 4초 속도) */
     @keyframes truckDriveLoop {
       0% {
         transform: translateX(35vw);
@@ -285,7 +306,6 @@
       animation: truckDriveLoop 4s linear infinite;
     }
 
-    /* Hero 본문 텍스트 레이어 */
     .hero-content-container {
       position: relative;
       z-index: 4;
@@ -351,7 +371,6 @@
       background: rgba(255, 255, 255, 0.05);
     }
 
-    /* 하단 지표 항목 */
     .hero-points {
       display: flex;
       justify-content: center;
@@ -374,7 +393,6 @@
       font-size: 13px;
     }
 
-    /* 지도 배너 스타일 */
     .map-section {
       margin-top: 40px;
       padding: 0 20px;
@@ -443,7 +461,7 @@
     }
 
     /* ==========================================
-       📱 모바일 반응형 처리 (겹침 방지 최적화)
+       📱 모바일 반응형 처리 (메뉴 짤림 완벽 해결)
        ========================================== */
     @media (max-width: 1200px) {
       .hero-copy h1 {
@@ -457,23 +475,66 @@
         letter-spacing: -1.5px;
       }
     }
-    @media (max-width: 768px) {
+
+    /* 📱 태블릿 & 모바일 (992px 이하부터 모바일 드롭다운 메뉴로 전환) */
+    @media (max-width: 992px) {
       body {
         padding-top: 64px;
       }
       .nav-wrap {
-        padding: 10px 16px;
+        padding: 10px 20px;
       }
       .site-logo {
-        height: 34px;
+        height: 36px;
       }
+
+      /* 햄버거 버튼 노출 */
+      .menu-btn {
+        display: flex;
+      }
+
+      /* 모바일 네비게이션 드롭다운 메뉴 설정 */
+      .main-nav {
+        display: none; /* 기본 숨김 */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #f1f5f9;
+      }
+
+      /* 자바스크립트에 의해 active 클래스 붙으면 펼쳐짐 */
+      .main-nav.active {
+        display: flex;
+      }
+
+      .main-nav a {
+        padding: 14px 24px;
+        font-size: 16px;
+        border-bottom: 1px solid #f8fafc;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .main-nav a[target="_blank"] {
+        margin: 12px 24px 8px;
+        width: calc(100% - 48px);
+        text-align: center;
+        border-radius: 8px;
+      }
+
       .hero-copy h1 {
         font-size: 28px;
         white-space: normal;
         letter-spacing: -1px;
       }
 
-      /* 🚢 1. 모바일 배 설정 (크기 대폭 축소 & 좌측 바깥 배치) */
       .motion-boat-group {
         width: 380px;
         left: -25%;
@@ -481,19 +542,16 @@
         opacity: 0.45;
       }
 
-      /* ✈️ 2. 모바일 비행기 설정 */
       .motion-plane-group {
         width: 240px;
       }
 
-      /* 🚚 3. 모바일 트럭 설정 (크기 축소 & 바닥면에 낮게 배치하여 배와 동선 분리) */
       .motion-truck-group {
         width: 220px;
         bottom: 5px;
         z-index: 3;
       }
 
-      /* 🌊 바다 & 🛣️ 도로 레이어 위치 조정 */
       .sea-bg-area {
         width: 60%;
         height: 90px;
@@ -520,7 +578,14 @@
       <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
-    <nav class="main-nav" aria-label="주요 메뉴">
+    <!-- 모바일용 햄버거 토글 버튼 -->
+    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="주요 메뉴">
       <a href="#company">회사소개</a>
       <a href="#services">서비스</a>
       <a href="#strengths">강점</a>
@@ -532,12 +597,6 @@
       </a>
     </nav>
 
-    <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
   </div>
 </header>
 
@@ -548,7 +607,6 @@
   
   <div class="hero-motion-bg">
 
-    <!-- 🌊 바다 파도 & 수면 거품 Layer -->
     <div class="sea-bg-area">
       <div class="sea-wave-1"></div>
       <div class="sea-wave-2"></div>
@@ -556,29 +614,24 @@
       <div class="sea-water-base"></div>
     </div>
 
-    <!-- 🛣️ 트럭 지나가는 도로 Layer -->
     <div class="road-bg-area">
       <div class="road-line-dashed"></div>
     </div>
 
-    <!-- 1. 좌측 하단: 대형 컨테이너선 -->
     <div class="motion-boat-group">
       <img src="assets/cargo ship png_2.jpg.jpg" alt="해상 운송 선박" class="motion-hero-img">
     </div>
 
-    <!-- 2. 우측 하단 -> 좌측 상단: 비행기 -->
     <div class="motion-plane-group">
       <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
 
-    <!-- 3. 우측 하단: 트럭 (동선 단축 + 4초 속도) -->
     <div class="motion-truck-group">
       <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
 
   </div>
 
-  <!-- Hero 본문 텍스트 -->
   <div class="hero-content-container">
     <div class="hero-copy reveal">
       <p class="eyebrow">
@@ -938,7 +991,6 @@
     </div>
   </div>
 
-  <!-- 지도 배너 -->
   <div class="map-section reveal">
     <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-banner">
       <div class="map-icon" aria-hidden="true">📍</div>
@@ -974,12 +1026,31 @@
 </footer>
 
 <script>
-  // 1. 브라우저 스크롤 위치 자동 복원 기능 중단
+  // 1. 모바일 햄버거 메뉴 토글 로직
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      mainNav.classList.toggle('active');
+    });
+
+    // 메뉴 항목 클릭 시 모바일 메뉴 자동으로 닫기
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      });
+    });
+  }
+
+  // 2. 브라우저 스크롤 위치 자동 복원 기능 중단
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
 
-  // 2. URL 해시(#services 등) 제거 및 최상단 강제 이동
+  // 3. URL 해시(#services 등) 제거 및 최상단 강제 이동
   if (window.location.hash) {
     history.replaceState(null, document.title, window.location.pathname + window.location.search);
   }
