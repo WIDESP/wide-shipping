@@ -50,16 +50,19 @@
       filter: contrast(160%) brightness(110%);
     }
 
-    /* 🌊 1. 실감나는 바다 파도 애니메이션 영역 */
+    /* 🌊 1. 실감나는 바다 파도 애니메이션 영역 (우측 자연스러운 페이드아웃 처리) */
     .sea-bg-area {
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 52%;
-      height: 110px;
+      width: 60%;
+      height: 120px;
       z-index: 1;
       overflow: hidden;
       pointer-events: none;
+      /* 오른쪽 끝 직각 단면을 자연스럽게 투명하게 흐려지도록 마스크 그라데이션 적용 */
+      mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
     }
 
     /* 수면 딥블루-에메랄드 베이스 */
@@ -118,7 +121,7 @@
       z-index: 2;
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 */
+    /* 1. 좌측 하단 대형 컨테이너선 (배 크기를 크게 확대하고 바다 영역 끝에 선두 정렬) */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
@@ -126,9 +129,9 @@
     }
     .motion-boat-group {
       position: absolute;
-      left: -5%;
+      left: -8%;
       bottom: -4%;
-      width: 850px;
+      width: 920px; /* 배 크기 크게 확대 */
       z-index: 2;
       animation: boatFloat 4s ease-in-out infinite;
     }
@@ -357,7 +360,8 @@
         font-size: 32px;
       }
       .motion-boat-group {
-        width: 460px;
+        width: 500px;
+        left: -15%;
         opacity: 0.35;
       }
       .motion-plane-group {
@@ -367,7 +371,7 @@
         width: 240px;
       }
       .sea-bg-area {
-        width: 80%;
+        width: 85%;
       }
       .road-bg-area {
         bottom: 35px;
