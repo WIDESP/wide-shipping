@@ -50,17 +50,72 @@
       filter: contrast(160%) brightness(110%);
     }
 
-    /* 🌊 1. 배 밑 바다 수면 그래픽 영역 */
+    /* 🌊 1. 실감나는 바다 파도 애니메이션 영역 */
     .sea-bg-area {
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 55%;
-      height: 70px;
-      background: linear-gradient(to top, rgba(14, 165, 233, 0.35) 0%, rgba(6, 182, 212, 0.15) 60%, transparent 100%);
-      border-top: 2px solid rgba(56, 189, 248, 0.4);
+      width: 52%;
+      height: 110px;
       z-index: 1;
-      border-radius: 0 40px 0 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* 수면 딥블루-에메랄드 베이스 */
+    .sea-water-base {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 45px;
+      background: linear-gradient(180deg, rgba(14, 116, 144, 0.8) 0%, rgba(3, 105, 161, 0.95) 100%);
+    }
+
+    /* 🌊 파도 애니메이션 1 (백그라운드 파도) */
+    @keyframes waveMove1 {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-30px); }
+      100% { transform: translateX(0); }
+    }
+    .sea-wave-1 {
+      position: absolute;
+      bottom: 30px;
+      left: -10%;
+      width: 120%;
+      height: 40px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,90 350,-40 500,40 C650,120 900,-20 1200,40 L1200,120 L0,120 Z' fill='rgba(14, 165, 233, 0.45)'%3E%3C/path%3E%3C/svg%3E");
+      background-size: 600px 40px;
+      animation: waveMove1 6s ease-in-out infinite;
+    }
+
+    /* 🌊 파도 애니메이션 2 (전면 파도) */
+    @keyframes waveMove2 {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(40px); }
+      100% { transform: translateX(0); }
+    }
+    .sea-wave-2 {
+      position: absolute;
+      bottom: 15px;
+      left: -10%;
+      width: 120%;
+      height: 50px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C200,80 400,0 600,60 C800,110 1000,10 1200,50 L1200,120 L0,120 Z' fill='rgba(56, 189, 248, 0.65)'%3E%3C/path%3E%3C/svg%3E");
+      background-size: 500px 50px;
+      animation: waveMove2 4s ease-in-out infinite;
+    }
+
+    /* 배 밑 하얀 거품(Foam) 효과 */
+    .sea-foam {
+      position: absolute;
+      bottom: 40px;
+      left: 5%;
+      width: 80%;
+      height: 18px;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 75%);
+      filter: blur(2px);
+      z-index: 2;
     }
 
     /* 1. 좌측 하단 대형 컨테이너선 */
@@ -100,16 +155,17 @@
       animation: planeFlyUpLeft 10s linear infinite;
     }
 
-    /* 🛣️ 3. 트럭 바퀴 위치에 맞춰 끌어올린 도로 그래픽 영역 */
+    /* 🛣️ 3. 트럭 바퀴 위치에 맞춘 도로 그래픽 영역 */
     .road-bg-area {
       position: absolute;
       right: 0;
-      bottom: 55px; /* 바퀴 위치로 상승 */
-      width: 70%;   /* 우측에서 좌측 트럭 도착 지점 근처까지만 적용 */
+      bottom: 55px; /* 바퀴 위치 정렬 */
+      width: 70%;   /* 왼쪽 바다 시작 직전까지만 배치 */
       height: 12px;
       background: rgba(30, 41, 59, 0.85);
       border-top: 2px solid #64748b;
       z-index: 1;
+      /* 좌측 페이드아웃 처리 */
       mask-image: linear-gradient(to right, transparent 0%, black 25%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
     }
@@ -362,8 +418,13 @@
   
   <div class="hero-motion-bg">
 
-    <!-- 🌊 배 밑 바다 수면 그래픽 Layer -->
-    <div class="sea-bg-area"></div>
+    <!-- 🌊 바다 파도 & 수면 거품 Layer -->
+    <div class="sea-bg-area">
+      <div class="sea-wave-1"></div>
+      <div class="sea-wave-2"></div>
+      <div class="sea-foam"></div>
+      <div class="sea-water-base"></div>
+    </div>
 
     <!-- 🛣️ 트럭 지나가는 도로 Layer -->
     <div class="road-bg-area">
