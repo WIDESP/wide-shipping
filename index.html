@@ -50,7 +50,7 @@
       filter: contrast(160%) brightness(110%);
     }
 
-    /* 🌊 1. 실감나는 바다 파도 애니메이션 영역 (우측 자연스러운 페이드아웃 처리) */
+    /* 🌊 1. 실감나는 바다 파도 애니메이션 영역 */
     .sea-bg-area {
       position: absolute;
       left: 0;
@@ -60,7 +60,6 @@
       z-index: 1;
       overflow: hidden;
       pointer-events: none;
-      /* 오른쪽 끝 직각 단면을 자연스럽게 투명하게 흐려지도록 마스크 그라데이션 적용 */
       mask-image: linear-gradient(to right, black 60%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
     }
@@ -75,7 +74,7 @@
       background: linear-gradient(180deg, rgba(14, 116, 144, 0.8) 0%, rgba(3, 105, 161, 0.95) 100%);
     }
 
-    /* 🌊 파도 애니메이션 1 (백그라운드 파도) */
+    /* 🌊 파도 애니메이션 1 */
     @keyframes waveMove1 {
       0% { transform: translateX(0); }
       50% { transform: translateX(-30px); }
@@ -92,7 +91,7 @@
       animation: waveMove1 6s ease-in-out infinite;
     }
 
-    /* 🌊 파도 애니메이션 2 (전면 파도) */
+    /* 🌊 파도 애니메이션 2 */
     @keyframes waveMove2 {
       0% { transform: translateX(0); }
       50% { transform: translateX(40px); }
@@ -109,7 +108,7 @@
       animation: waveMove2 4s ease-in-out infinite;
     }
 
-    /* 배 밑 하얀 거품(Foam) 효과 */
+    /* 배 밑 거품 효과 */
     .sea-foam {
       position: absolute;
       bottom: 40px;
@@ -121,7 +120,7 @@
       z-index: 2;
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 (배 크기를 크게 확대하고 바다 영역 끝에 선두 정렬) */
+    /* 1. 좌측 하단 대형 컨테이너선 */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
@@ -131,7 +130,7 @@
       position: absolute;
       left: -8%;
       bottom: -4%;
-      width: 920px; /* 배 크기 크게 확대 */
+      width: 920px;
       z-index: 2;
       animation: boatFloat 4s ease-in-out infinite;
     }
@@ -158,17 +157,16 @@
       animation: planeFlyUpLeft 10s linear infinite;
     }
 
-    /* 🛣️ 3. 트럭 바퀴 위치에 맞춘 도로 그래픽 영역 */
+    /* 🛣️ 3. 도로 그래픽 영역 */
     .road-bg-area {
       position: absolute;
       right: 0;
-      bottom: 55px; /* 바퀴 위치 정렬 */
-      width: 70%;   /* 왼쪽 바다 시작 직전까지만 배치 */
+      bottom: 40px;
+      width: 70%;
       height: 12px;
       background: rgba(30, 41, 59, 0.85);
       border-top: 2px solid #64748b;
       z-index: 1;
-      /* 좌측 페이드아웃 처리 */
       mask-image: linear-gradient(to right, transparent 0%, black 25%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
     }
@@ -185,7 +183,7 @@
       opacity: 0.5;
     }
 
-    /* 3. 트럭 이동 애니메이션 */
+    /* 3. 트럭 이동 애니메이션 (크기 확대 및 도로 밀착 정렬) */
     @keyframes truckDriveLoop {
       0% {
         transform: translateX(105vw);
@@ -205,8 +203,8 @@
     .motion-truck-group {
       position: absolute;
       right: 0;
-      bottom: 2%;
-      width: 380px;
+      bottom: 38px; /* 바퀴가 도로선 위에 바로 닿도록 보정 */
+      width: 450px; /* 트럭 크기 확대 (기존 380px) */
       z-index: 2;
       animation: truckDriveLoop 18s linear infinite;
     }
@@ -286,7 +284,7 @@
       font-size: 13px;
     }
 
-    /* 오시는 길 지도 배너 스타일 */
+    /* 지도 배너 스타일 */
     .map-section {
       margin-top: 40px;
       padding: 0 20px;
@@ -368,13 +366,14 @@
         width: 260px;
       }
       .motion-truck-group {
-        width: 240px;
+        width: 280px;
+        bottom: 25px;
       }
       .sea-bg-area {
         width: 85%;
       }
       .road-bg-area {
-        bottom: 35px;
+        bottom: 25px;
         width: 85%;
       }
       .hero-points {
@@ -417,7 +416,7 @@
 
 <main>
 
-<!-- HERO (실물 이미지가 적용된 모션 파트) -->
+<!-- HERO -->
 <section class="hero">
   
   <div class="hero-motion-bg">
@@ -849,7 +848,6 @@
 </footer>
 
 <script>
-  // 푸터 연도 자동 설정
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 <script src="script.js"></script>
