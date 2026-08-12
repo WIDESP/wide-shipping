@@ -129,9 +129,9 @@
     .motion-boat-group {
       position: absolute;
       left: -8%;
-      bottom: -35px; /* 바다 수면에 맞게 아래로 위치 조정 */
+      bottom: -35px; /* 바다 수면에 맞게 위치를 하단으로 배치 */
       width: 920px;
-      z-index: 2; /* 파도 레이어(z-index: 3) 뒤로 들어가 선체 하단이 수면에 닿도록 배치 */
+      z-index: 2; /* 파도 레이어(z-index: 3) 뒤로 배치하여 선체 하단이 물에 차오르도록 함 */
       animation: boatFloat 4s ease-in-out infinite;
     }
 
@@ -183,16 +183,16 @@
       opacity: 0.5;
     }
 
-    /* 3. 트럭 이동 애니메이션 */
+    /* 3. 트럭 이동 애니메이션 (6초 간격으로 빠르게/자주 등장) */
     @keyframes truckDriveLoop {
       0% {
         transform: translateX(105vw);
         opacity: 0;
       }
-      3% {
+      5% {
         opacity: 1;
       }
-      97% {
+      95% {
         opacity: 1;
       }
       100% {
@@ -206,7 +206,7 @@
       bottom: 38px;
       width: 450px;
       z-index: 2;
-      animation: truckDriveLoop 18s linear infinite;
+      animation: truckDriveLoop 6s linear infinite; /* 6초로 단축 */
     }
 
     /* Hero 본문 텍스트 레이어 */
@@ -422,7 +422,7 @@
   
   <div class="hero-motion-bg">
 
-    <!-- 🌊 바다 파도 & 수면 거품 Layer (z-index를 3으로 조정하여 선체 일부를 덮어 밀착) -->
+    <!-- 🌊 바다 파도 & 수면 거품 Layer -->
     <div class="sea-bg-area">
       <div class="sea-wave-1"></div>
       <div class="sea-wave-2"></div>
@@ -445,7 +445,7 @@
       <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
 
-    <!-- 3. 우측 -> 좌측 무한 주행 트럭 -->
+    <!-- 3. 우측 -> 좌측 무한 주행 트럭 (속도 조정됨) -->
     <div class="motion-truck-group">
       <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
