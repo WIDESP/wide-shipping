@@ -209,7 +209,7 @@
       animation: truckDriveLoop 6s linear infinite;
     }
 
-    /* Hero 본문 텍스트 레이어 (중앙 정렬 스타일 추가) */
+    /* Hero 본문 텍스트 레이어 */
     .hero-content-container {
       position: relative;
       z-index: 4;
@@ -218,9 +218,8 @@
       margin: 0 auto;
     }
 
-    /* 중앙 정렬을 위한 설정 */
     .hero-copy {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       text-align: center;
     }
@@ -228,21 +227,24 @@
     .hero-copy .eyebrow {
       color: #38bdf8;
       font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      font-size: 18px; /* 소제목 크기 조정 */
     }
 
+    /* 💡 메인 문구 글자 크기 확대 (44px -> 56px) */
     .hero-copy h1 {
       color: #ffffff;
-      font-size: 44px;
-      line-height: 1.3;
-      margin-bottom: 20px;
-      white-space: nowrap; /* 모니터 화면에서 한 줄로 잘 유지되도록 가이드 */
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      white-space: nowrap;
     }
 
     .hero-copy h1 strong {
       color: #38bdf8;
-      margin-left: 8px;
+      margin-left: 10px;
     }
 
     .hero-desc {
@@ -254,7 +256,7 @@
 
     .hero-actions {
       display: flex;
-      justify-content: center; /* 버튼 그룹 중앙 배치 */
+      justify-content: center;
       gap: 12px;
       margin-bottom: 40px;
     }
@@ -272,10 +274,10 @@
       background: rgba(255, 255, 255, 0.05);
     }
 
-    /* 하단 지표 항목 (중앙 나열 유지) */
+    /* 하단 지표 항목 */
     .hero-points {
       display: flex;
-      justify-content: center; /* 3개 지표 나란히 중앙 배치 */
+      justify-content: center;
       gap: 48px;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
       padding-top: 24px;
@@ -366,8 +368,8 @@
     /* 모바일 반응형 처리 */
     @media (max-width: 768px) {
       .hero-copy h1 {
-        font-size: 26px;
-        white-space: normal; /* 모바일에서는 자동 줄바꿈 허용 */
+        font-size: 28px;
+        white-space: normal;
       }
       .motion-boat-group {
         width: 500px;
@@ -464,14 +466,13 @@
 
   </div>
 
-  <!-- Hero 본문 텍스트 (중앙 정렬 구성) -->
+  <!-- Hero 본문 텍스트 -->
   <div class="hero-content-container">
     <div class="hero-copy reveal">
       <p class="eyebrow">
         WIDE SHIPPING · GLOBAL LOGISTICS
       </p>
 
-      <!-- 문구 옆으로 나열 (줄바꿈 <br> 제거) -->
       <h1>
         더 넓게 연결하고, <strong>더 빠르게 움직입니다.</strong>
       </h1>
@@ -491,7 +492,6 @@
         </a>
       </div>
 
-      <!-- AIR 항목 포함 3개 지표 나란히 배치 -->
       <div class="hero-points">
         <div>
           <strong>10+</strong>
