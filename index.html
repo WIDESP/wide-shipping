@@ -50,7 +50,7 @@
       filter: contrast(160%) brightness(110%);
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 (크기 확대: 480px -> 680px) */
+    /* 1. 좌측 하단 대형 컨테이너선 (크기 추가 확대: 680px -> 850px) */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
@@ -58,14 +58,14 @@
     }
     .motion-boat-group {
       position: absolute;
-      left: -3%;
-      bottom: -4%;
-      width: 680px; /* 기존 480px에서 확대 */
+      left: -5%;
+      bottom: -6%;
+      width: 850px; /* 배 크기 추가 확대 */
       z-index: 2;
       animation: boatFloat 4s ease-in-out infinite;
     }
 
-    /* 2. 우측 하단에서 좌측 상단으로 무한 비행하는 비행기 (크기 확대: 240px -> 400px) */
+    /* 2. 비행기 무한 이동 애니메이션 */
     @keyframes planeFlyUpLeft {
       0% { 
         transform: translate(100vw, 50vh) rotate(-12deg) scale(0.7); 
@@ -82,35 +82,35 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 400px; /* 기존 240px에서 확대 */
+      width: 400px;
       z-index: 3;
       animation: planeFlyUpLeft 10s linear infinite;
     }
 
-    /* 3. 트럭 무한 이동 애니메이션 (우측 진입 -> 좌측 이동 -> 반복) */
+    /* 3. 트럭 이동 애니메이션 */
     @keyframes truckDriveLoop {
       0% {
-        transform: translateX(100vw);
+        transform: translateX(105vw);
         opacity: 0;
       }
-      10% {
+      3% {
         opacity: 1;
       }
-      90% {
+      97% {
         opacity: 1;
       }
       100% {
-        transform: translateX(-40vw);
+        transform: translateX(-50vw);
         opacity: 0;
       }
     }
     .motion-truck-group {
       position: absolute;
       right: 0;
-      bottom: 3%;
-      width: 320px;
+      bottom: 2%;
+      width: 380px;
       z-index: 1;
-      animation: truckDriveLoop 12s linear infinite;
+      animation: truckDriveLoop 18s linear infinite;
     }
 
     /* 수면/도로 라인 */
@@ -272,14 +272,14 @@
         font-size: 32px;
       }
       .motion-boat-group {
-        width: 380px; /* 모바일 확대 */
-        opacity: 0.4;
+        width: 460px; /* 모바일 대응 확대 */
+        opacity: 0.35;
       }
       .motion-plane-group {
-        width: 260px; /* 모바일 확대 */
+        width: 260px;
       }
       .motion-truck-group {
-        width: 200px;
+        width: 240px;
       }
       .hero-points {
         flex-wrap: wrap;
@@ -332,7 +332,7 @@
       <img src="assets/cargo ship png_2.jpg.jpg" alt="해상 운송 선박" class="motion-hero-img">
     </div>
 
-    <!-- 2. 우측 하단 -> 좌측 상단: 대각선으로 날아가는 비행기 -->
+    <!-- 2. 우측 하단 -> 좌측 상단: 비행기 -->
     <div class="motion-plane-group">
       <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
