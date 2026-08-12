@@ -57,7 +57,7 @@
       bottom: 0;
       width: 60%;
       height: 120px;
-      z-index: 2; /* 파도가 배의 살짝 뒤/아래에 깔리도록 레이어 조정 */
+      z-index: 3; /* 파도가 배의 밑단을 자연스럽게 가리도록 z-index를 3으로 배치 */
       overflow: hidden;
       pointer-events: none;
       mask-image: linear-gradient(to right, black 60%, transparent 100%);
@@ -70,8 +70,8 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 45px;
-      background: linear-gradient(180deg, rgba(14, 116, 144, 0.8) 0%, rgba(3, 105, 161, 0.95) 100%);
+      height: 35px;
+      background: linear-gradient(180deg, rgba(14, 116, 144, 0.7) 0%, rgba(3, 105, 161, 0.9) 100%);
     }
 
     /* 🌊 파도 애니메이션 1 */
@@ -82,7 +82,7 @@
     }
     .sea-wave-1 {
       position: absolute;
-      bottom: 30px;
+      bottom: 25px;
       left: -10%;
       width: 120%;
       height: 40px;
@@ -99,11 +99,11 @@
     }
     .sea-wave-2 {
       position: absolute;
-      bottom: 15px;
+      bottom: 10px;
       left: -10%;
       width: 120%;
       height: 50px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C200,80 400,0 600,60 C800,110 1000,10 1200,50 L1200,120 L0,120 Z' fill='rgba(56, 189, 248, 0.65)'%3E%3C/path%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C200,80 400,0 600,60 C800,110 1000,10 1200,50 L1200,120 L0,120 Z' fill='rgba(56, 189, 248, 0.55)'%3E%3C/path%3E%3C/svg%3E");
       background-size: 500px 50px;
       animation: waveMove2 4s ease-in-out infinite;
     }
@@ -111,28 +111,28 @@
     /* 배 밑 거품 효과 */
     .sea-foam {
       position: absolute;
-      bottom: 15px;
+      bottom: 20px;
       left: 5%;
       width: 80%;
       height: 18px;
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 75%);
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 75%);
       filter: blur(2px);
       z-index: 2;
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 (수면 위로 둥둥 뜨도록 위치 위로 조정) */
+    /* 1. 좌측 하단 대형 컨테이너선 (파도 레이어 뒤로 들어가도록 조정) */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-6px); }
       100% { transform: translateY(0px); }
     }
     .motion-boat-group {
       position: absolute;
       left: -8%;
-      bottom: 10px; /* 기존 -35px에서 10px로 끌어올려 배를 수면 위로 배치 */
+      bottom: -15px; /* 밑단이 살짝 수면 아래로 들어가 자연스럽게 잠김 */
       width: 920px;
-      z-index: 3;    /* 파도보다 위에 보이도록 z-index 변경 */
-      animation: boatFloat 4s ease-in-out infinite;
+      z-index: 2;     /* 파도(z-index: 3)보다 아래에 위치 */
+      animation: boatFloat 4.5s ease-in-out infinite;
     }
 
     /* 2. 비행기 무한 이동 애니메이션 */
@@ -389,7 +389,7 @@
       .motion-boat-group {
         width: 500px;
         left: -15%;
-        bottom: 5px; /* 모바일에서도 적절히 뜨도록 조정 */
+        bottom: -10px;
         opacity: 0.35;
       }
       .motion-plane-group {
@@ -451,7 +451,7 @@
   
   <div class="hero-motion-bg">
 
-    <!-- 🌊 바다 파도 & 수면 거품 Layer -->
+    <!-- 🌊 바다 파도 & 수면 거품 Layer (z-index: 3으로 배치하여 배 밑단을 일부 감쌈) -->
     <div class="sea-bg-area">
       <div class="sea-wave-1"></div>
       <div class="sea-wave-2"></div>
@@ -464,7 +464,7 @@
       <div class="road-line-dashed"></div>
     </div>
 
-    <!-- 1. 좌측 하단: 대형 컨테이너선 -->
+    <!-- 1. 좌측 하단: 대형 컨테이너선 (z-index: 2로 파도 뒤에 자연스럽게 접목) -->
     <div class="motion-boat-group">
       <img src="assets/cargo ship png_2.jpg.jpg" alt="해상 운송 선박" class="motion-hero-img">
     </div>
