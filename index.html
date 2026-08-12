@@ -21,12 +21,12 @@
     .hero {
       position: relative;
       width: 100%;
-      min-height: 680px;
+      min-height: 720px; /* 배율 확대 느낌을 살리기 위해 영역 높이 살짝 확대 */
       background: #061838;
       overflow: hidden;
       display: flex;
       align-items: center;
-      padding: 100px 20px 80px;
+      padding: 110px 20px 90px;
       color: #ffffff;
     }
 
@@ -55,13 +55,13 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 60%;
-      height: 120px;
-      z-index: 3; /* 파도가 배의 밑단을 자연스럽게 가리도록 z-index를 3으로 배치 */
+      width: 65%;
+      height: 140px;
+      z-index: 3;
       overflow: hidden;
       pointer-events: none;
-      mask-image: linear-gradient(to right, black 60%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      mask-image: linear-gradient(to right, black 65%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 65%, transparent 100%);
     }
 
     /* 수면 딥블루-에메랄드 베이스 */
@@ -70,8 +70,8 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 35px;
-      background: linear-gradient(180deg, rgba(14, 116, 144, 0.7) 0%, rgba(3, 105, 161, 0.9) 100%);
+      height: 40px;
+      background: linear-gradient(180deg, rgba(14, 116, 144, 0.75) 0%, rgba(3, 105, 161, 0.95) 100%);
     }
 
     /* 🌊 파도 애니메이션 1 */
@@ -82,12 +82,12 @@
     }
     .sea-wave-1 {
       position: absolute;
-      bottom: 25px;
+      bottom: 30px;
       left: -10%;
       width: 120%;
-      height: 40px;
+      height: 45px;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,90 350,-40 500,40 C650,120 900,-20 1200,40 L1200,120 L0,120 Z' fill='rgba(14, 165, 233, 0.45)'%3E%3C/path%3E%3C/svg%3E");
-      background-size: 600px 40px;
+      background-size: 600px 45px;
       animation: waveMove1 6s ease-in-out infinite;
     }
 
@@ -99,60 +99,60 @@
     }
     .sea-wave-2 {
       position: absolute;
-      bottom: 10px;
+      bottom: 12px;
       left: -10%;
       width: 120%;
-      height: 50px;
+      height: 55px;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C200,80 400,0 600,60 C800,110 1000,10 1200,50 L1200,120 L0,120 Z' fill='rgba(56, 189, 248, 0.55)'%3E%3C/path%3E%3C/svg%3E");
-      background-size: 500px 50px;
+      background-size: 500px 55px;
       animation: waveMove2 4s ease-in-out infinite;
     }
 
     /* 배 밑 거품 효과 */
     .sea-foam {
       position: absolute;
-      bottom: 20px;
+      bottom: 25px;
       left: 5%;
-      width: 80%;
-      height: 18px;
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 75%);
+      width: 85%;
+      height: 20px;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 75%);
       filter: blur(2px);
       z-index: 2;
     }
 
-    /* 1. 좌측 하단 대형 컨테이너선 (파도 레이어 뒤로 들어가도록 조정) */
+    /* 🚢 1. 좌측 하단 대형 컨테이너선 (130% 확대 스케일 반영) */
     @keyframes boatFloat {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
+      50% { transform: translateY(-7px); }
       100% { transform: translateY(0px); }
     }
     .motion-boat-group {
       position: absolute;
-      left: -8%;
-      bottom: -5px; /* 밑단이 살짝 수면 아래로 들어가 자연스럽게 잠김 */
-      width: 920px;
-      z-index: 2;     /* 파도(z-index: 3)보다 아래에 위치 */
+      left: -6%;
+      bottom: -10px; /* 확대 시 배가 하단에 묵직하게 깔리는 수치 */
+      width: 1100px; /* 기존 920px -> 1100px로 확대 */
+      z-index: 2;
       animation: boatFloat 4.5s ease-in-out infinite;
     }
 
-    /* 2. 비행기 무한 이동 애니메이션 */
+    /* ✈️ 2. 비행기 (스케일 및 배치 조정) */
     @keyframes planeFlyUpLeft {
       0% { 
-        transform: translate(100vw, 50vh) rotate(-12deg) scale(0.7); 
+        transform: translate(100vw, 45vh) rotate(-12deg) scale(0.85); 
         opacity: 0; 
       }
       10% { opacity: 1; }
       90% { opacity: 1; }
       100% { 
-        transform: translate(-30vw, -30vh) rotate(-12deg) scale(1.0); 
+        transform: translate(-30vw, -30vh) rotate(-12deg) scale(1.15); 
         opacity: 0; 
       }
     }
     .motion-plane-group {
       position: absolute;
-      top: 0;
+      top: -10px;
       left: 0;
-      width: 400px;
+      width: 480px; /* 기존 400px -> 480px로 확대 */
       z-index: 3;
       animation: planeFlyUpLeft 10s linear infinite;
     }
@@ -161,17 +161,16 @@
     .road-bg-area {
       position: absolute;
       right: 0;
-      bottom: 40px;
-      width: 70%;
-      height: 12px;
+      bottom: 35px;
+      width: 50%; /* 도로 구간 축소 */
+      height: 14px;
       background: rgba(30, 41, 59, 0.85);
       border-top: 2px solid #64748b;
       z-index: 1;
-      mask-image: linear-gradient(to right, transparent 0%, black 25%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
+      mask-image: linear-gradient(to right, transparent 0%, black 30%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
     }
 
-    /* 도로 점선 */
     .road-line-dashed {
       position: absolute;
       top: 50%;
@@ -183,33 +182,33 @@
       opacity: 0.5;
     }
 
-    /* 3. 트럭 이동 애니메이션 */
+    /* 🚚 3. 트럭 이동 애니메이션 (동선 대폭 감소) */
     @keyframes truckDriveLoop {
       0% {
-        transform: translateX(105vw);
+        transform: translateX(35vw); /* 시작 위치 단축 */
         opacity: 0;
       }
-      5% {
+      10% {
         opacity: 1;
       }
-      95% {
+      85% {
         opacity: 1;
       }
       100% {
-        transform: translateX(-50vw);
+        transform: translateX(-15vw); /* 끝나는 위치 단축 */
         opacity: 0;
       }
     }
     .motion-truck-group {
       position: absolute;
-      right: 0;
-      bottom: 38px;
-      width: 450px;
+      right: -2%;
+      bottom: 30px;
+      width: 550px; /* 기존 450px -> 550px로 확대하여 사진처럼 시원한 크기 연출 */
       z-index: 2;
-      animation: truckDriveLoop 6s linear infinite;
+      animation: truckDriveLoop 7s linear infinite;
     }
 
-    /* Hero 본문 텍스트 레이어 - 폭 정돈 */
+    /* Hero 본문 텍스트 레이어 */
     .hero-content-container {
       position: relative;
       z-index: 4;
@@ -229,13 +228,12 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       margin-bottom: 16px;
-      font-size: 18px;
+      font-size: 19px;
     }
 
-    /* 1줄 문구 전용 스타일 */
     .hero-copy h1 {
       color: #ffffff;
-      font-size: 52px;
+      font-size: 56px; /* 텍스트도 살짝 확대 */
       font-weight: 900;
       line-height: 1.2;
       margin-bottom: 24px;
@@ -251,9 +249,9 @@
 
     .hero-desc {
       color: #cbd5e1;
-      font-size: 19px;
+      font-size: 20px;
       line-height: 1.6;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
 
     .hero-actions {
@@ -370,13 +368,13 @@
     /* 모바일 반응형 처리 */
     @media (max-width: 1200px) {
       .hero-copy h1 {
-        font-size: 42px;
+        font-size: 44px;
         letter-spacing: -2px;
       }
     }
     @media (max-width: 900px) {
       .hero-copy h1 {
-        font-size: 34px;
+        font-size: 36px;
         letter-spacing: -1.5px;
       }
     }
@@ -387,17 +385,17 @@
         letter-spacing: -1px;
       }
       .motion-boat-group {
-        width: 500px;
+        width: 600px;
         left: -15%;
         bottom: -10px;
         opacity: 0.35;
       }
       .motion-plane-group {
-        width: 260px;
+        width: 300px;
       }
       .motion-truck-group {
-        width: 280px;
-        bottom: 25px;
+        width: 350px;
+        bottom: 20px;
       }
       .sea-bg-area {
         width: 85%;
@@ -451,7 +449,7 @@
   
   <div class="hero-motion-bg">
 
-    <!-- 🌊 바다 파도 & 수면 거품 Layer (z-index: 3으로 배치하여 배 밑단을 일부 감쌈) -->
+    <!-- 🌊 바다 파도 & 수면 거품 Layer -->
     <div class="sea-bg-area">
       <div class="sea-wave-1"></div>
       <div class="sea-wave-2"></div>
@@ -464,7 +462,7 @@
       <div class="road-line-dashed"></div>
     </div>
 
-    <!-- 1. 좌측 하단: 대형 컨테이너선 (z-index: 2로 파도 뒤에 자연스럽게 접목) -->
+    <!-- 1. 좌측 하단: 대형 컨테이너선 (확대 스케일) -->
     <div class="motion-boat-group">
       <img src="assets/cargo ship png_2.jpg.jpg" alt="해상 운송 선박" class="motion-hero-img">
     </div>
@@ -474,14 +472,14 @@
       <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
     </div>
 
-    <!-- 3. 우측 -> 좌측 무한 주행 트럭 -->
+    <!-- 3. 우측 하단: 트럭 (동선 단축 및 사이즈 확대) -->
     <div class="motion-truck-group">
       <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
     </div>
 
   </div>
 
-  <!-- Hero 본문 텍스트 (한 줄 유지) -->
+  <!-- Hero 본문 텍스트 -->
   <div class="hero-content-container">
     <div class="hero-copy reveal">
       <p class="eyebrow">
@@ -764,6 +762,7 @@
       <b>03</b>
       <h3>견적 안내</h3>
       <p>경쟁력 있는 운임과 조건을 안내합니다.</p>
+
     </div>
 
     <div class="process-step reveal delay-3">
