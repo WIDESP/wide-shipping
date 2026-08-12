@@ -16,6 +16,26 @@
 
   <style>
     /* ==========================================
+       📌 상단 헤더 고정 (Header Sticky Fix)
+       ========================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(6, 24, 56, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 헤더 고정으로 인한 본문 영역 상단 가림 방지 */
+    body {
+      padding-top: 80px;
+    }
+
+    /* ==========================================
        Hero 전체 배경 모션 애니메이션 (배, 비행기, 트럭)
        ========================================== */
     .hero {
@@ -381,6 +401,9 @@
       }
     }
     @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
       .hero-copy h1 {
         font-size: 28px;
         white-space: normal;
@@ -888,19 +911,32 @@
 </footer>
 
 <script>
-  // 1. 브라우저의 자동 스크롤 위치 복원 기능 비활성화
+  // 1. 브라우저 스크롤 위치 자동 복원 기능 중단
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
 
-  // 2. 페이지 진입, 새로고침, 이탈 시 항상 최상단(0,0)으로 스크롤 이동
+  // 2. URL 해시(#services 등) 제거 및 최상단 강제 이동
+  if (window.location.hash) {
+    history.replaceState(null, document.title, window.location.pathname + window.location.search);
+  }
+
   window.addEventListener('beforeunload', function() {
     window.scrollTo(0, 0);
   });
 
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      window.scrollTo(0, 0);
+    }, 10);
+  });
+
   document.addEventListener('DOMContentLoaded', function() {
     window.scrollTo(0, 0);
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
   });
 </script>
 <script src="script.js"></script>
