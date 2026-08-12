@@ -205,7 +205,7 @@
       bottom: 30px;
       width: 550px;
       z-index: 2;
-      animation: truckDriveLoop 4s linear infinite; /* 4초 설정 */
+      animation: truckDriveLoop 4s linear infinite;
     }
 
     /* Hero 본문 텍스트 레이어 */
@@ -365,7 +365,9 @@
       line-height: 1.6;
     }
 
-    /* 모바일 반응형 처리 */
+    /* ==========================================
+       📱 모바일 반응형 처리 (겹침 방지 최적화)
+       ========================================== */
     @media (max-width: 1200px) {
       .hero-copy h1 {
         font-size: 44px;
@@ -380,30 +382,41 @@
     }
     @media (max-width: 768px) {
       .hero-copy h1 {
-        font-size: 26px;
+        font-size: 28px;
         white-space: normal;
         letter-spacing: -1px;
       }
+
+      /* 🚢 1. 모바일 배 설정 (크기 대폭 축소 & 좌측 바깥 배치) */
       .motion-boat-group {
-        width: 600px;
-        left: -15%;
-        bottom: -10px;
-        opacity: 0.35;
+        width: 380px;
+        left: -25%;
+        bottom: -5px;
+        opacity: 0.45;
       }
+
+      /* ✈️ 2. 모바일 비행기 설정 */
       .motion-plane-group {
-        width: 300px;
+        width: 240px;
       }
+
+      /* 🚚 3. 모바일 트럭 설정 (크기 축소 & 바닥면에 낮게 배치하여 배와 동선 분리) */
       .motion-truck-group {
-        width: 350px;
-        bottom: 20px;
+        width: 220px;
+        bottom: 5px;
+        z-index: 3;
       }
+
+      /* 🌊 바다 & 🛣️ 도로 레이어 위치 조정 */
       .sea-bg-area {
-        width: 85%;
+        width: 60%;
+        height: 90px;
       }
       .road-bg-area {
-        bottom: 25px;
-        width: 85%;
+        bottom: 12px;
+        width: 50%;
       }
+
       .hero-points {
         flex-wrap: wrap;
         gap: 20px;
