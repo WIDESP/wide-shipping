@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>와이드해운 | 국제물류 전문기업</title>
-  <meta name="description" content="와이드해운 - 해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험을 제공하는 국제물류 전문기업입니다.">
+  <title>(주)와이드해운 | 글로벌 종합 물류 포워딩 전문기업</title>
+  <meta name="description" content="와이드해운 - 해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험을 제공하는 글로벌 종합물류 포워딩 전문기업입니다.">
   
   <meta property="og:type" content="website">
-  <meta property="og:title" content="와이드해운 | 국제물류 전문기업">
-  <meta property="og:description" content="해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험 등 최적의 물류 솔루션을 제공합니다.">
+  <meta property="og:title" content="(주)와이드해운 | 글로벌 종합 물류 포워딩 전문기업">
+  <meta property="og:description" content="해상운송, 항공운송, 수출입 통관, 내륙운송, 적하보험 등 최적의 맞춤형 물류 솔루션을 제공합니다.">
   <meta property="og:image" content="assets/wide-shipping-logo.svg">
   
   <link rel="icon" type="image/svg+xml" href="assets/wide-shipping-logo.svg">
@@ -16,25 +16,31 @@
 
   <style>
     /* ==========================================
-        📌 전역 텍스트 줄바꿈 최적화 (Word Wrap Fix)
+        📌 전역 텍스트 및 기본 스타일 (Global Setup)
        ========================================== */
     * {
       box-sizing: border-box;
     }
 
-    /* 한글 단어가 중간에서 어색하게 깨지지 않고 단어 단위로 깔끔하게 넘어가도록 설정 */
     body, h1, h2, h3, h4, h5, h6, p, span, a, li, div {
       word-break: keep-all;
       overflow-wrap: break-word;
     }
 
-    /* 제목류 문구의 줄 길이가 자연스럽게 균형을 이루도록 설정 */
     h1, h2, h3, .hero-copy h1, .company-header h2 {
       text-wrap: balance;
     }
 
+    body {
+      padding-top: 72px;
+      margin: 0;
+      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #0f172a;
+    }
+
     /* ==========================================
-        📌 상단 헤더 고정 & 스타일
+        📌 상단 헤더 고정 & 스타일 (Header)
        ========================================== */
     .site-header {
       position: fixed;
@@ -71,7 +77,6 @@
       display: block;
     }
 
-    /* PC 메뉴 스타일 */
     .main-nav {
       display: flex;
       align-items: center;
@@ -92,7 +97,6 @@
       color: #0284c7;
     }
 
-    /* 강조된 온라인 견적문의 버튼 */
     .main-nav a[target="_blank"] {
       background-color: #0284c7;
       color: #ffffff !important;
@@ -107,7 +111,6 @@
       transform: translateY(-1px);
     }
 
-    /* 햄버거 토글 버튼 (PC 기본 숨김) */
     .menu-btn {
       display: none;
       background: none;
@@ -128,7 +131,6 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* 햄버거 버튼 활성화 애니메이션 (X자) */
     .menu-btn.active span:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
@@ -139,192 +141,35 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
-    body {
-      padding-top: 72px;
-      margin: 0;
-      background-color: #ffffff;
-    }
-
     /* ==========================================
-        Hero 전체 배경 모션 애니메이션
+        🌊 Hero 영역 - 고품격 시네마틱 오버레이
        ========================================== */
     .hero {
       position: relative;
       width: 100%;
       min-height: 720px;
-      background: #061838;
+      background: #040d1a;
       overflow: hidden;
       display: flex;
-      align-items: flex-start;
-      padding: 85px 20px 90px;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px;
       color: #ffffff;
     }
 
-    .hero-motion-bg {
+    /* 고급 대형 물류 비주얼 배경 오버레이 */
+    .hero-bg-visual {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      background: 
+        linear-gradient(180deg, rgba(4, 13, 26, 0.75) 0%, rgba(4, 13, 26, 0.90) 100%),
+        radial-gradient(circle at 50% 30%, rgba(2, 132, 199, 0.25) 0%, transparent 70%),
+        url("https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat;
       z-index: 1;
-      pointer-events: none;
-    }
-
-    .motion-hero-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      mix-blend-mode: multiply;
-      filter: contrast(160%) brightness(110%);
-    }
-
-    .sea-bg-area {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 65%;
-      height: 140px;
-      z-index: 3;
-      overflow: hidden;
-      pointer-events: none;
-      mask-image: linear-gradient(to right, black 65%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, black 65%, transparent 100%);
-    }
-
-    .sea-water-base {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40px;
-      background: linear-gradient(180deg, rgba(14, 116, 144, 0.75) 0%, rgba(3, 105, 161, 0.95) 100%);
-    }
-
-    @keyframes waveMove1 {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(-30px); }
-      100% { transform: translateX(0); }
-    }
-    .sea-wave-1 {
-      position: absolute;
-      bottom: 30px;
-      left: -10%;
-      width: 120%;
-      height: 45px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,90 350,-40 500,40 C650,120 900,-20 1200,40 L1200,120 L0,120 Z' fill='rgba(14, 165, 233, 0.45)'%3E%3C/path%3E%3C/svg%3E");
-      background-size: 600px 45px;
-      animation: waveMove1 6s ease-in-out infinite;
-    }
-
-    @keyframes waveMove2 {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(40px); }
-      100% { transform: translateX(0); }
-    }
-    .sea-wave-2 {
-      position: absolute;
-      bottom: 12px;
-      left: -10%;
-      width: 120%;
-      height: 55px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C200,80 400,0 600,60 C800,110 1000,10 1200,50 L1200,120 L0,120 Z' fill='rgba(56, 189, 248, 0.55)'%3E%3C/path%3E%3C/svg%3E");
-      background-size: 500px 55px;
-      animation: waveMove2 4s ease-in-out infinite;
-    }
-
-    .sea-foam {
-      position: absolute;
-      bottom: 25px;
-      left: 5%;
-      width: 85%;
-      height: 20px;
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 75%);
-      filter: blur(2px);
-      z-index: 2;
-    }
-
-    @keyframes boatFloat {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-7px); }
-      100% { transform: translateY(0px); }
-    }
-    .motion-boat-group {
-      position: absolute;
-      left: -6%;
-      bottom: -10px;
-      width: 1100px;
-      z-index: 2;
-      animation: boatFloat 4.5s ease-in-out infinite;
-    }
-
-    @keyframes planeFlyUpLeft {
-      0% { 
-        transform: translate(100vw, 45vh) rotate(-12deg) scale(0.85); 
-        opacity: 0; 
-      }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { 
-        transform: translate(-30vw, -30vh) rotate(-12deg) scale(1.15); 
-        opacity: 0; 
-      }
-    }
-    .motion-plane-group {
-      position: absolute;
-      top: -10px;
-      left: 0;
-      width: 480px;
-      z-index: 3;
-      animation: planeFlyUpLeft 10s linear infinite;
-    }
-
-    .road-bg-area {
-      position: absolute;
-      right: 0;
-      bottom: 35px;
-      width: 50%;
-      height: 14px;
-      background: rgba(30, 41, 59, 0.85);
-      border-top: 2px solid #64748b;
-      z-index: 1;
-      mask-image: linear-gradient(to right, transparent 0%, black 30%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
-    }
-
-    .road-line-dashed {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      transform: translateY(-50%);
-      background: repeating-linear-gradient(90deg, #f1f5f9, #f1f5f9 15px, transparent 15px, transparent 30px);
-      opacity: 0.5;
-    }
-
-    @keyframes truckDriveLoop {
-      0% {
-        transform: translateX(35vw);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      85% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(-15vw);
-        opacity: 0;
-      }
-    }
-    .motion-truck-group {
-      position: absolute;
-      right: -2%;
-      bottom: 30px;
-      width: 550px;
-      z-index: 2;
-      animation: truckDriveLoop 4s linear infinite;
+      filter: contrast(110%);
     }
 
     .hero-content-container {
@@ -333,21 +178,20 @@
       max-width: 1100px;
       width: 100%;
       margin: 0 auto;
-      transform: translateY(-10px);
-    }
-
-    .hero-copy {
-      max-width: 1000px;
-      margin: 0 auto;
       text-align: center;
     }
 
     .hero-copy .eyebrow {
+      display: inline-block;
       color: #38bdf8;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 12px;
-      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      background: rgba(56, 189, 248, 0.12);
+      padding: 6px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
     }
 
     .hero-copy h1 {
@@ -355,63 +199,88 @@
       font-size: 54px;
       font-weight: 900;
       line-height: 1.25;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       letter-spacing: -2px;
     }
 
     .hero-copy h1 strong {
       color: #38bdf8;
-      display: inline-block;
     }
 
     .hero-desc {
       color: #cbd5e1;
       font-size: 20px;
       line-height: 1.6;
-      margin-bottom: 30px;
+      margin: 0 auto 36px;
+      max-width: 800px;
     }
 
     .hero-actions {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 35px;
+      gap: 16px;
+      margin-bottom: 48px;
     }
 
     .hero-actions .btn.primary {
-      background-color: #38bdf8;
-      color: #0f172a;
+      background-color: #0284c7;
+      color: #ffffff;
       font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 8px;
       border: none;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .hero-actions .btn.primary:hover {
+      background-color: #0369a1;
+      transform: translateY(-2px);
     }
 
     .hero-actions .btn.ghost {
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 600;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+    }
+
+    .hero-actions .btn.ghost:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #ffffff;
     }
 
     .hero-points {
       display: flex;
       justify-content: center;
-      gap: 48px;
+      gap: 50px;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
-      padding-top: 20px;
-      max-width: 600px;
+      padding-top: 28px;
+      max-width: 700px;
       margin: 0 auto;
-      text-align: center;
     }
 
     .hero-points strong {
       display: block;
       color: #ffffff;
-      font-size: 20px;
+      font-size: 22px;
+      font-weight: 800;
     }
 
     .hero-points span {
       color: #94a3b8;
       font-size: 13px;
       white-space: nowrap;
+      margin-top: 4px;
+      display: block;
     }
 
     /* ==========================================
@@ -419,7 +288,7 @@
        ========================================== */
     .section.company {
       width: 100%;
-      padding: 90px 0;
+      padding: 100px 0;
       background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
       border-bottom: 1px solid #e2e8f0;
     }
@@ -472,14 +341,14 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
 
     .feature-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
-      padding: 32px 28px;
+      padding: 36px 30px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       transition: all 0.3s ease;
       position: relative;
@@ -492,41 +361,24 @@
       box-shadow: 0 12px 30px rgba(2, 132, 199, 0.12);
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #0284c7, #38bdf8);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
-    }
-
     .feature-icon {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       background: #f0f9ff;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #0284c7;
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 20px;
+      font-size: 24px;
+      margin-bottom: 22px;
     }
 
     .feature-card h3 {
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 800;
       color: #0f172a;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .feature-card p {
@@ -536,49 +388,37 @@
       margin: 0;
     }
 
-    .company-summary-bar {
-      background: #061838;
+    /* 🤝 글로벌 파트너 및 신뢰 배너 추가 */
+    .partner-banner {
+      background: #040d1a;
       border-radius: 16px;
-      padding: 28px 40px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      align-items: center;
+      padding: 36px;
       color: #ffffff;
+      text-align: center;
     }
 
-    .summary-item {
-      border-right: 1px solid rgba(255, 255, 255, 0.12);
-      padding-right: 20px;
-    }
-
-    .summary-item:last-child {
-      border-right: none;
-      padding-right: 0;
-    }
-
-    .summary-item .num {
-      font-size: 28px;
-      font-weight: 900;
-      color: #38bdf8;
-      line-height: 1;
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .summary-item .label {
+    .partner-banner p {
+      color: #94a3b8;
       font-size: 14px;
       font-weight: 700;
-      color: #ffffff;
-      display: block;
-      margin-bottom: 2px;
-      white-space: nowrap;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
     }
 
-    .summary-item .sub {
-      font-size: 12px;
-      color: #94a3b8;
-      display: block;
+    .partner-logos {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      opacity: 0.8;
+    }
+
+    .partner-item {
+      font-size: 18px;
+      font-weight: 900;
+      color: #cbd5e1;
+      letter-spacing: 1px;
     }
 
     /* ==========================================
@@ -609,18 +449,6 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.25);
-    }
-
-    .why-left-banner::after {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -30%;
-      width: 220px;
-      height: 220px;
-      background: rgba(2, 132, 199, 0.2);
-      border-radius: 50%;
-      filter: blur(60px);
     }
 
     .banner-badge {
@@ -690,7 +518,7 @@
       border: 1px solid #e2e8f0;
       padding: 24px 28px;
       border-radius: 16px;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     }
 
@@ -719,7 +547,6 @@
       font-weight: 800;
       color: #0f172a;
       margin-bottom: 6px;
-      letter-spacing: -0.3px;
     }
 
     .card-content p {
@@ -729,7 +556,9 @@
       margin: 0;
     }
 
-    /* 지도 및 오시는 길 스타일 */
+    /* ==========================================
+        🗺️ 오시는 길 & 인터랙티브 지도
+       ========================================== */
     .map-section {
       margin-top: 40px;
       padding: 0 20px;
@@ -742,55 +571,55 @@
       position: relative;
       width: 100%;
       height: 380px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      border-radius: 16px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-radius: 20px;
       overflow: hidden;
-      border: 1px solid #dee2e6;
+      border: 1px solid #334155;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       text-decoration: none;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .map-banner:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     }
 
     .map-icon {
-      font-size: 42px;
-      margin-bottom: 12px;
+      font-size: 48px;
+      margin-bottom: 14px;
     }
 
     .map-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #212529;
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
       margin-bottom: 8px;
     }
 
     .map-address {
-      font-size: 15px;
-      color: #495057;
-      margin-bottom: 20px;
+      font-size: 16px;
+      color: #cbd5e1;
+      margin-bottom: 24px;
     }
 
     .map-action-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 24px;
+      padding: 12px 28px;
       background-color: #03c75a;
       color: #fff;
       font-weight: 700;
       font-size: 15px;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(3, 199, 90, 0.3);
+      box-shadow: 0 4px 15px rgba(3, 199, 90, 0.35);
       transition: background-color 0.2s;
     }
 
@@ -799,29 +628,15 @@
     }
 
     .map-info-text {
-      margin-top: 15px;
+      margin-top: 16px;
       font-size: 14px;
-      color: #555;
+      color: #64748b;
       line-height: 1.6;
     }
 
     /* ==========================================
         📱 모바일 반응형 처리
        ========================================== */
-    @media (max-width: 1200px) {
-      .hero-copy h1 {
-        font-size: 44px;
-        letter-spacing: -1.5px;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .hero-copy h1 {
-        font-size: 34px;
-        letter-spacing: -1px;
-      }
-    }
-
     @media (max-width: 992px) {
       body {
         padding-top: 64px;
@@ -829,14 +644,9 @@
       .nav-wrap {
         padding: 10px 20px;
       }
-      .site-logo {
-        height: 36px;
-      }
-
       .menu-btn {
         display: flex;
       }
-
       .main-nav {
         display: none;
         position: absolute;
@@ -851,92 +661,37 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         border-top: 1px solid #f1f5f9;
       }
-
       .main-nav.active {
         display: flex;
       }
-
       .main-nav a {
         padding: 14px 24px;
         font-size: 16px;
         border-bottom: 1px solid #f8fafc;
         width: 100%;
       }
-
       .main-nav a[target="_blank"] {
         margin: 12px 24px 8px;
         width: calc(100% - 48px);
         text-align: center;
         border-radius: 8px;
       }
-
-      .hero {
-        padding-top: 50px;
-      }
-
-      .hero-content-container {
-        transform: translateY(0px);
-      }
-
       .hero-copy h1 {
-        font-size: 28px;
-        letter-spacing: -1px;
+        font-size: 32px;
       }
-
-      .motion-boat-group {
-        width: 380px;
-        left: -25%;
-        bottom: -5px;
-        opacity: 0.45;
+      .hero-desc {
+        font-size: 16px;
       }
-
-      .motion-plane-group {
-        width: 240px;
-      }
-
-      .motion-truck-group {
-        width: 220px;
-        bottom: 5px;
-        z-index: 3;
-      }
-
-      .sea-bg-area {
-        width: 60%;
-        height: 90px;
-      }
-      .road-bg-area {
-        bottom: 12px;
-        width: 50%;
-      }
-
       .hero-points {
         flex-wrap: wrap;
         gap: 20px;
       }
-
       .company-feature-grid {
         grid-template-columns: 1fr;
-      }
-      .company-summary-bar {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        padding: 30px 24px;
-      }
-      .summary-item {
-        border-right: none;
       }
       .why-container {
         grid-template-columns: 1fr;
         gap: 32px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .company-summary-bar {
-        grid-template-columns: 1fr;
-      }
-      .company-header h2 {
-        font-size: 26px;
       }
     }
   </style>
@@ -976,98 +731,47 @@
 
 <!-- HERO -->
 <section class="hero">
-  
-  <div class="hero-motion-bg">
-
-    <div class="sea-bg-area">
-      <div class="sea-wave-1"></div>
-      <div class="sea-wave-2"></div>
-      <div class="sea-foam"></div>
-      <div class="sea-water-base"></div>
-    </div>
-
-    <div class="road-bg-area">
-      <div class="road-line-dashed"></div>
-    </div>
-
-    <div class="motion-boat-group">
-      <img src="assets/cargo ship png_2.jpg.jpg" alt="해상 운송 선박" class="motion-hero-img">
-    </div>
-
-    <div class="motion-plane-group">
-      <img src="assets/airplane isolated.png.png" alt="항공 운송 비행기" class="motion-hero-img">
-    </div>
-
-    <div class="motion-truck-group">
-      <img src="assets/container truck png_2.jpg.jpg" alt="컨테이너 트럭" class="motion-hero-img">
-    </div>
-
-  </div>
+  <div class="hero-bg-visual"></div>
 
   <div class="hero-content-container">
     <div class="hero-copy reveal">
-      <p class="eyebrow">
-        WIDE SHIPPING · GLOBAL LOGISTICS
-      </p>
+      <span class="eyebrow">WIDE SHIPPING · GLOBAL LOGISTICS</span>
 
       <h1>
-        더 넓게 연결하고, <strong>더 빠르게 움직입니다.</strong>
+        더 넓게 연결하고,<br><strong>더 빠르게 움직입니다.</strong>
       </h1>
 
       <p class="hero-desc">
-        10년 이상의 실무 경험을 바탕으로 해상과 항공을 중심으로 최적의 물류 솔루션을 제공합니다.
+        10년 이상의 실무 노하우와 글로벌 네트워크를 기반으로<br>
+        해상·항공 수출입 전 과정에 걸쳐 압도적인 맞춤형 포워딩 솔루션을 제안합니다.
       </p>
 
       <div class="hero-actions">
         <a class="btn primary" href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
-          온라인 견적 문의 <span>→</span>
+          온라인 실시간 견적 문의 <span>→</span>
         </a>
 
         <a class="btn ghost" href="#services">
-          서비스 보기
+          서비스 둘러보기
         </a>
       </div>
 
       <div class="hero-points">
         <div>
-          <strong>10+</strong>
-          <span>YEARS EXPERIENCE</span>
+          <strong>10+ YEARS</strong>
+          <span>전문 실무 노하우</span>
         </div>
 
         <div>
           <strong>FCL · LCL</strong>
-          <span>OCEAN FREIGHT</span>
+          <span>해상 운송 네트워크</span>
         </div>
 
         <div>
-          <strong>AIR</strong>
-          <span>AIR FREIGHT</span>
+          <strong>EXPRESS AIR</strong>
+          <span>항공 화물 정시 운송</span>
         </div>
       </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- QUICK STRIP -->
-<section class="quick-strip">
-  <div class="quick-inner">
-    <div>
-      <span class="q-num">01</span>
-      <strong>빠른 견적</strong>
-      <p>신속한 운임 확인과 견적 안내</p>
-    </div>
-
-    <div>
-      <span class="q-num">02</span>
-      <strong>합리적인 운임</strong>
-      <p>운송 조건에 맞춘 경쟁력 있는 비용</p>
-    </div>
-
-    <div>
-      <span class="q-num">03</span>
-      <strong>고객 중심 서비스</strong>
-      <p>고객의 일정과 요구에 맞춘 대응</p>
     </div>
   </div>
 </section>
@@ -1076,16 +780,15 @@
 <section class="section company" id="company">
   <div class="company-container">
     
-    <!-- 상단 소개 메시지 -->
     <div class="company-header reveal">
       <span class="eyebrow">ABOUT WIDE SHIPPING</span>
       <h2>
         글로벌 물류의 새로운 기준,<br>
-        <strong>신뢰와 압도적 실행력</strong>으로 연결합니다.
+        <strong>신뢰와 실행력</strong>으로 완성합니다.
       </h2>
       <p>
-        (주)와이드해운은 10년 이상의 전문 실무 노하우를 가진 물류 전문가 그룹입니다.<br>
-        단순한 화물 운송을 넘어, 고객사의 수출입 공급망 전체를 최적화하는 맞춤형 종합 포워딩 솔루션을 제공합니다.
+        (주)와이드해운은 복잡한 수출입 행정 및 운송 절차를 명쾌하게 해결하는 종합 물류 파트너입니다.<br>
+        화주님의 비즈니스 공급망 전체를 최적화하여 비용 절감과 안전한 화물 정시 도착을 보장합니다.
       </p>
     </div>
 
@@ -1094,116 +797,35 @@
       <div class="feature-card reveal">
         <div class="feature-icon">🌐</div>
         <h3>Global Network</h3>
-        <p>전 세계 주요 항만 및 거점 인프라를 바탕으로 최상의 운송 루트와 경쟁력 있는 운임을 제안합니다.</p>
+        <p>전 세계 주요 항만 및 거점 네트워크를 바탕으로 가장 효율적인 운송 루트와 경쟁력 있는 운임을 제안합니다.</p>
       </div>
 
       <div class="feature-card reveal delay-1">
         <div class="feature-icon">⚡</div>
         <h3>Fast & Precise</h3>
-        <p>실시간 스케줄 관리와 신속한 통관 대응으로 운송 지연 요소를 사전 차단하고 적기 도착을 보장합니다.</p>
+        <p>실시간 스케줄 관리와 전문 통관 대응으로 운송 지연 요소를 사전에 차단하고 정확한 수속을 보장합니다.</p>
       </div>
 
       <div class="feature-card reveal delay-2">
         <div class="feature-icon">🤝</div>
-        <h3>Total Freight Solution</h3>
-        <p>해상(FCL/LCL)·항공 화물부터 통관, 내륙운송, 적하보험까지 수출입 전 과정을 원스톱으로 케어합니다.</p>
+        <h3>Total Solution</h3>
+        <p>해상·항공 화물부터 수출입 통관, 내륙운송, 적하보험까지 수출입 업무 전체를 원스톱으로 케어합니다.</p>
       </div>
     </div>
 
-    <!-- 하단 실무 수치 & 가치 요약 바 -->
-    <div class="company-summary-bar reveal">
-      <div class="summary-item">
-        <span class="num">10+</span>
-        <span class="label">Years Expertise</span>
-        <span class="sub">10년 이상 전문 실무 경력</span>
-      </div>
-
-      <div class="summary-item">
-        <span class="num">FCL · LCL</span>
-        <span class="label">Ocean Freight</span>
-        <span class="sub">해상 수출입 맞춤 운송</span>
-      </div>
-
-      <div class="summary-item">
-        <span class="num">AIR</span>
-        <span class="label">Express Service</span>
-        <span class="sub">신속·안정적인 항공 화물</span>
-      </div>
-
-      <div class="summary-item">
-        <span class="num">1:1</span>
-        <span class="label">Dedicated Manager</span>
-        <span class="sub">전담 매니저 밀착 대응</span>
+    <!-- 신뢰 보장 파트너 라인 -->
+    <div class="partner-banner reveal">
+      <p>GLOBAL OCEAN & AIR CARRIERS NETWORK</p>
+      <div class="partner-logos">
+        <span class="partner-item">HMM</span>
+        <span class="partner-item">MAERSK</span>
+        <span class="partner-item">MSC</span>
+        <span class="partner-item">ONE</span>
+        <span class="partner-item">KOREAN AIR</span>
+        <span class="partner-item">ASIANA AIRLINES</span>
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="section services" id="services">
-  <div class="section-head center reveal">
-    <p class="eyebrow">
-      OUR SERVICES
-    </p>
-
-    <h2>
-      필요한 운송을 <strong>한 곳에서</strong>
-    </h2>
-
-    <p>
-      해상과 항공을 중심으로 수출입 전 과정에 필요한 서비스를 연결합니다.
-    </p>
-  </div>
-
-  <div class="service-grid">
-    <article class="service-card ocean reveal">
-      <span class="service-no">01</span>
-      <div class="service-icon" aria-hidden="true">⚓</div>
-      <h3>해상운송</h3>
-      <p>
-        국제 해상운송의 핵심인 FCL과 LCL을 화물 조건에 맞춰 제안합니다.
-      </p>
-      <ul>
-        <li>FCL</li>
-        <li>LCL</li>
-      </ul>
-      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
-        견적 문의 →
-      </a>
-    </article>
-
-    <article class="service-card air reveal delay-1">
-      <span class="service-no">02</span>
-      <div class="service-icon" aria-hidden="true">✈</div>
-      <h3>항공운송</h3>
-      <p>
-        시간과 일정이 중요한 화물에 신속하고 안정적인 항공 운송을 제공합니다.
-      </p>
-      <ul>
-        <li>항공화물</li>
-      </ul>
-      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
-        견적 문의 →
-      </a>
-    </article>
-
-    <article class="service-card other reveal delay-2">
-      <span class="service-no">03</span>
-      <div class="service-icon" aria-hidden="true">＋</div>
-      <h3>기타 물류서비스</h3>
-      <p>
-        운송과 함께 필요한 부가 업무까지 한 번에 연결합니다.
-      </p>
-      <ul>
-        <li>수출입 통관</li>
-        <li>내륙운송</li>
-        <li>적하보험</li>
-      </ul>
-      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
-        상담 문의 →
-      </a>
-    </article>
   </div>
 </section>
 
@@ -1211,11 +833,10 @@
 <section class="section strengths" id="strengths">
   <div class="why-container">
     
-    <!-- 좌측 다이내믹 visual 배너 -->
     <div class="why-left-banner reveal">
       <span class="banner-badge">WHY WIDE SHIPPING</span>
       <h3>복잡한 글로벌 물류,<br><strong>명확한 답</strong>을 제시합니다.</h3>
-      <p>실시간 운송 트래킹과 선제적 리스크 대응으로 화주님의 비즈니스 안전성을 극대화합니다.</p>
+      <p>선제적 리스크 컨트롤과 투명한 실시간 모니터링으로 화주님의 비즈니스 안전성을 최고 수준으로 유지합니다.</p>
       
       <div class="banner-stats">
         <div class="stat-box">
@@ -1229,13 +850,12 @@
       </div>
     </div>
 
-    <!-- 우측 4대 강점 리스트 카드 -->
     <div class="why-right-grid">
       <div class="why-card reveal">
         <div class="card-num-badge">01</div>
         <div class="card-content">
           <h4>실시간 맞춤 운임 제안</h4>
-          <p>문의 내용을 신속하게 확인하고 화물 성격과 일정에 맞춘 경쟁력 있는 운임 단가를 산출합니다.</p>
+          <p>문의 접수 시 화물 특성과 일정에 맞춘 가장 경쟁력 있는 최적의 운임 단가를 신속히 안내합니다.</p>
         </div>
       </div>
 
@@ -1243,7 +863,7 @@
         <div class="card-num-badge">02</div>
         <div class="card-content">
           <h4>선제적 리스크 컨트롤</h4>
-          <p>체선, 통관 지연 등 운송 과정에서 발생 가능한 변수를 사전 예방하고 즉각 대응 플랜을 가동합니다.</p>
+          <p>체선 및 통관 지연 등 발생 가능한 변수를 사전 예방하고 즉각적인 대체 플랜을 가동합니다.</p>
         </div>
       </div>
 
@@ -1251,15 +871,15 @@
         <div class="card-num-badge">03</div>
         <div class="card-content">
           <h4>복합 운송 & 서류 최적화</h4>
-          <p>B/L 발급부터 원산지증명서(C/O), 적하보험까지 복잡한 수출입 행정 절차를 완벽 대행합니다.</p>
+          <p>B/L 발급, 원산지증명서(C/O), 적하보험 등 복잡한 수출입 행정 절차를 완벽 대행합니다.</p>
         </div>
       </div>
 
       <div class="why-card reveal delay-3">
         <div class="card-num-badge">04</div>
         <div class="card-content">
-          <h4>투명한 트래킹 & 커뮤니케이션</h4>
-          <p>화물 픽업부터 최종 도착까지 전담 매니저가 단계별 진행 상황을 유연하고 투명하게 공유합니다.</p>
+          <h4>1:1 전담 밀착 매니저</h4>
+          <p>화물 픽업부터 도착까지 전담 매니저가 단계별 진행 상황을 정확하게 전달해 드립니다.</p>
         </div>
       </div>
     </div>
@@ -1267,145 +887,34 @@
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="section process" id="process">
-  <div class="section-head center reveal">
-    <p class="eyebrow">
-      LOGISTICS PROCESS
-    </p>
-
-    <h2>
-      문의부터 운송까지 <strong>간결하게</strong>
-    </h2>
-  </div>
-
-  <div class="process-line">
-    <div class="process-step reveal">
-      <b>01</b>
-      <h3>문의 접수</h3>
-      <p>화물 및 운송 정보를 전달해주세요.</p>
-    </div>
-
-    <div class="process-step reveal delay-1">
-      <b>02</b>
-      <h3>조건 확인</h3>
-      <p>운송 구간과 화물 조건을 검토합니다.</p>
-    </div>
-
-    <div class="process-step reveal delay-2">
-      <b>03</b>
-      <h3>견적 안내</h3>
-      <p>경쟁력 있는 운임과 조건을 안내합니다.</p>
-    </div>
-
-    <div class="process-step reveal delay-3">
-      <b>04</b>
-      <h3>운송 진행</h3>
-      <p>일정에 맞춰 운송을 진행하고 대응합니다.</p>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE BANNER -->
-<section class="quote-banner">
-  <div>
-    <p class="eyebrow">
-      ONLINE QUOTATION
-    </p>
-
-    <h2>
-      운송 조건을 알려주시면<br>
-      <strong>빠르게 견적을 안내해 드립니다.</strong>
-    </h2>
-  </div>
-
-  <a class="btn white" href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
-    온라인 견적 문의 바로가기 <span>→</span>
-  </a>
-</section>
-
 <!-- CONTACT & LOCATION -->
 <section class="section contact" id="contact">
-  <div class="contact-grid">
-    <div class="section-head reveal">
-      <p class="eyebrow">
-        CONTACT & LOCATION
-      </p>
-
-      <h2>
-        와이드해운과 <strong>상담해 보세요.</strong>
-      </h2>
-
-      <p>
-        운송에 관한 궁금한 점이나 견적 문의가 있으시면 편하게 연락 주세요. 아래 배너를 클릭하시면 네이버 지도에서 위치를 확인하실 수 있습니다.
-      </p>
-    </div>
-
-    <div class="contact-info reveal delay-1">
-      <div>
-        <span>PHONE</span>
-        <strong>
-          <a href="tel:+82518162003" style="color: inherit; text-decoration: none;">+82-51-816-2003</a>
-        </strong>
-      </div>
-
-      <div>
-        <span>EMAIL</span>
-        <strong>
-          <a href="mailto:wide@widesp.com" style="color: inherit; text-decoration: none;">wide@widesp.com</a>
-        </strong>
-      </div>
-
-      <div>
-        <span>FAX</span>
-        <strong>+82-51-816-2005</strong>
-      </div>
-
-      <div>
-        <span>ADDRESS</span>
-        <strong>
-          부산광역시 부산진구 서면문화로 6-1 (하성빌딩 6층 601호)
-        </strong>
-      </div>
-    </div>
-  </div>
-
   <div class="map-section reveal">
     <a href="https://naver.me/xEXKBHHa" target="_blank" rel="noopener noreferrer" class="map-banner">
       <div class="map-icon" aria-hidden="true">📍</div>
-      <div class="map-title">주식회사 와이드해운 오시는 길</div>
+      <div class="map-title">주식회사 와이드해운 본사 오시는 길</div>
       <div class="map-address">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</div>
       <span class="map-action-btn">
-        네이버 지도에서 위치 및 길찾기 보기 ↗
+        네이버 지도에서 위치 확인 및 길찾기 ↗
       </span>
     </a>
     <p class="map-info-text">
-      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 배너를 클릭하시면 네이버 지도가 새 창으로 안전하게 열립니다.
+      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통 이용 시 편리하게 방문하실 수 있습니다.
     </p>
   </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <img src="assets/wide-shipping-logo.svg" alt="와이드해운">
-
-    <div class="footer-company">
-      <strong>주식회사 와이드해운</strong>
-      <span>대표자 정태영</span>
-      <span>사업자등록번호 261-81-28960</span>
-    </div>
-
-    <div class="footer-copy">
-      © <span id="year"></span> WIDE SHIPPING. All rights reserved.
-    </div>
+<footer class="footer" style="background:#040d1a; color:#94a3b8; padding:40px 20px; text-align:center; border-top:1px solid #1e293b;">
+  <div class="footer-inner" style="max-width:1200px; margin:0 auto;">
+    <p style="color:#ffffff; font-weight:700; margin-bottom:8px;">(주)와이드해운</p>
+    <p style="font-size:13px; margin-bottom:12px;">대표자 정태영 | 사업자등록번호 261-81-28960 | 전화 +82-51-816-2003 | 이메일 wide@widesp.com</p>
+    <p style="font-size:12px; color:#64748b;">© <span id="year"></span> WIDE SHIPPING. All rights reserved.</p>
   </div>
 </footer>
 
 <script>
-  // 1. 모바일 햄버거 메뉴 토글 로직
   const menuToggle = document.getElementById('menuToggle');
   const mainNav = document.getElementById('mainNav');
 
@@ -1414,37 +923,9 @@
       menuToggle.classList.toggle('active');
       mainNav.classList.toggle('active');
     });
-
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        mainNav.classList.remove('active');
-      });
-    });
   }
-
-  // 2. 브라우저 스크롤 위치 자동 복원 기능 중단
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-
-  // 3. URL 해시(#services 등) 제거 및 최상단 강제 이동
-  if (window.location.hash) {
-    history.replaceState(null, document.title, window.location.pathname + window.location.search);
-  }
-
-  window.addEventListener('beforeunload', function() {
-    window.scrollTo(0, 0);
-  });
-
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      window.scrollTo(0, 0);
-    }, 10);
-  });
 
   document.addEventListener('DOMContentLoaded', function() {
-    window.scrollTo(0, 0);
     const yearEl = document.getElementById('year');
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
