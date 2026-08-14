@@ -122,6 +122,8 @@
 
     body {
       padding-top: 72px;
+      margin: 0;
+      background-color: #ffffff;
     }
 
     /* ==========================================
@@ -137,6 +139,7 @@
       align-items: flex-start;
       padding: 85px 20px 90px;
       color: #ffffff;
+      box-sizing: border-box;
     }
 
     .hero-motion-bg {
@@ -398,14 +401,18 @@
         🏢 COMPANY (ABOUT WIDE SHIPPING) 프리미엄 레이아웃
        ========================================== */
     .section.company {
-      padding: 90px 20px;
+      width: 100%;
+      padding: 90px 0;
       background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
       border-bottom: 1px solid #e2e8f0;
+      box-sizing: border-box;
     }
 
     .company-container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .company-header {
@@ -560,21 +567,25 @@
     }
 
     /* ==========================================
-        ⚡ WHY WIDE SHIPPING (강점 영역 커스텀 CSS)
+        ⚡ WHY WIDE SHIPPING (양옆 여백 수정 완료)
        ========================================== */
     .section.strengths {
-      padding: 100px 20px;
+      width: 100%;
+      padding: 100px 0;
       background-color: #f8fafc;
       border-top: 1px solid #e2e8f0;
+      box-sizing: border-box;
     }
 
     .why-container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px;
       display: grid;
       grid-template-columns: 1fr 1.25fr;
       gap: 48px;
       align-items: center;
+      box-sizing: border-box;
     }
 
     .why-left-banner {
@@ -712,6 +723,7 @@
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
+      box-sizing: border-box;
     }
     .map-banner {
       position: relative;
@@ -730,6 +742,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
       text-decoration: none;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
     }
     .map-banner:hover {
       transform: translateY(-4px);
@@ -1181,7 +1194,7 @@
   </div>
 </section>
 
-<!-- STRENGTHS (WHY WIDE SHIPPING 개선 레이아웃 적용) -->
+<!-- STRENGTHS -->
 <section class="section strengths" id="strengths">
   <div class="why-container">
     
