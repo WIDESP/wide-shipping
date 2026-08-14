@@ -559,6 +559,152 @@
       display: block;
     }
 
+    /* ==========================================
+        ⚡ WHY WIDE SHIPPING (강점 영역 커스텀 CSS)
+       ========================================== */
+    .section.strengths {
+      padding: 100px 20px;
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .why-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .why-left-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-radius: 24px;
+      padding: 48px 40px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.25);
+    }
+
+    .why-left-banner::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -30%;
+      width: 220px;
+      height: 220px;
+      background: rgba(2, 132, 199, 0.2);
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+    .banner-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .why-left-banner h3 {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .why-left-banner h3 strong {
+      color: #38bdf8;
+    }
+
+    .why-left-banner p {
+      font-size: 15px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .banner-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-num {
+      display: block;
+      font-size: 32px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .why-right-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .why-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 24px 28px;
+      border-radius: 16px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .why-card:hover {
+      border-color: #0284c7;
+      transform: translateX(8px);
+      box-shadow: 0 12px 24px -6px rgba(2, 132, 199, 0.12);
+    }
+
+    .card-num-badge {
+      font-size: 15px;
+      font-weight: 900;
+      color: #0284c7;
+      background: #e0f2fe;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-content h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+      margin: 0;
+    }
+
     /* 지도 및 오시는 길 스타일 */
     .map-section {
       margin-top: 40px;
@@ -747,6 +893,10 @@
       }
       .summary-item {
         border-right: none;
+      }
+      .why-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
     }
 
@@ -1031,70 +1181,63 @@
   </div>
 </section>
 
-<!-- STRENGTHS -->
+<!-- STRENGTHS (WHY WIDE SHIPPING 개선 레이아웃 적용) -->
 <section class="section strengths" id="strengths">
-  <div class="strength-layout">
-    <div class="section-head reveal">
-      <p class="eyebrow">
-        WHY WIDE SHIPPING
-      </p>
-
-      <h2>
-        빠르게 판단하고<br>
-        <strong>끝까지 대응합니다.</strong>
-      </h2>
-
-      <p>
-        운송 과정에서 발생하는 변수까지 생각하는
-        실무형 물류 서비스를 지향합니다.
-      </p>
-    </div>
-
-    <div class="strength-list">
-      <div class="strength reveal">
-        <span>01</span>
-        <div>
-          <h3>빠른 견적</h3>
-          <p>
-            문의 내용을 신속하게 확인하고
-            필요한 운임 정보를 빠르게 안내합니다.
-          </p>
+  <div class="why-container">
+    
+    <!-- 좌측 다이내믹 visual 배너 -->
+    <div class="why-left-banner reveal">
+      <span class="banner-badge">WHY WIDE SHIPPING</span>
+      <h3>복잡한 글로벌 물류,<br><strong>명확한 답</strong>을 제시합니다.</h3>
+      <p>실시간 운송 트래킹과 선제적 리스크 대응으로 화주님의 비즈니스 안전성을 극대화합니다.</p>
+      
+      <div class="banner-stats">
+        <div class="stat-box">
+          <span class="stat-num">99.2%</span>
+          <span class="stat-label">정시 도착 준수율</span>
         </div>
-      </div>
-
-      <div class="strength reveal">
-        <span>02</span>
-        <div>
-          <h3>합리적인 운임</h3>
-          <p>
-            화물과 운송 조건을 고려해
-            비용과 일정의 균형을 맞춥니다.
-          </p>
-        </div>
-      </div>
-
-      <div class="strength reveal">
-        <span>03</span>
-        <div>
-          <h3>고객 중심 서비스</h3>
-          <p>
-            고객의 일정과 상황을 우선으로 생각하며
-            유연하게 대응합니다.
-          </p>
-        </div>
-      </div>
-
-      <div class="strength reveal">
-        <span>04</span>
-        <div>
-          <h3>해상 · 항공 전문</h3>
-          <p>
-            해상과 항공 실무 경험을 바탕으로
-            적합한 운송 방향을 제안합니다.
-          </p>
+        <div class="stat-box">
+          <span class="stat-num">24/7</span>
+          <span class="stat-label">실시간 화물 모니터링</span>
         </div>
       </div>
     </div>
+
+    <!-- 우측 4대 강점 리스트 카드 -->
+    <div class="why-right-grid">
+      <div class="why-card reveal">
+        <div class="card-num-badge">01</div>
+        <div class="card-content">
+          <h4>실시간 맞춤 운임 제안</h4>
+          <p>문의 내용을 신속하게 확인하고 화물 성격과 일정에 맞춘 경쟁력 있는 운임 단가를 산출합니다.</p>
+        </div>
+      </div>
+
+      <div class="why-card reveal delay-1">
+        <div class="card-num-badge">02</div>
+        <div class="card-content">
+          <h4>선제적 리스크 컨트롤</h4>
+          <p>체선, 통관 지연 등 운송 과정에서 발생 가능한 변수를 사전 예방하고 즉각 대응 플랜을 가동합니다.</p>
+        </div>
+      </div>
+
+      <div class="why-card reveal delay-2">
+        <div class="card-num-badge">03</div>
+        <div class="card-content">
+          <h4>복합 운송 & 서류 최적화</h4>
+          <p>B/L 발급부터 원산지증명서(C/O), 적하보험까지 복잡한 수출입 행정 절차를 완벽 대행합니다.</p>
+        </div>
+      </div>
+
+      <div class="why-card reveal delay-3">
+        <div class="card-num-badge">04</div>
+        <div class="card-content">
+          <h4>투명한 트래킹 & 커뮤니케이션</h4>
+          <p>화물 픽업부터 최종 도착까지 전담 매니저가 단계별 진행 상황을 유연하고 투명하게 공유합니다.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
