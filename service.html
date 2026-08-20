@@ -6,13 +6,13 @@
   <title>서비스 소개 - (주)와이드해운</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* 1. 클릭 이동 시 상단 헤더에 가려지지 않도록 여백 자동 설정 */
+    /* 상단 이동 시 헤더 가림 방지 */
     html {
-      scroll-padding-top: 160px; /* 헤더 + 탭 메뉴 높이 고려 */
-      scroll-behavior: smooth;   /* 클릭 시 부드럽게 스크롤 */
+      scroll-padding-top: 160px;
+      scroll-behavior: smooth;
     }
 
-    /* 서브페이지 전용 탭 메뉴 스타일 */
+    /* 서브페이지 전용 탭 메뉴 */
     .sub-nav-tabs {
       display: flex;
       justify-content: center;
@@ -23,23 +23,25 @@
       top: 82px;
       z-index: 40;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
     }
     .tab-btn {
       padding: 10px 24px;
       border-radius: 999px;
-      border: 1px solid var(--blue);
-      color: var(--blue);
+      border: 1px solid var(--blue, #0d3b66);
+      color: var(--blue, #0d3b66);
       font-size: 14px;
       font-weight: 700;
       background: #fff;
+      text-decoration: none;
       transition: all 0.3s ease;
     }
     .tab-btn:hover, .tab-btn.active {
-      background: var(--blue);
+      background: var(--blue, #0d3b66);
       color: #fff;
     }
 
-    /* 배경 이미지가 들어가는 상세 히어로 섹션 스타일 */
+    /* 상세 히어로 섹션 공통 */
     .service-detail-hero {
       position: relative;
       padding: 100px 28px;
@@ -52,13 +54,15 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(6, 26, 69, 0.65); /* 가독성을 위한 어두운 오버레이 */
+      background: rgba(6, 26, 69, 0.72);
     }
-    
+
     /* 섹션별 배경 이미지 설정 */
     .hero-ocean { background-image: url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1600&q=80'); }
     .hero-air { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80'); }
     .hero-transit { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80'); }
+    .hero-customs { background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80'); }
+    .hero-special { background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80'); }
 
     .detail-container {
       position: relative;
@@ -79,16 +83,32 @@
       text-align: center;
       font-size: 38px;
       font-weight: 800;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
     .detail-subtext {
       text-align: center;
       font-size: 15px;
       color: #e2f1f8;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
+      word-break: keep-all;
     }
 
-    /* 두 번째 사진 내부 투명 박스 레이아웃 */
+    /* 이미지 삽입형 레이아웃 (특화서비스용) */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .img-card {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* 본문 유리 질감 카드 */
     .detail-card-box {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
@@ -101,13 +121,18 @@
     .info-item h4 {
       font-size: 18px;
       color: #72e2f8;
-      margin: 0 0 8px 0;
+      margin: 0 0 10px 0;
+      font-weight: 700;
     }
     .info-item p {
       margin: 0;
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 14.5px;
+      line-height: 1.75;
       color: #f1f5f9;
+      word-break: keep-all;
+    }
+    .info-item p + p {
+      margin-top: 6px;
     }
   </style>
 </head>
@@ -117,12 +142,11 @@
   <header class="site-header">
     <div class="nav-wrap">
       <a href="index.html" class="brand">
-        <!-- 2. 로고 이미지를 assets 폴더 경로로 변경 -->
-        <img src="assets/logo.png" alt="와이드해운">
+        <img src="assets/logo.svg" alt="와이드해운">
       </a>
       <nav class="main-nav">
         <a href="index.html#company">회사소개</a>
-        <a href="service.html" style="color: var(--blue);">서비스</a>
+        <a href="service.html" style="color: var(--blue, #0d3b66);">서비스</a>
         <a href="index.html#strengths">강점</a>
         <a href="index.html#process">운송 프로세스</a>
         <a href="index.html#contact">문의/오시는길</a>
@@ -136,8 +160,8 @@
     <a href="#ocean" class="tab-btn active">해상운송</a>
     <a href="#air" class="tab-btn">항공운송</a>
     <a href="#transit" class="tab-btn">중계무역</a>
-    <a href="#logistics" class="tab-btn">물류서비스</a>
-    <a href="#express" class="tab-btn">특송서비스</a>
+    <a href="#customs" class="tab-btn">통관서비스</a>
+    <a href="#special" class="tab-btn">특화서비스</a>
   </div>
 
   <!-- 1. 해상운송 섹션 -->
@@ -145,20 +169,20 @@
     <div class="detail-container">
       <span class="sub-eyebrow">OCEAN SERVICE</span>
       <h2 class="detail-title">해상운송</h2>
-      <p class="detail-subtext">• FCL, LCL, BREAK BULK, FLEXIBLE TANK, 위험물 등 대부분의 화물 진행이 가능합니다.</p>
+      <p class="detail-subtext">• FCL, LCL, BULK, Flexitank 및 위험물까지, 수년간 쌓아온 글로벌 항로 노하우로 가장 안정적인 선복을 연결합니다.</p>
 
       <div class="detail-card-box">
         <div class="info-item">
-          <h4>A. FCL SERVICE</h4>
-          <p>컨테이너 1개 단위의 대량 화물 운송<br>- 장점: 화물 파손 위험 최소화<br>- 단점: LCL 대비 운송비용 부담</p>
+          <h4>A. FCL SERVICE (Full Container Load)</h4>
+          <p>단독 컨테이너를 사용하는 대량 화물 운송입니다. 메이저 선사들과의 디렉트 계약을 통해 성수기에도 안정적인 스페이스를 확보하며, 화물 특성에 맞춘 스케줄 매칭으로 파손 위험을 줄이고 운송 시간을 단축합니다.</p>
         </div>
         <div class="info-item">
-          <h4>B. LCL SERVICE</h4>
-          <p>1개 컨테이너에 다수 화주의 소형 화물을 적재<br>- 장점: 운송비용 절감<br>- 단점: 혼적 작업으로 인한 소요시간 증가</p>
+          <h4>B. LCL SERVICE (Less than Container Load)</h4>
+          <p>소형 화주분들을 위한 혼적 운송 서비스입니다. 주요 거점 CFS와의 긴밀한 파트너십을 통해 데미지 없는 안전한 작업과 합리적인 믹스 운임을 제공합니다.</p>
         </div>
         <div class="info-item">
-          <h4>C. BREAK BULK SERVICE</h4>
-          <p>표준 컨테이너 규격을 초과하는 벌크 화물 수송<br>- 장점: 중량물/대형화물 수송 가능<br>- 단점: 특수 하역 및 전용 선박 필요</p>
+          <h4>C. BREAK BULK & SPECIAL CONTAINER</h4>
+          <p>규격 초과 화물(OOG), 중량물, 프로젝트 화물 전문입니다. 선적전 로딩 플랜 수립부터 특수 트레일러 연계, 바인딩 검수까지 전문가가 현장에서 디테일하게 케어합니다.</p>
         </div>
       </div>
     </div>
@@ -169,14 +193,13 @@
     <div class="detail-container">
       <span class="sub-eyebrow">AIR SERVICE</span>
       <h2 class="detail-title">항공운송</h2>
-      <p class="detail-subtext">• 긴급 화물, 고가치 화물 등 신속성과 안전성이 최우선인 화물 운송 서비스입니다.</p>
+      <p class="detail-subtext">• 긴급 스케줄 화물, 고가품, 온도 조절 화물 등 정시성이 핵심인 화물에 최적화된 항공 솔루션을 제공합니다.</p>
 
       <div class="detail-card-box">
         <div class="info-item">
-          <p>A. 국내 주요 항공사와의 협약으로 안정적인 스페이스를 확보합니다.</p>
-          <p>B. 안전한 선복 확보로 목적지까지 신속하게 운송합니다.</p>
-          <p>C. 경쟁력 있는 운임을 보장합니다.</p>
-          <p>D. 체계적인 물류 tracking 시스템으로 고객 만족도가 높습니다.</p>
+          <p>A. 주요 국적사 및 글로벌 항공사 블록 스페이스(Block Space) 확보로 타이트한 긴급 물량도 차질 없이 핸들링합니다.</p>
+          <p>B. 픽업부터 공항 입고, 항공기 탑재, 현지 도착 후 최종 배송까지 1:1 트래킹으로 리드타임을 최소화합니다.</p>
+          <p>C. 위험물(DG), 신선화물(Perishable), 정밀장비 등 특수 화물 포장 및 규정 검토를 철저히 진행하여 지연 없는 통관을 보장합니다.</p>
         </div>
       </div>
     </div>
@@ -187,13 +210,56 @@
     <div class="detail-container">
       <span class="sub-eyebrow">TRANSIT TRADE</span>
       <h2 class="detail-title">중계무역</h2>
-      <p class="detail-subtext">• 삼국간 무역 운송, B/L 재발행, 창고 보관 등 체계적인 연계 운송 솔루션을 제공합니다.</p>
+      <p class="detail-subtext">• 제3국 간 무역 거래 시 보안 및 세무 리스크를 방지하고 최상의 물류 동선을 설계해 드립니다.</p>
 
       <div class="detail-card-box">
         <div class="info-item">
-          <p>A. 고객이 원하는 최적의 중계 시스템을 구축합니다.</p>
-          <p>B. 공항 및 항만 연계 네트워크를 통해 제3국간 신속한 서비스가 가능합니다.</p>
-          <p>C. 보세구역 내 안전하게 보관 및 재적재 연계가 진행됩니다.</p>
+          <p>A. Switch B/L 발행 관리: 바이어와 공급사 간 정보 보안을 유지하고, 실수를 방지하는 철저한 서류 프로세스를 운영합니다.</p>
+          <p>B. 제3국 보세구역(FTZ) 연계: 환적항에서의 보관, 재포장, 라벨링 작업을 완벽히 지원하여 물류 비용을 획기적으로 절감합니다.</p>
+          <p>C. 글로벌 연계 네트워크: 현지 물류 전문가들과 정밀하게 소통하여 현지 법규 이슈 없는 다국적 연계 운송을 보장합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 통관서비스 섹션 -->
+  <section id="customs" class="service-detail-hero hero-customs">
+    <div class="detail-container">
+      <span class="sub-eyebrow">CUSTOMS CLEARANCE</span>
+      <h2 class="detail-title">통관서비스</h2>
+      <p class="detail-subtext">• 물류의 마무리이자 시작인 통관. 풍부한 포워딩 현장 경험과 세관 파트너십으로 세밀하게 지원합니다.</p>
+
+      <div class="detail-card-box">
+        <div class="info-item">
+          <p>A. 당사는 포워딩 업계에서 경험이 풍부한 전문 관세사와의 협업을 통해 각종 통관 화물에 대해 세밀하게 지원합니다.</p>
+          <p>B. 협력 관세사를 통해 최적의 비용으로 안전하고 신속한 통관을 진행합니다.</p>
+          <p>C. 통관(관세사 협업) 및 복합운송은 당사가 책임집니다. 고객님은 화물의 품질에만 집중하십시오.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 특화서비스 섹션 -->
+  <section id="special" class="service-detail-hero hero-special">
+    <div class="detail-container">
+      <span class="sub-eyebrow">SPECIALIZED SERVICE</span>
+      <h2 class="detail-title">특화서비스</h2>
+      <p class="detail-subtext">• 단순 운송을 넘어 화물의 입고부터 보관, 내륙 운송, 특송 및 보험까지 일스톱 풀필먼트를 제공합니다.</p>
+
+      <!-- 2번째 사진 레이아웃 반영 (이미지 카드 배치) -->
+      <div class="img-grid">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="컨테이너 야드" class="img-card">
+        <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80" alt="벌크 및 창고 서비스" class="img-card">
+      </div>
+
+      <div class="detail-card-box">
+        <div class="info-item">
+          <p><strong>A. 포장, 보관, 리워크 서비스 (CFS SERVICE):</strong> 화물 규격에 맞춘 우든 패킹 및 CFS 보관 작업 지원</p>
+          <p><strong>B. 복합운송서비스 (INTERMODAL TRANSPORT):</strong> 해상-항공, 육상-해상 결합으로 최적의 비용 및 시간 창출</p>
+          <p><strong>C. 벌크서비스 (BULK SERVICE):</strong> 대형 원자재 및 프로젝트 화물의 선적, 하역 전과정 케어</p>
+          <p><strong>D. 내륙운송서비스 (INLAND TRUCKING):</strong> 전국 항만/공항과 연계된 안정적인 전용 트럭 배차 시스템</p>
+          <p><strong>E. 적하보험서비스 (CARGO INSURANCE):</strong> 혹시 모를 사고에 대비해 소중한 화물 가치를 완벽히 보존</p>
+          <p><strong>F. 글로벌 물류 지정 파트너십 (GLOBAL PARTNERSHIP SERVICE):</strong> 전 세계 주요 거점 현지 물류 파트너를 통한 맞춤형 솔루션 제공</p>
         </div>
       </div>
     </div>
