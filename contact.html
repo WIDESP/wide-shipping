@@ -1,29 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>오시는 길 / 문의하기 - 와이드해운</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오시는 길 / 문의 - (주)와이드해운</title>
+  
+  <link rel="icon" type="image/svg+xml" href="assets/wide-shipping-logo.svg">
+  <link rel="stylesheet" href="styles.css">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
+
     body {
-      background-color: #f8fafc;
+      padding-top: 72px;
+      background-color: #ffffff;
       color: #333;
       line-height: 1.6;
     }
+
+    /* ==========================================
+        📌 상단 헤더 (index.html과 동일)
+       ========================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .site-logo {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .main-nav a {
+      color: #1e293b;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      padding: 6px 0;
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #0284c7;
+    }
+
+    .main-nav a[target="_blank"] {
+      background-color: #0284c7;
+      color: #ffffff !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .main-nav a[target="_blank"]:hover {
+      background-color: #0369a1;
+      transform: translateY(-1px);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      z-index: 1001;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #0f172a;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ==========================================
+        📌 서브페이지 콘텐츠 영역
+       ========================================== */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 80px 20px;
     }
+
     .sub-header {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
+
     .sub-title-tag {
       color: #00b4d8;
       font-size: 14px;
@@ -32,12 +149,14 @@
       margin-bottom: 10px;
       text-transform: uppercase;
     }
+
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       margin-bottom: 60px;
     }
+
     .contact-info h1 {
       font-size: 38px;
       font-weight: 800;
@@ -45,25 +164,31 @@
       line-height: 1.3;
       margin-bottom: 20px;
     }
+
     .contact-info h1 span {
       color: #00a8cc;
     }
+
     .contact-info p {
       color: #64748b;
       font-size: 16px;
       line-height: 1.7;
     }
+
     .info-list {
       display: flex;
       flex-direction: column;
     }
+
     .info-item {
       padding: 20px 0;
       border-bottom: 1px solid #e2e8f0;
     }
+
     .info-item:first-child {
       padding-top: 0;
     }
+
     .info-label {
       font-size: 12px;
       font-weight: 700;
@@ -72,13 +197,15 @@
       margin-bottom: 6px;
       text-transform: uppercase;
     }
+
     .info-value {
       font-size: 20px;
       font-weight: 700;
       color: #1e293b;
     }
+
     .map-card {
-      background-color: #eef2f6;
+      background-color: #f1f5f9;
       border-radius: 16px;
       padding: 60px 20px;
       text-align: center;
@@ -87,6 +214,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .map-pin {
       width: 32px;
       height: 32px;
@@ -96,6 +224,7 @@
       margin-bottom: 25px;
       position: relative;
     }
+
     .map-pin::after {
       content: '';
       width: 14px;
@@ -106,17 +235,20 @@
       top: 9px;
       left: 9px;
     }
+
     .map-title {
       font-size: 22px;
       font-weight: 700;
       color: #0f172a;
       margin-bottom: 10px;
     }
+
     .map-address {
       font-size: 15px;
       color: #64748b;
       margin-bottom: 30px;
     }
+
     .btn-naver-map {
       display: inline-flex;
       align-items: center;
@@ -130,15 +262,62 @@
       text-decoration: none;
       transition: background-color 0.2s;
     }
+
     .btn-naver-map:hover {
       background-color: #02b350;
     }
+
     .traffic-info {
       font-size: 14px;
       color: #64748b;
       margin-top: 20px;
     }
-    @media (max-width: 900px) {
+
+    /* ==========================================
+        📱 모바일 반응형
+       ========================================== */
+    @media (max-width: 992px) {
+      body {
+        padding-top: 64px;
+      }
+      .nav-wrap {
+        padding: 10px 20px;
+      }
+      .site-logo {
+        height: 36px;
+      }
+      .menu-btn {
+        display: flex;
+      }
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #f1f5f9;
+      }
+      .main-nav.active {
+        display: flex;
+      }
+      .main-nav a {
+        padding: 14px 24px;
+        font-size: 16px;
+        border-bottom: 1px solid #f8fafc;
+        width: 100%;
+      }
+      .main-nav a[target="_blank"] {
+        margin: 12px 24px 8px;
+        width: calc(100% - 48px);
+        text-align: center;
+        border-radius: 8px;
+      }
       .contact-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -148,50 +327,115 @@
 </head>
 <body>
 
-  <main class="container">
-    <div class="sub-header">
-      <div class="sub-title-tag">CONTACT & LOCATION</div>
-    </div>
+<!-- 상단 헤더 -->
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html" aria-label="와이드해운 홈">
+      <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+    </a>
 
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h1>와이드해운과 <span>상담해 보세요.</span></h1>
-        <p>운송에 관한 궁금한 점이나 견적 문의가 있으시면 편하게 연락 주세요. 아래 배너를 클릭하시면 네이버 지도에서 위치를 확인하실 수 있습니다.</p>
-      </div>
+    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-      <div class="info-list">
-        <div class="info-item">
-          <div class="info-label">PHONE</div>
-          <div class="info-value">+82-51-816-2003</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">EMAIL</div>
-          <div class="info-value">wide@widesp.com</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">FAX</div>
-          <div class="info-value">+82-51-816-2005</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">ADDRESS</div>
-          <div class="info-value">부산광역시 부산진구 서면문화로 6-1 (하성빌딩 6층 601호)</div>
-        </div>
-      </div>
-    </div>
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html#company">회사소개</a>
+      <a href="service.html">서비스</a>
+      <a href="network.html">글로벌 네트워크</a>
+      <a href="index.html#process">운송 프로세스</a>
+      <a href="contact.html" class="active">오시는길 / 문의</a>
 
-    <div class="map-card">
-      <div class="map-pin"></div>
-      <h2 class="map-title">주식회사 와이드해운 오시는 길</h2>
-      <p class="map-address">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</p>
-      <a href="https://map.naver.com" target="_blank" rel="noopener noreferrer" class="btn-naver-map">
-        네이버 지도에서 위치 및 길찾기 보기 ↗
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
       </a>
+    </nav>
+  </div>
+</header>
+
+<!-- 본문 컨텐츠 -->
+<main class="container">
+  <div class="sub-header">
+    <div class="sub-title-tag">CONTACT & LOCATION</div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h1>와이드해운과 <span>상담해 보세요.</span></h1>
+      <p>운송에 관한 궁금한 점이나 견적 문의가 있으시면 편하게 연락 주세요. 아래 배너를 클릭하시면 네이버 지도에서 위치를 확인하실 수 있습니다.</p>
     </div>
 
-    <p class="traffic-info">
-      <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 배너를 클릭하시면 네이버 지도가 새 창으로 안전하게 열립니다.
-    </p>
-  </main>
+    <div class="info-list">
+      <div class="info-item">
+        <div class="info-label">PHONE</div>
+        <div class="info-value">+82-51-816-2003</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">EMAIL</div>
+        <div class="info-value">wide@widesp.com</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">FAX</div>
+        <div class="info-value">+82-51-816-2005</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">ADDRESS</div>
+        <div class="info-value">부산광역시 부산진구 서면문화로 6-1 (하성빌딩 6층 601호)</div>
+      </div>
+    </div>
+  </div>
 
+  <div class="map-card">
+    <div class="map-pin"></div>
+    <h2 class="map-title">주식회사 와이드해운 오시는 길</h2>
+    <p class="map-address">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</p>
+    <a href="https://map.naver.com" target="_blank" rel="noopener noreferrer" class="btn-naver-map">
+      네이버 지도에서 위치 및 길찾기 보기 ↗
+    </a>
+  </div>
+
+  <p class="traffic-info">
+    <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 배너를 클릭하시면 네이버 지도가 새 창으로 안전하게 열립니다.
+  </p>
+</main>
+
+<!-- 푸터 -->
+<footer class="footer">
+  <div class="footer-inner">
+    <img src="assets/wide-shipping-logo.svg" alt="와이드해운">
+
+    <div class="footer-company">
+      <strong>주식회사 와이드해운</strong>
+      <span>대표자 정태영</span>
+      <span>사업자등록번호 261-81-28960</span>
+    </div>
+
+    <div class="footer-copy">
+      © <span id="year"></span> WIDE SHIPPING. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 모바일 햄버거 메뉴 동작
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      mainNav.classList.toggle('active');
+    });
+  }
+
+  // 연도 표시
+  document.addEventListener('DOMContentLoaded', function() {
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  });
+</script>
 </body>
 </html>
