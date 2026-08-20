@@ -231,33 +231,72 @@
     }
 
     // 전 세계 주요 거점 항만 및 한글 이름
+    // 전 세계 주요 포트 데이터 (위도, 경도 확장)
     const majorPorts = [
+      // 아시아 & 대양주
       { name: "부산 (Busan)", lat: 35.1795, lon: 129.0756 },
+      { name: "인천 (Incheon)", lat: 37.4563, lon: 126.7052 },
       { name: "상하이 (Shanghai)", lat: 31.2304, lon: 121.4737 },
-      { name: "싱가포르 (Singapore)", lat: 1.3521, lon: 103.8198 },
+      { name: "닝보 (Ningbo)", lat: 29.8683, lon: 121.5440 },
+      { name: "칭다오 (Qingdao)", lat: 36.0671, lon: 120.3826 },
+      { name: "심천 (Shenzhen)", lat: 22.5431, lon: 114.0579 },
+      { name: "홍콩 (Hong Kong)", lat: 22.3193, lon: 114.1694 },
+      { name: "가오슝 (Kaohsiung)", lat: 22.6273, lon: 120.3014 },
       { name: "도쿄 (Tokyo)", lat: 35.6762, lon: 139.6503 },
+      { name: "요코하마 (Yokohama)", lat: 35.4437, lon: 139.6380 },
+      { name: "싱가포르 (Singapore)", lat: 1.3521, lon: 103.8198 },
+      { name: "호치민 (Ho Chi Minh)", lat: 10.8231, lon: 106.6297 },
+      { name: "하이퐁 (Haiphong)", lat: 20.8449, lon: 106.6881 },
+      { name: "방콕 (Bangkok)", lat: 13.7563, lon: 100.5018 },
+      { name: "자카르타 (Jakarta)", lat: -6.2088, lon: 106.8456 },
+      { name: "마닐라 (Manila)", lat: 14.5995, lon: 120.9842 },
+      { name: "시드니 (Sydney)", lat: -33.8688, lon: 151.2093 },
+      { name: "멜버른 (Melbourne)", lat: -37.8136, lon: 144.9631 },
+
+      // 미주 (북미 & 중남미)
       { name: "LA / 롱비치", lat: 33.7701, lon: -118.1937 },
+      { name: "시애틀 (Seattle)", lat: 47.6062, lon: -122.3321 },
+      { name: "벤쿠버 (Vancouver)", lat: 49.2827, lon: -123.1207 },
       { name: "뉴욕 (New York)", lat: 40.7128, lon: -74.0060 },
+      { name: "서배너 (Savannah)", lat: 32.0809, lon: -81.0912 },
+      { name: "휴스턴 (Houston)", lat: 29.7604, lon: -95.3698 },
+      { name: "마이애미 (Miami)", lat: 25.7617, lon: -80.1918 },
+      { name: "파나마 (Panama)", lat: 8.9824, lon: -79.5199 },
+      { name: "산토스 (Santos)", lat: -23.9608, lon: -46.3336 },
+      { name: "부엔노스아이레스", lat: -34.6037, lon: -58.3816 },
+
+      // 유럽 & CIS
       { name: "로테르담 (Rotterdam)", lat: 51.9244, lon: 4.4777 },
       { name: "함부르크 (Hamburg)", lat: 53.5511, lon: 9.9937 },
+      { name: "앤트워프 (Antwerp)", lat: 51.2194, lon: 4.4025 },
+      { name: "르아브르 (Le Havre)", lat: 49.4944, lon: 0.1079 },
+      { name: "펠릭스토우 (Felixstowe)", lat: 51.9639, lon: 1.3511 },
+      { name: "발렌시아 (Valencia)", lat: 39.4699, lon: -0.3763 },
+      { name: "제노바 (Genoa)", lat: 44.4056, lon: 8.9463 },
+      { name: "피레우스 (Piraeus)", lat: 37.9475, lon: 23.6372 },
+
+      // 중동, 인도, 아프리카
       { name: "두바이 (Dubai)", lat: 25.2048, lon: 55.2708 },
-      { name: "호치민 (Ho Chi Minh)", lat: 10.8231, lon: 106.6297 },
-      { name: "시드니 (Sydney)", lat: -33.8688, lon: 151.2093 }
+      { name: "제다 (Jeddah)", lat: 21.5433, lon: 39.1728 },
+      { name: "나바셰바 (Mundra/Nhava Sheva)", lat: 18.9500, lon: 72.9500 },
+      { name: "콜롬보 (Colombo)", lat: 6.9271, lon: 79.8612 },
+      { name: "알렉산드리아 (Alexandria)", lat: 31.2001, lon: 29.9187 },
+      { name: "케이프타운 (Cape Town)", lat: -33.9249, lon: 18.4241 }
     ];
 
-    // 빨간 점 + 라벨 태그 배치
+    // 빨간 점 + 라벨 태그 생성 루프
     majorPorts.forEach(port => {
       const pos = latLongToVector3(port.lat, port.lon, 80.8);
 
-      // 빨간 점
-      const dotGeo = new THREE.SphereGeometry(1.6, 16, 16);
+      // 점 크기를 기존 1.6에서 1.0으로 살짝 줄여 밀집되어도 깔끔하게 보입니다.
+      const dotGeo = new THREE.SphereGeometry(1.0, 12, 12);
       const dotMat = new THREE.MeshBasicMaterial({ color: 0xff3344 });
       const dotMesh = new THREE.Mesh(dotGeo, dotMat);
       dotMesh.position.copy(pos);
       globe.add(dotMesh);
 
-      // 지역 이름 텍스트 라벨 (점 살짝 위에 배치)
-      const labelPos = latLongToVector3(port.lat, port.lon, 85);
+      // 지역 이름 텍스트 라벨
+      const labelPos = latLongToVector3(port.lat, port.lon, 84.5);
       const labelSprite = createTextSprite(port.name);
       labelSprite.position.copy(labelPos);
       globe.add(labelSprite);
