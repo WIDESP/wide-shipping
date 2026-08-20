@@ -156,15 +156,14 @@
     </div>
   </section>
 
-<!-- 3D 지구본 스크립트 (지구본 & 라벨 확대 버전) -->
+<!-- 3D 지구본 스크립트 (안전 보장 완결판) -->
   <script>
     const container = document.getElementById('globe-container');
 
     // 1. Scene, Camera, Renderer 생성
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    // 카메라 위치를 적절히 멀리 배치하여 화면 안틀어짐 (기존 180 -> 230)
-    camera.position.z = 230;
+    camera.position.z = 240; // 카메라 거리를 넓혀 화면 안 잘리게 조정
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -185,11 +184,11 @@
     dirLight.position.set(5, 3, 5);
     scene.add(dirLight);
 
-    // 4. 지구본 크기 적정화 (반지름 85)
+    // 4. 지구본 구체 생성 (반지름 80으로 안 짤리는 크기)
     const textureLoader = new THREE.TextureLoader();
     const globeTexture = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
     
-    const globeGeo = new THREE.SphereGeometry(85, 64, 64);
+    const globeGeo = new THREE.SphereGeometry(80, 64, 64);
     const globeMat = new THREE.MeshPhongMaterial({ map: globeTexture, shininess: 15 });
     const globe = new THREE.Mesh(globeGeo, globeMat);
     scene.add(globe);
@@ -204,30 +203,30 @@
       return new THREE.Vector3(x, y, z);
     }
 
-    // 텍스트 라벨 생성
+    // 텍스트 라벨 생성 함수
     function createTextSprite(text) {
       const canvas = document.createElement('canvas');
-      canvas.width = 380;
-      canvas.height = 80;
+      canvas.width = 320;
+      canvas.height = 70;
       const ctx = canvas.getContext('2d');
       
       ctx.fillStyle = 'rgba(4, 13, 33, 0.85)';
-      ctx.roundRect(10, 10, 360, 60, 10);
+      ctx.roundRect(10, 10, 300, 50, 10);
       ctx.fill();
       ctx.strokeStyle = '#72e2f8';
       ctx.lineWidth = 3;
       ctx.stroke();
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'Bold 24px sans-serif';
+      ctx.font = 'Bold 20px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(text, 190, 40);
+      ctx.fillText(text, 160, 35);
 
       const texture = new THREE.CanvasTexture(canvas);
       const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
       const sprite = new THREE.Sprite(spriteMaterial);
-      sprite.scale.set(28, 6, 1);
+      sprite.scale.set(24, 5.2, 1);
       return sprite;
     }
 
@@ -285,50 +284,55 @@
       { name: "나바셰바 (Mundra)", lat: 18.9500, lon: 72.9500 }
     ];
 
-    const labelElements = []; // 라벨 컬렉션
+    const labelItems = [];
 
     majorPorts.forEach(port => {
-      const pos = latLongToVector3(port.lat, port.lon, 85.8);
+      const pos = latLongToVector3(port.lat, port.lon, 80.8);
 
-      // 빨간 점
+      // 빨간 점 (지구본 자식 요소)
       const dotGeo = new THREE.SphereGeometry(1.2, 16, 16);
       const dotMat = new THREE.MeshBasicMaterial({ color: 0xff3344 });
       const dotMesh = new THREE.Mesh(dotGeo, dotMat);
       dotMesh.position.copy(pos);
       globe.add(dotMesh);
 
-      // 라벨 생성
-      const labelPos = latLongToVector3(port.lat, port.lon, 90);
+      // 라벨 (지구본 자식 요소)
+      const labelPos = latLongToVector3(port.lat, port.lon, 85);
       const labelSprite = createTextSprite(port.name);
       labelSprite.position.copy(labelPos);
       globe.add(labelSprite);
 
-      // 컬렉션 저장 (뒷면 숨김 처리용)
-      labelElements.push({ sprite: labelSprite, dotPos: pos });
+      // 상대 좌표 저장을 위한 객체
+      labelItems.push({
+        sprite: labelSprite,
+        localPos: pos.clone()
+      });
     });
 
-    // 6. 애니메이션 & 카메라 시선 방향 기반 뒷면 라벨 숨김
-    const tempV = new THREE.Vector3();
-    const cameraWorldPos = new THREE.Vector3();
+    // 6. 애니메이션 & 안전한 뒷면 숨김 로직
+    const worldPos = new THREE.Vector3();
+    const camPos = new THREE.Vector3();
 
     function animate() {
       requestAnimationFrame(animate);
       
-      // 자동 회전
+      // 회전
       globe.rotation.y += 0.0012;
       controls.update();
 
-      // 지구본 뒤쪽에 숨은 라벨 투명 처리 (겹침 방지)
-      camera.getWorldPosition(cameraWorldPos);
-      
-      labelElements.forEach(item => {
-        item.dotPos.getWorldPosition(tempV);
-        // 지구본 중심에서 지점까지의 벡터와 카메라 시선 각도 비교
-        const dotToCamera = cameraWorldPos.clone().sub(tempV);
-        const normal = tempV.clone().normalize(); // 지표면 수직 벡터
-        
-        // 각도가 90도 이상이면 뒤쪽에 위치한 것
-        if (normal.dot(dotToCamera) < 0) {
+      // 카메라 월드 좌표
+      camera.getWorldPosition(camPos);
+
+      // 안전하게 각 포트의 월드 좌표를 계산하여 카메라 바라봄 기준 뒷면 숨김
+      labelItems.forEach(item => {
+        worldPos.copy(item.localPos);
+        worldPos.applyMatrix4(globe.matrixWorld); // 지구본 회전값 적용
+
+        // 포트 위치에서 카메라까지의 방향과 지구본 중심(0,0,0) 관점 비교
+        const dirToCam = camPos.clone().sub(worldPos);
+        const normal = worldPos.clone().normalize();
+
+        if (normal.dot(dirToCam) < 0) {
           item.sprite.visible = false;
         } else {
           item.sprite.visible = true;
