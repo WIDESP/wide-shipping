@@ -168,6 +168,25 @@
       font-size: 15px;
     }
 
+    /* 컨테이너 개별 이미지 박스 스타일 추가 */
+    .container-img-box {
+      width: 100%;
+      max-width: 450px;
+      margin: 15px 0 20px 0;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .container-img-box img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
     /* 테이블 스타일 */
     .table-container {
       width: 100%;
@@ -297,11 +316,15 @@
     <p class="sub-desc">화물 운송 및 무역 실무에 필수적인 컨테이너 규격, 주요 무역 조건, 표준 진행 절차를 안내해 드립니다.</p>
   </div>
 
-  <!-- 1. 컨테이너 규격 (수정된 내용) -->
- <section class="guide-section">
-    <h2>📦 컨테이너 상세 제원 (Container Specifications)</h2>
+  <!-- 1. 컨테이너 규격 및 이미지 -->
+  <section class="guide-section">
+    <h2>📦 컨테이너 상세 제원 및 종류</h2>
     
+    <!-- 1) 드라이 컨테이너 -->
     <h3>1) 드라이 컨테이너 (Dry Container)</h3>
+    <div class="container-img-box">
+      <img src="assets/dry.png" alt="드라이 컨테이너 사진">
+    </div>
     <div class="table-container">
       <table class="guide-table">
         <thead>
@@ -315,7 +338,11 @@
       </table>
     </div>
 
-    <h3>2) 냉동 컨테이너 (Reefer Container)</h3>
+    <!-- 2) 냉동 컨테이너 -->
+    <h3 style="margin-top: 35px;">2) 냉동 컨테이너 (Reefer Container)</h3>
+    <div class="container-img-box">
+      <img src="assets/reefer.png" alt="냉동 컨테이너 사진">
+    </div>
     <div class="table-container">
       <table class="guide-table">
         <thead>
@@ -329,8 +356,20 @@
       </table>
     </div>
 
-    <h3>3) 특수 컨테이너 (Open Top / Flat Rack)</h3>
-    <div class="table-container">
+    <!-- 3) 특수 컨테이너 -->
+    <h3 style="margin-top: 35px;">3) 특수 컨테이너 (Open Top / Flat Rack)</h3>
+    
+    <h4 style="font-size: 15px; color: #1e293b; margin: 20px 0 10px 0;">· 오픈 탑 컨테이너 (Open Top Container)</h4>
+    <div class="container-img-box">
+      <img src="assets/opentop.png" alt="오픈탑 컨테이너 사진">
+    </div>
+
+    <h4 style="font-size: 15px; color: #1e293b; margin: 20px 0 10px 0;">· 플랫 랙 컨테이너 (Flat Rack Container)</h4>
+    <div class="container-img-box">
+      <img src="assets/flatrack.png" alt="플랫랙 컨테이너 사진">
+    </div>
+
+    <div class="table-container" style="margin-top: 20px;">
       <table class="guide-table">
         <thead>
           <tr><th>구분</th><th>오픈탑 20ft</th><th>오픈탑 40ft</th><th>플랫랙 20ft</th><th>플랫랙 40ft</th></tr>
@@ -344,7 +383,7 @@
     </div>
   </section>
 
- <!-- 2. 무역 조건 (Incoterms 2020) 순서 정리 -->
+  <!-- 2. 무역 조건 (Incoterms 2020) -->
   <section class="guide-section">
     <h2>🤝 주요 무역 조건 (Incoterms 2020 흐름)</h2>
     <p>수출자(매도인)의 책임이 적은 순서부터 큰 순서대로 정리한 무역 조건입니다.</p>
