@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글로벌 네트워크 - (주)와이드해운</title>
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- 3D 지구본 구현을 위한 Three.js 외부 라이브러리 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <style>
+    html {
+      scroll-padding-top: 100px;
+      scroll-behavior: smooth;
+    }
+
+    .network-hero {
+      position: relative;
+      padding: 60px 28px 100px;
+      color: #fff;
+      background: #040d21; /* 우주/지구본 느낌의 어두운 배경 */
+      overflow: hidden;
+    }
+
+    .detail-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sub-eyebrow {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #72e2f8;
+      margin-bottom: 8px;
+    }
+    .detail-title {
+      text-align: center;
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+    .detail-subtext {
+      text-align: center;
+      font-size: 15px;
+      color: #e2f1f8;
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+
+    /* 3D 지구본이 들어갈 캔버스 영역 */
+    .globe-wrapper {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      margin: 0 auto 40px;
+      cursor: grab;
+    }
+    .globe-wrapper:active {
+      cursor: grabbing;
+    }
+    #globe-container {
+      width: 100%;
+      height: 100%;
+    }
+    .globe-guide-text {
+      text-align: center;
+      font-size: 13px;
+      color: #72e2f8;
+      margin-top: -20px;
+      margin-bottom: 40px;
+      opacity: 0.8;
+    }
+
+    /* 하단 거점 설명 카드 그리드 */
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .network-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      padding: 30px;
+    }
+    .network-card h3 {
+      font-size: 19px;
+      color: #72e2f8;
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .network-card p {
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #f1f5f9;
+      word-break: keep-all;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 공통 헤더 -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="assets/wide-shipping-logo.svg" alt="와이드해운">
+      </a>
+      <nav class="main-nav">
+        <a href="index.html#company">회사소개</a>
+        <a href="service.html">서비스</a>
+        <a href="network.html" style="color: var(--blue, #0d3b66);">글로벌 네트워크</a>
+        <a href="index.html#process">운송 프로세스</a>
+        <a href="index.html#contact">문의/오시는길</a>
+      </nav>
+      <a href="index.html#contact" class="nav-cta">견적문의 <span>&rarr;</span></a>
+    </div>
+  </header>
+
+  <!-- 글로벌 네트워크 메인 히어로 -->
+  <section class="network-hero">
+    <div class="detail-container">
+      <span class="sub-eyebrow">GLOBAL NETWORK</span>
+      <h2 class="detail-title">글로벌 네트워크</h2>
+      <p class="detail-subtext">• 전 세계 주요 항만 거점에 위치한 글로벌 협력 파트너들과 함께 정교하고 차질 없는 물류를 수행합니다.</p>
+
+      <!-- 3D 지구본 컨테이너 -->
+      <div class="globe-wrapper">
+        <div id="globe-container"></div>
+      </div>
+      <p class="globe-guide-text">💡 마우스로 지구본을 잡고 자유롭게 회전시켜 주요 항만 거점을 확인해보세요.</p>
+
+      <!-- 하단 설명 카드 -->
+      <div class="network-grid">
+        <div class="network-card">
+          <h3>아시아 & 중국 촘촘한 항로 네트워크</h3>
+          <p>부산/인천을 거점으로 상하이, 닝보, 칭다오, 싱가포르, 베트남 등 아시아 전역의 주요 포트 파트너십을 통해 매일 안정적인 선복을 연결합니다.</p>
+        </div>
+        <div class="network-card">
+          <h3>미주 & 유럽 든든한 파트너십</h3>
+          <p>LA, 롱비치, 뉴욕, 로테르담, 함부르크 등 거점 포트와의 긴밀한 네트워크로 Door-to-Door 및 세관 통관 이슈를 원스톱으로 해결합니다.</p>
+        </div>
+        <div class="network-card">
+          <h3>중동 & 중남미 & 신흥 항로 커버리지</h3>
+          <p>제3국간 중계무역 시 환적 거점을 활용한 트랜짓 관리와 신흥국 특화 관세사/보세창고 파트너십으로 리스크 없는 운송을 보장합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D 지구본 구동 스크립트 -->
+  <script>
+    const container = document.getElementById('globe-container');
+
+    // 1. Scene, Camera, Renderer 생성
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.z = 250;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    // 2. 마우스 드래그 컨트롤 (OrbitControls)
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enableZoom = false; // 페이지 스크롤 방해 없도록 줌 OFF
+
+    // 3. 조명 설정
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(5, 3, 5);
+    scene.add(dirLight);
+
+    // 4. 텍스처 로드 및 지구본 생성
+    const textureLoader = new THREE.TextureLoader();
+    // 세계 지도 와이어프레임/텍스처 이미지 적용
+    const globeTexture = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
+    
+    const globeGeo = new THREE.SphereGeometry(80, 64, 64);
+    const globeMat = new THREE.MeshPhongMaterial({
+      map: globeTexture,
+      shininess: 15
+    });
+    const globe = new THREE.Mesh(globeGeo, globeMat);
+    scene.add(globe);
+
+    // 5. 세계 주요 포트(Port) 위도/경도 좌표에 빨간 점 표시 함수
+    function latLongToVector3(lat, lon, radius) {
+      const phi = (90 - lat) * (Math.PI / 180);
+      const theta = (lon + 180) * (Math.PI / 180);
+
+      const x = -(radius * Math.sin(phi) * Math.cos(theta));
+      const z = (radius * Math.sin(phi) * Math.sin(theta));
+      const y = (radius * Math.cos(phi));
+
+      return new THREE.Vector3(x, y, z);
+    }
+
+    // 전 세계 주요 포트 데이터 (위도, 경도)
+    const majorPorts = [
+      { name: "Busan", lat: 35.1795, lon: 129.0756 },
+      { name: "Shanghai", lat: 31.2304, lon: 121.4737 },
+      { name: "Ningbo", lat: 29.8683, lon: 121.5440 },
+      { name: "Singapore", lat: 1.3521, lon: 103.8198 },
+      { name: "Tokyo", lat: 35.6762, lon: 139.6503 },
+      { name: "LA / Long Beach", lat: 33.7701, lon: -118.1937 },
+      { name: "New York", lat: 40.7128, lon: -74.0060 },
+      { name: "Rotterdam", lat: 51.9244, lon: 4.4777 },
+      { name: "Hamburg", lat: 53.5511, lon: 9.9937 },
+      { name: "Dubai", lat: 25.2048, lon: 55.2708 },
+      { name: "Ho Chi Minh", lat: 10.8231, lon: 106.6297 },
+      { name: "Sydney", lat: -33.8688, lon: 151.2093 }
+    ];
+
+    // 빨간 점(Red Point) 및 반짝이는 서클 생성
+    majorPorts.forEach(port => {
+      const pos = latLongToVector3(port.lat, port.lon, 80.5); // 지구 표면보다 살짝 위에 배치
+
+      // 빨간 점 구체
+      const dotGeo = new THREE.SphereGeometry(1.8, 16, 16);
+      const dotMat = new THREE.MeshBasicMaterial({ color: 0xff3344 });
+      const dotMesh = new THREE.Mesh(dotGeo, dotMat);
+      dotMesh.position.copy(pos);
+      globe.add(dotMesh); // 지구본 그룹에 추가하여 같이 회전
+    });
+
+    // 6. 애니메이션 루프 (자동 천천히 회전 + 마우스 드래그 지원)
+    function animate() {
+      requestAnimationFrame(animate);
+      globe.rotation.y += 0.0015; // 마우스를 안 대고 있어도 아주 천천히 자동 회전
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // 창 크기 조절 시 리사이즈 대응
+    window.addEventListener('resize', () => {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+  </script>
+
+</body>
+</html>
