@@ -22,13 +22,16 @@
       box-sizing: border-box;
     }
 
-    /* 한글 단어가 중간에서 어색하게 깨지지 않고 단어 단위로 깔끔하게 넘어가도록 설정 */
+    /* 페이지 내부 부드러운 스크롤 이동 */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body, h1, h2, h3, h4, h5, h6, p, span, a, li, div {
       word-break: keep-all;
       overflow-wrap: break-word;
     }
 
-    /* 제목류 문구의 줄 길이가 자연스럽게 균형을 이루도록 설정 */
     h1, h2, h3, .hero-copy h1, .company-header h2 {
       text-wrap: balance;
     }
@@ -107,7 +110,7 @@
       transform: translateY(-1px);
     }
 
-    /* 햄버거 토글 버튼 (PC 기본 숨김) */
+    /* 햄버거 토글 버튼 */
     .menu-btn {
       display: none;
       background: none;
@@ -128,7 +131,6 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* 햄버거 버튼 활성화 애니메이션 (X자) */
     .menu-btn.active span:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
@@ -422,6 +424,7 @@
       padding: 90px 0;
       background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
       border-bottom: 1px solid #e2e8f0;
+      scroll-margin-top: 72px;
     }
 
     .company-container {
@@ -582,13 +585,14 @@
     }
 
     /* ==========================================
-        ⚡ WHY WIDE SHIPPING
+        ⚡ WHY WIDE SHIPPING (STRENGTHS)
        ========================================== */
     .section.strengths {
       width: 100%;
       padding: 100px 0;
       background-color: #f8fafc;
       border-top: 1px solid #e2e8f0;
+      scroll-margin-top: 72px;
     }
 
     .why-container {
@@ -664,9 +668,10 @@
 
     .stat-num {
       display: block;
-      font-size: 32px;
+      font-size: 22px;
       font-weight: 900;
       color: #ffffff;
+      letter-spacing: -0.5px;
     }
 
     .stat-label {
@@ -727,6 +732,10 @@
       color: #475569;
       line-height: 1.6;
       margin: 0;
+    }
+
+    .section.services, .section.process, .section.contact {
+      scroll-margin-top: 72px;
     }
 
     /* 지도 및 오시는 길 스타일 */
@@ -947,7 +956,7 @@
 <header class="site-header" id="top">
   <div class="nav-wrap">
 
-    <a class="brand" href="index.html" aria-label="와이드해운 홈">
+    <a class="brand" href="#top" aria-label="와이드해운 홈">
       <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
@@ -957,18 +966,18 @@
       <span></span>
     </button>
 
-    <!-- 수정된 상단 메뉴: 클릭 시 독립된 html 화면으로 접속됩니다. -->
-   <nav class="main-nav" id="mainNav" aria-label="주요 메뉴">
-  <a href="#company">회사소개</a>
-  <a href="#services">서비스</a>
-  <a href="#strengths">강점</a>
-  <a href="#process">물류 프로세스</a>
-  <a href="#contact">문의/오시는길</a>
+    <!-- 원페이지 스크롤 적용 메뉴 -->
+    <nav class="main-nav" id="mainNav" aria-label="주요 메뉴">
+      <a href="#company">회사소개</a>
+      <a href="#services">서비스</a>
+      <a href="#strengths">강점</a>
+      <a href="#process">물류 프로세스</a>
+      <a href="#contact">문의/오시는길</a>
 
-  <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
-    온라인 견적문의
-  </a>
-</nav>
+      <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
+      </a>
+    </nav>
 
   </div>
 </header>
@@ -1024,7 +1033,7 @@
           온라인 견적 문의 <span>→</span>
         </a>
 
-        <a class="btn ghost" href="services.html">
+        <a class="btn ghost" href="#services">
           서비스 보기
         </a>
       </div>
@@ -1077,7 +1086,6 @@
 <section class="section company" id="company">
   <div class="company-container">
     
-    <!-- 상단 소개 메시지 -->
     <div class="company-header reveal">
       <span class="eyebrow">ABOUT WIDE SHIPPING</span>
       <h2>
@@ -1090,7 +1098,6 @@
       </p>
     </div>
 
-    <!-- 3가지 핵심 경쟁력 카드 -->
     <div class="company-feature-grid">
       <div class="feature-card reveal">
         <div class="feature-icon">🌐</div>
@@ -1111,7 +1118,6 @@
       </div>
     </div>
 
-    <!-- 하단 실무 수치 & 가치 요약 바 -->
     <div class="company-summary-bar reveal">
       <div class="summary-item">
         <span class="num">10+</span>
@@ -1212,25 +1218,23 @@
 <section class="section strengths" id="strengths">
   <div class="why-container">
     
-    <!-- 좌측 다이내믹 visual 배너 -->
     <div class="why-left-banner reveal">
       <span class="banner-badge">WHY WIDE SHIPPING</span>
       <h3>복잡한 글로벌 물류,<br><strong>명확한 답</strong>을 제시합니다.</h3>
       <p>실시간 운송 트래킹과 선제적 리스크 대응으로 화주님의 비즈니스 안전성을 극대화합니다.</p>
       
       <div class="banner-stats">
-  <div class="stat-box">
-    <!-- font-size 조정을 통해 영문 텍스트가 깔끔하게 들어가도록 설정 -->
-    <span class="stat-num" style="font-size: 22px; letter-spacing: -0.5px;">ONE-STOP</span>
-    <span class="stat-label">해상·항공·통관 통합 솔루션</span>
-  </div>
-  <div class="stat-box">
-    <span class="stat-num" style="font-size: 22px; letter-spacing: -0.5px;">1:1 CARE</span>
-    <span class="stat-label">전담 매니저 밀착 관리</span>
-  </div>
-</div>
+        <div class="stat-box">
+          <span class="stat-num">ONE-STOP</span>
+          <span class="stat-label">해상·항공·통관 통합 솔루션</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">1:1 CARE</span>
+          <span class="stat-label">전담 매니저 밀착 관리</span>
+        </div>
+      </div>
+    </div>
 
-    <!-- 우측 4대 강점 리스트 카드 -->
     <div class="why-right-grid">
       <div class="why-card reveal">
         <div class="card-num-badge">01</div>
@@ -1406,7 +1410,7 @@
 </footer>
 
 <script>
-  // 1. 모바일 햄버거 메뉴 토글 로직
+  // 모바일 햄버거 메뉴 토글 로직
   const menuToggle = document.getElementById('menuToggle');
   const mainNav = document.getElementById('mainNav');
 
@@ -1424,13 +1428,7 @@
     });
   }
 
-  // 2. 브라우저 스크롤 위치 초기화
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-
   document.addEventListener('DOMContentLoaded', function() {
-    window.scrollTo(0, 0);
     const yearEl = document.getElementById('year');
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
