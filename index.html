@@ -947,7 +947,7 @@
 <header class="site-header" id="top">
   <div class="nav-wrap">
 
-    <a class="brand" href="" aria-label="와이드해운 홈">
+    <a class="brand" href="index.html" aria-label="와이드해운 홈">
       <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
@@ -957,12 +957,13 @@
       <span></span>
     </button>
 
+    <!-- 수정된 상단 메뉴: 클릭 시 독립된 html 화면으로 접속됩니다. -->
     <nav class="main-nav" id="mainNav" aria-label="주요 메뉴">
-      <a href="#company">회사소개</a>
-      <a href="#services">서비스</a>
-      <a href="#strengths">강점</a>
-      <a href="#process">물류 프로세스</a>
-      <a href="#contact">문의/오시는길</a>
+      <a href="company.html">회사소개</a>
+      <a href="services.html">서비스</a>
+      <a href="strengths.html">강점</a>
+      <a href="process.html">물류 프로세스</a>
+      <a href="contact.html">문의/오시는길</a>
 
       <a href="https://forwarding-quote-ng7d8jljo-wide2.vercel.app/" target="_blank" rel="noopener noreferrer">
         온라인 견적문의
@@ -1023,7 +1024,7 @@
           온라인 견적 문의 <span>→</span>
         </a>
 
-        <a class="btn ghost" href="#services">
+        <a class="btn ghost" href="services.html">
           서비스 보기
         </a>
       </div>
@@ -1207,7 +1208,7 @@
   </div>
 </section>
 
-<!-- STRENGTHS (포워딩 전문 실무 문구 최적화 적용) -->
+<!-- STRENGTHS -->
 <section class="section strengths" id="strengths">
   <div class="why-container">
     
@@ -1423,25 +1424,10 @@
     });
   }
 
-  // 2. 브라우저 스크롤 위치 자동 복원 기능 중단
+  // 2. 브라우저 스크롤 위치 초기화
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
-
-  // 3. URL 해시(#services 등) 제거 및 최상단 강제 이동
-  if (window.location.hash) {
-    history.replaceState(null, document.title, window.location.pathname + window.location.search);
-  }
-
-  window.addEventListener('beforeunload', function() {
-    window.scrollTo(0, 0);
-  });
-
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      window.scrollTo(0, 0);
-    }, 10);
-  });
 
   document.addEventListener('DOMContentLoaded', function() {
     window.scrollTo(0, 0);
