@@ -8,6 +8,9 @@
   <link rel="icon" type="image/svg+xml" href="assets/wide-shipping-logo.svg">
   <link rel="stylesheet" href="styles.css">
 
+  <!-- 카카오맵 설치 스크립트 -->
+  <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -26,7 +29,7 @@
     }
 
     /* ==========================================
-        📌 상단 헤더 (index.html과 동일)
+        📌 상단 헤더
        ========================================== */
     .site-header {
       position: fixed;
@@ -204,67 +207,37 @@
       color: #1e293b;
     }
 
-    .map-card {
-      background-color: #f1f5f9;
+    /* 카카오 지도 커스텀 스타일 */
+    .map-wrapper {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 16px;
-      padding: 60px 20px;
+      padding: 30px;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .map-pin {
-      width: 32px;
-      height: 32px;
-      background-color: #ff4757;
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      margin-bottom: 25px;
-      position: relative;
-    }
-
-    .map-pin::after {
-      content: '';
-      width: 14px;
-      height: 14px;
-      background-color: #fff;
-      position: absolute;
-      border-radius: 50%;
-      top: 9px;
-      left: 9px;
     }
 
     .map-title {
       font-size: 22px;
       font-weight: 700;
       color: #0f172a;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .map-address {
       font-size: 15px;
       color: #64748b;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
-    .btn-naver-map {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #03cf5d;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 16px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.2s;
+    /* 카카오맵 반응형 처리 */
+    .root_daum_roughmap {
+      width: 100% !important;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0 auto;
     }
-
-    .btn-naver-map:hover {
-      background-color: #02b350;
+    .root_daum_roughmap .wrap_map {
+      height: 400px !important;
     }
 
     .traffic-info {
@@ -322,6 +295,9 @@
         grid-template-columns: 1fr;
         gap: 40px;
       }
+      .root_daum_roughmap .wrap_map {
+        height: 300px !important;
+      }
     }
   </style>
 </head>
@@ -363,7 +339,7 @@
   <div class="contact-grid">
     <div class="contact-info">
       <h1>와이드해운과 <span>상담해 보세요.</span></h1>
-      <p>운송에 관한 궁금한 점이나 견적 문의가 있으시면 편하게 연락 주세요. 아래 배너를 클릭하시면 네이버 지도에서 위치를 확인하실 수 있습니다.</p>
+      <p>운송에 관한 궁금한 점이나 견적 문의가 있으시면 편하게 연락 주세요. 지도에서 카카오맵 위치와 길찾기를 확인하실 수 있습니다.</p>
     </div>
 
     <div class="info-list">
@@ -386,17 +362,17 @@
     </div>
   </div>
 
-  <div class="map-card">
-    <div class="map-pin"></div>
+  <!-- 카카오지도 영역 -->
+  <div class="map-wrapper">
     <h2 class="map-title">주식회사 와이드해운 오시는 길</h2>
     <p class="map-address">부산광역시 부산진구 서면문화로 6-1, 하성빌딩 6층 601호</p>
-    <a href="https://map.naver.com" target="_blank" rel="noopener noreferrer" class="btn-naver-map">
-      네이버 지도에서 위치 및 길찾기 보기 ↗
-    </a>
+    
+    <!-- 카카오맵 지도 노드 -->
+    <div id="daumRoughmapContainer1787210926863" class="root_daum_roughmap root_daum_roughmap_landing"></div>
   </div>
 
   <p class="traffic-info">
-    <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다. 배너를 클릭하시면 네이버 지도가 새 창으로 안전하게 열립니다.
+    <strong>교통안내:</strong> 서면역 인근에 위치하고 있어 대중교통으로 편리하게 방문하실 수 있습니다.
   </p>
 </main>
 
@@ -436,6 +412,16 @@
       yearEl.textContent = new Date().getFullYear();
     }
   });
+</script>
+
+<!-- 카카오맵 실행 스크립트 -->
+<script charset="UTF-8">
+  new daum.roughmap.Lander({
+    "timestamp" : "1787210926863",
+    "key" : "sw5sy6xgtry",
+    "mapWidth" : "100%",
+    "mapHeight" : "400"
+  }).render();
 </script>
 </body>
 </html>
