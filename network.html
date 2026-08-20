@@ -54,11 +54,11 @@
     }
 
     /* 3D 지구본 컨테이너 */
-    .globe-wrapper {
+   .globe-wrapper {
       position: relative;
       width: 100%;
-      height: 520px;
-      margin: 0 auto 30px;
+      height: 800px; /* 기존 높이에서 800px로 확 넓혀 상하 여유 확보 */
+      margin: 0 auto 10px;
       cursor: grab;
     }
     .globe-wrapper:active {
@@ -163,11 +163,11 @@
     // 1. Scene, Camera, Renderer 생성
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.z = 240; // 카메라 거리를 넓혀 화면 안 잘리게 조정
+    camera.position.z = 205; // 카메라를 근접시켜 지구본을 크게 표시
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
     // 2. OrbitControls
@@ -177,14 +177,14 @@
     controls.enableZoom = false;
 
     // 3. 조명
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(ambientLight);
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
     dirLight.position.set(5, 3, 5);
     scene.add(dirLight);
 
-    // 4. 지구본 구체 생성 (반지름 80으로 안 짤리는 크기)
+    // 4. 지구본 구체 생성
     const textureLoader = new THREE.TextureLoader();
     const globeTexture = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
     
@@ -203,34 +203,36 @@
       return new THREE.Vector3(x, y, z);
     }
 
-    // 텍스트 라벨 생성 함수
+    // 선명하고 또렷한 텍스트 라벨 생성 (고해상도 Canvas)
     function createTextSprite(text) {
       const canvas = document.createElement('canvas');
-      canvas.width = 320;
-      canvas.height = 70;
+      canvas.width = 512;  // 해상도 선명하게 확장
+      canvas.height = 128;
       const ctx = canvas.getContext('2d');
       
-      ctx.fillStyle = 'rgba(4, 13, 33, 0.85)';
-      ctx.roundRect(10, 10, 300, 50, 10);
+      // 배경 박스
+      ctx.fillStyle = 'rgba(4, 13, 33, 0.9)';
+      ctx.roundRect(10, 10, 492, 108, 16);
       ctx.fill();
       ctx.strokeStyle = '#72e2f8';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 4;
       ctx.stroke();
 
+      // 텍스트 (폰트 사이즈 대폭 선명화)
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'Bold 20px sans-serif';
+      ctx.font = 'Bold 36px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(text, 160, 35);
+      ctx.fillText(text, 256, 64);
 
       const texture = new THREE.CanvasTexture(canvas);
       const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
       const sprite = new THREE.Sprite(spriteMaterial);
-      sprite.scale.set(24, 5.2, 1);
+      sprite.scale.set(38, 9.5, 1); // 라벨 물리적 크기 확대
       return sprite;
     }
 
-    // 전 세계 주요 포트 데이터
+    // 주요 포트 데이터
     const majorPorts = [
       // 한국 & 동북아 & 중국
       { name: "부산 (Busan)", lat: 35.1795, lon: 129.0756 },
@@ -289,46 +291,41 @@
     majorPorts.forEach(port => {
       const pos = latLongToVector3(port.lat, port.lon, 80.8);
 
-      // 빨간 점 (지구본 자식 요소)
-      const dotGeo = new THREE.SphereGeometry(1.2, 16, 16);
+      // 빨간 점
+      const dotGeo = new THREE.SphereGeometry(1.5, 16, 16);
       const dotMat = new THREE.MeshBasicMaterial({ color: 0xff3344 });
       const dotMesh = new THREE.Mesh(dotGeo, dotMat);
       dotMesh.position.copy(pos);
       globe.add(dotMesh);
 
-      // 라벨 (지구본 자식 요소)
-      const labelPos = latLongToVector3(port.lat, port.lon, 85);
+      // 라벨
+      const labelPos = latLongToVector3(port.lat, port.lon, 86);
       const labelSprite = createTextSprite(port.name);
       labelSprite.position.copy(labelPos);
       globe.add(labelSprite);
 
-      // 상대 좌표 저장을 위한 객체
       labelItems.push({
         sprite: labelSprite,
         localPos: pos.clone()
       });
     });
 
-    // 6. 애니메이션 & 안전한 뒷면 숨김 로직
+    // 6. 애니메이션
     const worldPos = new THREE.Vector3();
     const camPos = new THREE.Vector3();
 
     function animate() {
       requestAnimationFrame(animate);
       
-      // 회전
       globe.rotation.y += 0.0012;
       controls.update();
 
-      // 카메라 월드 좌표
       camera.getWorldPosition(camPos);
 
-      // 안전하게 각 포트의 월드 좌표를 계산하여 카메라 바라봄 기준 뒷면 숨김
       labelItems.forEach(item => {
         worldPos.copy(item.localPos);
-        worldPos.applyMatrix4(globe.matrixWorld); // 지구본 회전값 적용
+        worldPos.applyMatrix4(globe.matrixWorld);
 
-        // 포트 위치에서 카메라까지의 방향과 지구본 중심(0,0,0) 관점 비교
         const dirToCam = camPos.clone().sub(worldPos);
         const normal = worldPos.clone().normalize();
 
