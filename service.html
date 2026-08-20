@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서비스 소개 - (주)와이드해운</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* 서브페이지 전용 탭 메뉴 스타일 */
+    .sub-nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 30px 20px;
+      background: #ffffff;
+      position: sticky;
+      top: 82px;
+      z-index: 40;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .tab-btn {
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    /* 배경 이미지가 들어가는 상세 히어로 섹션 스타일 */
+    .service-detail-hero {
+      position: relative;
+      padding: 100px 28px;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .service-detail-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 26, 69, 0.65); /* 가독성을 위한 어두운 오버레이 */
+    }
+    
+    /* 섹션별 배경 이미지 설정 (이미지 경로를 수정하세요) */
+    .hero-ocean { background-image: url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1600&q=80'); }
+    .hero-air { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80'); }
+    .hero-transit { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80'); }
+
+    .detail-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sub-eyebrow {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #72e2f8;
+      margin-bottom: 8px;
+    }
+    .detail-title {
+      text-align: center;
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+    .detail-subtext {
+      text-align: center;
+      font-size: 15px;
+      color: #e2f1f8;
+      margin-bottom: 50px;
+    }
+
+    /* 두 번째 사진 내부 투명 박스 레이아웃 */
+    .detail-card-box {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      display: grid;
+      gap: 25px;
+    }
+    .info-item h4 {
+      font-size: 18px;
+      color: #72e2f8;
+      margin: 0 0 8px 0;
+    }
+    .info-item p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #f1f5f9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 공통 헤더 -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="와이드해운">
+      </a>
+      <nav class="main-nav">
+        <a href="index.html#company">회사소개</a>
+        <a href="service.html" style="color: var(--blue);">서비스</a>
+        <a href="index.html#strengths">강점</a>
+        <a href="index.html#process">운송 프로세스</a>
+        <a href="index.html#contact">문의/오시는길</a>
+      </nav>
+      <a href="index.html#contact" class="nav-cta">견적문의 <span>&rarr;</span></a>
+    </div>
+  </header>
+
+  <!-- 상단 탭 메뉴 -->
+  <div class="sub-nav-tabs">
+    <a href="#ocean" class="tab-btn active">해상운송</a>
+    <a href="#air" class="tab-btn">항공운송</a>
+    <a href="#transit" class="tab-btn">중계무역</a>
+    <a href="#logistics" class="tab-btn">물류서비스</a>
+    <a href="#express" class="tab-btn">특송서비스</a>
+  </div>
+
+  <!-- 1. 해상운송 섹션 -->
+  <section id="ocean" class="service-detail-hero hero-ocean">
+    <div class="detail-container">
+      <span class="sub-eyebrow">OCEAN SERVICE</span>
+      <h2 class="detail-title">해상운송</h2>
+      <p class="detail-subtext">• FCL, LCL, BREAK BULK, FLEXIBLE TANK, 위험물 등 대부분의 화물 진행이 가능합니다.</p>
+
+      <div class="detail-card-box">
+        <div class="info-item">
+          <h4>A. FCL SERVICE</h4>
+          <p>컨테이너 1개 단위의 대량 화물 운송<br>- 장점: 화물 파손 위험 최소화<br>- 단점: LCL 대비 운송비용 부담</p>
+        </div>
+        <div class="info-item">
+          <h4>B. LCL SERVICE</h4>
+          <p>1개 컨테이너에 다수 화주의 소형 화물을 적재<br>- 장점: 운송비용 절감<br>- 단점: 혼적 작업으로 인한 소요시간 증가</p>
+        </div>
+        <div class="info-item">
+          <h4>C. BREAK BULK SERVICE</h4>
+          <p>표준 컨테이너 규격을 초과하는 벌크 화물 수송<br>- 장점: 중량물/대형화물 수송 가능<br>- 단점: 특수 하역 및 전용 선박 필요</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 항공운송 섹션 -->
+  <section id="air" class="service-detail-hero hero-air">
+    <div class="detail-container">
+      <span class="sub-eyebrow">AIR SERVICE</span>
+      <h2 class="detail-title">항공운송</h2>
+      <p class="detail-subtext">• 긴급 화물, 고가치 화물 등 신속성과 안전성이 최우선인 화물 운송 서비스입니다.</p>
+
+      <div class="detail-card-box">
+        <div class="info-item">
+          <p>A. 국내 주요 항공사와의 협약으로 안정적인 스페이스를 확보합니다.</p>
+          <p>B. 안전한 선복 확보로 목적지까지 신속하게 운송합니다.</p>
+          <p>C. 경쟁력 있는 운임을 보장합니다.</p>
+          <p>D. 체계적인 물류 tracking 시스템으로 고객 만족도가 높습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 중계무역 섹션 -->
+  <section id="transit" class="service-detail-hero hero-transit">
+    <div class="detail-container">
+      <span class="sub-eyebrow">TRANSIT TRADE</span>
+      <h2 class="detail-title">중계무역</h2>
+      <p class="detail-subtext">• 삼국간 무역 운송, B/L 재발행, 창고 보관 등 체계적인 연계 운송 솔루션을 제공합니다.</p>
+
+      <div class="detail-card-box">
+        <div class="info-item">
+          <p>A. 고객이 원하는 최적의 중계 시스템을 구축합니다.</p>
+          <p>B. 공항 및 항만 연계 네트워크를 통해 제3국간 신속한 서비스가 가능합니다.</p>
+          <p>C. 보세구역 내 안전하게 보관 및 재적재 연계가 진행됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
