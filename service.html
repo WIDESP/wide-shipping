@@ -6,6 +6,12 @@
   <title>서비스 소개 - (주)와이드해운</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* 1. 클릭 이동 시 상단 헤더에 가려지지 않도록 여백 자동 설정 */
+    html {
+      scroll-padding-top: 160px; /* 헤더 + 탭 메뉴 높이 고려 */
+      scroll-behavior: smooth;   /* 클릭 시 부드럽게 스크롤 */
+    }
+
     /* 서브페이지 전용 탭 메뉴 스타일 */
     .sub-nav-tabs {
       display: flex;
@@ -49,7 +55,7 @@
       background: rgba(6, 26, 69, 0.65); /* 가독성을 위한 어두운 오버레이 */
     }
     
-    /* 섹션별 배경 이미지 설정 (이미지 경로를 수정하세요) */
+    /* 섹션별 배경 이미지 설정 */
     .hero-ocean { background-image: url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1600&q=80'); }
     .hero-air { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80'); }
     .hero-transit { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80'); }
@@ -111,7 +117,8 @@
   <header class="site-header">
     <div class="nav-wrap">
       <a href="index.html" class="brand">
-        <img src="logo.png" alt="와이드해운">
+        <!-- 2. 로고 이미지를 assets 폴더 경로로 변경 -->
+        <img src="assets/logo.png" alt="와이드해운">
       </a>
       <nav class="main-nav">
         <a href="index.html#company">회사소개</a>
