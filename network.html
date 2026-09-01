@@ -305,6 +305,27 @@
       color: #f1f5f9;
       word-break: keep-all;
     }
+    /* 모바일 화면 (768px 이하) 대응 */
+    @media (max-width: 768px) {
+      /* 1. 데스크톱용 가로 메뉴 숨기기 */
+      .main-nav {
+        display: none;
+      }
+
+      /* 2. 햄버거 버튼 표시 */
+      .menu-btn {
+        display: flex;
+      }
+
+      /* 3. 모바일 화면에 맞춰 지구본 높이 및 글자 크기 조정 */
+      .globe-wrapper {
+        height: 420px;
+      }
+
+      .detail-title {
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
 <body>
