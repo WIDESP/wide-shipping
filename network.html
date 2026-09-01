@@ -7,6 +7,22 @@
 
   <meta name="description" content="주식회사 와이드해운의 글로벌 물류 네트워크를 소개합니다. 전 세계 주요 항만 및 파트너 네트워크를 통해 최적의 운송 경로를 제공합니다.">
   
+  <!-- 대표 URL 지정 -->
+  <link rel="canonical" href="https://www.widesp.co.kr/network.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="(주)와이드해운">
+  <meta property="og:title" content="글로벌 네트워크 - (주)와이드해운">
+  <meta property="og:description" content="주식회사 와이드해운의 글로벌 물류 네트워크를 소개합니다. 전 세계 주요 항만 및 파트너 네트워크를 통해 최적의 운송 경로를 제공합니다.">
+  <meta property="og:url" content="https://www.widesp.co.kr/network.html">
+  <meta property="og:image" content="https://www.widesp.co.kr/assets/og-image.png">
+
+  <!-- 파비콘 설정 -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/wide-shipping-logo.svg">
+  <link rel="apple-touch-icon" href="/assets/og-image.png">
+
   <link rel="stylesheet" href="styles.css">
   
   <!-- 3D 지구본 구현 라이브러리 -->
@@ -30,7 +46,9 @@
       line-height: 1.6;
     }
 
-    /* 상단 헤더 */
+    /* ==========================================
+        📌 상단 헤더
+       ========================================== */
     .site-header {
       position: fixed;
       top: 0;
@@ -93,6 +111,12 @@
       padding: 8px 18px;
       border-radius: 6px;
       font-weight: 700;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .main-nav a[target="_blank"]:hover {
+      background-color: #0369a1;
+      transform: translateY(-1px);
     }
 
     .menu-btn {
@@ -112,6 +136,17 @@
       width: 24px;
       height: 2px;
       background-color: #0f172a;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
     html {
@@ -217,34 +252,55 @@
       word-break: keep-all;
     }
 
-    /* 모바일 화면 (768px 이하) 대응 */
-    @media (max-width: 768px) {
+    /* ==========================================
+        📱 모바일 반응형 (992px 통일)
+       ========================================== */
+    @media (max-width: 992px) {
+      body {
+        padding-top: 64px;
+      }
+      .nav-wrap {
+        padding: 10px 20px;
+      }
+      .site-logo {
+        height: 36px;
+      }
+      .menu-btn {
+        display: flex;
+      }
       .main-nav {
         display: none;
-        flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(255, 255, 255, 0.98);
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        gap: 16px;
-        border-bottom: 1px solid #e2e8f0;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #f1f5f9;
       }
-
       .main-nav.active {
         display: flex;
       }
-
-      .menu-btn {
-        display: flex;
+      .main-nav a {
+        padding: 14px 24px;
+        font-size: 16px;
+        color: #1e293b;
+        border-bottom: 1px solid #f8fafc;
+        width: 100%;
       }
-
+      .main-nav a[target="_blank"] {
+        margin: 12px 24px 8px;
+        width: calc(100% - 48px);
+        text-align: center;
+        border-radius: 8px;
+      }
       .globe-wrapper {
         height: 420px;
       }
-
       .detail-title {
         font-size: 28px;
       }
@@ -256,7 +312,7 @@
   <!-- 상단 공통 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
-      <a href="index.html" class="brand">
+      <a href="index.html" class="brand" aria-label="와이드해운 홈">
         <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
       </a>
 
@@ -498,7 +554,7 @@
     });
   </script>
 
-  <!-- 모바일 햄버거 토글 스크립트 -->
+  <!-- 모바일 햄버거 토글 스크립트 (통일된 동작 적용) -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const menuToggle = document.getElementById('menuToggle');
@@ -508,6 +564,7 @@
         menuToggle.addEventListener('click', function() {
           const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
           menuToggle.setAttribute('aria-expanded', !isExpanded);
+          menuToggle.classList.toggle('active');
           mainNav.classList.toggle('active');
         });
       }
