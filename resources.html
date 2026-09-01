@@ -170,7 +170,7 @@
       font-size: 15px;
     }
 
-    /* 컨테이너 개별 이미지 박스 스타일 추가 */
+    /* 컨테이너 개별 이미지 박스 스타일 */
     .container-img-box {
       width: 100%;
       max-width: 450px;
@@ -187,6 +187,35 @@
       width: 100%;
       height: auto;
       object-fit: contain;
+    }
+
+    /* 특수 컨테이너 나란히 배치 전용 스타일 */
+    .container-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 15px 0 20px 0;
+    }
+
+    .container-grid-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container-grid-item h4 {
+      font-size: 15px;
+      color: #1e293b;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .container-grid-item .container-img-box {
+      max-width: 100%;
+      margin: 0;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* 테이블 스타일 */
@@ -279,6 +308,12 @@
       .main-nav a { padding: 14px 24px; font-size: 16px; border-bottom: 1px solid #f8fafc; }
       .guide-section { padding: 20px; }
     }
+
+    @media (max-width: 768px) {
+      .container-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -297,16 +332,16 @@
     </button>
 
     <nav class="main-nav" id="mainNav">
-  <a href="index.html#company">회사소개</a>
-  <a href="service.html">서비스</a>
-  <a href="network.html">글로벌 네트워크</a>
-  <a href="resources.html">무역·물류 자료실</a>
-  <a href="contact.html">오시는길 / 문의</a>
+      <a href="index.html#company">회사소개</a>
+      <a href="service.html">서비스</a>
+      <a href="network.html">글로벌 네트워크</a>
+      <a href="resources.html">무역·물류 자료실</a>
+      <a href="contact.html">오시는길 / 문의</a>
 
-  <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-    온라인 견적문의
-  </a>
-</nav>
+      <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
+      </a>
+    </nav>
   </div>
 </header>
 
@@ -361,14 +396,20 @@
     <!-- 3) 특수 컨테이너 -->
     <h3 style="margin-top: 35px;">3) 특수 컨테이너 (Open Top / Flat Rack)</h3>
     
-    <h4 style="font-size: 15px; color: #1e293b; margin: 20px 0 10px 0;">· 오픈 탑 컨테이너 (Open Top Container)</h4>
-    <div class="container-img-box">
-      <img src="assets/opentop.png" alt="오픈탑 컨테이너 사진">
-    </div>
+    <div class="container-grid">
+      <div class="container-grid-item">
+        <h4>· 오픈 탑 컨테이너 (Open Top Container)</h4>
+        <div class="container-img-box">
+          <img src="assets/opentop.png" alt="오픈탑 컨테이너 사진">
+        </div>
+      </div>
 
-    <h4 style="font-size: 15px; color: #1e293b; margin: 20px 0 10px 0;">· 플랫 랙 컨테이너 (Flat Rack Container)</h4>
-    <div class="container-img-box">
-      <img src="assets/flatrack.png" alt="플랫랙 컨테이너 사진">
+      <div class="container-grid-item">
+        <h4>· 플랫 랙 컨테이너 (Flat Rack Container)</h4>
+        <div class="container-img-box">
+          <img src="assets/flatrack.png" alt="플랫랙 컨테이너 사진">
+        </div>
+      </div>
     </div>
 
     <div class="table-container" style="margin-top: 20px;">
