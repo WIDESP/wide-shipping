@@ -335,21 +335,28 @@
     .info-item p + p {
       margin-top: 6px;
     }
-    /* 모바일 화면 (768px 이하) 대응 */
+/* 모바일 화면 (768px 이하) 대응 */
     @media (max-width: 768px) {
-      /* 1. 상단 데스크톱 가로 메뉴 숨기기 */
       .main-nav {
-        display: none !important;
+        display: none; /* 기본 상태에서는 숨김 */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        gap: 16px;
       }
 
-      /* 2. 햄버거 버튼 표시 */
-      .menu-btn {
+      /* 버튼을 눌러 active 클래스가 붙으면 메뉴 표시 */
+      .main-nav.active {
         display: flex !important;
       }
 
-      /* 3. 모바일 화면 여백 및 제목 크기 최적화 */
-      .detail-title, .service-title {
-        font-size: 28px;
+      .menu-btn {
+        display: flex !important;
       }
     }
   </style>
