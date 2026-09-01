@@ -335,6 +335,23 @@
     .info-item p + p {
       margin-top: 6px;
     }
+    /* 모바일 화면 (768px 이하) 대응 */
+    @media (max-width: 768px) {
+      /* 1. 상단 데스크톱 가로 메뉴 숨기기 */
+      .main-nav {
+        display: none !important;
+      }
+
+      /* 2. 햄버거 버튼 표시 */
+      .menu-btn {
+        display: flex !important;
+      }
+
+      /* 3. 모바일 화면 여백 및 제목 크기 최적화 */
+      .detail-title, .service-title {
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
 <body>
