@@ -119,6 +119,91 @@
       transform: translateY(-1px);
     }
 
+    /* ==========================================
+        📌 드롭다운 메뉴 (무역·물류 자료실)
+       ========================================== */
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-dropdown .nav-dropdown-btn {
+      color: #1e293b;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 6px 0;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-btn {
+      color: #0284c7;
+    }
+
+    /* 마우스 커서 이동 공간 보장 브릿지 */
+    .nav-dropdown::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      display: block;
+    }
+
+    .nav-dropdown .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      min-width: 180px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 6px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
+      z-index: 1000;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      display: block;
+      animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -4px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    .nav-dropdown .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 8px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-dropdown .dropdown-menu a:hover {
+      background-color: #f0f9ff;
+      color: #0284c7;
+    }
+
+    /* 모바일 햄버거 버튼 */
     .menu-btn {
       display: none;
       background: none;
@@ -292,6 +377,39 @@
         border-bottom: 1px solid #f8fafc;
         width: 100%;
       }
+
+      /* 모바일 드롭다운 메뉴 스타일 재정의 */
+      .nav-dropdown {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-dropdown .nav-dropdown-btn {
+        padding: 14px 24px;
+        font-size: 16px;
+        color: #1e293b;
+        border-bottom: 1px solid #f8fafc;
+        width: 100%;
+      }
+      .nav-dropdown .dropdown-menu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        background-color: #f8fafc;
+        width: 100%;
+        padding: 0;
+        display: block;
+      }
+      .nav-dropdown .dropdown-menu a {
+        padding: 12px 36px;
+        font-size: 14px;
+        justify-content: flex-start;
+        border-bottom: 1px solid #edf2f7;
+        color: #475569;
+      }
+
       .main-nav a[target="_blank"] {
         margin: 12px 24px 8px;
         width: calc(100% - 48px);
@@ -305,7 +423,7 @@
         font-size: 28px;
       }
     }
-  </style>
+</style>
 </head>
 <body>
 
@@ -323,16 +441,24 @@
       </button>
 
       <nav class="main-nav" id="mainNav">
-        <a href="index.html#company">회사소개</a>
-        <a href="service.html">서비스</a>
-        <a href="network.html" class="active">글로벌 네트워크</a>
-        <a href="resources.html">무역·물류 자료실</a>
-        <a href="contact.html">오시는길 / 문의</a>
+  <a href="index.html#company">회사소개</a>
+  <a href="service.html">서비스</a>
+  <a href="network.html">글로벌 네트워크</a>
 
-        <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-          온라인 견적문의
-        </a>
-      </nav>
+  <!-- 드롭다운이 적용된 무역·물류 자료실 -->
+  <div class="nav-dropdown">
+    <a href="resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
+    <div class="dropdown-menu">
+      <a href="https://wide-forwarding-load-planner-2026.someborero.chatgpt.site/">컨테이너 적재 계산기</a>
+    </div>
+  </div>
+
+  <a href="contact.html">오시는길 / 문의</a>
+
+  <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+    온라인 견적문의
+  </a>
+</nav>
     </div>
   </header>
 
