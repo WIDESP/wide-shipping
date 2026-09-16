@@ -9,32 +9,42 @@
 .brand{font-size:13px;letter-spacing:.105em;font-weight:600}
 .brand strong{font-weight:900}
 
-/* 상단 메뉴 글자 스타일 - 두 번째 이미지 스타일 기준으로 완벽 통일 */
+/* =========================================================
+   상단 메인 메뉴 - 어두운 네이비 헤더 배경에 맞춘 최적화 스타일
+   ========================================================= */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
 .main-nav > a,
 .main-nav .nav-dropdown-btn {
   text-decoration: none;
-  color: #1e293b !important; /* 두 번째 이미지의 선명하고 어두운 네이비/먹색 */
+  color: #b4cbd0 !important; /* 상단 헤더(#071b2b) 배경에 맞춰 밝은 민트/하늘색으로 통일 */
   font-size: 13px;
-  font-weight: 700 !important; /* 굵고 또렷한 텍스트 반영 */
+  font-weight: 700 !important;
   white-space: nowrap;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
   font-family: inherit;
+  transition: color 0.15s ease, opacity 0.15s ease;
 }
 
-/* 마우스 올렸을 때 살짝 흐려지거나 강조되는 효과 */
 .main-nav > a:hover,
 .main-nav .nav-dropdown-btn:hover {
-  color: #0f172a !important;
-  opacity: 0.8;
+  color: #ffffff !important; /* 마우스 호버 시 선명한 하얀색 */
+  opacity: 1;
 }
-/* 드롭다운 메뉴 스타일 (.main-nav 내부 연동) */
+
+/* 드롭다운 메뉴 스타일 */
 .main-nav .nav-dropdown {
   position: relative;
   display: inline-block;
 }
+
 .main-nav .dropdown-menu {
   display: none;
   position: absolute;
@@ -49,25 +59,30 @@
   padding: 6px 0;
   z-index: 100;
 }
+
 .main-nav .nav-dropdown:hover .dropdown-menu {
   display: block;
 }
+
 .main-nav .dropdown-menu a {
   display: block;
   padding: 9px 15px;
   font-size: 12px;
-  color: #b4cbd0;
+  color: #b4cbd0 !important;
   font-family: inherit;
   font-weight: 700;
   white-space: nowrap;
   text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
 }
+
 .main-nav .dropdown-menu a:hover {
-  background: #102e43;
-  color: #fff;
+  background: #102e43 !important;
+  color: #ffffff !important;
 }
+
 .main-nav .dropdown-menu a.active {
-  color: #19b8c6;
+  color: #19b8c6 !important;
 }
 
 main{max-width:1500px;margin:auto;box-shadow:0 28px 80px #13344820}.hero{background:radial-gradient(circle at 78% 42%,#174b5a 0,#102e43 31%,#071b2b 77%);min-height:324px;color:#fff;display:flex;position:relative;overflow:hidden;border-bottom:3px solid #2cc5c6}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 96%,#66aeb50d 97%),linear-gradient(transparent 0 96%,#66aeb50d 97%);background-size:36px 36px;mask-image:linear-gradient(90deg,transparent 45%,#000 100%)}.hero-copy{padding:47px 42px 49px;position:relative;z-index:2;flex:1}.eyebrow,.section-number{font-size:10px;font-weight:850;letter-spacing:.15em;color:#09a0ad}.eyebrow{color:#88dfe5;display:flex;align-items:center;gap:10px}.pulse-dot,.hero-tags i,.viewer-topline i,.blueprint-head i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#43e2df;box-shadow:0 0 0 4px #29ced62e,0 0 14px #3df4eb}.version{font-size:9px;color:#6c9ca9;margin-left:24px}.hero h1{font-size:clamp(35px,3.5vw,56px);line-height:1.18;letter-spacing:-.055em;margin:23px 0 18px;font-weight:850}.hero h1 em{font-style:normal;background:linear-gradient(90deg,#8ef6ee,#51c0f0);background-clip:text;color:transparent}.hero p{color:#b1c8d1;font-size:13px;line-height:1.8;margin:0}.hero-tags{margin-top:25px;display:flex;gap:8px;flex-wrap:wrap}.hero-tags span{border:1px solid #397587;background:#1640558c;color:#d5eff1;padding:8px 11px;font-size:10px;font-weight:750;letter-spacing:.06em}.hero-tags i{width:4px;height:4px;margin:0 5px 2px 0;box-shadow:none}.mobile-jump{display:none}.hero-graphic{position:relative;flex:0 0 36%;overflow:hidden}.graphic-grid{position:absolute;inset:-10%;background-image:linear-gradient(#4dabb41b 1px,transparent 1px),linear-gradient(90deg,#4dabb41b 1px,transparent 1px);background-size:29px 29px;transform:perspective(440px) rotateX(55deg) rotateZ(-17deg) scale(1.35)}.hero-glow{position:absolute;inset:15%;background:radial-gradient(ellipse,#1bc7d23b,transparent 67%);filter:blur(18px)}.graphic-orbit{position:absolute;left:14%;top:15%;width:65%;aspect-ratio:1;border:1px solid #57cbd131;border-radius:50%;transform:rotateX(66deg) rotateZ(-20deg)}.graphic-orbit.b{left:1%;top:5%;width:92%;border-style:dashed;opacity:.55}.wire-box{position:absolute;left:22%;top:27%;width:55%;height:48%;transform:skewY(-13deg) rotate(-4deg);border:2px solid #a0ecec;box-shadow:13px 14px 0 #116079,0 0 38px #23e8e555}.wire-box:after{content:"";position:absolute;inset:9%;border:1px solid #7bc9c357}.wire-top{position:absolute;left:7%;top:-30%;width:100%;height:30%;transform:skewX(-26deg);background:#2acbca1d;border:1px solid #b2f8f6}.wire-front{position:absolute;right:-24%;top:-14%;width:24%;height:100%;transform:skewY(43deg);border:1px solid #98e4e6;background:#178f9670}.wire-side{position:absolute;left:9%;top:14%;right:9%;bottom:14%;border:1px solid #73bdc270}.wire-cargo{position:absolute;bottom:12%;width:22%;height:35%;background:#41d2c36e;border:1px solid #a3f4e6;box-shadow:0 0 14px #2ce4d942}.wire-cargo.one{left:12%;width:45%;height:47%}.wire-cargo.two{left:60%}.wire-cargo.three{left:84%;width:9%;background:#e9ae6f99;border-color:#f6d0a0}.graphic-index,.graphic-coordinate{position:absolute;font-size:9px;letter-spacing:.16em;color:#7fb9c3}.graphic-index{bottom:17%;left:16%}.graphic-coordinate{top:14%;right:9%}
