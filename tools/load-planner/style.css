@@ -1,4 +1,4 @@
-/* style.css - 포워딩 적재 계산기 스타일 */
+/* style.css - 포워딩 적재 계산기 통합 스타일 */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 * {
@@ -13,11 +13,11 @@ body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   line-height: 1.5;
   min-height: 100vh;
-  padding-top: 72px; /* 상단 고정 헤더 가림 방지 */
+  padding-top: 72px;
 }
 
 /* ==========================================
-   📌 신규 홈페이지 통합 헤더 스타일
+   📌 상단 통합 헤더
    ========================================== */
 .site-header {
   position: fixed;
@@ -54,7 +54,6 @@ body {
   width: auto;
   display: block;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
 .main-nav {
@@ -94,7 +93,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* 드롭다운 메뉴 (무역·물류 자료실) */
+/* 드롭다운 메뉴 */
 .nav-dropdown {
   position: relative;
   display: inline-flex;
@@ -146,14 +145,8 @@ body {
 }
 
 @keyframes dropdownFadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -4px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
+  from { opacity: 0; transform: translate(-50%, -4px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 .nav-dropdown .dropdown-menu a {
@@ -196,44 +189,61 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.menu-btn.active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-btn.active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
+.menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-btn.active span:nth-child(2) { opacity: 0; }
+.menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ==========================================
-   📌 계산기 본문 영역 스타일
+   📌 HERO 섹션
    ========================================== */
 .hero {
-  padding: 2.5rem 2rem;
-  background: linear-gradient(135deg, #0b1720 0%, #0e2230 100%);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
   border-bottom: 1px solid #162a38;
 }
 
-.hero-sub {
+.eyebrow {
   color: #00d2a0;
   font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.hero-title {
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00d2a0;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #00d2a0;
+}
+
+.hero-copy h1 {
   font-size: 2.2rem;
   font-weight: 800;
   color: #ffffff;
+  line-height: 1.3;
   margin-bottom: 1rem;
 }
 
-.hero-desc {
+.hero-copy h1 em {
+  font-style: normal;
+  color: #00d2a0;
+}
+
+.hero-copy p {
   color: #94a3b8;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
@@ -241,49 +251,155 @@ body {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 
-.tag {
+.hero-tags span {
   background: rgba(0, 210, 160, 0.1);
   color: #00d2a0;
   border: 1px solid rgba(0, 210, 160, 0.3);
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
-.main-container {
+.mobile-jump {
+  display: none;
+  background: #00d2a0;
+  color: #081017;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.hero-graphic {
+  background: #081017;
+  border: 1px solid #162a38;
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.graphic-index {
+  font-size: 0.75rem;
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+.graphic-coordinate {
+  font-size: 0.85rem;
+  color: #00d2a0;
+  font-family: monospace;
+  margin-top: 4px;
+}
+
+/* ==========================================
+   📌 WORKSPACE (입력 & 결과 2열 배치)
+   ========================================== */
+.workspace {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
-.section-card {
+.input-column, .result-column {
   background: #0f1d27;
   border: 1px solid #1a3243;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
-.cargo-group {
-  background: #0b151d;
-  border: 1px solid #1a2f3e;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #1a3243;
+}
+
+.section-number {
+  color: #00d2a0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.section-heading h2 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.section-heading p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.text-button {
+  background: transparent;
+  border: 1px solid #203b4e;
+  color: #94a3b8;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.text-button:hover {
+  border-color: #00d2a0;
+  color: #00d2a0;
+}
+
+.add-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+}
+
+.add-button {
+  background: #00d2a0;
+  color: #081017;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.clearance-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #1a3243;
+  font-size: 0.9rem;
 }
 
 input, select {
   background: #132430;
   border: 1px solid #203b4e;
   color: #ffffff;
-  padding: 8px;
-  border-radius: 4px;
+  padding: 8px 12px;
+  border-radius: 6px;
   font-size: 0.9rem;
   outline: none;
 }
@@ -292,118 +408,66 @@ input:focus {
   border-color: #00d2a0;
 }
 
-button {
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background: #00d2a0;
-  color: #081017;
-}
-
-.btn-outline {
-  background: transparent;
-  border: 1px solid #203b4e;
-  color: #e2e8f0;
+.live-pill {
+  background: rgba(0, 210, 160, 0.15);
+  color: #00d2a0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 210, 160, 0.3);
 }
 
 /* ==========================================
-   📱 모바일 반응형 처리
+   📌 FOOTER
+   ========================================== */
+footer {
+  max-width: 1400px;
+  margin: 2rem auto 0;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #162a38;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+footer a {
+  color: #00d2a0;
+  text-decoration: none;
+}
+
+/* ==========================================
+   📱 모바일 반응형
    ========================================== */
 @media (max-width: 992px) {
-  body {
-    padding-top: 64px;
-  }
-
-  .nav-wrap {
-    padding: 10px 20px;
-  }
-
-  .site-logo {
-    height: 36px;
-  }
-
-  .menu-btn {
-    display: flex !important;
-  }
-
+  body { padding-top: 64px; }
+  .nav-wrap { padding: 10px 20px; }
+  .site-logo { height: 36px; }
+  .menu-btn { display: flex !important; }
   .main-nav {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+    top: 100%; left: 0; width: 100%;
     background: #ffffff;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 12px 0;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    align-items: stretch; gap: 0; padding: 12px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     border-top: 1px solid #f1f5f9;
   }
-
-  .main-nav.active {
-    display: flex !important;
-  }
-
+  .main-nav.active { display: flex !important; }
   .main-nav a {
-    padding: 14px 24px;
-    font-size: 16px;
-    border-bottom: 1px solid #f8fafc;
-    width: 100%;
-    color: #1e293b;
+    padding: 14px 24px; font-size: 16px;
+    border-bottom: 1px solid #f8fafc; width: 100%; color: #1e293b;
   }
+  .nav-dropdown { width: 100%; flex-direction: column; align-items: stretch; }
+  .nav-dropdown .nav-dropdown-btn { padding: 14px 24px; font-size: 16px; color: #1e293b; border-bottom: 1px solid #f8fafc; width: 100%; }
+  .nav-dropdown .dropdown-menu { position: static; transform: none; box-shadow: none; border: none; background-color: #f8fafc; width: 100%; padding: 0; display: block; }
+  .nav-dropdown .dropdown-menu a { padding: 12px 36px; font-size: 14px; justify-content: flex-start; border-bottom: 1px solid #edf2f7; color: #475569; }
+  .main-nav a.btn.primary, .main-nav a[target="_blank"] { margin: 12px 24px 8px; width: calc(100% - 48px); text-align: center; border-radius: 8px; }
 
-  .nav-dropdown {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .nav-dropdown .nav-dropdown-btn {
-    padding: 14px 24px;
-    font-size: 16px;
-    color: #1e293b;
-    border-bottom: 1px solid #f8fafc;
-    width: 100%;
-  }
-
-  .nav-dropdown .dropdown-menu {
-    position: static;
-    transform: none;
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
-    background-color: #f8fafc;
-    width: 100%;
-    padding: 0;
-    display: block;
-  }
-
-  .nav-dropdown .dropdown-menu a {
-    padding: 12px 36px;
-    font-size: 14px;
-    justify-content: flex-start;
-    border-bottom: 1px solid #edf2f7;
-    color: #475569;
-  }
-
-  .main-nav a.btn.primary,
-  .main-nav a[target="_blank"] {
-    margin: 12px 24px 8px;
-    width: calc(100% - 48px);
-    text-align: center;
-    border-radius: 8px;
-  }
-}
-
-@media (max-width: 900px) {
-  .main-container {
-    grid-template-columns: 1fr;
-  }
+  .hero, .workspace { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
+  .mobile-jump { display: inline-block; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
 }
