@@ -1,4 +1,4 @@
-/* style.css - 포워딩 적재 계산기 통합 스타일 */
+/* style.css - (주)와이드해운 포워딩 적재 계산기 스타일 */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 * {
@@ -8,8 +8,8 @@
 }
 
 body {
-  background-color: #0b1720;
-  color: #e2e8f0;
+  background-color: #f1f5f9; /* 하단 바탕 전체 라이트 그레이 */
+  color: #1e293b;
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   line-height: 1.5;
   min-height: 100vh;
@@ -17,7 +17,7 @@ body {
 }
 
 /* ==========================================
-   📌 상단 통합 헤더
+   📌 상단 통합 헤더 (고정)
    ========================================== */
 .site-header {
   position: fixed;
@@ -33,7 +33,7 @@ body {
 }
 
 .nav-wrap {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 12px 24px;
   display: flex;
@@ -107,7 +107,6 @@ body {
   text-decoration: none;
   padding: 6px 0;
   white-space: nowrap;
-  transition: color 0.2s ease;
 }
 
 .nav-dropdown:hover .nav-dropdown-btn {
@@ -160,7 +159,6 @@ body {
   text-decoration: none;
   white-space: nowrap;
   border-radius: 8px;
-  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .nav-dropdown .dropdown-menu a:hover {
@@ -194,8 +192,13 @@ body {
 .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ==========================================
-   📌 HERO 섹션
+   📌 HERO 섹션 (다크 모드 유지)
    ========================================== */
+.hero-wrapper {
+  background: #08141e; /* 히어로 다크 배경 */
+  border-bottom: 1px solid #162a38;
+}
+
 .hero {
   max-width: 1400px;
   margin: 0 auto;
@@ -204,7 +207,6 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: center;
-  border-bottom: 1px solid #162a38;
 }
 
 .eyebrow {
@@ -242,7 +244,7 @@ body {
 
 .hero-copy p {
   color: #94a3b8;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -251,7 +253,6 @@ body {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
 }
 
 .hero-tags span {
@@ -264,21 +265,9 @@ body {
   font-weight: 600;
 }
 
-.mobile-jump {
-  display: none;
-  background: #00d2a0;
-  color: #081017;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
 .hero-graphic {
-  background: #081017;
-  border: 1px solid #162a38;
+  background: rgba(15, 29, 39, 0.6);
+  border: 1px solid #1a3243;
   border-radius: 12px;
   padding: 2rem;
   min-height: 260px;
@@ -303,7 +292,7 @@ body {
 }
 
 /* ==========================================
-   📌 WORKSPACE (입력 & 결과 2열 배치)
+   📌 WORKSPACE (라이트 카드 레이아웃 복원)
    ========================================== */
 .workspace {
   max-width: 1400px;
@@ -315,10 +304,11 @@ body {
 }
 
 .input-column, .result-column {
-  background: #0f1d27;
-  border: 1px solid #1a3243;
+  background: #ffffff; /* 하얀색 카드로 복원 */
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
 }
 
 .section-heading {
@@ -327,11 +317,11 @@ body {
   align-items: flex-start;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #1a3243;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .section-number {
-  color: #00d2a0;
+  color: #00b894;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -341,63 +331,29 @@ body {
 
 .section-heading h2 {
   font-size: 1.3rem;
-  color: #ffffff;
-  font-weight: 700;
+  color: #0f172a; /* 어두운 글자색 */
+  font-weight: 800;
 }
 
 .section-heading p {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: #64748b;
   margin-top: 4px;
 }
 
-.text-button {
-  background: transparent;
-  border: 1px solid #203b4e;
-  color: #94a3b8;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.text-button:hover {
-  border-color: #00d2a0;
-  color: #00d2a0;
-}
-
-.add-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 1.5rem 0;
-}
-
-.add-button {
-  background: #00d2a0;
-  color: #081017;
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-}
-
-.clearance-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #1a3243;
-  font-size: 0.9rem;
+/* 입력 그룹 (라이트 스타일) */
+.cargo-group {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 input, select {
-  background: #132430;
-  border: 1px solid #203b4e;
-  color: #ffffff;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 0.9rem;
@@ -405,17 +361,73 @@ input, select {
 }
 
 input:focus {
-  border-color: #00d2a0;
+  border-color: #00b894;
+  box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
 }
 
-.live-pill {
-  background: rgba(0, 210, 160, 0.15);
+.text-button {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.add-button {
+  background: #00b894;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+/* 적재 분석 추천 카드는 내부만 다크 포인트 적용 */
+.recommended-card {
+  background: #0b1720;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.recommended-card .card-title {
   color: #00d2a0;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 210, 160, 0.3);
+  letter-spacing: 1px;
+}
+
+.recommended-card h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 8px 0;
+}
+
+/* 지표 숫자 박스 (라이트 하단) */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.metric-item .label {
+  font-size: 0.75rem;
+  color: #64748b;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.metric-item .value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
 }
 
 /* ==========================================
@@ -425,7 +437,7 @@ footer {
   max-width: 1400px;
   margin: 2rem auto 0;
   padding: 1.5rem 2rem;
-  border-top: 1px solid #162a38;
+  border-top: 1px solid #e2e8f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -434,12 +446,12 @@ footer {
 }
 
 footer a {
-  color: #00d2a0;
+  color: #0284c7;
   text-decoration: none;
 }
 
 /* ==========================================
-   📱 모바일 반응형
+   📱 모바일 반응형 (992px 통일)
    ========================================== */
 @media (max-width: 992px) {
   body { padding-top: 64px; }
@@ -468,6 +480,5 @@ footer a {
   .main-nav a.btn.primary, .main-nav a[target="_blank"] { margin: 12px 24px 8px; width: calc(100% - 48px); text-align: center; border-radius: 8px; }
 
   .hero, .workspace { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
-  .mobile-jump { display: inline-block; }
   footer { flex-direction: column; gap: 8px; text-align: center; }
 }
