@@ -9,15 +9,15 @@
 .brand{font-size:13px;letter-spacing:.105em;font-weight:600}
 .brand strong{font-weight:900}
 
-/* [수정 완료] HTML의 .main-nav 구조와 일치하도록 맞춘 상단 메뉴 영역 스타일 */
+/* 상단 메뉴 영역 스타일 및 견적문의 버튼 디자인 완벽 적용 */
 .main-nav{display:flex;gap:24px;align-items:center}
 .main-nav > a,
 .main-nav .nav-dropdown-btn{text-decoration:none;color:#b4cbd0;font-size:13px;font-weight:700;white-space:nowrap;background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
 .main-nav > a:hover,
 .main-nav .nav-dropdown-btn:hover{color:white}
 
-.main-nav .btn-quote{background:#e0ae69;color:#0a2432;padding:10px 16px;border-radius:3px;box-shadow:0 0 22px #d5a26224;font-weight:800;font-size:13px}
-.main-nav .btn-quote:hover{background:#f1c884;color:#0a2432}
+.main-nav .btn-quote{background:#0284c7 !important;color:#ffffff !important;padding:10px 18px !important;border-radius:6px !important;font-weight:700 !important;font-size:13px !important;text-decoration:none !important;display:inline-block !important;transition:background-color 0.2s ease, transform 0.2s ease;}
+.main-nav .btn-quote:hover{background:#0369a1 !important;transform:translateY(-1px);}
 
 /* 드롭다운 메뉴 스타일 (.main-nav 내부 연동) */
 .main-nav .nav-dropdown {
