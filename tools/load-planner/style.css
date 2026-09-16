@@ -17,7 +17,7 @@ body {
 }
 
 /* ==========================================
-   📌 1. 상단 바 (HTML: topbar 구조에 맞춤)
+   📌 1. 상단 바 (TOPBAR)
    ========================================== */
 .topbar {
   position: fixed;
@@ -106,10 +106,10 @@ body {
 }
 
 /* ==========================================
-   📌 2. 히어로 섹션 (HTML: section.hero 다크 배경 복원)
+   📌 2. 히어로 섹션 (HERO & 3D GRAPHIC)
    ========================================== */
 .hero {
-  background: #08141e; /* 히어로 다크 배경 적용 */
+  background: #08141e;
   border-bottom: 1px solid #162a38;
   padding: 3.5rem 2rem;
   display: grid;
@@ -187,27 +187,70 @@ body {
   display: none;
 }
 
-/* 히어로 3D 그래픽 박스 복원 */
+/* 히어로 우측 3D 입체 그래픽 박스 */
 .hero-graphic {
-  background: rgba(15, 29, 39, 0.7);
-  border: 1px solid #1a3243;
+  background: rgba(10, 25, 35, 0.85);
+  border: 1px solid rgba(0, 210, 160, 0.25);
   border-radius: 12px;
-  padding: 2rem;
-  min-height: 280px;
-  max-width: 650px;
+  padding: 1.5rem;
+  height: 300px;
   position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
+.cube-wireframe {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 240px;
+  height: 160px;
+  perspective: 600px;
+}
+
+.cube-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(-35deg);
+}
+
+.cube-face {
+  position: absolute;
+  border: 1px solid rgba(0, 210, 160, 0.6);
+  box-shadow: inset 0 0 10px rgba(0, 210, 160, 0.1);
+}
+
+.cube-face.front  { width: 200px; height: 100px; transform: translateZ(50px); }
+.cube-face.back   { width: 200px; height: 100px; transform: translateZ(-50px); border-style: dashed; opacity: 0.4; }
+.cube-face.top    { width: 200px; height: 100px; transform: rotateX(90deg) translateZ(50px); }
+.cube-face.right  { width: 100px; height: 100px; transform: rotateY(90deg) translateZ(150px); }
+
+.block-cargo {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  width: 110px;
+  height: 60px;
+  border: 1.5px solid #ffaa00;
+  background: rgba(255, 170, 0, 0.25);
+  transform: translateZ(20px);
+}
+
 .graphic-index {
+  position: relative;
+  z-index: 2;
   font-size: 0.75rem;
   color: #64748b;
   letter-spacing: 1px;
 }
 
 .graphic-coordinate {
+  position: relative;
+  z-index: 2;
   font-size: 0.85rem;
   color: #00d2a0;
   font-family: monospace;
@@ -215,7 +258,7 @@ body {
 }
 
 /* ==========================================
-   📌 3. WORKSPACE (좌: 화물 정보 / 우: 적재 분석)
+   📌 3. WORKSPACE (메인 레이아웃)
    ========================================== */
 .workspace {
   max-width: 1400px;
@@ -280,7 +323,6 @@ body {
   cursor: pointer;
 }
 
-/* LIVE SIMULATION 배지 */
 .live-pill {
   background: rgba(0, 184, 148, 0.1);
   color: #00b894;
@@ -302,7 +344,7 @@ body {
 }
 
 /* ------------------------------------------
-   👈 [왼쪽] 화물 추가 및 입력 폼 레이아웃
+   👈 [좌측] 화물 입력 폼 정밀 가로 정렬 (그리드)
    ------------------------------------------ */
 .add-row {
   display: flex;
@@ -327,7 +369,79 @@ body {
   font-weight: 600;
 }
 
-/* 바닥 작업 여유 정렬 */
+.cargo-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #00b894;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.cargo-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row {
+  display: grid;
+  gap: 8px;
+}
+
+/* 1행: 화물명 / L / W / H 가로 4열 배치 */
+.form-row.row-4 {
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+
+/* 2행 & 3행: 가로 2열 배치 */
+.form-row.row-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  background-color: #ffffff;
+  color: #0f172a;
+  outline: none;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: #00b894;
+  box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+}
+
 .clearance-line {
   display: flex;
   justify-content: space-between;
@@ -350,68 +464,115 @@ body {
   text-align: right;
 }
 
-/* JS 동적 생성 화물 카드 스타일링 */
-.cargo-card, .cargo-item, .cargo-row-item {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-left: 4px solid #00b894;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 12px;
-}
-
-input, select {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  color: #0f172a;
-  padding: 8px 10px;
-  border-radius: 6px;
-  font-size: 0.88rem;
-  outline: none;
-}
-
-input:focus, select:focus {
-  border-color: #00b894;
-  box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
-}
-
 /* ------------------------------------------
-   👉 [오른쪽] 적재 분석 결과 (JS 생성 영역)
+   👉 [우측] 적재 분석 및 결과 카드
    ------------------------------------------ */
-.recommended-banner, .recommended-card {
+.recommended-banner {
   background: linear-gradient(135deg, #092c38 0%, #0d4052 100%);
   color: #ffffff;
   border-radius: 12px;
-  padding: 22px 24px;
-  margin-top: 1rem;
+  padding: 20px 24px;
   margin-bottom: 20px;
 }
 
-.summary-metrics, .metrics-grid {
+.banner-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.banner-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #00d2a0;
+  letter-spacing: 1px;
+}
+
+.banner-action-btn {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.banner-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-text h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.banner-text p {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 4px;
+  line-height: 1.4;
+  max-width: 340px;
+}
+
+.banner-unit-badge {
+  background: rgba(0, 210, 160, 0.15);
+  border: 1px solid #00d2a0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-unit-badge .num {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #00d2a0;
+  line-height: 1;
+}
+
+.banner-unit-badge .unit {
+  font-size: 0.6rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.summary-metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  padding-top: 20px;
+  padding-top: 16px;
   border-top: 1px solid #f1f5f9;
 }
 
-.metric-card, .metric-item {
+.metric-card {
   display: flex;
   flex-direction: column;
 }
 
-.metric-card .metric-label, .metric-item .label {
-  font-size: 0.75rem;
+.metric-card .metric-label {
+  font-size: 0.72rem;
   color: #64748b;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.metric-card .metric-value, .metric-item .value {
+.metric-card .metric-value {
   font-size: 1.35rem;
   font-weight: 800;
   color: #0f172a;
+}
+
+.metric-card .unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
 }
 
 /* ==========================================
@@ -435,7 +596,7 @@ footer a {
 }
 
 /* ==========================================
-   📱 5. 모바일 반응형
+   📱 5. 반응형
    ========================================== */
 @media (max-width: 992px) {
   .hero, .workspace {
