@@ -7,11 +7,11 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- 외부 style.css를 먼저 로드 -->
+  <!-- 외부 style.css 먼저 로드 -->
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 덮어쓰기 방지, 흔들림 제거 및 디자인 완벽 통일 전용 STYLE -->
+  <!-- 공통 헤더 규격 100% 일치 전용 STYLE -->
   <style>
     * {
       box-sizing: border-box;
@@ -23,7 +23,7 @@
     }
 
     body {
-      padding-top: 72px !important;
+      padding-top: 70px !important;
       background-color: #ffffff;
       color: #333;
       line-height: 1.6;
@@ -32,57 +32,57 @@
     }
 
     /* ==========================================
-       📌 상단 고정 헤더 & 수평 레이아웃 정렬
+       📌 공통 상단 헤더 규격 맞춤 (70px 고정)
        ========================================== */
     header.site-header {
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       width: 100% !important;
-      height: 72px !important;
+      height: 70px !important; /* 공통 규격 높이 */
       z-index: 1000 !important;
       background: #ffffff !important;
       border-bottom: 1px solid #e5e7eb !important;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
     }
 
     header.site-header .nav-wrap {
       max-width: 1200px !important;
       height: 100% !important;
       margin: 0 auto !important;
-      padding: 0 24px !important;
+      padding: 0 20px !important; /* 원본 공통 패딩 */
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
     }
 
-    /* 로고 크기 및 수직 높이 고정 */
+    /* 📌 로고 크기 및 수직 정렬 (32px 맞춤) */
     header.site-header .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
-      height: 38px !important;
+      height: 100% !important;
     }
 
     header.site-header .site-logo {
-      height: 38px !important;
+      height: 32px !important; /* 원본 메뉴 로고 크기 일치 */
       width: auto !important;
       display: block !important;
       object-fit: contain !important;
     }
 
     /* ==========================================
-       📌 네비게이션 메뉴 (흔들림 & 처짐 완벽 해결)
+       📌 네비게이션 메뉴 (위치 & 간격 규격화)
        ========================================== */
     header.site-header .main-nav {
       display: flex !important;
       flex-direction: row !important;
-      align-items: center !important; /* 상하 정중앙 정렬 */
-      gap: 28px !important;
+      align-items: center !important;
+      gap: 32px !important; /* 공통 간격 맞춤 */
       height: 100% !important;
     }
 
-    /* 일반 메뉴 링크 및 드롭다운 버튼 */
+    /* 일반 메뉴 텍스트 & 드롭다운 버튼 */
     header.site-header .main-nav > a,
     header.site-header .main-nav .nav-dropdown-btn {
       color: #1f2937 !important;
@@ -93,9 +93,9 @@
       opacity: 1 !important;
       display: inline-flex !important;
       align-items: center !important;
-      height: 38px !important; /* 높이 통일로 처짐 현상 방지 */
+      height: 100% !important; /* 수직 정중앙 고정 */
       line-height: 1 !important;
-      transform: none !important; /* 클릭 시 이동 방지 */
+      transform: none !important;
       transition: color 0.15s ease !important;
     }
 
@@ -105,18 +105,18 @@
       transform: none !important;
     }
 
-    /* 드롭다운 메뉴 스타일 */
+    /* 드롭다운 메뉴 래퍼 */
     header.site-header .nav-dropdown {
       position: relative !important;
       display: inline-flex !important;
       align-items: center !important;
-      height: 38px !important;
+      height: 100% !important;
     }
 
     header.site-header .nav-dropdown .dropdown-menu {
       display: none;
       position: absolute !important;
-      top: 100% !important;
+      top: 60px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
       background: #ffffff !important;
@@ -152,15 +152,15 @@
       font-weight: 700 !important;
     }
 
-    /* 온라인 견적문의 버튼 (클릭 시 덜컹거림 제거) */
+    /* 📌 온라인 견적문의 버튼 */
     header.site-header .main-nav .btn.primary,
     header.site-header .main-nav .btn-quote {
       background: #0284c7 !important;
       color: #ffffff !important;
       font-size: 14px !important;
       font-weight: 700 !important;
-      padding: 0 18px !important;
-      height: 38px !important; /* 다른 메뉴와 동일하게 고정 */
+      padding: 0 16px !important;
+      height: 36px !important;
       border-radius: 6px !important;
       text-decoration: none !important;
       display: inline-flex !important;
@@ -181,7 +181,7 @@
     }
 
     /* ==========================================
-       📱 모바일 햄버거 메뉴
+       📱 모바일 반응형 햄버거 메뉴
        ========================================== */
     header.site-header .menu-btn {
       display: none;
@@ -207,7 +207,7 @@
       header.site-header .main-nav {
         display: none !important;
         position: absolute !important;
-        top: 72px !important;
+        top: 70px !important;
         left: 0 !important;
         width: 100% !important;
         height: auto !important;
