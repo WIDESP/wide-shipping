@@ -7,11 +7,11 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- 외부 style.css 로드 -->
+  <!-- 외부 style.css 및 app.js 로드 -->
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 사이트 100% 규격 통일 헤더 STYLE -->
+  <!-- 📌 메인 사이트(자료실 기준) 100% 일치 헤더 STYLE -->
   <style>
     * {
       box-sizing: border-box;
@@ -23,7 +23,7 @@
     }
 
     body {
-      padding-top: 80px !important;
+      padding-top: 72px !important;
       background-color: #ffffff;
       color: #333;
       line-height: 1.6;
@@ -32,21 +32,20 @@
     }
 
     /* ==========================================
-       📌 상단 헤더 강제 정렬 (외부 CSS 완전히 덮어씌움)
+       📌 메인 헤더 (자료실 페이지 기준 완벽 이식)
        ========================================== */
     header.site-header {
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
-      right: 0 !important;
       width: 100% !important;
-      height: 80px !important;
-      min-height: 80px !important;
-      max-height: 80px !important;
+      height: 72px !important;
       z-index: 1000 !important;
-      background: #ffffff !important;
-      border-bottom: 1px solid #e5e7eb !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
       margin: 0 !important;
       padding: 0 !important;
       display: flex !important;
@@ -55,155 +54,158 @@
 
     header.site-header .nav-wrap {
       width: 100% !important;
-      max-width: 1400px !important;
-      height: 80px !important;
+      max-width: 1200px !important;
+      height: 100% !important;
       margin: 0 auto !important;
-      padding: 0 40px !important;
+      padding: 12px 24px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
+      position: relative !important;
       box-sizing: border-box !important;
     }
 
-    /* 📌 브랜드 로고 고정 규격 (메인 페이지 동일 비율) */
     header.site-header .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
-      height: 80px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
     }
 
     header.site-header .site-logo {
-      height: 38px !important;
-      max-height: 38px !important;
+      height: 42px !important;
       width: auto !important;
       display: block !important;
-      object-fit: contain !important;
-      margin: 0 !important;
-      padding: 0 !important;
     }
 
-    /* 📌 네비게이션 메뉴 간격 및 폰트 규격 고정 */
     header.site-header .main-nav {
       display: flex !important;
       flex-direction: row !important;
       align-items: center !important;
-      gap: 40px !important;
-      height: 80px !important;
+      gap: 28px !important;
+      list-style: none !important;
       margin: 0 !important;
       padding: 0 !important;
-      list-style: none !important;
     }
 
-    header.site-header .main-nav > a,
-    header.site-header .main-nav .nav-dropdown-btn {
-      color: #333333 !important;
-      font-size: 16px !important;
-      font-weight: 500 !important;
+    header.site-header .main-nav a {
+      color: #1e293b !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
       text-decoration: none !important;
+      transition: color 0.2s ease !important;
+      padding: 6px 0 !important;
       white-space: nowrap !important;
-      opacity: 1 !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      height: 80px !important;
-      line-height: 1 !important;
-      margin: 0 !important;
-      padding: 0 !important;
       background: transparent !important;
       border: none !important;
       transform: none !important;
-      transition: color 0.15s ease !important;
+      box-shadow: none !important;
     }
 
-    header.site-header .main-nav > a:hover,
-    header.site-header .main-nav .nav-dropdown-btn:hover {
-      color: #0088cc !important;
-      transform: none !important;
+    header.site-header .main-nav a:hover,
+    header.site-header .main-nav a.active {
+      color: #0284c7 !important;
     }
 
-    /* 드롭다운 영역 설정 */
+    /* 📌 온라인 견적문의 버튼 (메인 동일 규격) */
+    header.site-header .main-nav a[target="_blank"] {
+      background-color: #0284c7 !important;
+      color: #ffffff !important;
+      padding: 8px 18px !important;
+      border-radius: 6px !important;
+      font-weight: 700 !important;
+      transition: background-color 0.2s ease, transform 0.2s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    header.site-header .main-nav a[target="_blank"]:hover {
+      background-color: #0369a1 !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* 📌 드롭다운 영역 (무역·물류 자료실) */
     header.site-header .nav-dropdown {
       position: relative !important;
       display: inline-flex !important;
       align-items: center !important;
-      height: 80px !important;
-      margin: 0 !important;
-      padding: 0 !important;
+    }
+
+    header.site-header .nav-dropdown .nav-dropdown-btn {
+      color: #1e293b !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      padding: 6px 0 !important;
+      white-space: nowrap !important;
+      transition: color 0.2s ease !important;
+    }
+
+    header.site-header .nav-dropdown:hover .nav-dropdown-btn {
+      color: #0284c7 !important;
+    }
+
+    header.site-header .nav-dropdown::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      display: block;
     }
 
     header.site-header .nav-dropdown .dropdown-menu {
       display: none;
       position: absolute !important;
-      top: 75px !important;
+      top: calc(100% + 6px) !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
-      background: #ffffff !important;
-      border: 1px solid #e5e7eb !important;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
-      border-radius: 8px !important;
-      padding: 6px !important;
+      background-color: #ffffff !important;
       min-width: 180px !important;
-      z-index: 100 !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 12px !important;
+      padding: 6px !important;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1) !important;
+      z-index: 1000 !important;
     }
 
     header.site-header .nav-dropdown:hover .dropdown-menu {
       display: block !important;
+      animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -4px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
     }
 
     header.site-header .nav-dropdown .dropdown-menu a {
-      display: block !important;
-      padding: 8px 14px !important;
-      color: #374151 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 10px 16px !important;
+      color: #334155 !important;
       font-size: 14px !important;
-      font-weight: 500 !important;
+      font-weight: 600 !important;
       text-decoration: none !important;
-      border-radius: 4px !important;
-      height: auto !important;
-      line-height: 1.4 !important;
+      white-space: nowrap !important;
+      border-radius: 8px !important;
+      transition: background-color 0.15s ease, color 0.15s ease !important;
     }
 
     header.site-header .nav-dropdown .dropdown-menu a:hover {
-      background: #f3f4f6 !important;
-      color: #0088cc !important;
+      background-color: #f0f9ff !important;
+      color: #0284c7 !important;
     }
 
-    header.site-header .nav-dropdown .dropdown-menu a.active {
-      color: #0088cc !important;
-      font-weight: 700 !important;
-    }
-
-    /* 📌 온라인 견적문의 버튼 규격 */
-    header.site-header .main-nav .btn.primary,
-    header.site-header .main-nav .btn-quote {
-      background: #0088cc !important;
-      color: #ffffff !important;
-      font-size: 15px !important;
-      font-weight: 600 !important;
-      padding: 10px 20px !important;
-      height: auto !important;
-      border-radius: 6px !important;
-      text-decoration: none !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      line-height: 1.2 !important;
-      transform: none !important;
-      box-shadow: none !important;
-      margin: 0 !important;
-      border: none !important;
-      transition: background-color 0.15s ease !important;
-    }
-
-    header.site-header .main-nav .btn.primary:hover,
-    header.site-header .main-nav .btn-quote:hover {
-      background: #006699 !important;
-      transform: none !important;
-    }
-
-    /* 모바일 대응 */
+    /* 📌 모바일 대응 (992px 기준) */
     header.site-header .menu-btn {
       display: none;
       background: none;
@@ -213,6 +215,7 @@
       flex-direction: column;
       justify-content: center;
       gap: 5px;
+      z-index: 1001;
     }
 
     header.site-header .menu-btn span {
@@ -220,61 +223,77 @@
       width: 24px;
       height: 2px;
       background-color: #0f172a;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    @media (max-width: 992px) {
-      header.site-header .nav-wrap {
-        padding: 0 20px !important;
-      }
+    header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    header.site-header .menu-btn.active span:nth-child(2) { opacity: 0; }
+    header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+    @media (max-width: 992px) {
+      body { padding-top: 64px !important; }
       header.site-header .menu-btn { display: flex !important; }
 
       header.site-header .main-nav {
         display: none !important;
         position: absolute !important;
-        top: 80px !important;
+        top: 100% !important;
         left: 0 !important;
         width: 100% !important;
-        height: auto !important;
         background: #ffffff !important;
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 0 !important;
-        padding: 16px 24px !important;
-        border-bottom: 1px solid #e2e8f0 !important;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.05) !important;
+        padding: 12px 0 !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
       }
 
       header.site-header .main-nav.active { display: flex !important; }
 
-      header.site-header .main-nav > a, 
-      header.site-header .nav-dropdown-btn { 
-        padding: 12px 0 !important; 
-        border-bottom: 1px solid #f1f5f9 !important; 
-        width: 100% !important; 
-        height: auto !important;
+      header.site-header .main-nav a {
+        padding: 14px 24px !important;
+        font-size: 16px !important;
+        border-bottom: 1px solid #f8fafc !important;
+        justify-content: flex-start !important;
       }
 
-      header.site-header .nav-dropdown { 
-        width: 100% !important; 
-        height: auto !important;
-        flex-direction: column !important; 
-        align-items: stretch !important; 
+      header.site-header .nav-dropdown {
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
       }
 
-      header.site-header .nav-dropdown .dropdown-menu { 
-        position: static !important; 
-        transform: none !important; 
-        box-shadow: none !important; 
-        border: none !important; 
-        padding-left: 12px !important; 
+      header.site-header .nav-dropdown .nav-dropdown-btn {
+        padding: 14px 24px !important;
+        font-size: 16px !important;
+        color: #1e293b !important;
+        border-bottom: 1px solid #f8fafc !important;
+        width: 100% !important;
       }
 
-      header.site-header .main-nav a.btn-quote,
-      header.site-header .main-nav a.btn.primary { 
-        margin-top: 12px !important; 
-        text-align: center !important; 
-        height: 42px !important;
+      header.site-header .nav-dropdown .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        background-color: #f8fafc !important;
+        width: 100% !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+
+      header.site-header .nav-dropdown .dropdown-menu a {
+        padding: 12px 36px !important;
+        font-size: 14px !important;
+        justify-content: flex-start !important;
+        border-bottom: 1px solid #edf2f7 !important;
+        color: #475569 !important;
+      }
+
+      header.site-header .main-nav a[target="_blank"] {
+        margin: 12px 24px 4px 24px !important;
+        text-align: center !important;
       }
     }
   </style>
@@ -284,8 +303,8 @@
 <!-- 상단 헤더 -->
 <header class="site-header">
   <div class="nav-wrap">
-    <a class="brand" href="https://www.widesp.co.kr/" aria-label="주식회사 와이드해운 홈">
-      <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+    <a class="brand" href="/index.html" aria-label="와이드해운 홈">
+      <img src="assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
     <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
@@ -295,19 +314,19 @@
     </button>
 
     <nav class="main-nav" id="mainNav">
-      <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
-      <a href="https://www.widesp.co.kr/service.html">서비스</a>
-      <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
+      <a href="/index.html#company">회사소개</a>
+      <a href="/service.html">서비스</a>
+      <a href="/network.html">글로벌 네트워크</a>
 
       <!-- 드롭다운: 무역·물류 자료실 -->
       <div class="nav-dropdown">
-        <a href="https://www.widesp.co.kr/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
+        <a href="/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
         <div class="dropdown-menu">
           <a href="/tools/load-planner/" class="active">컨테이너 적재 계산기</a>
         </div>
       </div>
 
-      <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
+      <a href="/contact.html">오시는길 / 문의</a>
 
       <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
         온라인 견적문의
@@ -316,62 +335,63 @@
   </div>
 </header>
 
-  <main>
-    <section class="hero" aria-labelledby="title">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
-        <h1 id="title">포워딩 적재 계산기<br><em>공간을 입체적으로 읽다.</em></h1>
-        <p>혼재 화물의 실제 치수와 중량을 입력하세요. 컨테이너별 배치를 계산하고<br class="desktop"> 조작형 3D 모델과 정확한 평면도에서 함께 확인합니다.</p>
-        <div class="hero-tags"><span><i></i> 20DC / 40HQ</span><span><i></i> 3D LOAD VIEW</span><span><i></i> REAL-TIME ANALYSIS</span></div>
-        <button id="show-results" class="mobile-jump" type="button">분석 결과 보기 <span>↘</span></button>
-      </div>
-      <div class="hero-graphic" aria-hidden="true">
-        <div class="graphic-grid"></div><div class="hero-glow"></div><div class="graphic-orbit a"></div><div class="graphic-orbit b"></div>
-        <div class="wire-box"><span class="wire-top"></span><span class="wire-front"></span><span class="wire-side"></span><span class="wire-cargo one"></span><span class="wire-cargo two"></span><span class="wire-cargo three"></span></div>
-        <span class="graphic-index">CONTAINER MODEL / SPATIAL ANALYSIS</span><span class="graphic-coordinate">X 1203.2 &nbsp; Y 230 &nbsp; Z 264.7</span>
-      </div>
-    </section>
+<main>
+  <section class="hero" aria-labelledby="title">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
+      <h1 id="title">포워딩 적재 계산기<br><em>공간을 입체적으로 읽다.</em></h1>
+      <p>혼재 화물의 실제 치수와 중량을 입력하세요. 컨테이너별 배치를 계산하고<br class="desktop"> 조작형 3D 모델과 정확한 평면도에서 함께 확인합니다.</p>
+      <div class="hero-tags"><span><i></i> 20DC / 40HQ</span><span><i></i> 3D LOAD VIEW</span><span><i></i> REAL-TIME ANALYSIS</span></div>
+      <button id="show-results" class="mobile-jump" type="button">분석 결과 보기 <span>↘</span></button>
+    </div>
+    <div class="hero-graphic" aria-hidden="true">
+      <div class="graphic-grid"></div><div class="hero-glow"></div><div class="graphic-orbit a"></div><div class="graphic-orbit b"></div>
+      <div class="wire-box"><span class="wire-top"></span><span class="wire-front"></span><span class="wire-side"></span><span class="wire-cargo one"></span><span class="wire-cargo two"></span><span class="wire-cargo three"></span></div>
+      <span class="graphic-index">CONTAINER MODEL / SPATIAL ANALYSIS</span><span class="graphic-coordinate">X 1203.2 &nbsp; Y 230 &nbsp; Z 264.7</span>
+    </div>
+  </section>
 
-    <section class="workspace" aria-label="화물 입력 및 적재 결과">
-      <div class="input-column">
-        <div class="section-heading">
-          <div><span class="section-number">01 — CARGO INPUT</span><h2>화물 정보</h2><p>포장 후 외곽 치수와 포장재 포함 중량을 입력하세요. 적층 단수는 화물별로 설정합니다.</p></div>
-          <button id="example" type="button" class="text-button">예시 초기화 <span>↺</span></button>
-        </div>
-        <div id="cargo-rows" class="cargo-rows"></div>
-        <div class="add-row"><button id="add-cargo" class="add-button" type="button"><span>＋</span> 화물 규격 추가</button><span id="row-count">2개 규격 입력 중</span></div>
-        <div class="section-heading compact"><div><span class="section-number">02 — EQUIPMENT</span><h2>컨테이너 설정</h2><p>보수적 기본값입니다. 실제 공급 장비에 맞춰 수정하세요.</p></div></div>
-        <div id="container-settings" class="container-settings"></div>
-        <div class="clearance-line">
-          <label for="clearance">바닥 작업 여유 <span class="help" title="벽면과 화물 사이 및 화물 간에 적용하는 간단한 평면 간격입니다.">ⓘ</span></label>
-          <div><input id="clearance" type="number" min="0" max="20" step="0.5" value="0" inputmode="decimal"><span>cm</span></div>
-        </div>
+  <section class="workspace" aria-label="화물 입력 및 적재 결과">
+    <div class="input-column">
+      <div class="section-heading">
+        <div><span class="section-number">01 — CARGO INPUT</span><h2>화물 정보</h2><p>포장 후 외곽 치수와 포장재 포함 중량을 입력하세요. 적층 단수는 화물별로 설정합니다.</p></div>
+        <button id="example" type="button" class="text-button">예시 초기화 <span>↺</span></button>
       </div>
-
-      <div class="result-column" id="results">
-        <div class="section-heading">
-          <div><span class="section-number">03 — LOAD ANALYSIS</span><h2>적재 분석</h2><p>적재 가능성과 추천 장비를 비교하고 공간을 직접 살펴보세요.</p></div>
-          <span class="live-pill"><i></i> LIVE SIMULATION</span>
-        </div>
-        <div id="validation"></div>
-        <div id="result-content"></div>
+      <div id="cargo-rows" class="cargo-rows"></div>
+      <div class="add-row"><button id="add-cargo" class="add-button" type="button"><span>＋</span> 화물 규격 추가</button><span id="row-count">2개 규격 입력 중</span></div>
+      <div class="section-heading compact"><div><span class="section-number">02 — EQUIPMENT</span><h2>컨테이너 설정</h2><p>보수적 기본값입니다. 실제 공급 장비에 맞춰 수정하세요.</p></div></div>
+      <div id="container-settings" class="container-settings"></div>
+      <div class="clearance-line">
+        <label for="clearance">바닥 작업 여유 <span class="help" title="벽면과 화물 사이 및 화물 간에 적용하는 간단한 평면 간격입니다.">ⓘ</span></label>
+        <div><input id="clearance" type="number" min="0" max="20" step="0.5" value="0" inputmode="decimal"><span>cm</span></div>
       </div>
-    </section>
+    </div>
 
-    <footer>
-      <span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span>
-      <span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/" target="_blank" rel="noopener noreferrer">견적 문의 ↗</a></span>
-    </footer>
-  </main>
+    <div class="result-column" id="results">
+      <div class="section-heading">
+        <div><span class="section-number">03 — LOAD ANALYSIS</span><h2>적재 분석</h2><p>적재 가능성과 추천 장비를 비교하고 공간을 직접 살펴보세요.</p></div>
+        <span class="live-pill"><i></i> LIVE SIMULATION</span>
+      </div>
+      <div id="validation"></div>
+      <div id="result-content"></div>
+    </div>
+  </section>
 
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-    if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
-      });
-    }
-  </script>
+  <footer>
+    <span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span>
+    <span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/" target="_blank" rel="noopener noreferrer">견적 문의 ↗</a></span>
+  </footer>
+</main>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mainNav.classList.toggle('active');
+    });
+  }
+</script>
 </body>
 </html>
