@@ -17,24 +17,23 @@
   <meta property="og:url" content="https://www.widesp.co.kr/">
   <meta property="og:image" content="https://www.widesp.co.kr/assets/og-image.png">
 
-  <!-- 파비콘 설정 (중복 정리 및 모바일 대응 추가) -->
+  <!-- 파비콘 설정 -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/wide-shipping-logo.svg">
   <link rel="apple-touch-icon" href="/assets/og-image.png">
 
   <link rel="stylesheet" href="styles.css">
 
-  <!-- 스크롤 여백 스타일 -->
-  <style>
-    html {
-      scroll-padding-top: 100px; /* 헤더 높이만큼 상단 여백을 확보해 글자가 가리지 않게 합니다 */
-      scroll-behavior: smooth;   /* 클릭 시 부드럽게 스크롤 이동합니다 */
-    }
-  </style>
+  <!-- 네이버 소유확인 메타태그 -->
   <meta name="naver-site-verification" content="f3252accf78debb1b37c460d5d84a2a1e520db66" />
 
-</head>
   <style>
+    /* 스크롤 여백 설정 */
+    html {
+      scroll-padding-top: 100px; /* 헤더 높이만큼 상단 여백 확보 */
+      scroll-behavior: smooth;   /* 클릭 시 부드럽게 스크롤 이동 */
+    }
+
     /* ==========================================
         📌 전역 텍스트 줄바꿈 최적화 (Word Wrap Fix)
        ========================================== */
@@ -42,13 +41,11 @@
       box-sizing: border-box;
     }
 
-    /* 한글 단어가 중간에서 어색하게 깨지지 않고 단어 단위로 깔끔하게 넘어가도록 설정 */
     body, h1, h2, h3, h4, h5, h6, p, span, a, li, div {
       word-break: keep-all;
       overflow-wrap: break-word;
     }
 
-    /* 제목류 문구의 줄 길이가 자연스럽게 균형을 이루도록 설정 */
     h1, h2, h3, .hero-copy h1, .company-header h2 {
       text-wrap: balance;
     }
@@ -127,6 +124,51 @@
       transform: translateY(-1px);
     }
 
+    /* ==========================================
+        📌 무역·물류 자료실 드롭다운 메뉴 스타일 (신규 반영)
+       ========================================== */
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-dropdown .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      min-width: 170px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      padding: 8px 0;
+      margin-top: 6px;
+      z-index: 1000;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .nav-dropdown .dropdown-menu a {
+      display: block;
+      padding: 10px 16px;
+      color: #333333;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+      white-space: nowrap;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .nav-dropdown .dropdown-menu a:hover {
+      background-color: #f1f5f9;
+      color: #007bb5;
+    }
+
     /* 햄버거 토글 버튼 (PC 기본 숨김) */
     .menu-btn {
       display: none;
@@ -148,7 +190,6 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* 햄버거 버튼 활성화 애니메이션 (X자) */
     .menu-btn.active span:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
@@ -961,7 +1002,6 @@
     }
   </style>
 </head>
-
 <body>
 
 <header class="site-header" id="top">
@@ -981,7 +1021,17 @@
   <a href="index.html#company">회사소개</a>
   <a href="service.html">서비스</a>
   <a href="network.html">글로벌 네트워크</a>
-  <a href="resources.html">무역·물류 자료실</a>
+
+  <!-- [드롭다운 적용된 무역·물류 자료실] -->
+  <div class="nav-dropdown">
+    <a href="resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
+    <div class="dropdown-menu">
+      <a href="https://wide-forwarding-load-planner-2026.someborero.chatgpt.site/" target="_blank" rel="noopener noreferrer">
+        컨테이너 적재 계산기
+      </a>
+    </div>
+  </div>
+
   <a href="contact.html">오시는길 / 문의</a>
 
   <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
