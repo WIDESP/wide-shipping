@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 덮어쓰기 방지 및 디자인 완벽 통일 전용 STYLE -->
+  <!-- 덮어쓰기 방지, 흔들림 제거 및 디자인 완벽 통일 전용 STYLE -->
   <style>
     * {
       box-sizing: border-box;
@@ -56,11 +56,12 @@
       justify-content: space-between !important;
     }
 
-    /* 로고 크기 고정 (거대화 방지) */
+    /* 로고 크기 및 수직 높이 고정 */
     header.site-header .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
+      height: 38px !important;
     }
 
     header.site-header .site-logo {
@@ -71,29 +72,37 @@
     }
 
     /* ==========================================
-       📌 네비게이션 메뉴 & 글자 색상/두께 통일
+       📌 네비게이션 메뉴 (흔들림 & 처짐 완벽 해결)
        ========================================== */
     header.site-header .main-nav {
       display: flex !important;
       flex-direction: row !important;
-      align-items: center !important;
+      align-items: center !important; /* 상하 정중앙 정렬 */
       gap: 28px !important;
+      height: 100% !important;
     }
 
+    /* 일반 메뉴 링크 및 드롭다운 버튼 */
     header.site-header .main-nav > a,
     header.site-header .main-nav .nav-dropdown-btn {
-      color: #1f2937 !important; /* 또렷한 검은색 계열 */
+      color: #1f2937 !important;
       font-size: 15px !important;
       font-weight: 600 !important;
       text-decoration: none !important;
       white-space: nowrap !important;
       opacity: 1 !important;
-      transition: color 0.15s ease;
+      display: inline-flex !important;
+      align-items: center !important;
+      height: 38px !important; /* 높이 통일로 처짐 현상 방지 */
+      line-height: 1 !important;
+      transform: none !important; /* 클릭 시 이동 방지 */
+      transition: color 0.15s ease !important;
     }
 
     header.site-header .main-nav > a:hover,
     header.site-header .main-nav .nav-dropdown-btn:hover {
-      color: #0284c7 !important; /* 마우스 올렸을 때 포인트 파란색 */
+      color: #0284c7 !important;
+      transform: none !important;
     }
 
     /* 드롭다운 메뉴 스타일 */
@@ -101,6 +110,7 @@
       position: relative !important;
       display: inline-flex !important;
       align-items: center !important;
+      height: 38px !important;
     }
 
     header.site-header .nav-dropdown .dropdown-menu {
@@ -142,22 +152,32 @@
       font-weight: 700 !important;
     }
 
-    /* 온라인 견적문의 버튼 */
+    /* 온라인 견적문의 버튼 (클릭 시 덜컹거림 제거) */
     header.site-header .main-nav .btn.primary,
     header.site-header .main-nav .btn-quote {
       background: #0284c7 !important;
       color: #ffffff !important;
       font-size: 14px !important;
       font-weight: 700 !important;
-      padding: 10px 18px !important;
+      padding: 0 18px !important;
+      height: 38px !important; /* 다른 메뉴와 동일하게 고정 */
       border-radius: 6px !important;
       text-decoration: none !important;
-      display: inline-block !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+      transform: none !important;
+      box-shadow: none !important;
+      transition: background-color 0.15s ease !important;
     }
 
     header.site-header .main-nav .btn.primary:hover,
-    header.site-header .main-nav .btn-quote:hover {
+    header.site-header .main-nav .btn-quote:hover,
+    header.site-header .main-nav .btn.primary:active,
+    header.site-header .main-nav .btn-quote:active {
       background: #0369a1 !important;
+      transform: none !important;
     }
 
     /* ==========================================
@@ -190,6 +210,7 @@
         top: 72px !important;
         left: 0 !important;
         width: 100% !important;
+        height: auto !important;
         background: #ffffff !important;
         flex-direction: column !important;
         align-items: stretch !important;
@@ -206,10 +227,12 @@
         padding: 12px 0 !important; 
         border-bottom: 1px solid #f1f5f9 !important; 
         width: 100% !important; 
+        height: auto !important;
       }
 
       header.site-header .nav-dropdown { 
         width: 100% !important; 
+        height: auto !important;
         flex-direction: column !important; 
         align-items: stretch !important; 
       }
@@ -226,6 +249,7 @@
       header.site-header .main-nav a.btn.primary { 
         margin-top: 12px !important; 
         text-align: center !important; 
+        height: 42px !important;
       }
     }
   </style>
