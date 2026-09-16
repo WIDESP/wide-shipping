@@ -211,37 +211,39 @@
 <body>
 
   <!-- 상단 헤더 -->
-  <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="https://www.widesp.co.kr/" aria-label="와이드해운 홈">
-        <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+<header class="site-header">
+  <div class="nav-wrap">
+    <!-- 하위 폴더 위치를 고려해 상위로 나가는 경로(../../)를 권장합니다 -->
+    <a class="brand" href="https://www.widesp.co.kr/" aria-label="와이드해운 홈">
+      <img src="../../assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+    </a>
+
+    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
+      <a href="https://www.widesp.co.kr/service.html">서비스</a>
+      <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
+
+      <!-- 드롭다운이 적용된 무역·물류 자료실 -->
+      <div class="nav-dropdown">
+        <a href="https://www.widesp.co.kr/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
+        <div class="dropdown-menu">
+          <a href="/tools/load-planner/" class="active">컨테이너 적재 계산기</a>
+        </div>
+      </div>
+
+      <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
+
+      <!-- CSS 셀렉터와 맞도록 클래스를 btn-quote로 수정했습니다 -->
+      <a class="btn-quote" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
       </a>
-
-      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="main-nav" id="mainNav">
-  <a href="/index.html#company">회사소개</a>
-  <a href="/service.html">서비스</a>
-  <a href="/network.html">글로벌 네트워크</a>
-
-  <!-- 드롭다운이 적용된 무역·물류 자료실 -->
-  <div class="nav-dropdown">
-    <a href="/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
-    <div class="dropdown-menu">
-      <a href="/tools/load-planner/" class="active">컨테이너 적재 계산기</a>
-    </div>
+    </nav>
   </div>
-
-  <a href="/contact.html">오시는길 / 문의</a>
-
-  <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-    온라인 견적문의
-  </a>
-</nav>
-    </div>
-  </header>
+</header>
 
   <main>
     <section class="hero" aria-labelledby="title">
