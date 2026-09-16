@@ -9,16 +9,27 @@
 .brand{font-size:13px;letter-spacing:.105em;font-weight:600}
 .brand strong{font-weight:900}
 
-/* 상단 메뉴 영역 스타일 및 견적문의 버튼 디자인 완벽 적용 */
-.main-nav{display:flex;gap:24px;align-items:center}
+/* 상단 메뉴 글자 스타일 - 두 번째 이미지 스타일 기준으로 완벽 통일 */
 .main-nav > a,
-.main-nav .nav-dropdown-btn{text-decoration:none;color:#b4cbd0;font-size:13px;font-weight:700;white-space:nowrap;background:none;border:none;cursor:pointer;padding:0;font-family:inherit}
+.main-nav .nav-dropdown-btn {
+  text-decoration: none;
+  color: #1e293b !important; /* 두 번째 이미지의 선명하고 어두운 네이비/먹색 */
+  font-size: 13px;
+  font-weight: 700 !important; /* 굵고 또렷한 텍스트 반영 */
+  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+/* 마우스 올렸을 때 살짝 흐려지거나 강조되는 효과 */
 .main-nav > a:hover,
-.main-nav .nav-dropdown-btn:hover{color:white}
-
-.main-nav .btn-quote{background:#0284c7 !important;color:#ffffff !important;padding:10px 18px !important;border-radius:6px !important;font-weight:700 !important;font-size:13px !important;text-decoration:none !important;display:inline-block !important;transition:background-color 0.2s ease, transform 0.2s ease;}
-.main-nav .btn-quote:hover{background:#0369a1 !important;transform:translateY(-1px);}
-
+.main-nav .nav-dropdown-btn:hover {
+  color: #0f172a !important;
+  opacity: 0.8;
+}
 /* 드롭다운 메뉴 스타일 (.main-nav 내부 연동) */
 .main-nav .nav-dropdown {
   position: relative;
