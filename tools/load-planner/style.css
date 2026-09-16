@@ -1,1 +1,163 @@
+/* style.css - 포워딩 적재 계산기 스타일 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0b1720;
+  color: #e2e8f0;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+header, .top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #081017;
+  border-bottom: 1px solid #162a38;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.logo-badge {
+  background: #00d2a0;
+  color: #081017;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.nav-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 0.9rem;
+}
+
+.nav-links a.btn-cta {
+  background-color: #f59e0b;
+  color: #081017;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.hero {
+  padding: 2.5rem 2rem;
+  background: linear-gradient(135deg, #0b1720 0%, #0e2230 100%);
+  border-bottom: 1px solid #162a38;
+}
+
+.hero-sub {
+  color: #00d2a0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.hero-desc {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(0, 210, 160, 0.1);
+  color: #00d2a0;
+  border: 1px solid rgba(0, 210, 160, 0.3);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-card {
+  background: #0f1d27;
+  border: 1px solid #1a3243;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cargo-group {
+  background: #0b151d;
+  border: 1px solid #1a2f3e;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+input, select {
+  background: #132430;
+  border: 1px solid #203b4e;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+input:focus {
+  border-color: #00d2a0;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: #00d2a0;
+  color: #081017;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #203b4e;
+  color: #e2e8f0;
+}
