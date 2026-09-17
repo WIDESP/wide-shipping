@@ -13,7 +13,7 @@
 
   <style>
   /* ==========================================
-     📌 전역 설정
+     📌 메인 사이트(widesp.co.kr) 완벽 동기화 CSS
      ========================================== */
   html {
     scroll-padding-top: 100px;
@@ -32,10 +32,6 @@
     overflow-wrap: break-word;
   }
 
-  h1, h2, h3 {
-    text-wrap: balance;
-  }
-
   body {
     padding-top: 72px !important;
     background-color: #ffffff;
@@ -45,9 +41,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ==========================================
-     📌 메인 헤더
-     ========================================== */
+  /* 헤더 고정 바 */
   header.site-header {
     position: fixed !important;
     top: 0 !important;
@@ -66,12 +60,13 @@
     align-items: center !important;
   }
 
+  /* 레이아웃 컨테이너 */
   header.site-header .nav-wrap {
     width: 100% !important;
-    max-width: 1280px !important;
+    max-width: 1200px !important;
     height: 100% !important;
     margin: 0 auto !important;
-    padding: 0 28px !important;
+    padding: 0 24px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -79,6 +74,7 @@
     box-sizing: border-box !important;
   }
 
+  /* 로고 */
   header.site-header .brand {
     display: flex !important;
     align-items: center !important;
@@ -91,21 +87,23 @@
     display: block !important;
   }
 
+  /* 메인 네비게이션 메뉴 (로고 좌측, 메뉴/버튼 우측 정렬) */
   header.site-header .main-nav {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 34px !important;
+    gap: 28px !important;
     list-style: none !important;
-    margin: 0 0 0 auto !important;
+    margin-left: auto !important;
+    margin-right: 28px !important;
     padding: 0 !important;
   }
 
   header.site-header .main-nav a,
   header.site-header .nav-dropdown .nav-dropdown-btn {
-    color: #34445f !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
+    color: #1e293b !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
     text-decoration: none !important;
     transition: color 0.2s ease !important;
     padding: 6px 0 !important;
@@ -117,33 +115,32 @@
   header.site-header .main-nav a:hover,
   header.site-header .main-nav a.active,
   header.site-header .nav-dropdown:hover .nav-dropdown-btn {
-    color: #00a8c7 !important;
+    color: #0284c7 !important;
   }
 
-  /* 📌 온라인 견적문의 버튼 (첫 번째 원본 이미지 스타일 반영) */
-header.site-header .nav-cta {
-  background-color: #0284c7 !important; /* 원본의 밝은 파란색 */
-  color: #ffffff !important;
-  padding: 10px 18px !important;
-  border-radius: 8px !important; /* 완전한 알약형이 아닌 살짝 둥근 사각형 */
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
-  transition: background-color 0.2s ease, transform 0.2s ease !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  white-space: nowrap !important;
-  margin-left: 24px !important;
-}
+  /* 메인 페이지 전용 견적문의 버튼 규격 */
+  header.site-header .nav-cta {
+    background-color: #0284c7 !important;
+    color: #ffffff !important;
+    padding: 8px 18px !important;
+    border-radius: 6px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, transform 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
 
-header.site-header .nav-cta:hover {
-  background-color: #0369a1 !important; /* 마우스 호버 시 살짝 진한 파란색 */
-  color: #ffffff !important;
-  transform: translateY(-1px) !important;
-}
+  header.site-header .nav-cta:hover {
+    background-color: #0369a1 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+  }
 
-  /* 📌 드롭다운 영역 */
+  /* 드롭다운 메뉴 */
   header.site-header .nav-dropdown {
     position: relative !important;
     display: inline-flex !important;
@@ -169,7 +166,7 @@ header.site-header .nav-cta:hover {
     transform: translateX(-50%) !important;
     background-color: #ffffff !important;
     min-width: 180px !important;
-    border: 1px solid #dfe6ef !important;
+    border: 1px solid #e2e8f0 !important;
     border-radius: 12px !important;
     padding: 6px !important;
     box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1) !important;
@@ -191,9 +188,9 @@ header.site-header .nav-cta:hover {
     align-items: center !important;
     justify-content: center !important;
     padding: 10px 16px !important;
-    color: #34445f !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
+    color: #334155 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
     text-decoration: none !important;
     white-space: nowrap !important;
     border-radius: 8px !important;
@@ -201,11 +198,11 @@ header.site-header .nav-cta:hover {
   }
 
   header.site-header .nav-dropdown .dropdown-menu a:hover {
-    background-color: #f5f8fc !important;
-    color: #00a8c7 !important;
+    background-color: #f0f9ff !important;
+    color: #0284c7 !important;
   }
 
-  /* 📌 모바일 버튼 */
+  /* 모바일 버튼 */
   header.site-header .menu-btn {
     display: none;
     background: none;
@@ -230,9 +227,7 @@ header.site-header .nav-cta:hover {
   header.site-header .menu-btn.active span:nth-child(2) { opacity: 0; }
   header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ==========================================
-     📌 모바일 대응 (992px 기준)
-     ========================================== */
+  /* 모바일 반응형 (992px 이하) */
   @media (max-width: 992px) {
     body { padding-top: 64px !important; }
     header.site-header { height: 64px !important; }
@@ -246,7 +241,6 @@ header.site-header .nav-cta:hover {
     }
 
     header.site-header .menu-btn { display: flex !important; }
-
     header.site-header .nav-cta { display: none !important; }
 
     header.site-header .main-nav {
@@ -259,6 +253,7 @@ header.site-header .nav-cta:hover {
       flex-direction: column !important;
       align-items: stretch !important;
       gap: 0 !important;
+      margin: 0 !important;
       padding: 12px 0 !important;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
       border-top: 1px solid #f1f5f9 !important;
@@ -302,7 +297,7 @@ header.site-header .nav-cta:hover {
       color: #475569 !important;
     }
   }
-</style>
+  </style>
 </head>
 <body>
 
@@ -332,7 +327,7 @@ header.site-header .nav-cta:hover {
       <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
     </nav>
 
-    <!-- 3. 견적문의 버튼 -->
+    <!-- 3. 온라인 견적문의 버튼 -->
     <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
       <span>온라인 견적문의</span>
     </a>
@@ -346,6 +341,7 @@ header.site-header .nav-cta:hover {
 
   </div>
 </header>
+
 <main>
   <section class="hero" aria-labelledby="title">
     <div class="hero-copy">
@@ -404,7 +400,5 @@ header.site-header .nav-cta:hover {
     });
   }
 </script>
-</body>
-</html>
 </body>
 </html>
