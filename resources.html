@@ -71,7 +71,10 @@
       gap: 28px;
     }
 
-    .main-nav a {
+    /* 방문 여부/기본 상태 상관없이 다크 그레이 고정 */
+    .main-nav a,
+    .main-nav a:link,
+    .main-nav a:visited {
       color: #1e293b;
       font-size: 15px;
       font-weight: 600;
@@ -81,8 +84,8 @@
       white-space: nowrap;
     }
 
-    .main-nav a:hover,
-    .main-nav a.active {
+    /* 오직 마우스를 올렸을 때만 파란색 전환 */
+    .main-nav a:hover {
       color: #0284c7;
     }
 
@@ -415,7 +418,6 @@
       .main-nav.active { display: flex; }
       .main-nav a { padding: 14px 24px; font-size: 16px; border-bottom: 1px solid #f8fafc; }
       
-      /* 모바일 드롭다운 메뉴 스타일 재정의 */
       .nav-dropdown {
         width: 100%;
         flex-direction: column;
@@ -472,21 +474,21 @@
       <span></span>
     </button>
 
-   <nav class="main-nav" id="mainNav">
-  <a href="/index.html#company">회사소개</a>
-  <a href="/service.html">서비스</a>
-  <a href="/network.html">글로벌 네트워크</a>
-  <a href="/resources.html">무역·물류 자료실</a>
-  
-  <!-- 독립 노출된 적재계산기 메뉴 -->
-  <a href="/tools/load-planner/" class="nav-calc-link active">컨테이너 적재계산기</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="/index.html#company">회사소개</a>
+      <a href="/service.html">서비스</a>
+      <a href="/network.html">글로벌 네트워크</a>
+      <a href="/resources.html">무역·물류 자료실</a>
+      
+      <!-- 파란색 상시 고정 원인이었던 active 클래스 제거 -->
+      <a href="/tools/load-planner/">컨테이너 적재계산기</a>
 
-  <a href="/contact.html">오시는길 / 문의</a>
+      <a href="/contact.html">오시는길 / 문의</a>
 
-  <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-    온라인 견적문의
-  </a>
-</nav>
+      <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
+      </a>
+    </nav>
   </div>
 </header>
 
