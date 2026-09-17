@@ -7,6 +7,9 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
+  <!-- Pretendard 웹폰트 CDN 로드 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
   <!-- 외부 style.css 및 app.js 로드 -->
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
@@ -15,6 +18,8 @@
   /* ==========================================
      📌 메인 사이트(widesp.co.kr) 완벽 동기화 CSS
      ========================================== */
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
   html {
     scroll-padding-top: 100px;
     scroll-behavior: smooth;
@@ -33,7 +38,7 @@
   }
 
   body {
-    padding-top: 82px !important; /* 메인 헤더 높이에 맞춤 */
+    padding-top: 82px !important; /* 메인 헤더 높이 82px 동기화 */
     background-color: #ffffff;
     color: #333;
     line-height: 1.6;
@@ -47,7 +52,7 @@
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    height: 82px !important; /* 72px -> 82px 증대 */
+    height: 82px !important;
     z-index: 1000 !important;
     background: rgba(255, 255, 255, 0.92) !important;
     backdrop-filter: blur(16px) !important;
@@ -63,8 +68,8 @@
   /* 레이아웃 컨테이너 */
   header.site-header .nav-wrap {
     width: 100% !important;
-    max-width: 1280px !important; /* 1200px -> 1280px 확대 */
-    height: 100% !important;
+    max-width: 1280px !important;
+    height: 82px !important;
     margin: 0 auto !important;
     padding: 0 28px !important;
     display: flex !important;
@@ -79,11 +84,12 @@
     display: flex !important;
     align-items: center !important;
     text-decoration: none !important;
+    flex-shrink: 0 !important;
   }
 
   header.site-header .site-logo,
   header.site-header .brand img {
-    width: 220px !important; /* 높이 고정 제거 후 가로 220px 원본 비율 유지 */
+    width: 220px !important;
     height: auto !important;
     object-fit: contain !important;
     display: block !important;
@@ -103,12 +109,12 @@
 
   header.site-header .main-nav a,
   header.site-header .nav-dropdown .nav-dropdown-btn {
-    color: #34445f !important; /* 메인 폰트 컬러 동기화 */
-    font-size: 14px !important; /* 15px -> 14px */
+    color: #34445f !important;
+    font-size: 14px !important;
     font-weight: 700 !important;
     text-decoration: none !important;
     transition: color 0.2s ease !important;
-    padding: 29px 0 !important; /* 세로 중앙 정렬 패딩 */
+    padding: 29px 0 !important;
     white-space: nowrap !important;
     background: transparent !important;
     border: none !important;
@@ -122,22 +128,23 @@
 
   /* 메인 페이지 전용 견적문의 버튼 규격 */
   header.site-header .nav-cta {
-    background-color: #0082c3 !important;
+    background-color: #0284c7 !important;
     color: #ffffff !important;
-    padding: 12px 20px !important; /* 답답하던 상하 패딩을 확대하여 여유 확보 */
-    border-radius: 8px !important;
+    padding: 8px 18px !important;
+    border-radius: 6px !important;
     font-size: 14px !important;
-    font-weight: 800 !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     transition: background-color 0.2s ease, transform 0.2s ease !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
   header.site-header .nav-cta:hover {
-    background-color: #006fa7 !important;
+    background-color: #0369a1 !important;
     color: #ffffff !important;
     transform: translateY(-1px) !important;
   }
@@ -236,6 +243,7 @@
     
     header.site-header .nav-wrap { 
       padding: 0 20px !important;
+      height: 72px !important;
     }
     
     header.site-header .site-logo,
@@ -300,7 +308,7 @@
       color: #475569 !important;
     }
   }
-</style>
+  </style>
 </head>
 <body>
 
