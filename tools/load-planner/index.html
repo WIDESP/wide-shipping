@@ -6,13 +6,265 @@
   <meta name="theme-color" content="#081e31">
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
-  <link rel="stylesheet" href="./style.css">
+  
+  <!-- Pretendard 웹폰트 및 스타일 로드 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="./style_2.css">
   <script type="module" src="./app.js"></script>
+
+  <!-- 메인 홈페이지 동일 헤더 CSS 동기화 -->
+  <style>
+    body {
+      padding-top: 82px !important;
+    }
+
+    header.site-header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 82px !important;
+      z-index: 9999 !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    header.site-header .nav-wrap {
+      height: 82px !important;
+      max-width: 1280px !important;
+      margin: 0 auto !important;
+      padding: 0 28px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    header.site-header .brand {
+      display: flex !important;
+      align-items: center !important;
+      text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+
+    header.site-header .site-logo {
+      width: 220px !important;
+      height: auto !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+    header.site-header .main-nav {
+      display: flex !important;
+      align-items: center !important;
+      gap: 32px !important;
+      list-style: none !important;
+      margin-left: auto !important;
+      margin-right: 32px !important;
+      padding: 0 !important;
+    }
+
+    header.site-header .main-nav > a,
+    header.site-header .nav-dropdown .nav-dropdown-btn {
+      all: unset;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: #34445f !important;
+      position: relative !important;
+      padding: 29px 0 !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      transition: color 0.15s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+
+    header.site-header .main-nav a:hover,
+    header.site-header .main-nav a.active,
+    header.site-header .nav-dropdown:hover .nav-dropdown-btn {
+      color: #00a8c7 !important;
+    }
+
+    /* 드롭다운 메뉴 */
+    header.site-header .nav-dropdown {
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+      height: 82px !important;
+    }
+
+    header.site-header .nav-dropdown::after {
+      content: '' !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 15px !important;
+    }
+
+    header.site-header .dropdown-menu {
+      display: none !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      min-width: 200px !important;
+      background: #fff !important;
+      border: 1px solid #dbe6e8 !important;
+      box-shadow: 0 15px 35px rgba(18, 44, 78, 0.08) !important;
+      border-radius: 16px !important;
+      padding: 8px !important;
+      z-index: 100 !important;
+    }
+
+    header.site-header .nav-dropdown:hover .dropdown-menu {
+      display: block !important;
+    }
+
+    header.site-header .dropdown-menu a {
+      display: block !important;
+      padding: 10px 14px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #34445f !important;
+      border-radius: 10px !important;
+      white-space: nowrap !important;
+      text-decoration: none !important;
+      transition: background-color 0.15s ease, color 0.15s ease !important;
+    }
+
+    header.site-header .dropdown-menu a:hover,
+    header.site-header .dropdown-menu a.active {
+      background: #f2f7f8 !important;
+      color: #00a8c7 !important;
+    }
+
+    /* 온라인 견적문의 버튼 */
+    header.site-header .nav-cta {
+      all: unset !important;
+      background-color: #0284c7 !important;
+      color: #ffffff !important;
+      padding: 10px 20px !important;
+      border-radius: 8px !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+      transition: background-color 0.2s ease, transform 0.2s ease !important;
+    }
+
+    header.site-header .nav-cta:hover {
+      background-color: #0369a1 !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* 모바일 햄버거 버튼 */
+    header.site-header .menu-btn {
+      display: none !important;
+      background: none !important;
+      border: 0 !important;
+      cursor: pointer !important;
+      padding: 8px !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 5px !important;
+    }
+
+    header.site-header .menu-btn span {
+      display: block !important;
+      width: 24px !important;
+      height: 2px !important;
+      background-color: #0f172a !important;
+    }
+
+    @media(max-width: 920px) {
+      body { padding-top: 72px !important; }
+      header.site-header { height: 72px !important; }
+      header.site-header .nav-wrap { height: 72px !important; padding: 0 18px !important; }
+      header.site-header .site-logo { width: 170px !important; }
+      header.site-header .main-nav, header.site-header .nav-cta { display: none !important; }
+      header.site-header .menu-btn { display: flex !important; margin-left: auto !important; }
+
+      header.site-header .main-nav.open {
+        display: flex !important;
+        position: absolute !important;
+        top: 72px !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: #ffffff !important;
+        flex-direction: column !important;
+        padding: 18px 28px !important;
+        gap: 0 !important;
+        border-bottom: 1px solid #dbe6e8 !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+        margin: 0 !important;
+      }
+      header.site-header .main-nav.open a,
+      header.site-header .main-nav.open .nav-dropdown-btn {
+        padding: 13px 0 !important;
+        font-size: 16px !important;
+      }
+      header.site-header .main-nav.open .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        box-shadow: none !important;
+        display: block !important;
+        padding: 4px 0 4px 12px !important;
+        background: transparent !important;
+        border: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner"><a class="brand-link" href="https://www.widesp.co.kr/" aria-label="와이드해운 홈페이지"><span class="brand-mark">W</span><span class="brand">WIDE <strong>SHIPPING</strong></span></a><span class="topbar-line"></span><span class="topbar-label">LOAD INTELLIGENCE <b>／ 01</b></span><nav class="site-nav" aria-label="사이트 바로가기"><a href="https://www.widesp.co.kr/">회사 홈페이지</a><a class="nav-quote" href="https://quote.widesp.co.kr/">온라인 견적문의 <span aria-hidden="true">↗</span></a></nav></div>
+  <!-- 상단 공통 헤더 (메인 홈페이지 완벽 동기화) -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="https://www.widesp.co.kr/index.html" aria-label="와이드해운 홈">
+        <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
+        <a href="https://www.widesp.co.kr/service.html">서비스</a>
+        <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
+
+        <!-- 무역·물류 자료실 드롭다운 -->
+        <div class="nav-dropdown">
+          <a href="https://www.widesp.co.kr/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
+          <div class="dropdown-menu">
+            <a href="/tools/load-planner/" class="active">컨테이너 적재 계산기</a>
+          </div>
+        </div>
+
+        <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
+      </nav>
+
+      <!-- 온라인 견적문의 버튼 -->
+      <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
+      </a>
+
+      <!-- 모바일 햄버거 버튼 -->
+      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
+
   <main>
     <section class="hero" aria-labelledby="title">
       <div class="hero-copy"><div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
@@ -42,5 +294,16 @@
     </section>
     <footer><span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span><span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/">견적 문의 ↗</a></span></footer>
   </main>
+
+  <script>
+    // 모바일 햄버거 메뉴 토글 스크립트
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+      });
+    }
+  </script>
 </body>
 </html>
