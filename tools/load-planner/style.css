@@ -47,7 +47,7 @@ button:focus-visible, input:focus, select:focus, summary:focus-visible, [tabinde
 }
 
 /* ==========================================================
-   1. 메인 홈페이지와 100% 동일한 상단 헤더 규격
+   1. 메인 홈페이지와 100% 동일한 상단 헤더 규격 (완벽 일치 수정 완료)
    ========================================================== */
 header.site-header {
   position: fixed !important;
@@ -56,29 +56,37 @@ header.site-header {
   width: 100% !important;
   height: 82px !important;
   z-index: 9999 !important;
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 header.site-header .nav-wrap {
   height: 82px !important;
-  max-width: 1500px !important;
+  max-width: 1280px !important;
   margin: 0 auto !important;
   padding: 0 28px !important;
   display: flex !important;
   align-items: center !important;
-  gap: 42px !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
 }
 
 header.site-header .brand {
   display: flex !important;
   align-items: center !important;
   text-decoration: none !important;
+  flex-shrink: 0 !important;
 }
 
-header.site-header .brand img {
+header.site-header .brand img,
+header.site-header .site-logo {
   width: 220px !important;
   height: auto !important;
   object-fit: contain !important;
@@ -88,14 +96,16 @@ header.site-header .brand img {
 header.site-header .main-nav {
   display: flex !important;
   align-items: center !important;
-  gap: 34px !important;
-  margin-left: auto !important;
-  padding: 0 !important;
+  gap: 32px !important;
   list-style: none !important;
+  margin-left: auto !important;
+  margin-right: 32px !important;
+  padding: 0 !important;
 }
 
 header.site-header .main-nav > a,
-header.site-header .main-nav .nav-dropdown > a {
+header.site-header .main-nav .nav-dropdown > a,
+header.site-header .nav-dropdown .nav-dropdown-btn {
   all: unset;
   font-size: 14px !important;
   font-weight: 700 !important;
@@ -109,8 +119,10 @@ header.site-header .main-nav .nav-dropdown > a {
   align-items: center !important;
 }
 
-header.site-header .main-nav a:hover {
-  color: var(--cyan) !important;
+header.site-header .main-nav a:hover,
+header.site-header .main-nav a.active,
+header.site-header .nav-dropdown:hover .nav-dropdown-btn {
+  color: #00a8c7 !important;
 }
 
 header.site-header .nav-dropdown {
@@ -132,7 +144,7 @@ header.site-header .nav-dropdown::after {
 header.site-header .dropdown-menu {
   display: none !important;
   position: absolute !important;
-  top: 72px !important;
+  top: 100% !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   min-width: 200px !important;
@@ -163,28 +175,30 @@ header.site-header .dropdown-menu a {
 header.site-header .dropdown-menu a:hover,
 header.site-header .dropdown-menu a.active {
   background: var(--soft) !important;
-  color: var(--cyan) !important;
+  color: #00a8c7 !important;
 }
 
 header.site-header .nav-cta {
   all: unset !important;
-  background: var(--navy) !important;
+  background-color: #0284c7 !important;
   color: #ffffff !important;
-  padding: 12px 18px !important;
-  border-radius: 999px !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  cursor: pointer !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
   white-space: nowrap !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  text-decoration: none !important;
-  transition: background 0.15s ease !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease, transform 0.2s ease !important;
 }
 
 header.site-header .nav-cta:hover {
-  background: #09295f !important;
+  background-color: #0369a1 !important;
+  transform: translateY(-1px) !important;
 }
 
 header.site-header .menu-btn {
@@ -192,15 +206,17 @@ header.site-header .menu-btn {
   background: none !important;
   border: 0 !important;
   cursor: pointer !important;
-  padding: 5px !important;
+  padding: 8px !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 5px !important;
 }
 
 header.site-header .menu-btn span {
   display: block !important;
-  width: 23px !important;
+  width: 24px !important;
   height: 2px !important;
-  background: var(--ink) !important;
-  margin: 5px !important;
+  background-color: #0f172a !important;
 }
 
 
