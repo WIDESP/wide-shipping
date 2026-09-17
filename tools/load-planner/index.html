@@ -9,12 +9,16 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="./style.css">
-  
-  <!-- 적재계산기 핵심 동작 스크립트 (필수) -->
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 사이트 동일 헤더 및 레이아웃 정돈 CSS -->
+  <!-- contact.html과 100% 일치하는 표준 상단 헤더 CSS -->
   <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
     body {
       padding-top: 72px;
       margin: 0;
@@ -23,7 +27,7 @@
     }
 
     /* ==========================================
-        📌 상단 헤더 (메인 사이트 표준)
+        📌 상단 헤더 (타 페이지와 완벽 통일)
        ========================================== */
     .site-header {
       position: fixed;
@@ -82,8 +86,8 @@
       color: #0284c7;
     }
 
-    /* 견적 문의 버튼 */
-    .main-nav a.btn-quote {
+    /* 온라인 견적문의 버튼 */
+    .main-nav a[target="_blank"] {
       background-color: #0284c7;
       color: #ffffff !important;
       padding: 8px 18px;
@@ -92,7 +96,7 @@
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
-    .main-nav a.btn-quote:hover {
+    .main-nav a[target="_blank"]:hover {
       background-color: #0369a1;
       transform: translateY(-1px);
     }
@@ -165,7 +169,7 @@
         border-bottom: 1px solid #f8fafc;
         width: 100%;
       }
-      .main-nav a.btn-quote {
+      .main-nav a[target="_blank"] {
         margin: 12px 24px 8px;
         width: calc(100% - 48px);
         text-align: center;
@@ -176,7 +180,7 @@
 </head>
 <body>
 
-  <!-- 상단 헤더 (누락되었던 부분 추가) -->
+  <!-- 상단 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="/index.html" aria-label="와이드해운 홈">
@@ -196,7 +200,7 @@
         <a href="/resources.html">무역·물류 자료실</a>
         <a href="/tools/load-planner/">컨테이너 적재계산기</a>
         <a href="/contact.html">오시는길 / 문의</a>
-        <a class="btn-quote" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        <a href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
           온라인 견적문의
         </a>
       </nav>
