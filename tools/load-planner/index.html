@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메뉴 글자 파란색 고정 현상 완전 제거 CSS -->
+  <!-- [수정 1] 상단 헤더 CSS 스타일 정리 -->
   <style>
     body {
       margin: 0 !important;
@@ -20,8 +20,6 @@
     }
 
     header.site-header {
-      all: unset;
-      display: block !important;
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
@@ -39,7 +37,7 @@
     }
 
     header.site-header .nav-wrap {
-      height: 80px !important;
+      height: 100% !important;
       max-width: 1300px !important;
       margin: 0 auto !important;
       padding: 0 24px !important;
@@ -53,7 +51,8 @@
       align-items: center !important;
       text-decoration: none !important;
     }
-    header.site-header .brand img {
+
+    header.site-header .site-logo {
       height: 38px !important;
       width: auto !important;
       display: block !important;
@@ -62,45 +61,29 @@
     header.site-header .main-nav {
       display: flex !important;
       align-items: center !important;
-      gap: 30px !important;
-      margin: 0 auto !important;
+      gap: 28px !important;
+      margin: 0 !important;
       padding: 0 !important;
       list-style: none !important;
     }
 
-    /* 
-      .active 클래스, :visited(방문한 링크), :focus 등 
-      모든 예외 상태에서 파란색 변경을 차단하고 어두운 다크 그레이(#2b3648)로 강제 통일
-    */
-    header.site-header .main-nav a,
-    header.site-header .main-nav a:link,
-    header.site-header .main-nav a:visited,
-    header.site-header .main-nav a:focus,
-    header.site-header .main-nav a:active,
-    header.site-header .main-nav a.active {
-      all: unset;
+    header.site-header .main-nav a {
       font-size: 15px !important;
       font-weight: 600 !important;
-      color: #2b3648 !important; /* 기본 어두운 색상 고정 */
+      color: #2b3648 !important;
       cursor: pointer !important;
       white-space: nowrap !important;
       text-decoration: none !important;
-      outline: none !important;
       transition: color 0.15s ease !important;
     }
 
-    /* 오직 마우스를 올렸을 때(Hover)에만 파란색 전환 */
-    header.site-header .main-nav a:hover {
+    header.site-header .main-nav a:hover,
+    header.site-header .main-nav a.active {
       color: #0088cc !important;
+      font-weight: 700 !important;
     }
 
-    /* 우측 버튼 */
-    header.site-header .nav-cta,
-    header.site-header .nav-cta:link,
-    header.site-header .nav-cta:visited,
-    header.site-header .nav-cta:focus,
-    header.site-header .nav-cta:active {
-      all: unset;
+    header.site-header .nav-cta {
       background: #0088cc !important;
       color: #ffffff !important;
       padding: 10px 18px !important;
@@ -118,7 +101,6 @@
 
     header.site-header .nav-cta:hover {
       background: #0077b3 !important;
-      color: #ffffff !important;
     }
 
     header.site-header .menu-btn {
@@ -127,67 +109,88 @@
       border: 0 !important;
       cursor: pointer !important;
       padding: 5px !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 5px !important;
     }
+
     header.site-header .menu-btn span {
       display: block !important;
       width: 22px !important;
       height: 2px !important;
       background: #1e293b !important;
-      margin: 5px !important;
+      transition: transform 0.3s ease, opacity 0.3s ease !important;
     }
+
+    header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+    header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
+    header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
 
     @media (max-width: 960px) {
       body { padding-top: 70px !important; }
       header.site-header { height: 70px !important; }
-      header.site-header .nav-wrap { height: 70px !important; padding: 0 16px !important; }
-      header.site-header .brand img { height: 32px !important; }
-      header.site-header .main-nav, header.site-header .nav-cta { display: none !important; }
-      header.site-header .menu-btn { display: block !important; }
+      header.site-header .nav-wrap { padding: 0 16px !important; }
+      header.site-header .site-logo { height: 32px !important; }
+      header.site-header .menu-btn { display: flex !important; }
 
-      header.site-header .main-nav.open {
-        display: flex !important;
+      header.site-header .main-nav {
+        display: none !important;
         position: absolute !important;
         top: 70px !important;
         left: 0 !important;
         right: 0 !important;
         background: #ffffff !important;
         flex-direction: column !important;
-        padding: 16px 20px !important;
-        gap: 14px !important;
+        align-items: flex-start !important;
+        padding: 20px !important;
+        gap: 16px !important;
         border-bottom: 1px solid #e5e7eb !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+      }
+
+      header.site-header .main-nav.active {
+        display: flex !important;
+      }
+
+      header.site-header .main-nav a {
+        width: 100% !important;
+        font-size: 16px !important;
+      }
+
+      header.site-header .nav-cta {
+        width: 100% !important;
+        margin-top: 6px !important;
       }
     }
   </style>
 </head>
 <body>
+  <!-- [수정 2] 상단 헤더 HTML 구조 정초 -->
   <header class="site-header">
-  <div class="nav-wrap">
-    <a href="/index.html" class="brand" aria-label="와이드해운 홈">
-      <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
-    </a>
-
-    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <nav class="main-nav" id="mainNav">
-      <a href="/index.html#company">회사소개</a>
-      <a href="/service.html">서비스</a>
-      <a href="/network.html">글로벌 네트워크</a>
-      <a href="/resources.html">무역·물류 자료실</a>
-      <!-- 적재계산기 페이지 내부이므로 active 적용 -->
-      <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
-      <a href="/contact.html">오시는길 / 문의</a>
-
-      <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-        온라인 견적문의
+    <div class="nav-wrap">
+      <a href="/index.html" class="brand" aria-label="와이드해운 홈">
+        <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
       </a>
-    </nav>
-  </div>
-</header>
+
+      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="/index.html#company">회사소개</a>
+        <a href="/service.html">서비스</a>
+        <a href="/network.html">글로벌 네트워크</a>
+        <a href="/resources.html">무역·물류 자료실</a>
+        <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
+        <a href="/contact.html">오시는길 / 문의</a>
+        <a href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer" class="nav-cta">
+          온라인 견적문의
+        </a>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <section class="hero" aria-labelledby="title">
@@ -219,12 +222,24 @@
     <footer><span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span><span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/">견적 문의 ↗</a></span></footer>
   </main>
 
+  <!-- [수정 3] 모바일 토글 자바스크립트 클래스 통일 -->
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
+
     if (menuToggle && mainNav) {
       menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('open');
+        const isOpen = mainNav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      mainNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mainNav.classList.remove('active');
+          menuToggle.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
       });
     }
   </script>
