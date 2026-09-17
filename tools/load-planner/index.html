@@ -331,17 +331,13 @@
 <!-- 상단 헤더 -->
 <header class="site-header">
   <div class="nav-wrap">
+    
+    <!-- 1. 로고 -->
     <a class="brand" href="https://www.widesp.co.kr/index.html" aria-label="와이드해운 홈">
-      <!-- 📌 이미지 경로를 absolute URL로 수정 -->
       <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
-    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
+    <!-- 2. PC 메인 메뉴 -->
     <nav class="main-nav" id="mainNav">
       <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
       <a href="https://www.widesp.co.kr/service.html">서비스</a>
@@ -349,18 +345,27 @@
 
       <!-- 드롭다운: 무역·물류 자료실 -->
       <div class="nav-dropdown">
-        <a href="https://www.widesp.co.kr/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
+        <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
         <div class="dropdown-menu">
           <a href="/tools/load-planner/" class="active">컨테이너 적재 계산기</a>
         </div>
       </div>
 
       <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
-
-      <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-        온라인 견적문의
-      </a>
     </nav>
+
+    <!-- 3. 견적문의 버튼 (nav 영역 밖으로 분리) -->
+    <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+      <span>온라인 견적문의</span>
+    </a>
+
+    <!-- 4. 모바일 햄버거 버튼 (우측 끝 정렬을 위해 맨 아래로 배치) -->
+    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
   </div>
 </header>
 
