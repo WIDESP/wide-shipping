@@ -9,140 +9,171 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 타겟 이미지(이미지 2)와 100% 일치하도록 정밀 보정한 헤더 CSS -->
+  <!-- 메인 사이트(resources.html) 동일 규격 상단바 격리 CSS -->
   <style>
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: #ffffff;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    header.site-header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 72px !important;
+      z-index: 10000 !important;
+      background: #ffffff !important;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
     }
 
-    .nav-wrap {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 14px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
+    header.site-header * {
+      box-sizing: border-box !important;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1.4 !important;
     }
 
-    .brand { display: flex; align-items: center; text-decoration: none; }
-    .site-logo { height: 44px; width: auto; display: block; }
-
-    .main-nav { 
-      display: flex; 
-      align-items: center; 
-      gap: 36px; /* 메뉴 사이 여백 넓게 간격 조정 */
+    header.site-header .nav-wrap {
+      width: 100% !important;
+      max-width: 1200px !important;
+      height: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 24px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      position: relative !important;
     }
 
-    .main-nav a {
-      color: #334155; /* 선명하고 명확한 텍스트 컬러 */
-      font-size: 15px;
-      font-weight: 600; /* 폰트 두께 보정 */
-      letter-spacing: -0.4px; /* pretendard 자간 밀도 보정 */
-      text-decoration: none;
-      transition: color 0.15s ease-in-out;
-      padding: 4px 0;
-      white-space: nowrap;
+    header.site-header .brand {
+      display: flex !important;
+      align-items: center !important;
+      text-decoration: none !important;
     }
 
-    .main-nav a:hover {
-      color: #0284c7;
+    header.site-header .site-logo {
+      height: 40px !important;
+      width: auto !important;
+      display: block !important;
     }
 
-    /* 이미지 2와 동일한 활성화(Active) 메뉴 파란색 강조 */
-    .main-nav a.active {
+    header.site-header .main-nav {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 32px !important;
+      list-style: none !important;
+    }
+
+    header.site-header .main-nav a {
+      color: #1e293b !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.3px !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
+      transition: color 0.15s ease !important;
+      padding: 4px 0 !important;
+      background: none !important;
+      border: none !important;
+    }
+
+    header.site-header .main-nav a:hover {
+      color: #0284c7 !important;
+    }
+
+    header.site-header .main-nav a.active {
       color: #0284c7 !important;
       font-weight: 700 !important;
     }
 
-    /* 우측 온라인 견적문의 버튼 규격 일치 */
-    .main-nav a.nav-cta {
+    header.site-header .main-nav a.nav-cta {
       background-color: #0284c7 !important;
       color: #ffffff !important;
-      padding: 10px 20px !important;
-      border-radius: 8px !important;
+      padding: 9px 18px !important;
+      border-radius: 6px !important;
       font-size: 15px !important;
       font-weight: 700 !important;
-      letter-spacing: -0.3px !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      margin-left: 8px;
+      margin-left: 8px !important;
     }
-    .main-nav a.nav-cta:hover {
+
+    header.site-header .main-nav a.nav-cta:hover {
       background-color: #0369a1 !important;
+      color: #ffffff !important;
     }
 
-    .menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      z-index: 1001;
-    }
-    .menu-btn span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background-color: #0f172a;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+    header.site-header .menu-btn {
+      display: none !important;
+      background: none !important;
+      border: none !important;
+      cursor: pointer !important;
+      padding: 8px !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      z-index: 1001 !important;
     }
 
-    .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .menu-btn.active span:nth-child(2) { opacity: 0; }
-    .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    header.site-header .menu-btn span {
+      display: block !important;
+      width: 24px !important;
+      height: 2px !important;
+      background-color: #0f172a !important;
+      transition: transform 0.3s ease, opacity 0.3s ease !important;
+    }
 
-    /* 헤더 높이에 맞춘 상단 여백 보정 */
-    body { padding-top: 74px; }
+    header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+    header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
+    header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+
+    body { padding-top: 72px !important; }
 
     @media (max-width: 992px) {
-      body { padding-top: 64px; }
-      .nav-wrap { padding: 12px 20px; }
-      .menu-btn { display: flex; }
-      .main-nav {
-        display: none;
-        position: absolute;
-        top: 100%; left: 0; width: 100%;
-        background: #ffffff;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 12px 0;
-        border-bottom: 1px solid #e2e8f0;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      body { padding-top: 64px !important; }
+      header.site-header { height: 64px !important; }
+      header.site-header .nav-wrap { padding: 0 20px !important; }
+      header.site-header .menu-btn { display: flex !important; }
+      header.site-header .main-nav {
+        display: none !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
       }
-      .main-nav.active { display: flex; }
-      .main-nav a { padding: 14px 24px; font-size: 16px; border-bottom: 1px solid #f8fafc; }
-      .main-nav a.nav-cta { margin: 12px 24px !important; text-align: center !important; }
+      header.site-header .main-nav.active { display: flex !important; }
+      header.site-header .main-nav a { padding: 14px 24px !important; font-size: 16px !important; border-bottom: 1px solid #f8fafc !important; }
+      header.site-header .main-nav a.nav-cta { margin: 12px 24px !important; text-align: center !important; }
     }
   </style>
 </head>
 <body>
-  <!-- 상단 공통 헤더 -->
+  <!-- 공통 상단 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="/index.html" aria-label="와이드해운 홈">
-        <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+      <a class="brand" href="https://www.widesp.co.kr/" aria-label="와이드해운 홈">
+        <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
       </a>
 
       <nav class="main-nav" id="mainNav">
-        <a href="/index.html#company">회사소개</a>
-        <a href="/service.html">서비스</a>
-        <a href="/network.html">글로벌 네트워크</a>
-        <a href="/resources.html">무역·물류 자료실</a>
+        <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
+        <a href="https://www.widesp.co.kr/service.html">서비스</a>
+        <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
+        <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
         <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
-        <a href="/contact.html">오시는길 / 문의</a>
+        <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
         <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
           온라인 견적문의
         </a>
@@ -154,7 +185,7 @@
     </div>
   </header>
 
-  <!-- 원본 적재 계산기 애플리케이션 (100% 동일 유지) -->
+  <!-- 원본 계산기 메인 콘텐츠 -->
   <main>
     <section class="hero" aria-labelledby="title">
       <div class="hero-copy"><div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
@@ -186,7 +217,6 @@
   </main>
 
   <script>
-    // 모바일 메뉴 토글
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     if (menuToggle && mainNav) {
