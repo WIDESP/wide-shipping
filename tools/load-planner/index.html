@@ -11,14 +11,14 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- contact.html 상단 헤더 동일 CSS 적용 -->
+  <!-- 메인 사이트 동일 헤더 CSS -->
   <style>
     body {
       padding-top: 72px;
     }
 
     /* ==========================================
-       📌 상단 헤더
+       📌 상단 헤더 (메인 사이트 표준)
        ========================================== */
     .site-header {
       position: fixed;
@@ -61,7 +61,6 @@
       gap: 28px;
     }
 
-    /* 방문 여부/상태 관계없이 기본 글자색 어두운색 고정 */
     .main-nav a,
     .main-nav a:link,
     .main-nav a:visited {
@@ -74,12 +73,12 @@
       white-space: nowrap;
     }
 
-    /* 오직 마우스를 올렸을 때만 파란색 변경 */
     .main-nav a:hover {
       color: #0284c7;
     }
 
-    .main-nav a[target="_blank"] {
+    /* 견적 문의 버튼 */
+    .main-nav a.btn-quote {
       background-color: #0284c7;
       color: #ffffff !important;
       padding: 8px 18px;
@@ -88,90 +87,9 @@
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
-    .main-nav a[target="_blank"]:hover {
+    .main-nav a.btn-quote:hover {
       background-color: #0369a1;
       transform: translateY(-1px);
-    }
-
-    /* 드롭다운 메뉴 (무역·물류 자료실) */
-    .nav-dropdown {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .nav-dropdown .nav-dropdown-btn {
-      color: #1e293b;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      padding: 6px 0;
-      white-space: nowrap;
-      transition: color 0.2s ease;
-    }
-
-    .nav-dropdown:hover .nav-dropdown-btn {
-      color: #0284c7;
-    }
-
-    .nav-dropdown::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      height: 12px;
-      display: block;
-    }
-
-    .nav-dropdown .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #ffffff;
-      min-width: 180px;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 6px;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
-      z-index: 1000;
-    }
-
-    .nav-dropdown:hover .dropdown-menu {
-      display: block;
-      animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes dropdownFadeIn {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -4px);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-      }
-    }
-
-    .nav-dropdown .dropdown-menu a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      color: #334155;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
-      border-radius: 8px;
-      transition: background-color 0.15s ease, color 0.15s ease;
-    }
-
-    .nav-dropdown .dropdown-menu a:hover {
-      background-color: #f0f9ff;
-      color: #0284c7;
     }
 
     /* 모바일 햄버거 버튼 */
@@ -205,9 +123,7 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* ==========================================
-       📱 모바일 반응형 (992px 이하)
-       ========================================== */
+    /* 📱 모바일 반응형 (992px 이하) */
     @media (max-width: 992px) {
       body {
         padding-top: 64px;
@@ -244,38 +160,7 @@
         border-bottom: 1px solid #f8fafc;
         width: 100%;
       }
-      
-      .nav-dropdown {
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .nav-dropdown .nav-dropdown-btn {
-        padding: 14px 24px;
-        font-size: 16px;
-        border-bottom: 1px solid #f8fafc;
-        width: 100%;
-      }
-      .nav-dropdown .dropdown-menu {
-        position: static;
-        transform: none;
-        box-shadow: none;
-        border: none;
-        border-radius: 0;
-        background-color: #f8fafc;
-        width: 100%;
-        padding: 0;
-        display: block;
-      }
-      .nav-dropdown .dropdown-menu a {
-        padding: 12px 36px;
-        font-size: 14px;
-        justify-content: flex-start;
-        border-bottom: 1px solid #edf2f7;
-        color: #475569;
-      }
-
-      .main-nav a[target="_blank"] {
+      .main-nav a.btn-quote {
         margin: 12px 24px 8px;
         width: calc(100% - 48px);
         text-align: center;
@@ -306,7 +191,7 @@
         <a href="/resources.html">무역·물류 자료실</a>
         <a href="/tools/load-planner/">컨테이너 적재계산기</a>
         <a href="/contact.html">오시는길 / 문의</a>
-        <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        <a class="btn-quote" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
           온라인 견적문의
         </a>
       </nav>
@@ -315,36 +200,81 @@
 
   <main>
     <section class="hero" aria-labelledby="title">
-      <div class="hero-copy"><div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
         <h1 id="title">포워딩 적재 계산기<br><em>공간을 입체적으로 읽다.</em></h1>
         <p>혼재 화물의 실제 치수와 중량을 입력하세요. 컨테이너별 배치를 계산하고<br class="desktop"> 조작형 3D 모델과 정확한 평면도에서 함께 확인합니다.</p>
         <div class="hero-tags"><span><i></i> 20DC / 40HQ</span><span><i></i> 3D LOAD VIEW</span><span><i></i> REAL-TIME ANALYSIS</span></div>
         <button id="show-results" class="mobile-jump" type="button">분석 결과 보기 <span>↘</span></button>
       </div>
-      <div class="hero-graphic" aria-hidden="true"><div class="graphic-grid"></div><div class="hero-glow"></div><div class="graphic-orbit a"></div><div class="graphic-orbit b"></div><div class="wire-box"><span class="wire-top"></span><span class="wire-front"></span><span class="wire-side"></span><span class="wire-cargo one"></span><span class="wire-cargo two"></span><span class="wire-cargo three"></span></div><span class="graphic-index">CONTAINER MODEL / SPATIAL ANALYSIS</span><span class="graphic-coordinate">X 1203.2 &nbsp; Y 230 &nbsp; Z 264.7</span></div>
+      <div class="hero-graphic" aria-hidden="true">
+        <div class="graphic-grid"></div>
+        <div class="hero-glow"></div>
+        <div class="graphic-orbit a"></div>
+        <div class="graphic-orbit b"></div>
+        <div class="wire-box">
+          <span class="wire-top"></span>
+          <span class="wire-front"></span>
+          <span class="wire-side"></span>
+          <span class="wire-cargo one"></span>
+          <span class="wire-cargo two"></span>
+          <span class="wire-cargo three"></span>
+        </div>
+        <span class="graphic-index">CONTAINER MODEL / SPATIAL ANALYSIS</span>
+        <span class="graphic-coordinate">X 1203.2 &nbsp; Y 230 &nbsp; Z 264.7</span>
+      </div>
     </section>
 
     <section class="workspace" aria-label="화물 입력 및 적재 결과">
       <div class="input-column">
-        <div class="section-heading"><div><span class="section-number">01 — CARGO INPUT</span><h2>화물 정보</h2><p>포장 후 외곽 치수와 포장재 포함 중량을 입력하세요. 적층 단수는 화물별로 설정합니다.</p></div><button id="example" type="button" class="text-button">예시 초기화 <span>↺</span></button></div>
+        <div class="section-heading">
+          <div>
+            <span class="section-number">01 — CARGO INPUT</span>
+            <h2>화물 정보</h2>
+            <p>포장 후 외곽 치수와 포장재 포함 중량을 입력하세요. 적층 단수는 화물별로 설정합니다.</p>
+          </div>
+          <button id="example" type="button" class="text-button">예시 초기화 <span>↺</span></button>
+        </div>
         <div id="cargo-rows" class="cargo-rows"></div>
-        <div class="add-row"><button id="add-cargo" class="add-button" type="button"><span>＋</span> 화물 규격 추가</button><span id="row-count">2개 규격 입력 중</span></div>
-        <div class="section-heading compact"><div><span class="section-number">02 — EQUIPMENT</span><h2>컨테이너 설정</h2><p>보수적 기본값입니다. 실제 공급 장비에 맞춰 수정하세요.</p></div></div>
+        <div class="add-row">
+          <button id="add-cargo" class="add-button" type="button"><span>＋</span> 화물 규격 추가</button>
+          <span id="row-count">2개 규격 입력 중</span>
+        </div>
+        <div class="section-heading compact">
+          <div>
+            <span class="section-number">02 — EQUIPMENT</span>
+            <h2>컨테이너 설정</h2>
+            <p>보수적 기본값입니다. 실제 공급 장비에 맞춰 수정하세요.</p>
+          </div>
+        </div>
         <div id="container-settings" class="container-settings"></div>
-        <div class="clearance-line"><label for="clearance">바닥 작업 여유 <span class="help" title="벽면과 화물 사이 및 화물 간에 적용하는 간단한 평면 간격입니다.">ⓘ</span></label><div><input id="clearance" type="number" min="0" max="20" step="0.5" value="0" inputmode="decimal"><span>cm</span></div></div>
+        <div class="clearance-line">
+          <label for="clearance">바닥 작업 여유 <span class="help" title="벽면과 화물 사이 및 화물 간에 적용하는 간단한 평면 간격입니다.">ⓘ</span></label>
+          <div><input id="clearance" type="number" min="0" max="20" step="0.5" value="0" inputmode="decimal"><span>cm</span></div>
+        </div>
       </div>
 
       <div class="result-column" id="results">
-        <div class="section-heading"><div><span class="section-number">03 — LOAD ANALYSIS</span><h2>적재 분석</h2><p>적재 가능성과 추천 장비를 비교하고 공간을 직접 살펴보세요.</p></div><span class="live-pill"><i></i> LIVE SIMULATION</span></div>
+        <div class="section-heading">
+          <div>
+            <span class="section-number">03 — LOAD ANALYSIS</span>
+            <h2>적재 분석</h2>
+            <p>적재 가능성과 추천 장비를 비교하고 공간을 직접 살펴보세요.</p>
+          </div>
+          <span class="live-pill"><i></i> LIVE SIMULATION</span>
+        </div>
         <div id="validation"></div>
         <div id="result-content"></div>
       </div>
     </section>
-    <footer><span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span><span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/">견적 문의 ↗</a></span></footer>
+    <footer>
+      <span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span>
+      <span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/">견적 문의 ↗</a></span>
+    </footer>
   </main>
 
   <script>
-    // 모바일 햄버거 메뉴 동작 (contact.html 동일)
+    // 모바일 햄버거 메뉴 동작
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
 
