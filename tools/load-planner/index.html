@@ -13,7 +13,7 @@
 
   <style>
   /* ==========================================
-     📌 전역 설정 (기준 코드 바탕 - 스크롤 및 텍스트 최적화 이식)
+     📌 전역 설정
      ========================================== */
   html {
     scroll-padding-top: 100px;
@@ -46,7 +46,7 @@
   }
 
   /* ==========================================
-     📌 메인 헤더 (자료실 페이지 기준 완벽 이식 & 통일)
+     📌 메인 헤더
      ========================================== */
   header.site-header {
     position: fixed !important;
@@ -68,10 +68,10 @@
 
   header.site-header .nav-wrap {
     width: 100% !important;
-    max-width: 1200px !important;
+    max-width: 1280px !important;
     height: 100% !important;
     margin: 0 auto !important;
-    padding: 12px 24px !important;
+    padding: 0 28px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -86,7 +86,7 @@
   }
 
   header.site-header .site-logo {
-    height: 42px !important; /* PC 기준 로고 크기 42px */
+    height: 42px !important;
     width: auto !important;
     display: block !important;
   }
@@ -95,46 +95,51 @@
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 28px !important;
+    gap: 34px !important;
     list-style: none !important;
-    margin: 0 !important;
+    margin: 0 0 0 auto !important;
     padding: 0 !important;
   }
 
-  header.site-header .main-nav a {
-    color: #1e293b !important;
-    font-size: 15px !important; /* PC 메뉴 폰트 크기 15px */
-    font-weight: 600 !important;
+  header.site-header .main-nav a,
+  header.site-header .nav-dropdown .nav-dropdown-btn {
+    color: #34445f !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     transition: color 0.2s ease !important;
     padding: 6px 0 !important;
     white-space: nowrap !important;
     background: transparent !important;
     border: none !important;
-    transform: none !important;
-    box-shadow: none !important;
   }
 
   header.site-header .main-nav a:hover,
-  header.site-header .main-nav a.active {
-    color: #0284c7 !important;
+  header.site-header .main-nav a.active,
+  header.site-header .nav-dropdown:hover .nav-dropdown-btn {
+    color: #00a8c7 !important;
   }
 
-  /* 📌 온라인 견적문의 버튼 */
-  header.site-header .main-nav a[target="_blank"] {
-    background-color: #0284c7 !important;
+  /* 📌 온라인 견적문의 버튼 (.nav-cta 디자인 보정) */
+  header.site-header .nav-cta {
+    background-color: #061a45 !important;
     color: #ffffff !important;
-    padding: 8px 18px !important;
-    border-radius: 6px !important;
-    font-weight: 700 !important;
+    padding: 12px 18px !important;
+    border-radius: 999px !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
     transition: background-color 0.2s ease, transform 0.2s ease !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    white-space: nowrap !important;
+    margin-left: 24px !important;
   }
 
-  header.site-header .main-nav a[target="_blank"]:hover {
-    background-color: #0369a1 !important;
+  header.site-header .nav-cta:hover {
+    background-color: #00a8c7 !important;
+    color: #ffffff !important;
     transform: translateY(-1px) !important;
   }
 
@@ -143,21 +148,7 @@
     position: relative !important;
     display: inline-flex !important;
     align-items: center !important;
-    height: 100% !important; /* 호버 끊김 방지용 높이 확보 */
-  }
-
-  header.site-header .nav-dropdown .nav-dropdown-btn {
-    color: #1e293b !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
-    padding: 6px 0 !important;
-    white-space: nowrap !important;
-    transition: color 0.2s ease !important;
-  }
-
-  header.site-header .nav-dropdown:hover .nav-dropdown-btn {
-    color: #0284c7 !important;
+    height: 100% !important;
   }
 
   header.site-header .nav-dropdown::after {
@@ -178,10 +169,10 @@
     transform: translateX(-50%) !important;
     background-color: #ffffff !important;
     min-width: 180px !important;
-    border: 1px solid #e2e8f0 !important;
+    border: 1px solid #dfe6ef !important;
     border-radius: 12px !important;
     padding: 6px !important;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.04) !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1) !important;
     z-index: 1000 !important;
   }
 
@@ -200,9 +191,9 @@
     align-items: center !important;
     justify-content: center !important;
     padding: 10px 16px !important;
-    color: #334155 !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
+    color: #34445f !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     white-space: nowrap !important;
     border-radius: 8px !important;
@@ -210,8 +201,8 @@
   }
 
   header.site-header .nav-dropdown .dropdown-menu a:hover {
-    background-color: #f0f9ff !important;
-    color: #0284c7 !important;
+    background-color: #f5f8fc !important;
+    color: #00a8c7 !important;
   }
 
   /* 📌 모바일 버튼 */
@@ -240,21 +231,23 @@
   header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* ==========================================
-     📌 모바일 대응 (992px 기준 통일 - 패딩, 로고 크기 변경 적용)
+     📌 모바일 대응 (992px 기준)
      ========================================== */
   @media (max-width: 992px) {
     body { padding-top: 64px !important; }
     header.site-header { height: 64px !important; }
     
     header.site-header .nav-wrap { 
-      padding: 10px 20px !important; /* 모바일 여백 이식 */
+      padding: 10px 20px !important;
     }
     
     header.site-header .site-logo { 
-      height: 36px !important; /* 모바일 로고 크기 36px 이식 */
+      height: 36px !important;
     }
 
     header.site-header .menu-btn { display: flex !important; }
+
+    header.site-header .nav-cta { display: none !important; }
 
     header.site-header .main-nav {
       display: none !important;
@@ -273,7 +266,8 @@
 
     header.site-header .main-nav.active { display: flex !important; }
 
-    header.site-header .main-nav a {
+    header.site-header .main-nav a,
+    header.site-header .nav-dropdown .nav-dropdown-btn {
       padding: 14px 24px !important;
       font-size: 16px !important;
       border-bottom: 1px solid #f8fafc !important;
@@ -286,14 +280,6 @@
       flex-direction: column !important;
       align-items: stretch !important;
       height: auto !important;
-    }
-
-    header.site-header .nav-dropdown .nav-dropdown-btn {
-      padding: 14px 24px !important;
-      font-size: 16px !important;
-      color: #1e293b !important;
-      border-bottom: 1px solid #f8fafc !important;
-      width: 100% !important;
     }
 
     header.site-header .nav-dropdown .dropdown-menu {
@@ -314,14 +300,6 @@
       justify-content: flex-start !important;
       border-bottom: 1px solid #edf2f7 !important;
       color: #475569 !important;
-    }
-
-    /* 모바일 버튼 여백 및 크기 기준 적용 */
-    header.site-header .main-nav a[target="_blank"] {
-      margin: 12px 24px 8px !important;
-      width: calc(100% - 48px) !important;
-      text-align: center !important;
-      border-radius: 8px !important;
     }
   }
 </style>
@@ -345,7 +323,7 @@
 
       <!-- 드롭다운: 무역·물류 자료실 -->
       <div class="nav-dropdown">
-        <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
+        <a href="https://www.widesp.co.kr/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
         <div class="dropdown-menu">
           <a href="/tools/load-planner/" class="active">컨테이너 적재 계산기</a>
         </div>
@@ -354,12 +332,12 @@
       <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
     </nav>
 
-    <!-- 3. 견적문의 버튼 (nav 영역 밖으로 분리) -->
+    <!-- 3. 견적문의 버튼 -->
     <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
       <span>온라인 견적문의</span>
     </a>
 
-    <!-- 4. 모바일 햄버거 버튼 (우측 끝 정렬을 위해 맨 아래로 배치) -->
+    <!-- 4. 모바일 햄버거 버튼 -->
     <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
       <span></span>
       <span></span>
@@ -368,7 +346,6 @@
 
   </div>
 </header>
-
 <main>
   <section class="hero" aria-labelledby="title">
     <div class="hero-copy">
