@@ -3,181 +3,256 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#081e31">
+  <meta name="theme-color" content="#061a45">
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
+  
+  <!-- Pretendard 폰트 및 기존 계산기 기능 로드 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 사이트(resources.html) 동일 규격 상단바 격리 CSS -->
+  <!-- 메인 홈페이지 CSS 규격 100% 동일 적용 및 격리 코드 -->
   <style>
+    :root {
+      --navy: #061a45;
+      --navy2: #09295f;
+      --blue: #00a8c7;
+      --sky: #22b7e8;
+      --ink: #0e1d39;
+      --muted: #71809a;
+      --line: #dfe6ef;
+      --soft: #f5f8fc;
+      --white: #fff;
+    }
+
+    body {
+      margin: 0 !important;
+      padding-top: 82px !important;
+      font-family: Pretendard, system-ui, sans-serif !important;
+    }
+
+    /* 상단 헤더 메인 규격 동일화 */
     header.site-header {
+      all: unset;
+      display: block !important;
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       width: 100% !important;
-      height: 72px !important;
-      z-index: 10000 !important;
-      background: #ffffff !important;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
-      margin: 0 !important;
-      padding: 0 !important;
+      height: 82px !important;
+      z-index: 9999 !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(16px) !important;
+      border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
       box-sizing: border-box !important;
-      display: flex !important;
-      align-items: center !important;
     }
 
     header.site-header * {
       box-sizing: border-box !important;
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      line-height: 1.4 !important;
+      font-family: Pretendard, system-ui, sans-serif !important;
     }
 
     header.site-header .nav-wrap {
-      width: 100% !important;
-      max-width: 1200px !important;
-      height: 100% !important;
+      height: 82px !important;
+      max-width: 1280px !important;
       margin: 0 auto !important;
-      padding: 0 24px !important;
+      padding: 0 28px !important;
       display: flex !important;
       align-items: center !important;
-      justify-content: space-between !important;
-      position: relative !important;
+      gap: 42px !important;
     }
 
+    /* 로고 크기 메인과 동일 조정 (220px) */
     header.site-header .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
     }
-
-    header.site-header .site-logo {
-      height: 40px !important;
-      width: auto !important;
+    header.site-header .brand img {
+      width: 220px !important;
+      height: auto !important;
+      object-fit: contain !important;
       display: block !important;
     }
 
+    /* 메인 네비게이션 메뉴 */
     header.site-header .main-nav {
       display: flex !important;
-      flex-direction: row !important;
       align-items: center !important;
-      gap: 32px !important;
+      gap: 34px !important;
+      margin-left: auto !important;
+      padding: 0 !important;
       list-style: none !important;
     }
 
     header.site-header .main-nav a {
-      color: #1e293b !important;
-      font-size: 15px !important;
-      font-weight: 600 !important;
-      letter-spacing: -0.3px !important;
-      text-decoration: none !important;
+      all: unset;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: #34445f !important;
+      position: relative !important;
+      padding: 29px 0 !important;
+      cursor: pointer !important;
       white-space: nowrap !important;
       transition: color 0.15s ease !important;
-      padding: 4px 0 !important;
-      background: none !important;
-      border: none !important;
     }
 
     header.site-header .main-nav a:hover {
-      color: #0284c7 !important;
+      color: var(--blue) !important;
     }
 
-    header.site-header .main-nav a.active {
-      color: #0284c7 !important;
+    /* 드롭다운 메뉴 스타일 */
+    header.site-header .nav-dropdown {
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    header.site-header .dropdown-menu {
+      display: none !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      min-width: 200px !important;
+      background: var(--white) !important;
+      border: 1px solid var(--line) !important;
+      box-shadow: 0 15px 35px rgba(18, 44, 78, 0.08) !important;
+      border-radius: 16px !important;
+      padding: 8px !important;
+      z-index: 100 !important;
+    }
+
+    header.site-header .nav-dropdown:hover .dropdown-menu {
+      display: block !important;
+    }
+
+    header.site-header .dropdown-menu a {
+      display: block !important;
+      padding: 10px 14px !important;
+      font-size: 13px !important;
       font-weight: 700 !important;
+      color: #34445f !important;
+      border-radius: 10px !important;
+      white-space: nowrap !important;
+      text-decoration: none !important;
+      transition: background-color 0.15s ease, color 0.15s ease !important;
     }
 
-    header.site-header .main-nav a.nav-cta {
-      background-color: #0284c7 !important;
+    header.site-header .dropdown-menu a:hover {
+      background: var(--soft) !important;
+      color: var(--blue) !important;
+    }
+
+    header.site-header .dropdown-menu a.active {
+      color: var(--blue) !important;
+      background: var(--soft) !important;
+    }
+
+    /* 우측 온라인 견적문의 알약형 버튼 */
+    header.site-header .nav-cta {
+      all: unset;
+      background: var(--navy) !important;
       color: #ffffff !important;
-      padding: 9px 18px !important;
-      border-radius: 6px !important;
-      font-size: 15px !important;
-      font-weight: 700 !important;
+      padding: 12px 18px !important;
+      border-radius: 999px !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
+      text-decoration: none !important;
+    }
+
+    header.site-header .nav-cta span {
       margin-left: 8px !important;
     }
 
-    header.site-header .main-nav a.nav-cta:hover {
-      background-color: #0369a1 !important;
+    header.site-header .nav-cta:hover {
+      background: var(--navy2) !important;
       color: #ffffff !important;
     }
 
+    /* 모바일 반응형 처리 */
     header.site-header .menu-btn {
       display: none !important;
       background: none !important;
-      border: none !important;
+      border: 0 !important;
       cursor: pointer !important;
-      padding: 8px !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      gap: 5px !important;
-      z-index: 1001 !important;
+      padding: 5px !important;
     }
-
     header.site-header .menu-btn span {
       display: block !important;
-      width: 24px !important;
+      width: 23px !important;
       height: 2px !important;
-      background-color: #0f172a !important;
-      transition: transform 0.3s ease, opacity 0.3s ease !important;
+      background: var(--ink) !important;
+      margin: 5px !important;
     }
 
-    header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
-    header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
-    header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+    @media (max-width: 900px) {
+      body { padding-top: 72px !important; }
+      header.site-header { height: 72px !important; }
+      header.site-header .nav-wrap { height: 72px !important; padding: 0 18px !important; gap: 0 !important; }
+      header.site-header .brand img { width: 170px !important; }
+      header.site-header .main-nav, header.site-header .nav-cta { display: none !important; }
+      header.site-header .menu-btn { display: block !important; margin-left: auto !important; }
 
-    body { padding-top: 72px !important; }
-
-    @media (max-width: 992px) {
-      body { padding-top: 64px !important; }
-      header.site-header { height: 64px !important; }
-      header.site-header .nav-wrap { padding: 0 20px !important; }
-      header.site-header .menu-btn { display: flex !important; }
-      header.site-header .main-nav {
-        display: none !important;
+      header.site-header .main-nav.open {
+        display: flex !important;
         position: absolute !important;
-        top: 100% !important;
+        top: 72px !important;
         left: 0 !important;
-        width: 100% !important;
+        right: 0 !important;
         background: #ffffff !important;
         flex-direction: column !important;
-        align-items: stretch !important;
+        padding: 18px 28px !important;
         gap: 0 !important;
-        padding: 12px 0 !important;
-        border-bottom: 1px solid #e2e8f0 !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+        border-bottom: 1px solid var(--line) !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
       }
-      header.site-header .main-nav.active { display: flex !important; }
-      header.site-header .main-nav a { padding: 14px 24px !important; font-size: 16px !important; border-bottom: 1px solid #f8fafc !important; }
-      header.site-header .main-nav a.nav-cta { margin: 12px 24px !important; text-align: center !important; }
+      header.site-header .main-nav.open a { padding: 13px 0 !important; }
+      header.site-header .main-nav.open .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        box-shadow: none !important;
+        display: block !important;
+        padding: 4px 0 4px 12px !important;
+        background: transparent !important;
+        border: none !important;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- 공통 상단 헤더 -->
+  <!-- 메인 공통 상단 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="https://www.widesp.co.kr/" aria-label="와이드해운 홈">
-        <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+        <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운">
       </a>
 
       <nav class="main-nav" id="mainNav">
         <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
         <a href="https://www.widesp.co.kr/service.html">서비스</a>
         <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
-        <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
-        <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
+        
+        <!-- 무역·물류 자료실 드롭다운 -->
+        <div class="nav-dropdown">
+          <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
+          <div class="dropdown-menu">
+            <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
+          </div>
+        </div>
+
         <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
-        <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-          온라인 견적문의
-        </a>
       </nav>
+
+      <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의 <span>→</span>
+      </a>
 
       <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
         <span></span><span></span><span></span>
@@ -185,7 +260,7 @@
     </div>
   </header>
 
-  <!-- 원본 계산기 메인 콘텐츠 -->
+  <!-- 포워딩 적재 계산기 메인 콘텐츠 -->
   <main>
     <section class="hero" aria-labelledby="title">
       <div class="hero-copy"><div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
@@ -221,8 +296,7 @@
     const mainNav = document.getElementById('mainNav');
     if (menuToggle && mainNav) {
       menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
+        mainNav.classList.toggle('open');
       });
     }
   </script>
