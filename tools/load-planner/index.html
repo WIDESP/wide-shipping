@@ -8,11 +8,10 @@
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <!-- 📌 핵심 수정: 같은 폴더 안에 있는 style.css를 정확히 호출 -->
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 다른 페이지들과 100% 동일한 상단 헤더 및 전체 레이아웃 스타일 -->
+  <!-- 상단 헤더 및 전체 레이아웃 스타일 -->
   <style>
     * {
       box-sizing: border-box;
@@ -28,7 +27,7 @@
     }
 
     /* ==========================================
-        📌 상단 헤더 (타 페이지와 완벽 통일)
+        상단 헤더 스타일
        ========================================== */
     .site-header {
       position: fixed;
@@ -133,7 +132,7 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* 📱 모바일 반응형 (992px 이하) */
+    /* 모바일 반응형 (992px 이하) */
     @media (max-width: 992px) {
       body {
         padding-top: 64px;
@@ -181,7 +180,7 @@
 </head>
 <body>
 
-  <!-- 상단 헤더 (타 페이지와 완벽 통일) -->
+  <!-- 상단 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="/index.html" aria-label="와이드해운 홈">
@@ -285,14 +284,24 @@
   </main>
 
   <script>
-    // 모바일 햄버거 메뉴 동작
+    // 상단 헤더 모바일 메뉴 동작 개선 (링크 클릭 시 자동 닫힘 및 aria-expanded 동기화 포함)
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
 
     if (menuToggle && mainNav) {
       menuToggle.addEventListener('click', function() {
-        menuToggle.classList.toggle('active');
+        const isActive = menuToggle.classList.toggle('active');
         mainNav.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive);
+      });
+
+      // 모바일 환경에서 메뉴 링크 클릭 시 자동으로 메뉴가 닫히도록 처리
+      mainNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          mainNav.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
       });
     }
   </script>
