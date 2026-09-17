@@ -11,14 +11,17 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 사이트 동일 헤더 CSS -->
+  <!-- 메인 사이트 동일 헤더 및 레이아웃 정돈 CSS -->
   <style>
     body {
       padding-top: 72px;
+      margin: 0;
+      background-color: #eaf1f3;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     }
 
     /* ==========================================
-       📌 상단 헤더 (메인 사이트 표준)
+        📌 상단 헤더 (메인 사이트 표준)
        ========================================== */
     .site-header {
       position: fixed;
@@ -169,34 +172,6 @@
     }
   </style>
 </head>
-<body>
-
-  <!-- 상단 헤더 -->
-  <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="/index.html" aria-label="와이드해운 홈">
-        <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
-      </a>
-
-      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="main-nav" id="mainNav">
-        <a href="/index.html#company">회사소개</a>
-        <a href="/service.html">서비스</a>
-        <a href="/network.html">글로벌 네트워크</a>
-        <a href="/resources.html">무역·물류 자료실</a>
-        <a href="/tools/load-planner/">컨테이너 적재계산기</a>
-        <a href="/contact.html">오시는길 / 문의</a>
-        <a class="btn-quote" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-          온라인 견적문의
-        </a>
-      </nav>
-    </div>
-  </header>
 
   <main>
     <section class="hero" aria-labelledby="title">
