@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 상단 공통 헤더 전용 CSS (기존 style.css 충돌 방지) -->
+  <!-- 타겟 이미지(이미지 2)와 100% 일치하도록 정밀 보정한 헤더 CSS -->
   <style>
     .site-header {
       position: fixed;
@@ -17,17 +17,15 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      background: #ffffff;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     }
 
     .nav-wrap {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 12px 24px;
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -35,36 +33,51 @@
     }
 
     .brand { display: flex; align-items: center; text-decoration: none; }
-    .site-logo { height: 42px; width: auto; display: block; }
+    .site-logo { height: 44px; width: auto; display: block; }
 
-    .main-nav { display: flex; align-items: center; gap: 28px; }
+    .main-nav { 
+      display: flex; 
+      align-items: center; 
+      gap: 36px; /* 메뉴 사이 여백 넓게 간격 조정 */
+    }
+
     .main-nav a {
-      color: #1e293b;
+      color: #334155; /* 선명하고 명확한 텍스트 컬러 */
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 600; /* 폰트 두께 보정 */
+      letter-spacing: -0.4px; /* pretendard 자간 밀도 보정 */
       text-decoration: none;
-      transition: color 0.2s ease;
-      padding: 6px 0;
+      transition: color 0.15s ease-in-out;
+      padding: 4px 0;
       white-space: nowrap;
     }
 
-    .main-nav a:hover,
-    .main-nav a.active { color: #0284c7; font-weight: 700; }
+    .main-nav a:hover {
+      color: #0284c7;
+    }
 
+    /* 이미지 2와 동일한 활성화(Active) 메뉴 파란색 강조 */
+    .main-nav a.active {
+      color: #0284c7 !important;
+      font-weight: 700 !important;
+    }
+
+    /* 우측 온라인 견적문의 버튼 규격 일치 */
     .main-nav a.nav-cta {
       background-color: #0284c7 !important;
       color: #ffffff !important;
-      padding: 8px 18px !important;
-      border-radius: 6px !important;
+      padding: 10px 20px !important;
+      border-radius: 8px !important;
+      font-size: 15px !important;
       font-weight: 700 !important;
+      letter-spacing: -0.3px !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      transition: background-color 0.2s ease, transform 0.2s ease !important;
+      margin-left: 8px;
     }
     .main-nav a.nav-cta:hover {
       background-color: #0369a1 !important;
-      transform: translateY(-1px) !important;
     }
 
     .menu-btn {
@@ -90,11 +103,12 @@
     .menu-btn.active span:nth-child(2) { opacity: 0; }
     .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* 기존 body 고정 상단바 여백 확보 */
-    body { padding-top: 72px; }
+    /* 헤더 높이에 맞춘 상단 여백 보정 */
+    body { padding-top: 74px; }
 
     @media (max-width: 992px) {
       body { padding-top: 64px; }
+      .nav-wrap { padding: 12px 20px; }
       .menu-btn { display: flex; }
       .main-nav {
         display: none;
@@ -103,7 +117,9 @@
         background: #ffffff;
         flex-direction: column;
         align-items: stretch;
+        gap: 0;
         padding: 12px 0;
+        border-bottom: 1px solid #e2e8f0;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       }
       .main-nav.active { display: flex; }
@@ -113,7 +129,7 @@
   </style>
 </head>
 <body>
-  <!-- 통일된 공통 헤더 -->
+  <!-- 상단 공통 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="/index.html" aria-label="와이드해운 홈">
@@ -170,7 +186,7 @@
   </main>
 
   <script>
-    // 모바일 메뉴 반응형 토글
+    // 모바일 메뉴 토글
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     if (menuToggle && mainNav) {
