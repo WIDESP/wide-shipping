@@ -11,26 +11,35 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 INDEX 상단바 100% 동일 적용 CSS -->
+  <!-- 메인 styles.css 수치 100% 동기화 스타일 -->
   <style>
-    body {
-      margin: 0 !important;
-      padding-top: 82px !important;
-      font-family: Pretendard, system-ui, -apple-system, sans-serif !important;
+    :root {
+      --navy: #061a45;
+      --navy2: #09295f;
+      --blue: #00a8c7;
+      --sky: #22b7e8;
+      --ink: #0e1d39;
+      --muted: #71809a;
+      --line: #dfe6ef;
+      --soft: #f5f8fc;
+      --white: #fff;
     }
 
+    body {
+      margin: 0 !important;
+      font-family: Pretendard, system-ui, sans-serif !important;
+      color: #0e1d39 !important;
+    }
+
+    /* 메인 site-header 스타일 동일 적용 */
     header.site-header {
-      all: unset !important;
-      position: fixed !important;
+      position: sticky !important;
       top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      z-index: 1000 !important;
+      z-index: 50 !important;
       background: rgba(255, 255, 255, 0.92) !important;
       backdrop-filter: blur(16px) !important;
       -webkit-backdrop-filter: blur(16px) !important;
       border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
-      box-shadow: none !important;
       box-sizing: border-box !important;
       display: block !important;
     }
@@ -43,48 +52,48 @@
     header.site-header .nav-wrap {
       height: 82px !important;
       max-width: 1280px !important;
-      margin: 0 auto !important;
+      margin: auto !important;
       padding: 0 28px !important;
       display: flex !important;
       align-items: center !important;
       gap: 42px !important;
-      position: relative !important;
     }
 
+    /* 로고 크기 확대 */
     header.site-header .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
     }
 
-    header.site-header .site-logo {
+    header.site-header .brand img {
       width: 220px !important;
       height: auto !important;
       object-fit: contain !important;
       display: block !important;
     }
 
+    /* 네비게이션 및 폰트 수치 동일화 */
     header.site-header .main-nav {
       display: flex !important;
-      align-items: center !important;
       gap: 34px !important;
       margin-left: auto !important;
+      padding: 0 !important;
       margin-top: 0 !important;
       margin-bottom: 0 !important;
-      padding: 0 !important;
       list-style: none !important;
+      align-items: center !important;
     }
 
     header.site-header .main-nav a {
-      color: #34445f !important;
       font-size: 14px !important;
       font-weight: 700 !important;
+      color: #34445f !important;
+      position: relative !important;
+      padding: 29px 0 !important;
       text-decoration: none !important;
       transition: color 0.15s ease !important;
-      padding: 29px 0 !important;
-      line-height: 1.2 !important;
       white-space: nowrap !important;
-      background: none !important;
     }
 
     header.site-header .main-nav a:hover,
@@ -92,108 +101,102 @@
       color: #00a8c7 !important;
     }
 
-    /* 메인 동일 강조 CTA 버튼 스타일 */
-    header.site-header .main-nav a.btn.primary,
-    header.site-header .main-nav a[target="_blank"] {
-      background-color: #061a45 !important;
+    /* CTA 버튼 스타일 */
+    header.site-header .nav-cta {
+      background: #061a45 !important;
       color: #ffffff !important;
       padding: 12px 18px !important;
       border-radius: 999px !important;
       font-size: 13px !important;
       font-weight: 800 !important;
-      line-height: 1 !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
       display: inline-flex !important;
       align-items: center !important;
-      transform: none !important;
+      justify-content: center !important;
       transition: background-color 0.2s ease !important;
     }
 
-    header.site-header .main-nav a.btn.primary:hover,
-    header.site-header .main-nav a[target="_blank"]:hover {
-      background-color: #09295f !important;
-      color: #ffffff !important;
-      transform: none !important;
+    header.site-header .nav-cta:hover {
+      background: #09295f !important;
     }
 
+    /* 모바일 토글 버튼 */
     header.site-header .menu-btn {
       display: none !important;
       background: none !important;
-      border: none !important;
+      border: 0 !important;
       cursor: pointer !important;
-      padding: 8px !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      gap: 5px !important;
-      z-index: 1001 !important;
+      padding: 0 !important;
     }
 
     header.site-header .menu-btn span {
       display: block !important;
-      width: 24px !important;
+      width: 23px !important;
       height: 2px !important;
-      background-color: #0f172a !important;
+      background: #0e1d39 !important;
+      margin: 5px !important;
       transition: transform 0.3s ease, opacity 0.3s ease !important;
-      margin: 0 !important;
     }
 
-    header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
-    header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
-    header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+    header.site-header .menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+    header.site-header .menu-btn.open span:nth-child(2) { opacity: 0 !important; }
+    header.site-header .menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
 
+    /* 반응형 900px / 560px 스타일 */
     @media (max-width: 900px) {
-      body {
-        padding-top: 72px !important;
+      header.site-header .main-nav,
+      header.site-header .nav-cta {
+        display: none !important;
       }
-      header.site-header .nav-wrap {
-        height: 72px !important;
-        padding: 0 20px !important;
-      }
-      header.site-header .site-logo {
-        width: 180px !important;
-      }
+
       header.site-header .menu-btn {
-        display: flex !important;
+        display: block !important;
         margin-left: auto !important;
       }
-      header.site-header .main-nav {
-        display: none !important;
+
+      header.site-header .nav-wrap {
+        height: 72px !important;
+      }
+
+      header.site-header .main-nav.open {
+        display: flex !important;
         position: absolute !important;
         top: 72px !important;
         left: 0 !important;
-        width: 100% !important;
+        right: 0 !important;
         background: #ffffff !important;
         flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 0 !important;
         padding: 18px 28px !important;
+        gap: 0 !important;
         border-bottom: 1px solid #dfe6ef !important;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
       }
-      header.site-header .main-nav.active {
-        display: flex !important;
-      }
-      header.site-header .main-nav a {
+
+      header.site-header .main-nav.open a {
         padding: 13px 0 !important;
-        font-size: 15px !important;
-        border-bottom: 1px solid #f1f5f9 !important;
         width: 100% !important;
       }
-      header.site-header .main-nav a.btn.primary,
-      header.site-header .main-nav a[target="_blank"] {
-        margin: 12px 0 6px !important;
-        width: 100% !important;
-        text-align: center !important;
-        justify-content: center !important;
-        border-radius: 999px !important;
+
+      header.site-header .main-nav.open .nav-cta {
+        display: inline-flex !important;
+        margin-top: 10px !important;
+        width: fit-content !important;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header.site-header .nav-wrap {
+        padding: 0 18px !important;
       }
     }
   </style>
 </head>
 <body>
-  <header class="site-header" id="top">
+  <header class="site-header">
     <div class="nav-wrap">
       <a href="/index.html" class="brand" aria-label="와이드해운 홈">
-        <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
+        <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운">
       </a>
 
       <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
@@ -209,8 +212,8 @@
         <a href="/resources.html">무역·물류 자료실</a>
         <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
         <a href="/contact.html">오시는길 / 문의</a>
-        <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-          온라인 견적문의
+        <a href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer" class="nav-cta">
+          온라인 견적문의 <span>→</span>
         </a>
       </nav>
     </div>
@@ -251,15 +254,17 @@
     const mainNav = document.getElementById('mainNav');
 
     if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', function() {
-        menuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mainNav.classList.toggle('open');
+        menuToggle.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
 
       mainNav.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          menuToggle.classList.remove('active');
-          mainNav.classList.remove('active');
+          mainNav.classList.remove('open');
+          menuToggle.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
         });
       });
     }
