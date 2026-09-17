@@ -7,32 +7,18 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- Pretendard 폰트 및 기존 계산기 기능 로드 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 홈페이지 CSS 규격 100% 동일 적용 및 격리 코드 -->
+  <!-- 메뉴 글자 파란색 고정 현상 완전 제거 CSS -->
   <style>
-    :root {
-      --navy: #061a45;
-      --navy2: #09295f;
-      --blue: #00a8c7;
-      --sky: #22b7e8;
-      --ink: #0e1d39;
-      --muted: #71809a;
-      --line: #dfe6ef;
-      --soft: #f5f8fc;
-      --white: #fff;
-    }
-
     body {
       margin: 0 !important;
-      padding-top: 82px !important;
+      padding-top: 80px !important;
       font-family: Pretendard, system-ui, sans-serif !important;
     }
 
-    /* 상단 헤더 메인 규격 동일화 */
     header.site-header {
       all: unset;
       display: block !important;
@@ -40,11 +26,10 @@
       top: 0 !important;
       left: 0 !important;
       width: 100% !important;
-      height: 82px !important;
+      height: 80px !important;
       z-index: 9999 !important;
-      background: rgba(255, 255, 255, 0.95) !important;
-      backdrop-filter: blur(16px) !important;
-      border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
+      background: #ffffff !important;
+      border-bottom: 1px solid #e5e7eb !important;
       box-sizing: border-box !important;
     }
 
@@ -54,129 +39,88 @@
     }
 
     header.site-header .nav-wrap {
-      height: 82px !important;
-      max-width: 1280px !important;
+      height: 80px !important;
+      max-width: 1300px !important;
       margin: 0 auto !important;
-      padding: 0 28px !important;
+      padding: 0 24px !important;
       display: flex !important;
       align-items: center !important;
-      gap: 42px !important;
+      justify-content: space-between !important;
     }
 
-    /* 로고 크기 메인과 동일 조정 (220px) */
     header.site-header .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
     }
     header.site-header .brand img {
-      width: 220px !important;
-      height: auto !important;
-      object-fit: contain !important;
+      height: 38px !important;
+      width: auto !important;
       display: block !important;
     }
 
-    /* 메인 네비게이션 메뉴 */
     header.site-header .main-nav {
       display: flex !important;
       align-items: center !important;
-      gap: 34px !important;
-      margin-left: auto !important;
+      gap: 30px !important;
+      margin: 0 auto !important;
       padding: 0 !important;
       list-style: none !important;
     }
 
-    header.site-header .main-nav a {
+    /* 
+      .active 클래스, :visited(방문한 링크), :focus 등 
+      모든 예외 상태에서 파란색 변경을 차단하고 어두운 다크 그레이(#2b3648)로 강제 통일
+    */
+    header.site-header .main-nav a,
+    header.site-header .main-nav a:link,
+    header.site-header .main-nav a:visited,
+    header.site-header .main-nav a:focus,
+    header.site-header .main-nav a:active,
+    header.site-header .main-nav a.active {
       all: unset;
-      font-size: 14px !important;
-      font-weight: 700 !important;
-      color: #34445f !important;
-      position: relative !important;
-      padding: 29px 0 !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      color: #2b3648 !important; /* 기본 어두운 색상 고정 */
       cursor: pointer !important;
       white-space: nowrap !important;
+      text-decoration: none !important;
+      outline: none !important;
       transition: color 0.15s ease !important;
     }
 
+    /* 오직 마우스를 올렸을 때(Hover)에만 파란색 전환 */
     header.site-header .main-nav a:hover {
-      color: var(--blue) !important;
+      color: #0088cc !important;
     }
 
-    /* 드롭다운 메뉴 스타일 */
-    header.site-header .nav-dropdown {
-      position: relative !important;
-      display: flex !important;
-      align-items: center !important;
-    }
-
-    header.site-header .dropdown-menu {
-      display: none !important;
-      position: absolute !important;
-      top: 100% !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      min-width: 200px !important;
-      background: var(--white) !important;
-      border: 1px solid var(--line) !important;
-      box-shadow: 0 15px 35px rgba(18, 44, 78, 0.08) !important;
-      border-radius: 16px !important;
-      padding: 8px !important;
-      z-index: 100 !important;
-    }
-
-    header.site-header .nav-dropdown:hover .dropdown-menu {
-      display: block !important;
-    }
-
-    header.site-header .dropdown-menu a {
-      display: block !important;
-      padding: 10px 14px !important;
-      font-size: 13px !important;
-      font-weight: 700 !important;
-      color: #34445f !important;
-      border-radius: 10px !important;
-      white-space: nowrap !important;
-      text-decoration: none !important;
-      transition: background-color 0.15s ease, color 0.15s ease !important;
-    }
-
-    header.site-header .dropdown-menu a:hover {
-      background: var(--soft) !important;
-      color: var(--blue) !important;
-    }
-
-    header.site-header .dropdown-menu a.active {
-      color: var(--blue) !important;
-      background: var(--soft) !important;
-    }
-
-    /* 우측 온라인 견적문의 알약형 버튼 */
-    header.site-header .nav-cta {
+    /* 우측 버튼 */
+    header.site-header .nav-cta,
+    header.site-header .nav-cta:link,
+    header.site-header .nav-cta:visited,
+    header.site-header .nav-cta:focus,
+    header.site-header .nav-cta:active {
       all: unset;
-      background: var(--navy) !important;
+      background: #0088cc !important;
       color: #ffffff !important;
-      padding: 12px 18px !important;
-      border-radius: 999px !important;
-      font-size: 13px !important;
-      font-weight: 800 !important;
+      padding: 10px 18px !important;
+      border-radius: 8px !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
       cursor: pointer !important;
       white-space: nowrap !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
       text-decoration: none !important;
-    }
-
-    header.site-header .nav-cta span {
-      margin-left: 8px !important;
+      transition: background-color 0.2s ease !important;
     }
 
     header.site-header .nav-cta:hover {
-      background: var(--navy2) !important;
+      background: #0077b3 !important;
       color: #ffffff !important;
     }
 
-    /* 모바일 반응형 처리 */
     header.site-header .menu-btn {
       display: none !important;
       background: none !important;
@@ -186,48 +130,37 @@
     }
     header.site-header .menu-btn span {
       display: block !important;
-      width: 23px !important;
+      width: 22px !important;
       height: 2px !important;
-      background: var(--ink) !important;
+      background: #1e293b !important;
       margin: 5px !important;
     }
 
-    @media (max-width: 900px) {
-      body { padding-top: 72px !important; }
-      header.site-header { height: 72px !important; }
-      header.site-header .nav-wrap { height: 72px !important; padding: 0 18px !important; gap: 0 !important; }
-      header.site-header .brand img { width: 170px !important; }
+    @media (max-width: 960px) {
+      body { padding-top: 70px !important; }
+      header.site-header { height: 70px !important; }
+      header.site-header .nav-wrap { height: 70px !important; padding: 0 16px !important; }
+      header.site-header .brand img { height: 32px !important; }
       header.site-header .main-nav, header.site-header .nav-cta { display: none !important; }
-      header.site-header .menu-btn { display: block !important; margin-left: auto !important; }
+      header.site-header .menu-btn { display: block !important; }
 
       header.site-header .main-nav.open {
         display: flex !important;
         position: absolute !important;
-        top: 72px !important;
+        top: 70px !important;
         left: 0 !important;
         right: 0 !important;
         background: #ffffff !important;
         flex-direction: column !important;
-        padding: 18px 28px !important;
-        gap: 0 !important;
-        border-bottom: 1px solid var(--line) !important;
+        padding: 16px 20px !important;
+        gap: 14px !important;
+        border-bottom: 1px solid #e5e7eb !important;
         box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
-      }
-      header.site-header .main-nav.open a { padding: 13px 0 !important; }
-      header.site-header .main-nav.open .dropdown-menu {
-        position: static !important;
-        transform: none !important;
-        box-shadow: none !important;
-        display: block !important;
-        padding: 4px 0 4px 12px !important;
-        background: transparent !important;
-        border: none !important;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 메인 공통 상단 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="https://www.widesp.co.kr/" aria-label="와이드해운 홈">
@@ -238,20 +171,13 @@
         <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
         <a href="https://www.widesp.co.kr/service.html">서비스</a>
         <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
-        
-        <!-- 무역·물류 자료실 드롭다운 -->
-        <div class="nav-dropdown">
-          <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
-          <div class="dropdown-menu">
-            <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
-          </div>
-        </div>
-
+        <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
+        <a href="/tools/load-planner/">컨테이너 적재계산기</a>
         <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
       </nav>
 
       <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-        온라인 견적문의 <span>→</span>
+        온라인 견적문의
       </a>
 
       <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
@@ -260,7 +186,6 @@
     </div>
   </header>
 
-  <!-- 포워딩 적재 계산기 메인 콘텐츠 -->
   <main>
     <section class="hero" aria-labelledby="title">
       <div class="hero-copy"><div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
