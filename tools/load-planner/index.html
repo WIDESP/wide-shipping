@@ -20,14 +20,14 @@
     }
 
     body {
-      padding-top: 72px;
+      padding-top: 82px;
       margin: 0;
       background-color: #eaf1f3;
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     }
 
     /* ==========================================
-        상단 헤더 스타일
+        상단 헤더 스타일 (메인 홈페이지 동일 규격)
        ========================================== */
     .site-header {
       position: fixed;
@@ -38,14 +38,19 @@
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(220, 228, 239, 0.7);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      height: 82px;
+      display: flex;
+      align-items: center;
     }
 
     .nav-wrap {
-      max-width: 1200px;
+      max-width: 1280px;
+      width: 100%;
+      height: 82px;
       margin: 0 auto;
-      padding: 12px 24px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -56,47 +61,60 @@
       display: flex;
       align-items: center;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .site-logo {
-      height: 42px;
-      width: auto;
+      width: 220px;
+      height: auto;
+      object-fit: contain;
       display: block;
     }
 
     .main-nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 32px;
+      list-style: none;
+      margin-left: auto;
+      margin-right: 32px;
     }
 
     .main-nav a,
     .main-nav a:link,
     .main-nav a:visited {
-      color: #1e293b;
-      font-size: 15px;
-      font-weight: 600;
+      color: #34445f;
+      font-size: 14px;
+      font-weight: 700;
       text-decoration: none;
       transition: color 0.2s ease;
       padding: 6px 0;
       white-space: nowrap;
     }
 
-    .main-nav a:hover {
-      color: #0284c7;
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: #00a8c7;
     }
 
     /* 온라인 견적문의 버튼 */
-    .main-nav a[target="_blank"] {
+    .nav-cta {
       background-color: #0284c7;
       color: #ffffff !important;
-      padding: 8px 18px;
-      border-radius: 6px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: 700;
+      text-decoration: none;
       transition: background-color 0.2s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .main-nav a[target="_blank"]:hover {
+    .nav-cta:hover {
       background-color: #0369a1;
       transform: translateY(-1px);
     }
@@ -135,16 +153,23 @@
     /* 모바일 반응형 (992px 이하) */
     @media (max-width: 992px) {
       body {
-        padding-top: 64px;
+        padding-top: 72px;
+      }
+      .site-header {
+        height: 72px;
       }
       .nav-wrap {
-        padding: 10px 20px;
+        height: 72px;
+        padding: 0 20px;
       }
       .site-logo {
-        height: 36px;
+        width: 170px;
       }
       .menu-btn {
         display: flex;
+      }
+      .nav-cta {
+        display: none;
       }
       .main-nav {
         display: none;
@@ -159,6 +184,7 @@
         padding: 12px 0;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         border-top: 1px solid #f1f5f9;
+        margin: 0;
       }
       .main-nav.active {
         display: flex;
@@ -168,12 +194,6 @@
         font-size: 16px;
         border-bottom: 1px solid #f8fafc;
         width: 100%;
-      }
-      .main-nav a[target="_blank"] {
-        margin: 12px 24px 8px;
-        width: calc(100% - 48px);
-        text-align: center;
-        border-radius: 8px;
       }
     }
   </style>
@@ -187,23 +207,25 @@
         <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
       </a>
 
-      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
       <nav class="main-nav" id="mainNav">
         <a href="/index.html#company">회사소개</a>
         <a href="/service.html">서비스</a>
         <a href="/network.html">글로벌 네트워크</a>
         <a href="/resources.html">무역·물류 자료실</a>
-        <a href="/tools/load-planner/">컨테이너 적재계산기</a>
+        <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
         <a href="/contact.html">오시는길 / 문의</a>
-        <a href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-          온라인 견적문의
-        </a>
       </nav>
+
+      <!-- 온라인 견적문의 버튼 (메인과 동일한 독립 버튼 구조) -->
+      <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
+      </a>
+
+      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
