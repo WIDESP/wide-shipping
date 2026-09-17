@@ -11,184 +11,285 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 INDEX 상단바 100% 동일 적용 CSS -->
+  <!-- contact.html 상단 헤더 동일 CSS 적용 -->
   <style>
     body {
-      margin: 0 !important;
-      padding-top: 72px !important;
-      font-family: Pretendard, system-ui, -apple-system, sans-serif !important;
+      padding-top: 72px;
     }
 
-    header.site-header {
-      all: unset !important;
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      z-index: 1000 !important;
-      background: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(10px) !important;
-      -webkit-backdrop-filter: blur(10px) !important;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
-      box-sizing: border-box !important;
-      display: block !important;
+    /* ==========================================
+       📌 상단 헤더
+       ========================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
-    header.site-header * {
-      box-sizing: border-box !important;
-      font-family: Pretendard, system-ui, sans-serif !important;
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
     }
 
-    header.site-header .nav-wrap {
-      max-width: 1200px !important;
-      margin: 0 auto !important;
-      padding: 12px 24px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      position: relative !important;
-      height: auto !important;
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
 
-    header.site-header .brand {
-      display: flex !important;
-      align-items: center !important;
-      text-decoration: none !important;
+    .site-logo {
+      height: 42px;
+      width: auto;
+      display: block;
     }
 
-    header.site-header .site-logo {
-      height: 42px !important;
-      width: auto !important;
-      display: block !important;
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
 
-    header.site-header .main-nav {
-      display: flex !important;
-      align-items: center !important;
-      gap: 28px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      list-style: none !important;
+    /* 방문 여부/상태 관계없이 기본 글자색 어두운색 고정 */
+    .main-nav a,
+    .main-nav a:link,
+    .main-nav a:visited {
+      color: #1e293b;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      padding: 6px 0;
+      white-space: nowrap;
     }
 
-    header.site-header .main-nav a,
-    header.site-header .main-nav a:link,
-    header.site-header .main-nav a:visited {
-      color: #1e293b !important;
-      font-size: 15px !important;
-      font-weight: 600 !important;
-      text-decoration: none !important;
-      transition: color 0.2s ease !important;
-      padding: 6px 0 !important;
-      white-space: nowrap !important;
-      background: transparent !important;
+    /* 오직 마우스를 올렸을 때만 파란색 변경 */
+    .main-nav a:hover {
+      color: #0284c7;
     }
 
-    header.site-header .main-nav a:hover,
-    header.site-header .main-nav a.active {
-      color: #0284c7 !important;
-    }
-
-    /* 이미지와 동일한 파란색 네모 라운드 온라인 견적문의 버튼 */
-    header.site-header .main-nav a.btn.primary,
-    header.site-header .main-nav a[target="_blank"] {
-      background-color: #0284c7 !important;
+    .main-nav a[target="_blank"] {
+      background-color: #0284c7;
       color: #ffffff !important;
-      padding: 8px 18px !important;
-      border-radius: 6px !important;
-      font-size: 15px !important;
-      font-weight: 700 !important;
-      line-height: 1.5 !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      transform: none !important;
-      transition: background-color 0.2s ease, transform 0.2s ease !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
-    header.site-header .main-nav a.btn.primary:hover,
-    header.site-header .main-nav a[target="_blank"]:hover {
-      background-color: #0369a1 !important;
-      color: #ffffff !important;
-      transform: translateY(-1px) !important;
+    .main-nav a[target="_blank"]:hover {
+      background-color: #0369a1;
+      transform: translateY(-1px);
     }
 
-    header.site-header .menu-btn {
-      display: none !important;
-      background: none !important;
-      border: none !important;
-      cursor: pointer !important;
-      padding: 8px !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      gap: 5px !important;
-      z-index: 1001 !important;
+    /* 드롭다운 메뉴 (무역·물류 자료실) */
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
     }
 
-    header.site-header .menu-btn span {
-      display: block !important;
-      width: 24px !important;
-      height: 2px !important;
-      background-color: #0f172a !important;
-      transition: transform 0.3s ease, opacity 0.3s ease !important;
-      margin: 0 !important;
+    .nav-dropdown .nav-dropdown-btn {
+      color: #1e293b;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 6px 0;
+      white-space: nowrap;
+      transition: color 0.2s ease;
     }
 
-    header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
-    header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
-    header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+    .nav-dropdown:hover .nav-dropdown-btn {
+      color: #0284c7;
+    }
 
+    .nav-dropdown::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      display: block;
+    }
+
+    .nav-dropdown .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      min-width: 180px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 6px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
+      z-index: 1000;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+      display: block;
+      animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -4px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    .nav-dropdown .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 8px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-dropdown .dropdown-menu a:hover {
+      background-color: #f0f9ff;
+      color: #0284c7;
+    }
+
+    /* 모바일 햄버거 버튼 */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      z-index: 1001;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #0f172a;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ==========================================
+       📱 모바일 반응형 (992px 이하)
+       ========================================== */
     @media (max-width: 992px) {
       body {
-        padding-top: 64px !important;
+        padding-top: 64px;
       }
-      header.site-header .nav-wrap {
-        padding: 10px 20px !important;
+      .nav-wrap {
+        padding: 10px 20px;
       }
-      header.site-header .site-logo {
-        height: 36px !important;
+      .site-logo {
+        height: 36px;
       }
-      header.site-header .menu-btn {
-        display: flex !important;
+      .menu-btn {
+        display: flex;
       }
-      header.site-header .main-nav {
-        display: none !important;
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: #ffffff !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 0 !important;
-        padding: 12px 0 !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-        border-top: 1px solid #f1f5f9 !important;
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #f1f5f9;
       }
-      header.site-header .main-nav.active {
-        display: flex !important;
+      .main-nav.active {
+        display: flex;
       }
-      header.site-header .main-nav a {
-        padding: 14px 24px !important;
-        font-size: 16px !important;
-        border-bottom: 1px solid #f8fafc !important;
-        width: 100% !important;
+      .main-nav a {
+        padding: 14px 24px;
+        font-size: 16px;
+        border-bottom: 1px solid #f8fafc;
+        width: 100%;
       }
-      header.site-header .main-nav a.btn.primary,
-      header.site-header .main-nav a[target="_blank"] {
-        margin: 12px 24px 8px !important;
-        width: calc(100% - 48px) !important;
-        text-align: center !important;
-        justify-content: center !important;
-        border-radius: 8px !important;
+      
+      .nav-dropdown {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-dropdown .nav-dropdown-btn {
+        padding: 14px 24px;
+        font-size: 16px;
+        border-bottom: 1px solid #f8fafc;
+        width: 100%;
+      }
+      .nav-dropdown .dropdown-menu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        background-color: #f8fafc;
+        width: 100%;
+        padding: 0;
+        display: block;
+      }
+      .nav-dropdown .dropdown-menu a {
+        padding: 12px 36px;
+        font-size: 14px;
+        justify-content: flex-start;
+        border-bottom: 1px solid #edf2f7;
+        color: #475569;
+      }
+
+      .main-nav a[target="_blank"] {
+        margin: 12px 24px 8px;
+        width: calc(100% - 48px);
+        text-align: center;
+        border-radius: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <header class="site-header" id="top">
+
+  <!-- 상단 헤더 -->
+  <header class="site-header">
     <div class="nav-wrap">
-      <a href="/index.html" class="brand" aria-label="와이드해운 홈">
+      <a class="brand" href="/index.html" aria-label="와이드해운 홈">
         <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
       </a>
 
@@ -203,7 +304,7 @@
         <a href="/service.html">서비스</a>
         <a href="/network.html">글로벌 네트워크</a>
         <a href="/resources.html">무역·물류 자료실</a>
-        <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
+        <a href="/tools/load-planner/">컨테이너 적재계산기</a>
         <a href="/contact.html">오시는길 / 문의</a>
         <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
           온라인 견적문의
@@ -243,6 +344,7 @@
   </main>
 
   <script>
+    // 모바일 햄버거 메뉴 동작 (contact.html 동일)
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
 
@@ -250,13 +352,6 @@
       menuToggle.addEventListener('click', function() {
         menuToggle.classList.toggle('active');
         mainNav.classList.toggle('active');
-      });
-
-      mainNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menuToggle.classList.remove('active');
-          mainNav.classList.remove('active');
-        });
       });
     }
   </script>
