@@ -33,7 +33,7 @@
   }
 
   body {
-    padding-top: 72px !important;
+    padding-top: 82px !important; /* 메인 헤더 높이에 맞춤 */
     background-color: #ffffff;
     color: #333;
     line-height: 1.6;
@@ -47,13 +47,13 @@
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    height: 72px !important;
+    height: 82px !important; /* 72px -> 82px 증대 */
     z-index: 1000 !important;
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
+    box-shadow: 0 4px 20px rgba(18, 44, 78, 0.04) !important;
     margin: 0 !important;
     padding: 0 !important;
     display: flex !important;
@@ -63,10 +63,10 @@
   /* 레이아웃 컨테이너 */
   header.site-header .nav-wrap {
     width: 100% !important;
-    max-width: 1200px !important;
+    max-width: 1280px !important; /* 1200px -> 1280px 확대 */
     height: 100% !important;
     margin: 0 auto !important;
-    padding: 0 24px !important;
+    padding: 0 28px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -81,32 +81,34 @@
     text-decoration: none !important;
   }
 
-  header.site-header .site-logo {
-    height: 42px !important;
-    width: auto !important;
+  header.site-header .site-logo,
+  header.site-header .brand img {
+    width: 220px !important; /* 높이 고정 제거 후 가로 220px 원본 비율 유지 */
+    height: auto !important;
+    object-fit: contain !important;
     display: block !important;
   }
 
-  /* 메인 네비게이션 메뉴 (로고 좌측, 메뉴/버튼 우측 정렬) */
+  /* 메인 네비게이션 메뉴 */
   header.site-header .main-nav {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 28px !important;
+    gap: 34px !important;
     list-style: none !important;
     margin-left: auto !important;
-    margin-right: 28px !important;
+    margin-right: 34px !important;
     padding: 0 !important;
   }
 
   header.site-header .main-nav a,
   header.site-header .nav-dropdown .nav-dropdown-btn {
-    color: #1e293b !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
+    color: #34445f !important; /* 메인 폰트 컬러 동기화 */
+    font-size: 14px !important; /* 15px -> 14px */
+    font-weight: 700 !important;
     text-decoration: none !important;
     transition: color 0.2s ease !important;
-    padding: 6px 0 !important;
+    padding: 29px 0 !important; /* 세로 중앙 정렬 패딩 */
     white-space: nowrap !important;
     background: transparent !important;
     border: none !important;
@@ -115,17 +117,17 @@
   header.site-header .main-nav a:hover,
   header.site-header .main-nav a.active,
   header.site-header .nav-dropdown:hover .nav-dropdown-btn {
-    color: #0284c7 !important;
+    color: #00a8c7 !important;
   }
 
   /* 메인 페이지 전용 견적문의 버튼 규격 */
   header.site-header .nav-cta {
-    background-color: #0284c7 !important;
+    background-color: #0082c3 !important;
     color: #ffffff !important;
-    padding: 8px 18px !important;
-    border-radius: 6px !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
+    padding: 12px 20px !important; /* 답답하던 상하 패딩을 확대하여 여유 확보 */
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
     text-decoration: none !important;
     transition: background-color 0.2s ease, transform 0.2s ease !important;
     display: inline-flex !important;
@@ -135,7 +137,7 @@
   }
 
   header.site-header .nav-cta:hover {
-    background-color: #0369a1 !important;
+    background-color: #006fa7 !important;
     color: #ffffff !important;
     transform: translateY(-1px) !important;
   }
@@ -161,15 +163,15 @@
   header.site-header .nav-dropdown .dropdown-menu {
     display: none;
     position: absolute !important;
-    top: calc(100% + 6px) !important;
+    top: calc(100% - 8px) !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     background-color: #ffffff !important;
-    min-width: 180px !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 12px !important;
-    padding: 6px !important;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1) !important;
+    min-width: 200px !important;
+    border: 1px solid #dfe6ef !important;
+    border-radius: 16px !important;
+    padding: 8px !important;
+    box-shadow: 0 15px 35px rgba(18, 44, 78, 0.08) !important;
     z-index: 1000 !important;
   }
 
@@ -186,20 +188,20 @@
   header.site-header .nav-dropdown .dropdown-menu a {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    padding: 10px 16px !important;
-    color: #334155 !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
+    justify-content: flex-start !important;
+    padding: 10px 14px !important;
+    color: #34445f !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     white-space: nowrap !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     transition: background-color 0.15s ease, color 0.15s ease !important;
   }
 
   header.site-header .nav-dropdown .dropdown-menu a:hover {
-    background-color: #f0f9ff !important;
-    color: #0284c7 !important;
+    background-color: #f5f8fc !important;
+    color: #00a8c7 !important;
   }
 
   /* 모바일 버튼 */
@@ -229,15 +231,16 @@
 
   /* 모바일 반응형 (992px 이하) */
   @media (max-width: 992px) {
-    body { padding-top: 64px !important; }
-    header.site-header { height: 64px !important; }
+    body { padding-top: 72px !important; }
+    header.site-header { height: 72px !important; }
     
     header.site-header .nav-wrap { 
-      padding: 10px 20px !important;
+      padding: 0 20px !important;
     }
     
-    header.site-header .site-logo { 
-      height: 36px !important;
+    header.site-header .site-logo,
+    header.site-header .brand img { 
+      width: 170px !important;
     }
 
     header.site-header .menu-btn { display: flex !important; }
@@ -297,7 +300,7 @@
       color: #475569 !important;
     }
   }
-  </style>
+</style>
 </head>
 <body>
 
