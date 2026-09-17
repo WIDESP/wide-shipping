@@ -7,326 +7,35 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- Pretendard 웹폰트 CDN 로드 -->
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- 1. 메인 사이트 공통 CSS (resources.html과 동일한 디자인 적용) -->
+  <link rel="stylesheet" href="https://www.widesp.co.kr/style.css">
 
-  <!-- 1. 외부 style.css 및 app.js 로드 -->
+  <!-- 2. 적재 계산기 본문 전용 스타일 및 JS -->
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 2. 메인 사이트 헤더 완벽 동기화 스타일 -->
+  <!-- 3. 계산기 페이지 본문 상단 여백 보정 -->
   <style>
-  html {
-    scroll-padding-top: 100px !important;
-    scroll-behavior: smooth !important;
-  }
-
-  * {
-    box-sizing: border-box !important;
-    margin: 0;
-    padding: 0;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important;
-  }
-
-  body, h1, h2, h3, h4, h5, h6, p, span, a, li, div {
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
-  }
-
-  body {
-    padding-top: 82px !important;
-    background-color: #ffffff !important;
-    color: #333 !important;
-    line-height: 1.6 !important;
-    -webkit-font-smoothing: antialiased !important;
-  }
-
-  /* 헤더 고정 바 */
-  header.site-header {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 82px !important;
-    z-index: 1000 !important;
-    background: rgba(255, 255, 255, 0.92) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
-    box-shadow: 0 4px 20px rgba(18, 44, 78, 0.04) !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  /* 레이아웃 컨테이너 (메인과 동일한 가로 폭) */
-  header.site-header .nav-wrap {
-    width: 100% !important;
-    max-width: 1280px !important;
-    height: 82px !important;
-    margin: 0 auto !important;
-    padding: 0 32px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    position: relative !important;
-    box-sizing: border-box !important;
-  }
-
-  /* 로고 규격 통일 */
-  header.site-header .brand {
-    display: flex !important;
-    align-items: center !important;
-    text-decoration: none !important;
-    flex-shrink: 0 !important;
-  }
-
-  header.site-header .site-logo,
-  header.site-header .brand img {
-    width: 200px !important;
-    height: auto !important;
-    object-fit: contain !important;
-    display: block !important;
-  }
-
-  /* 메인 네비게이션 메뉴 (간격 및 정렬 균일화) */
-  header.site-header .main-nav {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 28px !important;
-    list-style: none !important;
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  header.site-header .main-nav > a,
-  header.site-header .nav-dropdown .nav-dropdown-btn {
-    color: #34445f !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    text-decoration: none !important;
-    transition: color 0.2s ease !important;
-    padding: 29px 0 !important;
-    white-space: nowrap !important;
-    background: transparent !important;
-    border: none !important;
-    display: inline-block !important;
-    line-height: 1.4 !important;
-  }
-
-  header.site-header .main-nav > a:hover,
-  header.site-header .main-nav > a.active,
-  header.site-header .nav-dropdown:hover .nav-dropdown-btn {
-    color: #00a8c7 !important;
-    background: transparent !important;
-  }
-
-  /* 온라인 견적문의 버튼 (메인과 동일한 규격) */
-  header.site-header .nav-cta,
-  header.site-header .main-nav .nav-cta {
-    background-color: #0082c3 !important;
-    color: #ffffff !important;
-    padding: 10px 18px !important;
-    border-radius: 6px !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    text-decoration: none !important;
-    transition: background-color 0.2s ease, transform 0.2s ease !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    border: none !important;
-    margin-left: 8px !important;
-  }
-
-  header.site-header .nav-cta:hover {
-    background-color: #006fa7 !important;
-    color: #ffffff !important;
-    transform: translateY(-1px) !important;
-  }
-
-  /* 드롭다운 메뉴 */
-  header.site-header .nav-dropdown {
-    position: relative !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    height: 100% !important;
-  }
-
-  header.site-header .nav-dropdown::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 12px !important;
-    display: block !important;
-  }
-
-  header.site-header .nav-dropdown .dropdown-menu {
-    display: none !important;
-    position: absolute !important;
-    top: calc(100% - 8px) !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    background-color: #ffffff !important;
-    min-width: 200px !important;
-    border: 1px solid #dfe6ef !important;
-    border-radius: 16px !important;
-    padding: 8px !important;
-    box-shadow: 0 15px 35px rgba(18, 44, 78, 0.08) !important;
-    z-index: 1000 !important;
-  }
-
-  header.site-header .nav-dropdown:hover .dropdown-menu {
-    display: block !important;
-    animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  }
-
-  @keyframes dropdownFadeIn {
-    from { opacity: 0; transform: translate(-50%, -4px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
-  }
-
-  header.site-header .nav-dropdown .dropdown-menu a {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    padding: 10px 14px !important;
-    color: #34445f !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    text-decoration: none !important;
-    white-space: nowrap !important;
-    border-radius: 10px !important;
-    transition: background-color 0.15s ease, color 0.15s ease !important;
-    background: transparent !important;
-  }
-
-  header.site-header .nav-dropdown .dropdown-menu a:hover {
-    background-color: #f5f8fc !important;
-    color: #00a8c7 !important;
-  }
-
-  /* 모바일 버튼 */
-  header.site-header .menu-btn {
-    display: none !important;
-    background: none !important;
-    border: none !important;
-    cursor: pointer !important;
-    padding: 8px !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    gap: 5px !important;
-    z-index: 1001 !important;
-  }
-
-  header.site-header .menu-btn span {
-    display: block !important;
-    width: 24px !important;
-    height: 2px !important;
-    background-color: #0f172a !important;
-    transition: transform 0.3s ease, opacity 0.3s ease !important;
-  }
-
-  header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
-  header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
-  header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
-
-  /* 모바일 반응형 (992px 이하) */
-  @media (max-width: 992px) {
-    body { padding-top: 72px !important; }
-    header.site-header { height: 72px !important; }
-    
-    header.site-header .nav-wrap { 
-      padding: 0 20px !important;
-      height: 72px !important;
+    body {
+      padding-top: 80px !important;
     }
-    
-    header.site-header .site-logo,
-    header.site-header .brand img { 
-      width: 170px !important;
-    }
-
-    header.site-header .menu-btn { display: flex !important; }
-    header.site-header .nav-cta { display: none !important; }
-
-    header.site-header .main-nav {
-      display: none !important;
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      width: 100% !important;
-      background: #ffffff !important;
-      flex-direction: column !important;
-      align-items: stretch !important;
-      gap: 0 !important;
-      margin: 0 !important;
-      padding: 12px 0 !important;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-      border-top: 1px solid #f1f5f9 !important;
-    }
-
-    header.site-header .main-nav.active { display: flex !important; }
-
-    header.site-header .main-nav > a,
-    header.site-header .nav-dropdown .nav-dropdown-btn {
-      padding: 14px 24px !important;
-      font-size: 16px !important;
-      border-bottom: 1px solid #f8fafc !important;
-      justify-content: flex-start !important;
-      width: 100% !important;
-    }
-
-    header.site-header .nav-dropdown {
-      width: 100% !important;
-      flex-direction: column !important;
-      align-items: stretch !important;
-      height: auto !important;
-    }
-
-    header.site-header .nav-dropdown .dropdown-menu {
-      position: static !important;
-      transform: none !important;
-      box-shadow: none !important;
-      border: none !important;
-      border-radius: 0 !important;
-      background-color: #f8fafc !important;
-      width: 100% !important;
-      padding: 0 !important;
-      display: block !important;
-    }
-
-    header.site-header .nav-dropdown .dropdown-menu a {
-      padding: 12px 36px !important;
-      font-size: 14px !important;
-      justify-content: flex-start !important;
-      border-bottom: 1px solid #edf2f7 !important;
-      color: #475569 !important;
-    }
-  }
   </style>
 </head>
 <body>
 
-<!-- 상단 헤더 -->
+<!-- 메인 사이트 원본과 100% 동일한 상단 헤더 -->
 <header class="site-header">
   <div class="nav-wrap">
-    
-    <!-- 1. 로고 -->
     <a class="brand" href="https://www.widesp.co.kr/index.html" aria-label="와이드해운 홈">
       <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
-    <!-- 2. PC 메인 메뉴 (견적문의 버튼을 nav 내부로 통합하여 메인과 동일한 정렬 유지) -->
+    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <nav class="main-nav" id="mainNav">
       <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
       <a href="https://www.widesp.co.kr/service.html">서비스</a>
@@ -342,19 +51,10 @@
 
       <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
 
-      <!-- 온라인 견적문의 버튼 -->
-      <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-        <span>온라인 견적문의</span>
+      <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        온라인 견적문의
       </a>
     </nav>
-
-    <!-- 3. 모바일 햄버거 버튼 -->
-    <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
   </div>
 </header>
 
@@ -411,7 +111,6 @@
   const mainNav = document.getElementById('mainNav');
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
       mainNav.classList.toggle('active');
     });
   }
