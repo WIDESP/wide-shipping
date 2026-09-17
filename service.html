@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="styles.css">
   
 <style>
+    /* ==========================================
+       📌 파란색 브랜드 테마 변수 통일
+       ========================================== */
+    :root {
+      --blue: #0284c7;
+      --blue-hover: #0369a1;
+      --blue-light: #f0f9ff;
+      --accent-cyan: #72e2f8;
+      --navy-bg: rgba(6, 26, 69, 0.72);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,7 +38,7 @@
     }
 
     /* ==========================================
-        📌 상단 헤더
+       📌 상단 헤더
        ========================================== */
     .site-header {
       position: fixed;
@@ -85,11 +96,11 @@
 
     .main-nav a:hover,
     .main-nav a.active {
-      color: #0284c7;
+      color: var(--blue);
     }
 
     .main-nav a[target="_blank"] {
-      background-color: #0284c7;
+      background-color: var(--blue);
       color: #ffffff !important;
       padding: 8px 18px;
       border-radius: 6px;
@@ -98,12 +109,12 @@
     }
 
     .main-nav a[target="_blank"]:hover {
-      background-color: #0369a1;
+      background-color: var(--blue-hover);
       transform: translateY(-1px);
     }
 
     /* ==========================================
-        📌 드롭다운 메뉴 (무역·물류 자료실)
+       📌 드롭다운 메뉴 (무역·물류 자료실)
        ========================================== */
     .nav-dropdown {
       position: relative;
@@ -122,7 +133,7 @@
     }
 
     .nav-dropdown:hover .nav-dropdown-btn {
-      color: #0284c7;
+      color: var(--blue);
     }
 
     /* 마우스 커서 이동 공간 보장 브릿지 */
@@ -182,8 +193,8 @@
     }
 
     .nav-dropdown .dropdown-menu a:hover {
-      background-color: #f0f9ff;
-      color: #0284c7;
+      background-color: var(--blue-light);
+      color: var(--blue);
     }
 
     /* 모바일 햄버거 버튼 */
@@ -242,8 +253,8 @@
     .tab-btn {
       padding: 10px 24px;
       border-radius: 999px;
-      border: 1px solid var(--blue, #0d3b66);
-      color: var(--blue, #0d3b66);
+      border: 1px solid var(--blue);
+      color: var(--blue);
       font-size: 14px;
       font-weight: 700;
       background: #fff;
@@ -252,7 +263,7 @@
     }
 
     .tab-btn:hover, .tab-btn.active {
-      background: var(--blue, #0d3b66);
+      background: var(--blue);
       color: #fff;
     }
 
@@ -270,7 +281,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(6, 26, 69, 0.72);
+      background: var(--navy-bg);
     }
 
     /* 섹션별 배경 이미지 설정 */
@@ -293,7 +304,7 @@
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.15em;
-      color: #72e2f8;
+      color: var(--accent-cyan);
       margin-bottom: 8px;
     }
 
@@ -341,7 +352,7 @@
 
     .info-item h4 {
       font-size: 18px;
-      color: #72e2f8;
+      color: var(--accent-cyan);
       margin: 0 0 10px 0;
       font-weight: 700;
     }
@@ -359,7 +370,7 @@
     }
 
     /* ==========================================
-        📱 모바일 반응형 통일 (992px 이하)
+       📱 모바일 반응형 통일 (992px 이하)
        ========================================== */
     @media (max-width: 992px) {
       body {
@@ -461,8 +472,8 @@
   <a href="/network.html">글로벌 네트워크</a>
   <a href="/resources.html">무역·물류 자료실</a>
   
-  <!-- 독립 노출된 적재계산기 메뉴 -->
-  <a href="/tools/load-planner/" class="nav-calc-link active">컨테이너 적재계산기</a>
+  <!-- active 클래스 제거 (hover 시에만 파란색 변경) -->
+  <a href="/tools/load-planner/">컨테이너 적재계산기</a>
 
   <a href="/contact.html">오시는길 / 문의</a>
 
