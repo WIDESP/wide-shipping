@@ -15,8 +15,8 @@
   <style>
     body {
       margin: 0 !important;
-      padding-top: 72px !important;
-      font-family: Pretendard, system-ui, sans-serif !important;
+      padding-top: 82px !important;
+      font-family: Pretendard, system-ui, -apple-system, sans-serif !important;
     }
 
     header.site-header {
@@ -26,11 +26,11 @@
       left: 0 !important;
       width: 100% !important;
       z-index: 1000 !important;
-      background: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(10px) !important;
-      -webkit-backdrop-filter: blur(10px) !important;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
+      box-shadow: none !important;
       box-sizing: border-box !important;
       display: block !important;
     }
@@ -41,14 +41,14 @@
     }
 
     header.site-header .nav-wrap {
-      max-width: 1200px !important;
+      height: 82px !important;
+      max-width: 1280px !important;
       margin: 0 auto !important;
-      padding: 12px 24px !important;
+      padding: 0 28px !important;
       display: flex !important;
       align-items: center !important;
-      justify-content: space-between !important;
+      gap: 42px !important;
       position: relative !important;
-      height: auto !important;
     }
 
     header.site-header .brand {
@@ -58,51 +58,61 @@
     }
 
     header.site-header .site-logo {
-      height: 42px !important;
-      width: auto !important;
+      width: 220px !important;
+      height: auto !important;
+      object-fit: contain !important;
       display: block !important;
     }
 
     header.site-header .main-nav {
       display: flex !important;
       align-items: center !important;
-      gap: 28px !important;
-      margin: 0 !important;
+      gap: 34px !important;
+      margin-left: auto !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
       padding: 0 !important;
       list-style: none !important;
     }
 
     header.site-header .main-nav a {
-      color: #1e293b !important;
-      font-size: 15px !important;
-      font-weight: 600 !important;
+      color: #34445f !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
       text-decoration: none !important;
-      transition: color 0.2s ease !important;
-      padding: 6px 0 !important;
+      transition: color 0.15s ease !important;
+      padding: 29px 0 !important;
+      line-height: 1.2 !important;
       white-space: nowrap !important;
       background: none !important;
     }
 
     header.site-header .main-nav a:hover,
     header.site-header .main-nav a.active {
-      color: #0284c7 !important;
+      color: #00a8c7 !important;
     }
 
-    /* 메인 동일 강조 버튼 스타일 */
+    /* 메인 동일 강조 CTA 버튼 스타일 */
     header.site-header .main-nav a.btn.primary,
     header.site-header .main-nav a[target="_blank"] {
-      background-color: #0284c7 !important;
+      background-color: #061a45 !important;
       color: #ffffff !important;
-      padding: 8px 18px !important;
-      border-radius: 6px !important;
-      font-weight: 700 !important;
-      transition: background-color 0.2s ease, transform 0.2s ease !important;
+      padding: 12px 18px !important;
+      border-radius: 999px !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      line-height: 1 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      transform: none !important;
+      transition: background-color 0.2s ease !important;
     }
 
     header.site-header .main-nav a.btn.primary:hover,
     header.site-header .main-nav a[target="_blank"]:hover {
-      background-color: #0369a1 !important;
-      transform: translateY(-1px) !important;
+      background-color: #09295f !important;
+      color: #ffffff !important;
+      transform: none !important;
     }
 
     header.site-header .menu-btn {
@@ -130,48 +140,51 @@
     header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
     header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
 
-    @media (max-width: 992px) {
+    @media (max-width: 900px) {
       body {
-        padding-top: 64px !important;
+        padding-top: 72px !important;
       }
       header.site-header .nav-wrap {
-        padding: 10px 20px !important;
+        height: 72px !important;
+        padding: 0 20px !important;
       }
       header.site-header .site-logo {
-        height: 36px !important;
+        width: 180px !important;
       }
       header.site-header .menu-btn {
         display: flex !important;
+        margin-left: auto !important;
       }
       header.site-header .main-nav {
         display: none !important;
         position: absolute !important;
-        top: 100% !important;
+        top: 72px !important;
         left: 0 !important;
         width: 100% !important;
         background: #ffffff !important;
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 0 !important;
-        padding: 12px 0 !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-        border-top: 1px solid #f1f5f9 !important;
+        padding: 18px 28px !important;
+        border-bottom: 1px solid #dfe6ef !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
       }
       header.site-header .main-nav.active {
         display: flex !important;
       }
       header.site-header .main-nav a {
-        padding: 14px 24px !important;
-        font-size: 16px !important;
-        border-bottom: 1px solid #f8fafc !important;
+        padding: 13px 0 !important;
+        font-size: 15px !important;
+        border-bottom: 1px solid #f1f5f9 !important;
         width: 100% !important;
       }
       header.site-header .main-nav a.btn.primary,
       header.site-header .main-nav a[target="_blank"] {
-        margin: 12px 24px 8px !important;
-        width: calc(100% - 48px) !important;
+        margin: 12px 0 6px !important;
+        width: 100% !important;
         text-align: center !important;
-        border-radius: 8px !important;
+        justify-content: center !important;
+        border-radius: 999px !important;
       }
     }
   </style>
