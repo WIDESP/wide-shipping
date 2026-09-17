@@ -23,6 +23,19 @@ export function allowedOrientations(item, box) {
     o.w <= box.doorWidth + EPS && o.h <= box.doorHeight + EPS);
 }
 
+// Measures the outer envelope of the completed 3D load plan. Internal gaps
+// between packages are included, while unused margins outside the load are not.
+export function occupiedDimensions(placements = []) {
+  if (!placements.length) return { length: 0, width: 0, height: 0 };
+  const minX = Math.min(...placements.map(p => p.x));
+  const minY = Math.min(...placements.map(p => p.y));
+  const minZ = Math.min(...placements.map(p => p.z || 0));
+  const maxX = Math.max(...placements.map(p => p.x + p.w));
+  const maxY = Math.max(...placements.map(p => p.y + p.d));
+  const maxZ = Math.max(...placements.map(p => (p.z || 0) + p.h));
+  return { length: maxX - minX, width: maxY - minY, height: maxZ - minZ };
+}
+
 function splitFree(free, used) {
   const next = [];
   for (const r of free) {
@@ -84,18 +97,18 @@ function packAll(columns, box, gap, total, totalWeight, totalVolume) {
     rawLoads.push(load);
     remaining = remaining.filter(u => !load.placedKeys.has(u.key));
   }
-  const loads = rawLoads.map(load => ({
-    ...load,
-    placements: load.placements.flatMap(column => column.members.map((member, index) => ({
+  const loads = rawLoads.map(load => {
+    const placements = load.placements.flatMap(column => column.members.map((member, index) => ({
       x: column.x, y: column.y, z: index * column.memberHeight,
       w: column.w, d: column.d, h: column.memberHeight, axes: column.axes,
       key: member.key, label: member.label, sku: member.sku,
       color: member.color, weight: member.weight,
       layer: index + 1, stackSize: column.members.length, columnKey: column.key,
-    }))),
-    stackCount: load.placements.filter(p => p.members.length > 1).length,
-    maxLayer: Math.max(1, ...load.placements.map(p => p.members.length)),
-  }));
+    })));
+    return { ...load, placements, envelope: occupiedDimensions(placements),
+      stackCount: load.placements.filter(p => p.members.length > 1).length,
+      maxLayer: Math.max(1, ...load.placements.map(p => p.members.length)) };
+  });
   const placed = loads.reduce((n, load) => n + load.placements.length, 0);
   return { status: remaining.length ? 'limited' : loads.length === 1 ? 'fits' : 'split', loads, total, placed, totalWeight, totalVolume,
     remaining: total - placed, containers: loads.length, usedStacking: loads.reduce((n, load) => n + load.stackCount, 0),

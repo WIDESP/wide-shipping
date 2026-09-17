@@ -3,329 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#061a45">
+  <meta name="theme-color" content="#081e31">
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
-
-  <!-- 상단 헤더 및 전체 레이아웃 스타일 -->
-  <style>
-    * {
-      box-sizing: border-box;
-      word-break: keep-all;
-      overflow-wrap: break-word;
-    }
-
-    body {
-      padding-top: 82px;
-      margin: 0;
-      background-color: #eaf1f3;
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    }
-
-    /* ==========================================
-        상단 헤더 스타일 (메인 홈페이지 동일 규격)
-       ========================================== */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(220, 228, 239, 0.7);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-      height: 82px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-wrap {
-      max-width: 1280px;
-      width: 100%;
-      height: 82px;
-      margin: 0 auto;
-      padding: 0 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .site-logo {
-      width: 220px;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-      margin-left: auto;
-      margin-right: 32px;
-    }
-
-    .main-nav a,
-    .main-nav a:link,
-    .main-nav a:visited {
-      color: #34445f;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: color 0.2s ease;
-      padding: 6px 0;
-      white-space: nowrap;
-    }
-
-    .main-nav a:hover,
-    .main-nav a.active {
-      color: #00a8c7;
-    }
-
-    /* 온라인 견적문의 버튼 */
-    .nav-cta {
-      background-color: #0284c7;
-      color: #ffffff !important;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background-color 0.2s ease, transform 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .nav-cta:hover {
-      background-color: #0369a1;
-      transform: translateY(-1px);
-    }
-
-    /* 모바일 햄버거 버튼 */
-    .menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      z-index: 1001;
-    }
-
-    .menu-btn span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background-color: #0f172a;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .menu-btn.active span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    .menu-btn.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-btn.active span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* 모바일 반응형 (992px 이하) */
-    @media (max-width: 992px) {
-      body {
-        padding-top: 72px;
-      }
-      .site-header {
-        height: 72px;
-      }
-      .nav-wrap {
-        height: 72px;
-        padding: 0 20px;
-      }
-      .site-logo {
-        width: 170px;
-      }
-      .menu-btn {
-        display: flex;
-      }
-      .nav-cta {
-        display: none;
-      }
-      .main-nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #ffffff;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 12px 0;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        border-top: 1px solid #f1f5f9;
-        margin: 0;
-      }
-      .main-nav.active {
-        display: flex;
-      }
-      .main-nav a {
-        padding: 14px 24px;
-        font-size: 16px;
-        border-bottom: 1px solid #f8fafc;
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 <body>
-
-  <!-- 상단 헤더 -->
-  <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="/index.html" aria-label="와이드해운 홈">
-        <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
-      </a>
-
-      <nav class="main-nav" id="mainNav">
-        <a href="/index.html#company">회사소개</a>
-        <a href="/service.html">서비스</a>
-        <a href="/network.html">글로벌 네트워크</a>
-        <a href="/resources.html">무역·물류 자료실</a>
-        <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
-        <a href="/contact.html">오시는길 / 문의</a>
-      </nav>
-
-      <!-- 온라인 견적문의 버튼 (메인과 동일한 독립 버튼 구조) -->
-      <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-        온라인 견적문의
-      </a>
-
-      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
+  <header class="topbar">
+    <div class="topbar-inner"><a class="brand-link" href="https://www.widesp.co.kr/" aria-label="와이드해운 홈페이지"><span class="brand-mark">W</span><span class="brand">WIDE <strong>SHIPPING</strong></span></a><span class="topbar-line"></span><span class="topbar-label">LOAD INTELLIGENCE <b>／ 01</b></span><nav class="site-nav" aria-label="사이트 바로가기"><a href="https://www.widesp.co.kr/">회사 홈페이지</a><a class="nav-quote" href="https://quote.widesp.co.kr/">온라인 견적문의 <span aria-hidden="true">↗</span></a></nav></div>
   </header>
-
   <main>
     <section class="hero" aria-labelledby="title">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
+      <div class="hero-copy"><div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
         <h1 id="title">포워딩 적재 계산기<br><em>공간을 입체적으로 읽다.</em></h1>
         <p>혼재 화물의 실제 치수와 중량을 입력하세요. 컨테이너별 배치를 계산하고<br class="desktop"> 조작형 3D 모델과 정확한 평면도에서 함께 확인합니다.</p>
         <div class="hero-tags"><span><i></i> 20DC / 40HQ</span><span><i></i> 3D LOAD VIEW</span><span><i></i> REAL-TIME ANALYSIS</span></div>
         <button id="show-results" class="mobile-jump" type="button">분석 결과 보기 <span>↘</span></button>
       </div>
-      <div class="hero-graphic" aria-hidden="true">
-        <div class="graphic-grid"></div>
-        <div class="hero-glow"></div>
-        <div class="graphic-orbit a"></div>
-        <div class="graphic-orbit b"></div>
-        <div class="wire-box">
-          <span class="wire-top"></span>
-          <span class="wire-front"></span>
-          <span class="wire-side"></span>
-          <span class="wire-cargo one"></span>
-          <span class="wire-cargo two"></span>
-          <span class="wire-cargo three"></span>
-        </div>
-        <span class="graphic-index">CONTAINER MODEL / SPATIAL ANALYSIS</span>
-        <span class="graphic-coordinate">X 1203.2 &nbsp; Y 230 &nbsp; Z 264.7</span>
-      </div>
+      <div class="hero-graphic" aria-hidden="true"><div class="graphic-grid"></div><div class="hero-glow"></div><div class="graphic-orbit a"></div><div class="graphic-orbit b"></div><div class="wire-box"><span class="wire-top"></span><span class="wire-front"></span><span class="wire-side"></span><span class="wire-cargo one"></span><span class="wire-cargo two"></span><span class="wire-cargo three"></span></div><span class="graphic-index">CONTAINER MODEL / SPATIAL ANALYSIS</span><span class="graphic-coordinate">X 1203.2 &nbsp; Y 230 &nbsp; Z 264.7</span></div>
     </section>
 
     <section class="workspace" aria-label="화물 입력 및 적재 결과">
       <div class="input-column">
-        <div class="section-heading">
-          <div>
-            <span class="section-number">01 — CARGO INPUT</span>
-            <h2>화물 정보</h2>
-            <p>포장 후 외곽 치수와 포장재 포함 중량을 입력하세요. 적층 단수는 화물별로 설정합니다.</p>
-          </div>
-          <button id="example" type="button" class="text-button">예시 초기화 <span>↺</span></button>
-        </div>
+        <div class="section-heading"><div><span class="section-number">01 — CARGO INPUT</span><h2>화물 정보</h2><p>포장 후 외곽 치수와 포장재 포함 중량을 입력하세요. 적층 단수는 화물별로 설정합니다.</p></div><button id="example" type="button" class="text-button">예시 초기화 <span>↺</span></button></div>
         <div id="cargo-rows" class="cargo-rows"></div>
-        <div class="add-row">
-          <button id="add-cargo" class="add-button" type="button"><span>＋</span> 화물 규격 추가</button>
-          <span id="row-count">2개 규격 입력 중</span>
-        </div>
-        <div class="section-heading compact">
-          <div>
-            <span class="section-number">02 — EQUIPMENT</span>
-            <h2>컨테이너 설정</h2>
-            <p>보수적 기본값입니다. 실제 공급 장비에 맞춰 수정하세요.</p>
-          </div>
-        </div>
+        <div class="add-row"><button id="add-cargo" class="add-button" type="button"><span>＋</span> 화물 규격 추가</button><span id="row-count">2개 규격 입력 중</span></div>
+        <div class="section-heading compact"><div><span class="section-number">02 — EQUIPMENT</span><h2>컨테이너 설정</h2><p>보수적 기본값입니다. 실제 공급 장비에 맞춰 수정하세요.</p></div></div>
         <div id="container-settings" class="container-settings"></div>
-        <div class="clearance-line">
-          <label for="clearance">바닥 작업 여유 <span class="help" title="벽면과 화물 사이 및 화물 간에 적용하는 간단한 평면 간격입니다.">ⓘ</span></label>
-          <div><input id="clearance" type="number" min="0" max="20" step="0.5" value="0" inputmode="decimal"><span>cm</span></div>
-        </div>
+        <div class="clearance-line"><label for="clearance">바닥 작업 여유 <span class="help" title="벽면과 화물 사이 및 화물 간에 적용하는 간단한 평면 간격입니다.">ⓘ</span></label><div><input id="clearance" type="number" min="0" max="20" step="0.5" value="0" inputmode="decimal"><span>cm</span></div></div>
       </div>
 
       <div class="result-column" id="results">
-        <div class="section-heading">
-          <div>
-            <span class="section-number">03 — LOAD ANALYSIS</span>
-            <h2>적재 분석</h2>
-            <p>적재 가능성과 추천 장비를 비교하고 공간을 직접 살펴보세요.</p>
-          </div>
-          <span class="live-pill"><i></i> LIVE SIMULATION</span>
-        </div>
+        <div class="section-heading"><div><span class="section-number">03 — LOAD ANALYSIS</span><h2>적재 분석</h2><p>적재 가능성과 추천 장비를 비교하고 공간을 직접 살펴보세요.</p></div><span class="live-pill"><i></i> LIVE SIMULATION</span></div>
         <div id="validation"></div>
         <div id="result-content"></div>
       </div>
     </section>
-    
-    <footer>
-      <span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span>
-      <span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/">견적 문의 ↗</a></span>
-    </footer>
+    <footer><span>WIDE SHIPPING <span class="footer-dot">●</span> LOAD PLANNER</span><span>배치안은 사전 검토용입니다. 최종 적입은 실측 및 현장 승인 기준. <a href="https://quote.widesp.co.kr/">견적 문의 ↗</a></span></footer>
   </main>
-
-  <script>
-    // 상단 헤더 모바일 메뉴 동작 개선 (링크 클릭 시 자동 닫힘 및 aria-expanded 동기화 포함)
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-
-    if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', function() {
-        const isActive = menuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', isActive);
-      });
-
-      // 모바일 환경에서 메뉴 링크 클릭 시 자동으로 메뉴가 닫히도록 처리
-      mainNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menuToggle.classList.remove('active');
-          mainNav.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-  </script>
 </body>
 </html>
