@@ -10,40 +10,39 @@
   <!-- Pretendard 웹폰트 CDN 로드 -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <!-- 외부 style.css 및 app.js 로드 -->
+  <!-- 1. 외부 style.css 및 app.js 로드 -->
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
+  <!-- 2. style.css 아래에 배치하여 우선순위 역전 및 강제 적용 (!important) -->
   <style>
   /* ==========================================
      📌 메인 사이트(widesp.co.kr) 완벽 동기화 CSS
      ========================================== */
-  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-
   html {
-    scroll-padding-top: 100px;
-    scroll-behavior: smooth;
+    scroll-padding-top: 100px !important;
+    scroll-behavior: smooth !important;
   }
 
   * {
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     margin: 0;
     padding: 0;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important;
   }
 
   body, h1, h2, h3, h4, h5, h6, p, span, a, li, div {
-    word-break: keep-all;
-    overflow-wrap: break-word;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
   }
 
   body {
     padding-top: 82px !important; /* 메인 헤더 높이 82px 동기화 */
-    background-color: #ffffff;
-    color: #333;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff !important;
+    color: #333 !important;
+    line-height: 1.6 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
   }
 
   /* 헤더 고정 바 */
@@ -105,6 +104,9 @@
     margin-left: auto !important;
     margin-right: 34px !important;
     padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   header.site-header .main-nav a,
@@ -118,12 +120,15 @@
     white-space: nowrap !important;
     background: transparent !important;
     border: none !important;
+    display: inline-block !important;
+    line-height: 1.4 !important;
   }
 
   header.site-header .main-nav a:hover,
   header.site-header .main-nav a.active,
   header.site-header .nav-dropdown:hover .nav-dropdown-btn {
     color: #00a8c7 !important;
+    background: transparent !important;
   }
 
   /* 메인 페이지 전용 견적문의 버튼 규격 */
@@ -141,6 +146,7 @@
     justify-content: center !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
+    border: none !important;
   }
 
   header.site-header .nav-cta:hover {
@@ -158,17 +164,17 @@
   }
 
   header.site-header .nav-dropdown::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 12px;
-    display: block;
+    content: '' !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 12px !important;
+    display: block !important;
   }
 
   header.site-header .nav-dropdown .dropdown-menu {
-    display: none;
+    display: none !important;
     position: absolute !important;
     top: calc(100% - 8px) !important;
     left: 50% !important;
@@ -184,7 +190,7 @@
 
   header.site-header .nav-dropdown:hover .dropdown-menu {
     display: block !important;
-    animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   @keyframes dropdownFadeIn {
@@ -204,6 +210,7 @@
     white-space: nowrap !important;
     border-radius: 10px !important;
     transition: background-color 0.15s ease, color 0.15s ease !important;
+    background: transparent !important;
   }
 
   header.site-header .nav-dropdown .dropdown-menu a:hover {
@@ -213,28 +220,28 @@
 
   /* 모바일 버튼 */
   header.site-header .menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    z-index: 1001;
+    display: none !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 8px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    z-index: 1001 !important;
   }
 
   header.site-header .menu-btn span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: #0f172a;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: block !important;
+    width: 24px !important;
+    height: 2px !important;
+    background-color: #0f172a !important;
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
   }
 
-  header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  header.site-header .menu-btn.active span:nth-child(2) { opacity: 0; }
-  header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  header.site-header .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+  header.site-header .menu-btn.active span:nth-child(2) { opacity: 0 !important; }
+  header.site-header .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
 
   /* 모바일 반응형 (992px 이하) */
   @media (max-width: 992px) {
