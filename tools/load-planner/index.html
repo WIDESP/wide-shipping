@@ -14,11 +14,8 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 2. style.css 아래에 배치하여 우선순위 역전 및 강제 적용 (!important) -->
+  <!-- 2. 스타일 우선순위 강제 적용 -->
   <style>
-  /* ==========================================
-     📌 메인 사이트(widesp.co.kr) 완벽 동기화 CSS
-     ========================================== */
   html {
     scroll-padding-top: 100px !important;
     scroll-behavior: smooth !important;
@@ -37,12 +34,11 @@
   }
 
   body {
-    padding-top: 82px !important; /* 메인 헤더 높이 82px 동기화 */
+    padding-top: 82px !important;
     background-color: #ffffff !important;
     color: #333 !important;
     line-height: 1.6 !important;
     -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
   }
 
   /* 헤더 고정 바 */
@@ -102,7 +98,7 @@
     gap: 34px !important;
     list-style: none !important;
     margin-left: auto !important;
-    margin-right: 34px !important;
+    margin-right: 24px !important;
     padding: 0 !important;
     background: transparent !important;
     border: none !important;
@@ -131,14 +127,14 @@
     background: transparent !important;
   }
 
-  /* 메인 페이지 전용 견적문의 버튼 규격 */
+  /* 온라인 견적문의 버튼 (메인과 동일한 클래스 및 스타일) */
   header.site-header .nav-cta {
-    background-color: #0284c7 !important;
+    background-color: #0082c3 !important;
     color: #ffffff !important;
-    padding: 8px 18px !important;
-    border-radius: 6px !important;
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
     font-size: 14px !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     text-decoration: none !important;
     transition: background-color 0.2s ease, transform 0.2s ease !important;
     display: inline-flex !important;
@@ -150,7 +146,7 @@
   }
 
   header.site-header .nav-cta:hover {
-    background-color: #0369a1 !important;
+    background-color: #006fa7 !important;
     color: #ffffff !important;
     transform: translateY(-1px) !important;
   }
@@ -328,7 +324,7 @@
       <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
-    <!-- 2. PC 메인 메뉴 (온라인 견적문의를 nav 내부로 배치) -->
+    <!-- 2. PC 메인 메뉴 -->
     <nav class="main-nav" id="mainNav">
       <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
       <a href="https://www.widesp.co.kr/service.html">서비스</a>
@@ -343,12 +339,14 @@
       </div>
 
       <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
-
-      <!-- 온라인 견적문의 버튼 (nav 안쪽 포함) -->
-      <a href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer" style="background-color: #0284c7; color: #ffffff !important; padding: 8px 18px; border-radius: 6px; font-weight: 700;">온라인 견적문의</a>
     </nav>
 
-    <!-- 3. 모바일 햄버거 버튼 -->
+    <!-- 3. 온라인 견적문의 버튼 (추가됨) -->
+    <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+      <span>온라인 견적문의</span>
+    </a>
+
+    <!-- 4. 모바일 햄버거 버튼 -->
     <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
       <span></span>
       <span></span>
