@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 2. 스타일 우선순위 강제 적용 -->
+  <!-- 2. 메인 사이트 헤더 완벽 동기화 스타일 -->
   <style>
   html {
     scroll-padding-top: 100px !important;
@@ -60,13 +60,13 @@
     align-items: center !important;
   }
 
-  /* 레이아웃 컨테이너 */
+  /* 레이아웃 컨테이너 (메인과 동일한 가로 폭) */
   header.site-header .nav-wrap {
     width: 100% !important;
     max-width: 1280px !important;
     height: 82px !important;
     margin: 0 auto !important;
-    padding: 0 28px !important;
+    padding: 0 32px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -74,7 +74,7 @@
     box-sizing: border-box !important;
   }
 
-  /* 로고 */
+  /* 로고 규격 통일 */
   header.site-header .brand {
     display: flex !important;
     align-items: center !important;
@@ -84,28 +84,28 @@
 
   header.site-header .site-logo,
   header.site-header .brand img {
-    width: 220px !important;
+    width: 200px !important;
     height: auto !important;
     object-fit: contain !important;
     display: block !important;
   }
 
-  /* 메인 네비게이션 메뉴 */
+  /* 메인 네비게이션 메뉴 (간격 및 정렬 균일화) */
   header.site-header .main-nav {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 34px !important;
+    gap: 28px !important;
     list-style: none !important;
     margin-left: auto !important;
-    margin-right: 24px !important;
+    margin-right: 0 !important;
     padding: 0 !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
   }
 
-  header.site-header .main-nav a,
+  header.site-header .main-nav > a,
   header.site-header .nav-dropdown .nav-dropdown-btn {
     color: #34445f !important;
     font-size: 14px !important;
@@ -120,21 +120,22 @@
     line-height: 1.4 !important;
   }
 
-  header.site-header .main-nav a:hover,
-  header.site-header .main-nav a.active,
+  header.site-header .main-nav > a:hover,
+  header.site-header .main-nav > a.active,
   header.site-header .nav-dropdown:hover .nav-dropdown-btn {
     color: #00a8c7 !important;
     background: transparent !important;
   }
 
-  /* 온라인 견적문의 버튼 (메인과 동일한 클래스 및 스타일) */
-  header.site-header .nav-cta {
+  /* 온라인 견적문의 버튼 (메인과 동일한 규격) */
+  header.site-header .nav-cta,
+  header.site-header .main-nav .nav-cta {
     background-color: #0082c3 !important;
     color: #ffffff !important;
-    padding: 12px 20px !important;
-    border-radius: 8px !important;
+    padding: 10px 18px !important;
+    border-radius: 6px !important;
     font-size: 14px !important;
-    font-weight: 800 !important;
+    font-weight: 700 !important;
     text-decoration: none !important;
     transition: background-color 0.2s ease, transform 0.2s ease !important;
     display: inline-flex !important;
@@ -143,6 +144,7 @@
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     border: none !important;
+    margin-left: 8px !important;
   }
 
   header.site-header .nav-cta:hover {
@@ -275,7 +277,7 @@
 
     header.site-header .main-nav.active { display: flex !important; }
 
-    header.site-header .main-nav a,
+    header.site-header .main-nav > a,
     header.site-header .nav-dropdown .nav-dropdown-btn {
       padding: 14px 24px !important;
       font-size: 16px !important;
@@ -324,7 +326,7 @@
       <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
     </a>
 
-    <!-- 2. PC 메인 메뉴 -->
+    <!-- 2. PC 메인 메뉴 (견적문의 버튼을 nav 내부로 통합하여 메인과 동일한 정렬 유지) -->
     <nav class="main-nav" id="mainNav">
       <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
       <a href="https://www.widesp.co.kr/service.html">서비스</a>
@@ -339,14 +341,14 @@
       </div>
 
       <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
+
+      <!-- 온라인 견적문의 버튼 -->
+      <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        <span>온라인 견적문의</span>
+      </a>
     </nav>
 
-    <!-- 3. 온라인 견적문의 버튼 (추가됨) -->
-    <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-      <span>온라인 견적문의</span>
-    </a>
-
-    <!-- 4. 모바일 햄버거 버튼 -->
+    <!-- 3. 모바일 햄버거 버튼 -->
     <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
       <span></span>
       <span></span>
