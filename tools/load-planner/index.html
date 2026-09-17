@@ -27,7 +27,7 @@
     }
 
     /* ==========================================
-       📌 상단 헤더 (적재계산기 active 적용)
+       📌 상단 헤더 (전체 페이지 규격 통일)
        ========================================== */
     .site-header {
       position: fixed;
@@ -37,6 +37,7 @@
       z-index: 1000;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
@@ -48,6 +49,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
 
     .brand { display: flex; align-items: center; text-decoration: none; }
@@ -74,8 +76,14 @@
       border-radius: 6px !important;
       font-weight: 700 !important;
       display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: background-color 0.2s ease, transform 0.2s ease !important;
     }
-    .main-nav a.nav-cta:hover { background-color: #0369a1 !important; }
+    .main-nav a.nav-cta:hover {
+      background-color: #0369a1 !important;
+      transform: translateY(-1px) !important;
+    }
 
     .menu-btn {
       display: none;
@@ -84,12 +92,24 @@
       cursor: pointer;
       padding: 8px;
       flex-direction: column;
+      justify-content: center;
       gap: 5px;
+      z-index: 1001;
     }
-    .menu-btn span { display: block; width: 24px; height: 2px; background-color: #0f172a; }
+    .menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #0f172a;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-btn.active span:nth-child(2) { opacity: 0; }
+    .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ==========================================
-       📌 적재계산기 본문 레이아웃
+       📌 적재계산기 본문 레이아웃 (기존 유지)
        ========================================== */
     .calc-container {
       max-width: 1000px;
@@ -164,7 +184,8 @@
     .result-value { font-size: 24px; font-weight: 800; color: #0284c7; margin-top: 4px; }
     .result-value small { font-size: 14px; color: #475569; font-weight: 500; }
 
-    @media (max-width: 868px) {
+    @media (max-width: 992px) {
+      body { padding-top: 64px; }
       .calc-grid { grid-template-columns: 1fr; }
       .menu-btn { display: flex; }
       .main-nav {
@@ -178,7 +199,8 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       }
       .main-nav.active { display: flex; }
-      .main-nav a { padding: 14px 24px; border-bottom: 1px solid #f8fafc; }
+      .main-nav a { padding: 14px 24px; font-size: 16px; border-bottom: 1px solid #f8fafc; }
+      .main-nav a.nav-cta { margin: 12px 24px !important; text-align: center !important; }
     }
   </style>
 </head>
