@@ -88,7 +88,7 @@
       gap: 28px;
     }
 
-    /* 방문 여부/기본 상태와 상관없이 다크 그레이로 통일 */
+    /* 방문 여부/상태 관계없이 기본 글자색 어두운색 고정 */
     .main-nav a,
     .main-nav a:link,
     .main-nav a:visited {
@@ -101,7 +101,7 @@
       white-space: nowrap;
     }
 
-    /* 오직 마우스를 올려놓았을 때만 파란색 전환 */
+    /* 오직 마우스를 올렸을 때만 파란색 변경 */
     .main-nav a:hover {
       color: #0284c7;
     }
@@ -143,7 +143,6 @@
       color: #0284c7;
     }
 
-    /* 마우스 커서 이동 공간 보장 브릿지 */
     .nav-dropdown::after {
       content: '';
       position: absolute;
@@ -233,6 +232,120 @@
     }
     .menu-btn.active span:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ==========================================
+        📌 서브페이지 콘텐츠 영역 (복원 완료)
+       ========================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .sub-header {
+      margin-bottom: 40px;
+    }
+
+    .sub-title-tag {
+      color: #00b4d8;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .contact-info h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    .contact-info h1 span {
+      color: #00a8cc;
+    }
+
+    .contact-info p {
+      color: #64748b;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-item {
+      padding: 20px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .info-item:first-child {
+      padding-top: 0;
+    }
+
+    .info-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    /* 카카오 지도 스타일 */
+    .map-wrapper {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .map-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .map-address {
+      font-size: 15px;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    .root_daum_roughmap {
+      width: 100% !important;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .root_daum_roughmap .wrap_map {
+      height: 400px !important;
+    }
+
+    .traffic-info {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 20px;
     }
 
     /* ==========================================
@@ -342,7 +455,7 @@
       <a href="/network.html">글로벌 네트워크</a>
       <a href="/resources.html">무역·물류 자료실</a>
       
-      <!-- active 클래스 제거로 파란색 상시 고정 방지 -->
+      <!-- 파란색 강제 고정 원인이었던 active 클래스 제거 -->
       <a href="/tools/load-planner/">컨테이너 적재계산기</a>
 
       <a href="/contact.html">오시는길 / 문의</a>
