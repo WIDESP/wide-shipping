@@ -7,261 +7,210 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- Pretendard 웹폰트 및 원래 style.css 파일 로드 -->
+  <!-- Pretendard 웹폰트 및 style.css 로드 -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 홈페이지 동일 헤더 전용 CSS -->
+  <!-- contact.html과 동일한 상단 헤더 CSS 적용 -->
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
     body {
-      padding-top: 82px !important;
+      padding-top: 72px;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.6;
     }
 
-    header.site-header {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 82px !important;
-      z-index: 9999 !important;
-      background: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-      border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
-      display: flex !important;
-      align-items: center !important;
+    /* ==========================================
+        📌 상단 헤더 (contact.html 동기화)
+       ========================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
-    header.site-header .nav-wrap {
-      height: 82px !important;
-      max-width: 1500px !important;
-      margin: 0 auto !important;
-      padding: 0 34px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      width: 100% !important;
-      box-sizing: border-box !important;
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
     }
 
-    header.site-header .brand {
-      display: flex !important;
-      align-items: center !important;
-      text-decoration: none !important;
-      flex-shrink: 0 !important;
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
 
-    header.site-header .site-logo {
-      width: 220px !important;
-      height: auto !important;
-      object-fit: contain !important;
-      display: block !important;
+    .site-logo {
+      height: 42px;
+      width: auto;
+      display: block;
     }
 
-    header.site-header .main-nav {
-      display: flex !important;
-      align-items: center !important;
-      gap: 32px !important;
-      list-style: none !important;
-      margin-left: auto !important;
-      margin-right: 32px !important;
-      padding: 0 !important;
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
 
-    header.site-header .main-nav > a,
-    header.site-header .nav-dropdown .nav-dropdown-btn {
-      all: unset;
-      font-size: 14px !important;
-      font-weight: 700 !important;
-      color: #34445f !important;
-      position: relative !important;
-      padding: 29px 0 !important;
-      cursor: pointer !important;
-      white-space: nowrap !important;
-      transition: color 0.15s ease !important;
-      display: inline-flex !important;
-      align-items: center !important;
+    .main-nav a,
+    .main-nav a:link,
+    .main-nav a:visited {
+      color: #1e293b;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      padding: 6px 0;
+      white-space: nowrap;
     }
 
-    header.site-header .main-nav a:hover,
-    header.site-header .main-nav a.active,
-    header.site-header .nav-dropdown:hover .nav-dropdown-btn {
-      color: #00a8c7 !important;
+    .main-nav a:hover {
+      color: #0284c7;
     }
 
-    /* 드롭다운 메뉴 */
-    header.site-header .nav-dropdown {
-      position: relative !important;
-      display: flex !important;
-      align-items: center !important;
-      height: 82px !important;
+    .main-nav a.active {
+      color: #0284c7 !important;
     }
 
-    header.site-header .nav-dropdown::after {
-      content: '' !important;
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 15px !important;
-    }
-
-    header.site-header .dropdown-menu {
-      display: none !important;
-      position: absolute !important;
-      top: 100% !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      min-width: 200px !important;
-      background: #fff !important;
-      border: 1px solid #dbe6e8 !important;
-      box-shadow: 0 15px 35px rgba(18, 44, 78, 0.08) !important;
-      border-radius: 16px !important;
-      padding: 8px !important;
-      z-index: 100 !important;
-    }
-
-    header.site-header .nav-dropdown:hover .dropdown-menu {
-      display: block !important;
-    }
-
-    header.site-header .dropdown-menu a {
-      display: block !important;
-      padding: 10px 14px !important;
-      font-size: 13px !important;
-      font-weight: 700 !important;
-      color: #34445f !important;
-      border-radius: 10px !important;
-      white-space: nowrap !important;
-      text-decoration: none !important;
-      transition: background-color 0.15s ease, color 0.15s ease !important;
-    }
-
-    header.site-header .dropdown-menu a:hover,
-    header.site-header .dropdown-menu a.active {
-      background: #f2f7f8 !important;
-      color: #00a8c7 !important;
-    }
-
-    /* 온라인 견적문의 버튼 */
-    header.site-header .nav-cta {
-      all: unset !important;
-      background-color: #0284c7 !important;
+    .main-nav a[target="_blank"] {
+      background-color: #0284c7;
       color: #ffffff !important;
-      padding: 10px 20px !important;
-      border-radius: 8px !important;
-      font-size: 14px !important;
-      font-weight: 700 !important;
-      text-decoration: none !important;
-      white-space: nowrap !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex-shrink: 0 !important;
-      cursor: pointer !important;
-      transition: background-color 0.2s ease, transform 0.2s ease !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
-    header.site-header .nav-cta:hover {
-      background-color: #0369a1 !important;
-      transform: translateY(-1px) !important;
+    .main-nav a[target="_blank"]:hover {
+      background-color: #0369a1;
+      transform: translateY(-1px);
     }
 
     /* 모바일 햄버거 버튼 */
-    header.site-header .menu-btn {
-      display: none !important;
-      background: none !important;
-      border: 0 !important;
-      cursor: pointer !important;
-      padding: 8px !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      gap: 5px !important;
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      z-index: 1001;
     }
 
-    header.site-header .menu-btn span {
-      display: block !important;
-      width: 24px !important;
-      height: 2px !important;
-      background-color: #0f172a !important;
+    .menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #0f172a;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    @media(max-width: 920px) {
-      body { padding-top: 72px !important; }
-      header.site-header { height: 72px !important; }
-      header.site-header .nav-wrap { height: 72px !important; padding: 0 18px !important; }
-      header.site-header .site-logo { width: 170px !important; }
-      header.site-header .main-nav, header.site-header .nav-cta { display: none !important; }
-      header.site-header .menu-btn { display: flex !important; margin-left: auto !important; }
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
 
-      header.site-header .main-nav.open {
-        display: flex !important;
-        position: absolute !important;
-        top: 72px !important;
-        left: 0 !important;
-        right: 0 !important;
-        background: #ffffff !important;
-        flex-direction: column !important;
-        padding: 18px 28px !important;
-        gap: 0 !important;
-        border-bottom: 1px solid #dbe6e8 !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
-        margin: 0 !important;
+    /* ==========================================
+        📱 모바일 반응형 (992px 이하)
+       ========================================== */
+    @media (max-width: 992px) {
+      body {
+        padding-top: 64px;
       }
-      header.site-header .main-nav.open a,
-      header.site-header .main-nav.open .nav-dropdown-btn {
-        padding: 13px 0 !important;
-        font-size: 16px !important;
+      .nav-wrap {
+        padding: 10px 20px;
       }
-      header.site-header .main-nav.open .dropdown-menu {
-        position: static !important;
-        transform: none !important;
-        box-shadow: none !important;
-        display: block !important;
-        padding: 4px 0 4px 12px !important;
-        background: transparent !important;
-        border: none !important;
+      .site-logo {
+        height: 36px;
+      }
+      .menu-btn {
+        display: flex;
+      }
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #f1f5f9;
+      }
+      .main-nav.active {
+        display: flex;
+      }
+      .main-nav a {
+        padding: 14px 24px;
+        font-size: 16px;
+        border-bottom: 1px solid #f8fafc;
+        width: 100%;
+      }
+      .main-nav a[target="_blank"] {
+        margin: 12px 24px 8px;
+        width: calc(100% - 48px);
+        text-align: center;
+        border-radius: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 상단 공통 헤더 (메인 홈페이지 완벽 동기화) -->
+  <!-- 상단 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="https://www.widesp.co.kr/index.html" aria-label="와이드해운 홈">
         <img src="https://www.widesp.co.kr/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
       </a>
 
-      <nav class="main-nav" id="mainNav">
-        <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
-        <a href="https://www.widesp.co.kr/service.html">서비스</a>
-        <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
-
-        <!-- 무역·물류 자료실 드롭다운 -->
-        <div class="nav-dropdown">
-          <a href="https://www.widesp.co.kr/resources.html" class="nav-dropdown-btn">무역·물류 자료실</a>
-          <div class="dropdown-menu">
-            <a href="/tools/load-planner/" class="active">컨테이너 적재 계산기</a>
-          </div>
-        </div>
-
-        <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
-      </nav>
-
-      <!-- 온라인 견적문의 버튼 -->
-      <a class="nav-cta" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
-        온라인 견적문의
-      </a>
-
-      <!-- 모바일 햄버거 버튼 -->
-      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기">
+      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="https://www.widesp.co.kr/index.html#company">회사소개</a>
+        <a href="https://www.widesp.co.kr/service.html">서비스</a>
+        <a href="https://www.widesp.co.kr/network.html">글로벌 네트워크</a>
+        <a href="https://www.widesp.co.kr/resources.html">무역·물류 자료실</a>
+        <a href="https://www.widesp.co.kr/tools/load-planner/" class="active">컨테이너 적재계산기</a>
+        <a href="https://www.widesp.co.kr/contact.html">오시는길 / 문의</a>
+        <a href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+          온라인 견적문의
+        </a>
+      </nav>
     </div>
   </header>
 
@@ -296,12 +245,14 @@
   </main>
 
   <script>
-    // 모바일 햄버거 메뉴 토글 스크립트
+    // 모바일 햄버거 메뉴 동작
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
+
     if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('open');
+      menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
       });
     }
   </script>
