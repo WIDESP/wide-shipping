@@ -7,13 +7,13 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- Pretendard 웹폰트 및 메인/기존 CSS 로드 -->
-  <link rel="stylesheet" as="style" crossorigin href="https://fastly.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
+  <!-- Pretendard 웹폰트 (안정적인 CDN 주소로 교체) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 사이트(contact.html) 규격과 100% 동일한 상단 헤더 CSS -->
+  <!-- 메인 사이트(index.html)와 100% 일치하는 헤더 규격 고정 -->
   <style>
     * {
       box-sizing: border-box;
@@ -21,6 +21,10 @@
       padding: 0;
       word-break: keep-all;
       overflow-wrap: break-word;
+    }
+
+    html, body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important;
     }
 
     body {
@@ -31,54 +35,61 @@
     }
 
     /* ==========================================
-        📌 상단 헤더 (메인 사이트 규격 100% 동일 고정)
+        📌 상단 헤더 (메인 사이트 규격 100% 완벽 동기화)
        ========================================== */
-    .site-header {
+    html body header.site-header {
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       width: 100% !important;
+      height: 72px !important;
       z-index: 1000 !important;
       background: rgba(255, 255, 255, 0.98) !important;
       backdrop-filter: blur(10px) !important;
       -webkit-backdrop-filter: blur(10px) !important;
       border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+      display: flex !important;
+      align-items: center !important;
     }
 
-    .nav-wrap {
+    html body header.site-header .nav-wrap {
       max-width: 1200px !important;
       width: 100% !important;
       margin: 0 auto !important;
-      padding: 12px 24px !important;
+      padding: 0 24px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
       position: relative !important;
       box-sizing: border-box !important;
+      height: 100% !important;
     }
 
-    .brand {
+    html body header.site-header .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
+      height: 100% !important;
     }
 
-    .site-logo {
+    html body header.site-header .site-logo {
       height: 42px !important;
       width: auto !important;
       display: block !important;
     }
 
-    .main-nav {
+    html body header.site-header .main-nav {
       display: flex !important;
       align-items: center !important;
       gap: 28px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
     }
 
-    .main-nav a,
-    .main-nav a:link,
-    .main-nav a:visited {
+    /* 일반 메뉴 링크 규격 */
+    html body header.site-header .main-nav a:not(.btn) {
       color: #1e293b !important;
       font-size: 15px !important;
       font-weight: 600 !important;
@@ -88,28 +99,41 @@
       white-space: nowrap !important;
       background: transparent !important;
       border: none !important;
+      letter-spacing: -0.3px !important;
+      line-height: 1.5 !important;
     }
 
-    .main-nav a:hover {
+    html body header.site-header .main-nav a:not(.btn):hover {
       color: #0284c7 !important;
     }
 
-    .main-nav a[target="_blank"] {
+    /* 온라인 견적문의 버튼 규격 */
+    html body header.site-header .main-nav a.btn.primary,
+    html body header.site-header .main-nav a[target="_blank"] {
       background-color: #0284c7 !important;
       color: #ffffff !important;
-      padding: 8px 18px !important;
+      padding: 9px 20px !important;
       border-radius: 6px !important;
+      font-size: 15px !important;
       font-weight: 700 !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       transition: background-color 0.2s ease, transform 0.2s ease !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.3px !important;
+      margin: 0 !important;
     }
 
-    .main-nav a[target="_blank"]:hover {
+    html body header.site-header .main-nav a.btn.primary:hover,
+    html body header.site-header .main-nav a[target="_blank"]:hover {
       background-color: #0369a1 !important;
       transform: translateY(-1px) !important;
     }
 
     /* 모바일 햄버거 버튼 */
-    .menu-btn {
+    html body header.site-header .menu-btn {
       display: none !important;
       background: none !important;
       border: none !important;
@@ -121,7 +145,7 @@
       z-index: 1001 !important;
     }
 
-    .menu-btn span {
+    html body header.site-header .menu-btn span {
       display: block !important;
       width: 24px !important;
       height: 2px !important;
@@ -129,13 +153,13 @@
       transition: transform 0.3s ease, opacity 0.3s ease !important;
     }
 
-    .menu-btn.active span:nth-child(1) {
+    html body header.site-header .menu-btn.active span:nth-child(1) {
       transform: translateY(7px) rotate(45deg) !important;
     }
-    .menu-btn.active span:nth-child(2) {
+    html body header.site-header .menu-btn.active span:nth-child(2) {
       opacity: 0 !important;
     }
-    .menu-btn.active span:nth-child(3) {
+    html body header.site-header .menu-btn.active span:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg) !important;
     }
 
@@ -146,16 +170,19 @@
       body {
         padding-top: 64px !important;
       }
-      .nav-wrap {
-        padding: 10px 20px !important;
+      html body header.site-header {
+        height: 64px !important;
       }
-      .site-logo {
+      html body header.site-header .nav-wrap {
+        padding: 0 20px !important;
+      }
+      html body header.site-header .site-logo {
         height: 36px !important;
       }
-      .menu-btn {
+      html body header.site-header .menu-btn {
         display: flex !important;
       }
-      .main-nav {
+      html body header.site-header .main-nav {
         display: none !important;
         position: absolute !important;
         top: 100% !important;
@@ -169,16 +196,17 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
         border-top: 1px solid #f1f5f9 !important;
       }
-      .main-nav.active {
+      html body header.site-header .main-nav.active {
         display: flex !important;
       }
-      .main-nav a {
+      html body header.site-header .main-nav a:not(.btn) {
         padding: 14px 24px !important;
         font-size: 16px !important;
         border-bottom: 1px solid #f8fafc !important;
         width: 100% !important;
       }
-      .main-nav a[target="_blank"] {
+      html body header.site-header .main-nav a.btn.primary,
+      html body header.site-header .main-nav a[target="_blank"] {
         margin: 12px 24px 8px !important;
         width: calc(100% - 48px) !important;
         text-align: center !important;
