@@ -16,15 +16,18 @@
   <!-- 적재 계산기 모듈 스크립트 -->
   <script type="module" src="./app.js"></script>
 
-  <!-- <head> 최하단으로 위치시킨 커스텀 스타일 -->
+  <!-- 상단 헤더 CSS (드롭다운 제거 및 일렬 나열) -->
   <style>
     body {
-      padding-top: 66px !important;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      padding-top: 72px !important;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.6;
     }
 
-    /* 상단 헤더 */
+    /* ==========================================
+       📌 상단 헤더
+       ========================================== */
     .site-header {
       position: fixed !important;
       top: 0 !important;
@@ -41,7 +44,7 @@
     .nav-wrap {
       max-width: 1200px !important;
       margin: 0 auto !important;
-      padding: 14px 24px !important;
+      padding: 12px 24px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
@@ -52,11 +55,10 @@
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
-      line-height: 1 !important;
     }
 
     .site-logo {
-      height: 36px !important;
+      height: 42px !important;
       width: auto !important;
       display: block !important;
     }
@@ -64,16 +66,13 @@
     .main-nav {
       display: flex !important;
       align-items: center !important;
-      gap: 28px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      list-style: none !important;
+      gap: 24px !important;
     }
 
-    /* 기본 메뉴 링크 스타일 */
-    .main-nav a:not(.btn),
-    .main-nav a:not(.btn):link,
-    .main-nav a:not(.btn):visited {
+    /* 기본 메뉴 링크 (옆으로 나열) */
+    .main-nav a,
+    .main-nav a:link,
+    .main-nav a:visited {
       color: #1e293b !important;
       font-size: 15px !important;
       font-weight: 600 !important;
@@ -81,37 +80,30 @@
       transition: color 0.2s ease !important;
       padding: 6px 0 !important;
       white-space: nowrap !important;
-      line-height: 1 !important;
-      display: inline-block !important;
     }
 
-    /* 마우스 호버 및 현재 페이지(active) 상태 */
-    .main-nav a:not(.btn):hover,
+    .main-nav a:hover {
+      color: #0284c7 !important;
+    }
+
+    /* 현재 페이지(적재계산기) 강조 강조선 필요 시 지정 가능 */
     .main-nav a.active {
       color: #0284c7 !important;
     }
 
-    /* 온라인 견적문의 버튼 (btn primary) */
-    .main-nav .btn.primary {
+    /* 온라인 견적문의 버튼 */
+    .main-nav a[target="_blank"] {
       background-color: #0284c7 !important;
       color: #ffffff !important;
-      padding: 10px 20px !important;
+      padding: 8px 18px !important;
       border-radius: 6px !important;
-      font-size: 14px !important;
       font-weight: 700 !important;
-      text-decoration: none !important;
-      line-height: 1 !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
-      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25) !important;
+      transition: background-color 0.2s ease, transform 0.2s ease !important;
     }
 
-    .main-nav .btn.primary:hover {
+    .main-nav a[target="_blank"]:hover {
       background-color: #0369a1 !important;
       transform: translateY(-1px) !important;
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35) !important;
     }
 
     /* 모바일 햄버거 버튼 */
@@ -135,16 +127,26 @@
       transition: transform 0.3s ease, opacity 0.3s ease !important;
     }
 
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg) !important;
+    }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0 !important;
+    }
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg) !important;
+    }
+
     /* 모바일 반응형 (992px 이하) */
     @media (max-width: 992px) {
       body {
-        padding-top: 58px !important;
+        padding-top: 64px !important;
       }
       .nav-wrap {
         padding: 10px 20px !important;
       }
       .site-logo {
-        height: 30px !important;
+        height: 36px !important;
       }
       .menu-btn {
         display: flex !important;
@@ -166,13 +168,14 @@
       .main-nav.active {
         display: flex !important;
       }
-      .main-nav a:not(.btn) {
+      .main-nav a {
         padding: 14px 24px !important;
         font-size: 16px !important;
         border-bottom: 1px solid #f8fafc !important;
         width: 100% !important;
       }
-      .main-nav .btn.primary {
+
+      .main-nav a[target="_blank"] {
         margin: 12px 24px 8px !important;
         width: calc(100% - 48px) !important;
         text-align: center !important;
@@ -182,7 +185,7 @@
   </style>
 </head>
 <body>
-  <!-- 상단 헤더 (공통) -->
+  <!-- 상단 헤더 -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="/index.html" aria-label="와이드해운 홈">
@@ -202,7 +205,7 @@
         <a href="/resources.html">무역·물류 자료실</a>
         <a href="/tools/load-planner/" class="active">컨테이너 적재계산기</a>
         <a href="/contact.html">오시는길 / 문의</a>
-        <a class="btn primary" href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
+        <a href="https://quote.widesp.co.kr" target="_blank" rel="noopener noreferrer">
           온라인 견적문의
         </a>
       </nav>
