@@ -16,130 +16,117 @@
   <!-- 적재 계산기 모듈 스크립트 -->
   <script type="module" src="./app.js"></script>
 
-  <!-- 📌 2번째 사진 규격과 100% 일치시킨 슬림 헤더 CSS -->
   <style>
     body {
-      padding-top: 64px !important;
+      padding-top: 66px !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* 상단 헤더 전체 높이 슬림화 (64px 고정) */
-    header.site-header {
+    /* 상단 헤더 */
+    .site-header {
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       width: 100% !important;
-      height: 64px !important;
       z-index: 1000 !important;
       background: rgba(255, 255, 255, 0.98) !important;
       backdrop-filter: blur(10px) !important;
       -webkit-backdrop-filter: blur(10px) !important;
       border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
     }
 
-    header.site-header .nav-wrap {
+    .nav-wrap {
       max-width: 1200px !important;
-      height: 100% !important;
       margin: 0 auto !important;
-      padding: 0 24px !important;
+      padding: 12px 24px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
       position: relative !important;
     }
 
-    header.site-header .brand {
+    .brand {
       display: flex !important;
       align-items: center !important;
       text-decoration: none !important;
-      height: 100% !important;
+      line-height: 1 !important;
     }
 
-    /* 로고 크기 슬림화 (원본 규격 35px) */
-    header.site-header .site-logo {
-      height: 35px !important;
+    .site-logo {
+      height: 38px !important; /* 원본 비율에 맞춘 로고 높이 */
       width: auto !important;
       display: block !important;
     }
 
-    header.site-header .main-nav {
+    .main-nav {
       display: flex !important;
       align-items: center !important;
-      gap: 24px !important;
-    }
-
-    /* 일반 메뉴 텍스트 디테일 (두께 및 색상 교정) */
-    header.site-header .main-nav a,
-    header.site-header .main-nav a:link,
-    header.site-header .main-nav a:visited {
-      color: #334155 !important;
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important;
-      font-size: 14.5px !important;
-      font-weight: 500 !important;
-      text-decoration: none !important;
-      background: transparent !important;
-      border-radius: 0 !important;
-      padding: 4px 0 !important;
+      gap: 28px !important;
       margin: 0 !important;
-      white-space: nowrap !important;
-      line-height: 1 !important;
-      transition: color 0.15s ease !important;
+      padding: 0 !important;
+      list-style: none !important;
     }
 
-    header.site-header .main-nav a:hover {
+    /* 방문 여부/기본 상태 상관없이 다크 그레이 고정 */
+    .main-nav a,
+    .main-nav a:link,
+    .main-nav a:visited {
+      color: #1e293b !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      transition: color 0.2s ease !important;
+      padding: 6px 0 !important;
+      white-space: nowrap !important;
+      line-height: 1 !important; /* 줄간격으로 인한 두께/높이 팽창 방지 */
+      display: inline-block !important;
+    }
+
+    /* 오직 마우스를 올렸을 때만 파란색 전환 */
+    .main-nav a:hover {
       color: #0284c7 !important;
     }
 
-    /* 파란색 버튼 디테일 (원본 규격 맞춤) */
-    header.site-header .main-nav a[target="_blank"] {
+    /* 온라인 견적문의 버튼 */
+    .main-nav a[target="_blank"] {
       background-color: #0284c7 !important;
       color: #ffffff !important;
-      padding: 8px 16px !important;
+      padding: 8px 18px !important;
       border-radius: 6px !important;
-      font-size: 14px !important;
-      font-weight: 600 !important;
+      font-weight: 700 !important;
       line-height: 1 !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      transition: background-color 0.15s ease, transform 0.15s ease !important;
+      transition: background-color 0.2s ease, transform 0.2s ease !important;
     }
 
-    header.site-header .main-nav a[target="_blank"]:hover {
+    .main-nav a[target="_blank"]:hover {
       background-color: #0369a1 !important;
-      color: #ffffff !important;
       transform: translateY(-1px) !important;
     }
 
     /* 모바일 햄버거 버튼 */
-    header.site-header .menu-btn {
+    .menu-btn {
       display: none !important;
       background: none !important;
       border: none !important;
       cursor: pointer !important;
-      padding: 6px !important;
+      padding: 8px !important;
       flex-direction: column !important;
       justify-content: center !important;
       gap: 5px !important;
       z-index: 1001 !important;
     }
 
-    header.site-header .menu-btn span {
+    .menu-btn span {
       display: block !important;
-      width: 22px !important;
+      width: 24px !important;
       height: 2px !important;
       background-color: #0f172a !important;
       transition: transform 0.3s ease, opacity 0.3s ease !important;
-    }
-
-    header.site-header .menu-btn.active span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg) !important;
-    }
-    header.site-header .menu-btn.active span:nth-child(2) {
-      opacity: 0 !important;
-    }
-    header.site-header .menu-btn.active span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg) !important;
     }
 
     /* 모바일 반응형 (992px 이하) */
@@ -147,19 +134,16 @@
       body {
         padding-top: 58px !important;
       }
-      header.site-header {
-        height: 58px !important;
+      .nav-wrap {
+        padding: 10px 20px !important;
       }
-      header.site-header .nav-wrap {
-        padding: 0 16px !important;
+      .site-logo {
+        height: 32px !important;
       }
-      header.site-header .site-logo {
-        height: 30px !important;
-      }
-      header.site-header .menu-btn {
+      .menu-btn {
         display: flex !important;
       }
-      header.site-header .main-nav {
+      .main-nav {
         display: none !important;
         position: absolute !important;
         top: 100% !important;
@@ -169,24 +153,24 @@
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 0 !important;
-        padding: 8px 0 !important;
+        padding: 12px 0 !important;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
         border-top: 1px solid #f1f5f9 !important;
       }
-      header.site-header .main-nav.active {
+      .main-nav.active {
         display: flex !important;
       }
-      header.site-header .main-nav a {
-        padding: 12px 20px !important;
-        font-size: 15px !important;
+      .main-nav a {
+        padding: 14px 24px !important;
+        font-size: 16px !important;
         border-bottom: 1px solid #f8fafc !important;
         width: 100% !important;
       }
-      header.site-header .main-nav a[target="_blank"] {
-        margin: 10px 20px 6px !important;
-        width: calc(100% - 40px) !important;
+      .main-nav a[target="_blank"] {
+        margin: 12px 24px 8px !important;
+        width: calc(100% - 48px) !important;
         text-align: center !important;
-        border-radius: 6px !important;
+        border-radius: 8px !important;
       }
     }
   </style>
