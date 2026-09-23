@@ -7,10 +7,10 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- Pretendard 웹폰트 (메인 사이트 표준) -->
-  <link rel="stylesheet" as="styles" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- Pretendard 웹폰트 (메인 사이트와 동일) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   
-  <!-- 메인 공통 CSS 로드 (전역 스타일 및 폰트 적용) -->
+  <!-- 📌 메인 사이트 공통 스타일시트 (styles.css) 연결 -->
   <link rel="stylesheet" href="/styles.css">
 
   <!-- 적재 계산기 전용 스타일시트 -->
@@ -19,7 +19,7 @@
   <!-- 적재 계산기 모듈 스크립트 -->
   <script type="module" src="./app.js"></script>
 
-  <!-- 상단 헤더 규격 메인 사이트와 동일화 -->
+  <!-- 상단 헤더 규격 완벽 고정 -->
   <style>
     body {
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif !important;
@@ -29,9 +29,7 @@
       line-height: 1.6;
     }
 
-    /* ==========================================
-       📌 상단 헤더 (메인 사이트 규격 맞춤)
-       ========================================== */
+    /* 상단 헤더를 메인 사이트(styles.css)의 nav-wrap 및 font 규격과 100% 일치 */
     .site-header {
       position: fixed !important;
       top: 0 !important;
@@ -41,150 +39,76 @@
       background: rgba(255, 255, 255, 0.98) !important;
       backdrop-filter: blur(10px) !important;
       -webkit-backdrop-filter: blur(10px) !important;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+      border-bottom: 1px solid rgba(220, 228, 239, 0.7) !important;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
     }
 
     .nav-wrap {
-      max-width: 1280px !important;
       height: 82px !important;
+      max-width: 1280px !important;
       margin: 0 auto !important;
       padding: 0 28px !important;
       display: flex !important;
       align-items: center !important;
-      justify-content: space-between !important;
-      position: relative !important;
+      gap: 42px !important;
     }
 
-    .brand {
-      display: flex !important;
-      align-items: center !important;
-      text-decoration: none !important;
-    }
-
-    .site-logo {
-      height: 42px !important;
-      width: auto !important;
-      display: block !important;
+    .brand img {
+      width: 220px !important;
+      height: auto !important;
+      object-fit: contain;
     }
 
     .main-nav {
       display: flex !important;
       align-items: center !important;
       gap: 34px !important;
+      margin-left: auto !important;
     }
 
-    /* 메뉴 링크 (폰트 14px, 굵기 700, 색상 #34445f로 변경) */
     .main-nav a,
     .main-nav a:link,
     .main-nav a:visited {
-      color: #34445f !important;
       font-size: 14px !important;
       font-weight: 700 !important;
+      color: #34445f !important;
       text-decoration: none !important;
-      transition: color 0.2s ease !important;
       padding: 10px 0 !important;
       white-space: nowrap !important;
     }
 
-    .main-nav a:hover {
-      color: #00a8c7 !important;
-    }
-
+    .main-nav a:hover,
     .main-nav a.active {
       color: #00a8c7 !important;
     }
 
-    /* 온라인 견적문의 버튼 */
-    .main-nav a[target="_blank"] {
-      background-color: #00a8c7 !important;
-      color: #ffffff !important;
-      padding: 8px 18px !important;
-      border-radius: 6px !important;
-      font-weight: 700 !important;
-      transition: background-color 0.2s ease, transform 0.2s ease !important;
-    }
-
-    .main-nav a[target="_blank"]:hover {
-      background-color: #008da7 !important;
-      transform: translateY(-1px) !important;
-    }
-
-    /* 모바일 햄버거 버튼 */
-    .menu-btn {
-      display: none !important;
-      background: none !important;
-      border: none !important;
-      cursor: pointer !important;
-      padding: 8px !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      gap: 5px !important;
-      z-index: 1001 !important;
-    }
-
-    .menu-btn span {
-      display: block !important;
-      width: 24px !important;
-      height: 2px !important;
-      background-color: #0f172a !important;
-      transition: transform 0.3s ease, opacity 0.3s ease !important;
-    }
-
-    .menu-btn.active span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg) !important;
-    }
-    .menu-btn.active span:nth-child(2) {
-      opacity: 0 !important;
-    }
-    .menu-btn.active span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg) !important;
-    }
-
-    /* 모바일 반응형 (992px 이하) */
-    @media (max-width: 992px) {
+    @media (max-width: 900px) {
       body {
-        padding-top: 64px !important;
+        padding-top: 72px !important;
       }
       .nav-wrap {
-        height: auto !important;
-        padding: 10px 20px !important;
-      }
-      .site-logo {
-        height: 36px !important;
-      }
-      .menu-btn {
-        display: flex !important;
+        height: 72px !important;
+        padding: 0 20px !important;
       }
       .main-nav {
         display: none !important;
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: #ffffff !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 0 !important;
-        padding: 12px 0 !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-        border-top: 1px solid #f1f5f9 !important;
       }
-      .main-nav.active {
+      .main-nav.active,
+      .main-nav.open {
         display: flex !important;
+        position: absolute !important;
+        top: 72px !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: #fff !important;
+        flex-direction: column !important;
+        padding: 18px 28px !important;
+        gap: 0 !important;
+        border-bottom: 1px solid #dfe6ef !important;
       }
-      .main-nav a {
-        padding: 14px 24px !important;
-        font-size: 16px !important;
-        border-bottom: 1px solid #f8fafc !important;
-        width: 100% !important;
-      }
-
-      .main-nav a[target="_blank"] {
-        margin: 12px 24px 8px !important;
-        width: calc(100% - 48px) !important;
-        text-align: center !important;
-        border-radius: 8px !important;
+      .menu-btn {
+        display: block !important;
+        margin-left: auto !important;
       }
     }
   </style>
