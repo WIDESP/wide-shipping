@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+ddocument.addEventListener("DOMContentLoaded", function () {
   const kakaoBtn = document.createElement("a");
-  kakaoBtn.href = "https://pf.kakao.com/_여기채널아이디/chat"; // 실제 카카오톡 링크
+  kakaoBtn.href = "https://open.kakao.com/o/gcueGWOi"; // 오픈채팅 링크로 수정 완료
   kakaoBtn.target = "_blank";
   kakaoBtn.rel = "noopener noreferrer";
   kakaoBtn.className = "kakao-chat-box";
