@@ -30,119 +30,6 @@ main a{color:inherit}
 button:focus-visible,input:focus,select:focus,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #21bbcc;outline-offset:2px}
 a{text-decoration:none; color:inherit;}
 
-/* ==========================================
-   📌 공통 상단 헤더 (네비게이션바) 스타일 추가
-   ========================================== */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255, 255, 255, .92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(220, 228, 239, .7);
-}
-
-.nav-wrap {
-  height: 82px;
-  max-width: 1280px;
-  margin: auto;
-  padding: 0 28px;
-  display: flex;
-  align-items: center;
-  gap: 42px;
-}
-
-.brand img {
-  width: 220px !important;
-  height: auto !important;
-  object-fit: contain;
-}
-
-.main-nav {
-  display: flex;
-  gap: 34px;
-  margin-left: auto;
-}
-
-.main-nav a {
-  font-size: 14px;
-  font-weight: 700;
-  color: #34445f;
-  position: relative;
-  padding: 29px 0;
-}
-
-.main-nav a:hover {
-  color: var(--blue);
-}
-
-.main-nav .nav-dropdown {
-  position: relative;
-}
-
-.main-nav .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 200px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  box-shadow: 0 15px 35px rgba(18, 44, 78, 0.08);
-  border-radius: 16px;
-  padding: 8px;
-  z-index: 100;
-}
-
-.main-nav .nav-dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.main-nav .dropdown-menu a {
-  display: block;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #34445f;
-  font-family: inherit;
-  border-radius: 10px;
-  transition: background-color 0.15s ease, color 0.15s ease;
-  white-space: nowrap;
-}
-
-.main-nav .dropdown-menu a:hover {
-  background: var(--soft);
-  color: var(--blue);
-}
-
-.nav-cta {
-  background: var(--navy);
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.nav-cta span {
-  margin-left: 8px;
-}
-
-.menu-btn {
-  display: none;
-  background: none;
-  border: 0;
-}
-
-.menu-btn span {
-  display: block;
-  width: 23px;
-  height: 2px;
-  background: var(--ink);
-  margin: 5px;
-}
-
 /* --- 본문 및 3D 계산기 전용 스타일 --- */
 main{max-width:1500px;margin:auto;box-shadow:0 28px 80px #13344820}
 .hero{background:radial-gradient(circle at 78% 42%,#174b5a 0,#102e43 31%,#071b2b 77%);min-height:324px;color:#fff;display:flex;position:relative;overflow:hidden;border-bottom:3px solid #2cc5c6}
@@ -399,11 +286,6 @@ footer a{color:#147a8b;text-underline-offset:2px}
   .blueprint-metrics>div:last-child{border:0}
 }
 @media(max-width:920px){
-  .main-nav,.nav-cta{display:none}
-  .menu-btn{display:block;margin-left:auto}
-  .nav-wrap{height:72px}
-  .main-nav.open{display:flex;position:absolute;top:72px;left:0;right:0;background:#fff;flex-direction:column;padding:18px 28px;gap:0;border-bottom:1px solid var(--line)}
-  .main-nav.open a{padding:13px 0}
   .workspace{grid-template-columns:1fr}
   .input-column{border-right:0;border-bottom:1px solid var(--line)}
   .hero-graphic{flex-basis:35%}
