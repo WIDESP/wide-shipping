@@ -7,43 +7,156 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- Pretendard 웹폰트 (메인과 동일) -->
+  <!-- Pretendard 웹폰트 -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   
-  <!-- 1. 메인 사이트 전역 스타일시트 (우선 적용) -->
+  <!-- 메인 사이트 공통 스타일 -->
   <link rel="stylesheet" href="/styles.css">
-
-  <!-- 2. 적재 계산기 전용 스타일시트 -->
+  
+  <!-- 적재 계산기 전용 스타일 -->
   <link rel="stylesheet" href="./style.css">
   
   <!-- 적재 계산기 모듈 스크립트 -->
   <script type="module" src="./app.js"></script>
 
-  <!-- 메인 헤더와 동일한 간격/여백 보정 -->
+  <!-- 메인 사이트(contact.html 등)와 100% 동일한 헤더 디자인을 강제 고정하는 스타일 -->
   <style>
-    /* 메인 사이트 헤더가 fixed로 고정되어 있으므로 상단 여백 부여 */
     body {
-      padding-top: 80px;
+      padding-top: 82px !important;
     }
-    @media (max-width: 900px) {
-      body {
-        padding-top: 70px;
+
+    /* 상단 헤더 전체 영역 */
+    header.site-header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 82px !important;
+      z-index: 1000 !important;
+      background: #ffffff !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    /* 네비게이션 내부 정렬 레이아웃 */
+    header.site-header .nav-wrap {
+      max-width: 1280px !important;
+      width: 100% !important;
+      height: 82px !important;
+      margin: 0 auto !important;
+      padding: 0 28px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      box-sizing: border-box !important;
+    }
+
+    /* 로고 이미지 규격 */
+    header.site-header .brand {
+      display: flex !important;
+      align-items: center !important;
+      text-decoration: none !important;
+      flex-shrink: 0 !important;
+    }
+
+    header.site-header .brand img.site-logo {
+      width: 220px !important;
+      height: auto !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+    /* 메뉴 항목 간격 및 폰트 */
+    header.site-header .main-nav {
+      display: flex !important;
+      align-items: center !important;
+      gap: 32px !important;
+      margin-left: auto !important;
+      margin-right: 0 !important;
+      list-style: none !important;
+      padding: 0 !important;
+    }
+
+    header.site-header .main-nav a {
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: #334155 !important;
+      text-decoration: none !important;
+      white-space: nowrap !important;
+      transition: color 0.15s ease !important;
+    }
+
+    header.site-header .main-nav a:hover,
+    header.site-header .main-nav a.active {
+      color: #0284c7 !important;
+    }
+
+    /* 우측 '온라인 견적문의' 파란색 직사각형 버튼 (contact.html과 동일) */
+    header.site-header .main-nav a.btn.primary,
+    header.site-header .main-nav a[target="_blank"] {
+      background-color: #0284c7 !important;
+      color: #ffffff !important;
+      padding: 10px 20px !important;
+      border-radius: 6px !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: background-color 0.2s ease !important;
+    }
+
+    header.site-header .main-nav a.btn.primary:hover,
+    header.site-header .main-nav a[target="_blank"]:hover {
+      background-color: #0369a1 !important;
+      color: #ffffff !important;
+    }
+
+    /* 모바일 반응형 헤더 (992px 이하) */
+    @media (max-width: 992px) {
+      body { padding-top: 70px !important; }
+      header.site-header { height: 70px !important; }
+      header.site-header .nav-wrap { height: 70px !important; padding: 0 20px !important; }
+      header.site-header .brand img.site-logo { width: 170px !important; }
+      header.site-header .main-nav { display: none !important; }
+      header.site-header .menu-btn { display: flex !important; }
+
+      header.site-header .main-nav.active {
+        display: flex !important;
+        position: absolute !important;
+        top: 70px !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 16px 24px !important;
+        gap: 12px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+        border-top: 1px solid #e2e8f0 !important;
+      }
+      header.site-header .main-nav.active a {
+        padding: 10px 0 !important;
+        border-bottom: 1px solid #f8fafc !important;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 상단 헤더 (메인 사이트 index.html / contact.html과 100% 동일한 HTML 구조) -->
+  <!-- 상단 헤더 (오시는길 / 문의 페이지와 100% 동일한 구조) -->
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="/index.html" aria-label="와이드해운 홈">
         <img src="/assets/wide-shipping-logo.svg" alt="(주)와이드해운" class="site-logo">
       </a>
 
-      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="menu-btn" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" style="display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:5px;">
+        <span style="display:block; width:24px; height:2px; background:#0f172a;"></span>
+        <span style="display:block; width:24px; height:2px; background:#0f172a;"></span>
+        <span style="display:block; width:24px; height:2px; background:#0f172a;"></span>
       </button>
 
       <nav class="main-nav" id="mainNav">
@@ -59,7 +172,7 @@
       </nav>
     </div>
   </header>
-  
+
   <main>
     <section class="hero" aria-labelledby="title">
       <div class="hero-copy"><div class="eyebrow"><span class="pulse-dot"></span> WIDE SHIPPING / DIGITAL OPERATIONS <span class="version">MODEL 01.26</span></div>
@@ -97,7 +210,6 @@
 
     if (menuToggle && mainNav) {
       menuToggle.addEventListener('click', function() {
-        menuToggle.classList.toggle('active');
         mainNav.classList.toggle('active');
       });
     }
