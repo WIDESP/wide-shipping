@@ -1,6 +1,9 @@
-ddocument.addEventListener("DOMContentLoaded", function () {
+function initKakaoChat() {
+  // 이미 버튼이 생성되어 있다면 중복 생성 방지
+  if (document.querySelector(".kakao-chat-box")) return;
+
   const kakaoBtn = document.createElement("a");
-  kakaoBtn.href = "https://open.kakao.com/o/gcueGWOi"; // 오픈채팅 링크로 수정 완료
+  kakaoBtn.href = "https://open.kakao.com/o/gcueGWOi"; // 오픈채팅 링크
   kakaoBtn.target = "_blank";
   kakaoBtn.rel = "noopener noreferrer";
   kakaoBtn.className = "kakao-chat-box";
@@ -14,4 +17,11 @@ ddocument.addEventListener("DOMContentLoaded", function () {
   `;
 
   document.body.appendChild(kakaoBtn);
-});
+}
+
+// DOM 상태에 따라 즉시 실행 또는 이벤트 등록
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initKakaoChat);
+} else {
+  initKakaoChat();
+}
