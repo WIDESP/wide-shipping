@@ -7,26 +7,30 @@
   <meta name="description" content="화물 규격과 수량을 입력해 20DC·40HQ 적재 가능성과 배치안을 비교하는 포워딩 계산기">
   <title>포워딩 적재 계산기 | WIDE SHIPPING</title>
   
-  <!-- Pretendard 웹폰트 -->
-  <link rel="stylesheet" as="style" crossorigin href="https://fastly.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
+  <!-- Pretendard 웹폰트 (메인 사이트 표준) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   
+  <!-- 메인 공통 CSS 로드 (전역 스타일 및 폰트 적용) -->
+  <link rel="stylesheet" href="/style.css">
+
   <!-- 적재 계산기 전용 스타일시트 -->
   <link rel="stylesheet" href="./style.css">
   
   <!-- 적재 계산기 모듈 스크립트 -->
   <script type="module" src="./app.js"></script>
 
-  <!-- 상단 헤더 CSS (드롭다운 제거 및 일렬 나열) -->
+  <!-- 상단 헤더 규격 메인 사이트와 동일화 -->
   <style>
     body {
-      padding-top: 72px !important;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif !important;
+      padding-top: 82px !important;
       background-color: #ffffff;
-      color: #333;
+      color: #0e1d39;
       line-height: 1.6;
     }
 
     /* ==========================================
-       📌 상단 헤더
+       📌 상단 헤더 (메인 사이트 규격 맞춤)
        ========================================== */
     .site-header {
       position: fixed !important;
@@ -42,9 +46,10 @@
     }
 
     .nav-wrap {
-      max-width: 1200px !important;
+      max-width: 1280px !important;
+      height: 82px !important;
       margin: 0 auto !important;
-      padding: 12px 24px !important;
+      padding: 0 28px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
@@ -66,34 +71,33 @@
     .main-nav {
       display: flex !important;
       align-items: center !important;
-      gap: 24px !important;
+      gap: 34px !important;
     }
 
-    /* 기본 메뉴 링크 (옆으로 나열) */
+    /* 메뉴 링크 (폰트 14px, 굵기 700, 색상 #34445f로 변경) */
     .main-nav a,
     .main-nav a:link,
     .main-nav a:visited {
-      color: #1e293b !important;
-      font-size: 15px !important;
-      font-weight: 600 !important;
+      color: #34445f !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
       text-decoration: none !important;
       transition: color 0.2s ease !important;
-      padding: 6px 0 !important;
+      padding: 10px 0 !important;
       white-space: nowrap !important;
     }
 
     .main-nav a:hover {
-      color: #0284c7 !important;
+      color: #00a8c7 !important;
     }
 
-    /* 현재 페이지(적재계산기) 강조 강조선 필요 시 지정 가능 */
     .main-nav a.active {
-      color: #0284c7 !important;
+      color: #00a8c7 !important;
     }
 
     /* 온라인 견적문의 버튼 */
     .main-nav a[target="_blank"] {
-      background-color: #0284c7 !important;
+      background-color: #00a8c7 !important;
       color: #ffffff !important;
       padding: 8px 18px !important;
       border-radius: 6px !important;
@@ -102,7 +106,7 @@
     }
 
     .main-nav a[target="_blank"]:hover {
-      background-color: #0369a1 !important;
+      background-color: #008da7 !important;
       transform: translateY(-1px) !important;
     }
 
@@ -143,6 +147,7 @@
         padding-top: 64px !important;
       }
       .nav-wrap {
+        height: auto !important;
         padding: 10px 20px !important;
       }
       .site-logo {
